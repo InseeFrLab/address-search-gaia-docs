@@ -9,7 +9,7 @@ project:
 website:
   page-navigation: true
   title: "Moteur de recherche d'adresse Gaïa"
-  site-url: "https://gitlab.insee.fr/sprint-gaia/moteur_es"
+  site-url: "https://inseefrlab.github.io/address-search-gaia-docs"
   repo-url: "https://gitlab.insee.fr/sprint-gaia/moteur_es"
   open-graph: true
   page-footer:
@@ -52,3 +52,8 @@ format:
     include-in-header: "style/fontawesome.html"
     header-includes: |
         <link rel="icon" type="image/png" sizes="32x32" href="src/_extensions/InseeFrLab/onyxia/favicon-32x32.png">
+
+publish:
+  gh-pages:
+    branch: gh-pages
+    dist: _site
