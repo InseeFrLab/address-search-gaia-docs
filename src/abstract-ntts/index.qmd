@@ -10,7 +10,7 @@ author:
             city: Montrouge
             postal-code: 92541
 
-date: 30-09-2024
+date: 09-30-2024
 lang: en-EN
 
 # abstract: |
@@ -85,7 +85,7 @@ Each time a condition is met, the street's **score** increases. Additionally, we
 
 3. **Number and suffix Query:** If the street is identified, the algorithm searches for addresses within the street (*idStreet*). To be returned, the address numbers in the index must match exactly the number extracted from the address to identify. This extraction is performed using a custom-developed **RegEx**. Additionally, a function has been implemented to check the provided address for suffix, and if any are found, the reference addresses with the same suffix will be boosted.
 
-![](../schema_moteur.jpg){width=75% fig-align="center"}
+![](schema_moteur.jpg){width=75% fig-align="center"}
 **Figure 1. Overview diagram of the full identification process**
 
 # Results and practical application
