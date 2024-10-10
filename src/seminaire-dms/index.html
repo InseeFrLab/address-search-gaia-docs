@@ -425,9 +425,11 @@
 </tr>
 </tbody>
 </table>
-<h3 data-background-image="background.svg" data-background-size="contain" id="recherche-par-token">Recherche par token</h3>
+</section>
+<section id="recherche-par-token" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Recherche par token</h2>
 <p><strong>Un token = un mot</strong></p>
-<p>Si on cherche “88 avenue du général charles de gaulle”, pour chaque nom de voie, on doit compter le nombre de : - “88” - “avenue” - “du” - “général” - “charles” - “de” - “gaulle”</p>
+<p>Si on cherche <strong>“88 avenue du général charles de gaulle”</strong>, pour chaque nom de voie, on doit compter le nombre de : - “88” - “avenue” - “du” - “général” - “charles” - “de” - “gaulle”</p>
 <p><strong>C’est extrêment long</strong></p>
 </section>
 <section id="index-inversé-token" class="slide level2" data-background-image="background.svg" data-background-size="contain">
@@ -514,8 +516,17 @@
 <h2>Score par n-grams</h2>
 <p>Pour retourner la voie la plus pertinente, on construit un score pour chaque voie : somme occurence x boost pour chaque n-grams de l’adresse recherchée</p>
 </section>
+<section id="limites-des-n-grams" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Limites des n-grams</h2>
+<ul>
+<li>Plus le n-grams est petit, plus le temps de recherche est long</li>
+<li>Limitation à minimum n=3 pour notre cas</li>
+</ul>
+</section>
 <section id="fuzzi" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Fuzzi ?</h2>
+<h2>Fuzzi</h2>
+<p>Contourner les fautes d’orthographes d’une autre façon :</p>
+<p>…</p>
 </section>
 <section id="score-global" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Score global</h2>

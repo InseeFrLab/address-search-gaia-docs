@@ -18,7 +18,14 @@
     "href": "src/seminaire-dms/index.html#base-de-données-classique",
     "title": "Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)",
     "section": "Base de données classique",
-    "text": "Base de données classique\nTable 1: Exemple de base de données\n\n\n\nid\nnom de voie\n\n\n\n\nA\ndu général leclerc\n\n\nB\ndu général charles de gaulle\n\n\nC\ndu point du jour\n\n\nD\nverdier\n\n\nE\ndes cours\n\n\n\nRecherche par token\nUn token = un mot\nSi on cherche “88 avenue du général charles de gaulle”, pour chaque nom de voie, on doit compter le nombre de : - “88” - “avenue” - “du” - “général” - “charles” - “de” - “gaulle”\nC’est extrêment long"
+    "text": "Base de données classique\nTable 1: Exemple de base de données\n\n\n\nid\nnom de voie\n\n\n\n\nA\ndu général leclerc\n\n\nB\ndu général charles de gaulle\n\n\nC\ndu point du jour\n\n\nD\nverdier\n\n\nE\ndes cours"
+  },
+  {
+    "objectID": "src/seminaire-dms/index.html#recherche-par-token",
+    "href": "src/seminaire-dms/index.html#recherche-par-token",
+    "title": "Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)",
+    "section": "Recherche par token",
+    "text": "Recherche par token\nUn token = un mot\nSi on cherche “88 avenue du général charles de gaulle”, pour chaque nom de voie, on doit compter le nombre de : - “88” - “avenue” - “du” - “général” - “charles” - “de” - “gaulle”\nC’est extrêment long"
   },
   {
     "objectID": "src/seminaire-dms/index.html#index-inversé-token",
@@ -56,11 +63,18 @@
     "text": "Score par n-grams\nPour retourner la voie la plus pertinente, on construit un score pour chaque voie : somme occurence x boost pour chaque n-grams de l’adresse recherchée"
   },
   {
+    "objectID": "src/seminaire-dms/index.html#limites-des-n-grams",
+    "href": "src/seminaire-dms/index.html#limites-des-n-grams",
+    "title": "Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)",
+    "section": "Limites des n-grams",
+    "text": "Limites des n-grams\n\nPlus le n-grams est petit, plus le temps de recherche est long\nLimitation à minimum n=3 pour notre cas"
+  },
+  {
     "objectID": "src/seminaire-dms/index.html#fuzzi",
     "href": "src/seminaire-dms/index.html#fuzzi",
     "title": "Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)",
-    "section": "Fuzzi ?",
-    "text": "Fuzzi ?"
+    "section": "Fuzzi",
+    "text": "Fuzzi\nContourner les fautes d’orthographes d’une autre façon :\n…"
   },
   {
     "objectID": "src/seminaire-dms/index.html#score-global",
