@@ -32,7 +32,7 @@
     "href": "src/seminaire-dms/index.html#entraînement-de-modèle",
     "title": "Challenge : détection automatisée de zones d’occupation humaines sur imagerie satellite",
     "section": "Entraînement de modèle",
-    "text": "Entraînement de modèle\nEntraîner un modèle de Computer Vision pour classifier automatiquement une image selon la présence ou non de zone d’occupation humaine :\n\nL’ensemble des données annoté est divisé en deux parties : données d’entraînement et données de validation\nDivision en Batches : Les données sont ensuite divisées en petits sous-ensembles appelés batches"
+    "text": "Entraînement de modèle\nEntraîner un modèle de Computer Vision pour classifier automatiquement une image selon la présence ou non de zone d’occupation humaine :\n\nL’ensemble des données annoté est divisé en deux parties : données d’entraînement et données de validation\nDivision en Batches : Les données sont ensuite divisées en petits sous-ensembles appelés batches."
   },
   {
     "objectID": "src/seminaire-dms/index.html#entraînement-de-modèle-1",
