@@ -32,7 +32,14 @@
     "href": "src/seminaire-dms/index.html#entraînement-de-modèle",
     "title": "Challenge : détection automatisée de zones d’occupation humaines sur imagerie satellite",
     "section": "Entraînement de modèle",
-    "text": "Entraînement de modèle\nEntraîner un modèle de Computer Vision pour classifier automatiquement une image selon la présence ou non de zone d’occupation humaine :\n\nL’ensemble des données annoté est divisé en deux parties : données d’entraînement et données de validation\nDivision en Batches : Les données sont ensuite divisées en petits sous-ensembles appelés batches\nÀ la fin de chaque batch, le modèle est validé sur les données de validation pour évaluer sa performance afin de s’améliorer\nPlusieurs passages d’epochs : Chaque epoch consiste à faire passer tous les batches dans le réseau de neurones\n\nAvoir un GPU pour faire tourner plus rapidement les entraînements."
+    "text": "Entraînement de modèle\nEntraîner un modèle de Computer Vision pour classifier automatiquement une image selon la présence ou non de zone d’occupation humaine :\n\nL’ensemble des données annoté est divisé en deux parties : données d’entraînement et données de validation\nDivision en Batches : Les données sont ensuite divisées en petits sous-ensembles appelés batches"
+  },
+  {
+    "objectID": "src/seminaire-dms/index.html#entraînement-de-modèle-1",
+    "href": "src/seminaire-dms/index.html#entraînement-de-modèle-1",
+    "title": "Challenge : détection automatisée de zones d’occupation humaines sur imagerie satellite",
+    "section": "Entraînement de modèle",
+    "text": "Entraînement de modèle\n\nÀ la fin de chaque batch, le modèle est validé sur les données de validation pour évaluer sa performance afin de s’améliorer\nPlusieurs passages d’epochs : Chaque epoch consiste à faire passer tous les batches dans le réseau de neurones\n\nAvoir un GPU pour faire tourner plus rapidement les entraînements."
   },
   {
     "objectID": "src/seminaire-dms/index.html#prétraitement-des-données",
@@ -60,7 +67,14 @@
     "href": "src/seminaire-dms/index.html#résultats",
     "title": "Challenge : détection automatisée de zones d’occupation humaines sur imagerie satellite",
     "section": "Résultats",
-    "text": "Résultats\nMeilleur entraînement : - un modèle ResNet18 - une loss binary cross-entropy - 22 epochs - Fini en 5 minutes\nMétriques sur images test : - Accuracy : 0.81 - Precision : 0.81 - Recall : 0.82 - AUC : 0.81  ## Score obtenu lors du challenge\nUne fois le fichier à annoter soumis, on a obtenus : AUC = 0.76"
+    "text": "Résultats\nMeilleur entraînement :\n\nun modèle ResNet18\nune loss binary cross-entropy\n22 epochs\nFini en 5 minutes\n\nMétriques sur images test :\n\nAccuracy : 0.81\nPrecision : 0.81\nRecall : 0.82\nAUC : 0.81"
+  },
+  {
+    "objectID": "src/seminaire-dms/index.html#score-obtenu-lors-du-challenge",
+    "href": "src/seminaire-dms/index.html#score-obtenu-lors-du-challenge",
+    "title": "Challenge : détection automatisée de zones d’occupation humaines sur imagerie satellite",
+    "section": "Score obtenu lors du challenge",
+    "text": "Score obtenu lors du challenge\nUne fois le fichier à annoter soumis, on a obtenus : AUC = 0.76\nScore du gagnant du challenge : AUC = 0.86"
   },
   {
     "objectID": "src/seminaire-dms/index.html#outils",

@@ -429,6 +429,11 @@
 <ol type="1">
 <li><p>L’ensemble des données annoté est divisé en deux parties : <strong>données d’entraînement</strong> et <strong>données de validation</strong></p></li>
 <li><p><strong>Division en Batches</strong> : Les données sont ensuite divisées en petits sous-ensembles appelés <strong>batches</strong></p></li>
+</ol>
+</section>
+<section id="entraînement-de-modèle-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Entraînement de modèle</h2>
+<ol start="3" type="1">
 <li><p>À la fin de chaque batch, le modèle est validé sur les <strong>données de validation</strong> pour évaluer sa performance afin de s’améliorer</p></li>
 <li><p><strong>Plusieurs passages d’epochs</strong> : Chaque epoch consiste à faire passer tous les batches dans le réseau de neurones</p></li>
 </ol>
@@ -477,9 +482,25 @@
 </section>
 <section id="résultats" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Résultats</h2>
-<p>Meilleur entraînement : - un modèle <em>ResNet18</em> - une loss <em>binary cross-entropy</em> - 22 epochs - Fini en 5 minutes</p>
-<p>Métriques sur images test : - Accuracy : 0.81 - Precision : 0.81 - Recall : 0.82 - <strong>AUC : 0.81 </strong> ## Score obtenu lors du challenge</p>
+<p>Meilleur entraînement :</p>
+<ul>
+<li>un modèle <em>ResNet18</em></li>
+<li>une loss <em>binary cross-entropy</em></li>
+<li>22 epochs</li>
+<li>Fini en 5 minutes</li>
+</ul>
+<p>Métriques sur images test :</p>
+<ul>
+<li>Accuracy : 0.81</li>
+<li>Precision : 0.81</li>
+<li>Recall : 0.82</li>
+<li><strong>AUC : 0.81</strong></li>
+</ul>
+</section>
+<section id="score-obtenu-lors-du-challenge" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Score obtenu lors du challenge</h2>
 <p>Une fois le fichier à annoter soumis, on a obtenus : <strong>AUC = 0.76</strong></p>
+<p>Score du gagnant du challenge : <strong>AUC = 0.86</strong></p>
 </section></section>
 <section id="plan-de-la-présentation-4" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>
