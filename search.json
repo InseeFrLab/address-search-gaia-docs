@@ -35,11 +35,11 @@
     "text": "Entraînement de modèle\nEntraîner un modèle de Computer Vision pour classifier automatiquement une image selon la présence ou non de zone d’occupation humaine :\n\nL’ensemble des données annoté est divisé en deux parties : données d’entraînement et données de validation\nDivision en Batches : Les données sont ensuite divisées en petits sous-ensembles appelés batches."
   },
   {
-    "objectID": "src/seminaire-dms/index.html#entraînement-de-modèle-1",
-    "href": "src/seminaire-dms/index.html#entraînement-de-modèle-1",
+    "objectID": "src/seminaire-dms/index.html#entraînement-de-modèle---bis",
+    "href": "src/seminaire-dms/index.html#entraînement-de-modèle---bis",
     "title": "Challenge : détection automatisée de zones d’occupation humaines sur imagerie satellite",
-    "section": "Entraînement de modèle",
-    "text": "Entraînement de modèle\n\nÀ la fin de chaque batch, le modèle est validé sur les données de validation pour évaluer sa performance afin de s’améliorer\nPlusieurs passages d’epochs : Chaque epoch consiste à faire passer tous les batches dans le réseau de neurones\n\nAvoir un GPU pour faire tourner plus rapidement les entraînements."
+    "section": "Entraînement de modèle - bis",
+    "text": "Entraînement de modèle - bis\n\nÀ la fin de chaque batch, le modèle est validé sur les données de validation pour évaluer sa performance afin de s’améliorer\nPlusieurs passages d’epochs : Chaque epoch consiste à faire passer tous les batches dans le réseau de neurones\n\nAvoir un GPU pour faire tourner plus rapidement les entraînements."
   },
   {
     "objectID": "src/seminaire-dms/index.html#prétraitement-des-données",
