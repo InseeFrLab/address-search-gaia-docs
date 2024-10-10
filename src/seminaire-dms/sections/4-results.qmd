@@ -9,10 +9,10 @@ Meilleur entraînement :
 
 Métriques sur images test :
 
-- Accuracy : 0.81
-- Precision : 0.81
-- Recall : 0.82
-- AUC : 0.81
+- Accuracy : 0.81 
+- Precision : 0.81 
+- Recall : 0.82 
+- AUC : 0.81 
 
 ## Score obtenu lors du challenge
 
