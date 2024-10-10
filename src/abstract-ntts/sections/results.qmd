@@ -1,0 +1,15 @@
+The ES indices were populated with addresses derived from multiple clean and reliable sources from the NSI. In total, approximately 27 million addresses and 3 million streets were indexed.  
+To evaluate the search engine’s performance, addresses from a survey conducted by the NSI were collected, where participants manually provided their addresses. These addresses contain noise: spelling errors, acronyms… Using the national individual code for each participant, the survey data was matched with our national individual-address database, which serves as the ground truth by providing the correct *idAddress*. This annotated dataset, consisting of 100,000 addresses across the country, was used to provide quality metrics on the search engine.  
+These addresses went through the identification process:
+
+- The address was identified 86.0% of the time with an accuracy of 0.94
+- The street was identified 99.5% of the time with an accuracy of 0.94
+- 0.5% of the addresses were not found, at any level
+
+A test set of 100,000 clean addresses, sampled from the data in the address index, was created to evaluate the quality of its own data identification: the address was identified 100.0% of the time with an accuracy of 1 (all with the strict identification step).  
+To assess the efficiency of the actual identification process, a comparison was made between two different pipelines:
+
+- P1: The actual full pipeline including strict address search, street name search, and then number and suffix search
+- P2: A pipeline that starts with the street name and then the number and suffix search
+
+To improve processing times, an additional step has been added to P2, creating the P1 process: a strict address search without **tokenization/ngrams**—which is time consuming—, only on addresses in the town required. This step resolves a significant portion of the addresses, around 30% in practical cases. If the database is clean, like administrative addresses, this rate can rise to 100%. With the same test set of 100,000 clean addresses as before, it took **one-sixth the time** to identify them using this strict identification step compared to doing it without, with the same rate of address/street identification and accuracy. Adding this step does not increase processing time if very few addresses are identified, but it saves time if many addresses are found there.  
