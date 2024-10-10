@@ -74,7 +74,7 @@
     "href": "src/seminaire-dms/index.html#score-obtenu-lors-du-challenge",
     "title": "Challenge : détection automatisée de zones d’occupation humaines sur imagerie satellite",
     "section": "Score obtenu lors du challenge",
-    "text": "Score obtenu lors du challenge\nUne fois le fichier à annoter soumis, on a obtenus : AUC = 0.76\nScore du gagnant du challenge : AUC = 0.86"
+    "text": "Score obtenu lors du challenge\nUne fois le fichier à annoter soumis, on a obtenu : AUC = 0.76\nScore du gagnant du challenge : AUC = 0.86"
   },
   {
     "objectID": "src/seminaire-dms/index.html#outils",
