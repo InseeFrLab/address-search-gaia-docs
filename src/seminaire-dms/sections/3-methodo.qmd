@@ -6,6 +6,8 @@ Entraîner un modèle de *Computer Vision* pour classifier automatiquement une i
    
 2. **Division en Batches** : Les données sont ensuite divisées en petits sous-ensembles appelés **batches**
 
+## Entraînement de modèle
+
 3. À la fin de chaque batch, le modèle est validé sur les **données de validation** pour évaluer sa performance afin de s'améliorer
 
 4. **Plusieurs passages d'epochs** : Chaque epoch consiste à faire passer tous les batches dans le réseau de neurones
