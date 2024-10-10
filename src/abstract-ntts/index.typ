@@ -185,12 +185,10 @@ Two key indices were developed: one for complete addresses and one for street na
 
 In reality, other variables are present in the indices, including geolocation variables. However, these are not useful for conducting text-based address search. To enable effective searches, it is crucial that the data in the indices is processed in the same way as the addresses being identified. For this reason, the same filters are applied, called #strong[analyzers];, to both the indices and the inputs to the search engine. These include:
 
-```
 - Lowercasing
 - Accents handling
 - Punctuation handling
 - Use of synonym lists to normalize spellings
-```
 
 == Searching process
 <searching-process>

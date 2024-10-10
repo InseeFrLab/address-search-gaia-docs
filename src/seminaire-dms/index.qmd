@@ -1,7 +1,7 @@
 ---
-title: "Séminaire interne DMS : moteur de recherche d'adresse avec ElasticSearch (Gaïa)"
+title: "Challenge : détection automatisée de zones d'occupation humaines sur imagerie satellite" # Séminaire interne DMS : moteur de recherche d'adresse avec ElasticSearch (Gaïa) **[Raya Berova (DMRG)]{.orange}**
 subtitle: |
-  **[Raya Berova (DMRG)]{.orange}**
+  **[Raya Berova & Mohamed Sekouri]{.orange}** 
 date: "11/28/2024"
 date-format: "D MMMM YYYY"
 slide-number: true
@@ -24,11 +24,11 @@ ascii: true
 
 # Plan de la présentation
 
-1️⃣ Introduction
+1️⃣ Contexte
 
-2️⃣ Méthodologie
+2️⃣ Les données
 
-3️⃣ Les données 
+3️⃣ Méthodologie
 
 4️⃣ Résultats obtenus
 
@@ -43,29 +43,11 @@ ascii: true
 
 # Plan de la présentation
 
-1️⃣ Introduction
+1️⃣ Contexte
 
-**2️⃣ Méthodologie**
+**2️⃣ Les données**
 
-3️⃣ Les données 
-
-4️⃣ Résultats obtenus
-
-5️⃣ Structure du projet
-
-6️⃣ Discussion
-
-# 2️⃣ Méthodologie
-
-{{< include sections/3-methodo.qmd >}}
-
-# Plan de la présentation
-
-1️⃣ Introduction
-
-2️⃣ Méthodologie
-
-**3️⃣ Les données**
+3️⃣ Méthodologie
 
 4️⃣ Résultats obtenus
 
@@ -73,17 +55,35 @@ ascii: true
 
 6️⃣ Discussion
 
-# 3️⃣ Les données 
+# 2️⃣ Les données
 
 {{< include sections/2-data.qmd >}}
 
 # Plan de la présentation
 
-1️⃣ Introduction
+1️⃣ Contexte
 
-2️⃣ Méthodologie
+2️⃣ Les données
 
-3️⃣ Les données 
+**3️⃣ Méthodologie**
+
+4️⃣ Résultats obtenus
+
+5️⃣ Structure du projet
+
+6️⃣ Discussion
+
+# 3️⃣ Méthodologie
+
+{{< include sections/3-methodo.qmd >}}
+
+# Plan de la présentation
+
+1️⃣ Contexte
+
+2️⃣ Les données
+
+3️⃣ Méthodologie
 
 **4️⃣ Résultats obtenus**
 
@@ -97,11 +97,11 @@ ascii: true
 
 # Plan de la présentation
 
-1️⃣ Introduction
+1️⃣ Contexte
 
-2️⃣ Méthodologie
+2️⃣ Les données
 
-3️⃣ Les données 
+3️⃣ Méthodologie
 
 4️⃣ Résultats obtenus
 
@@ -115,18 +115,18 @@ ascii: true
 
 # Plan de la présentation
 
-1️⃣ Introduction
+1️⃣ Contexte
 
-2️⃣ Méthodologie
+2️⃣ Les données
 
-3️⃣ Les données 
+3️⃣ Méthodologie
 
 4️⃣ Résultats obtenus
 
 5️⃣ Structure du projet
 
-**6️⃣ Discussion**
-
+**6️⃣ Discussion
+**
 # 6️⃣ Discussion
 
 {{< include sections/6-discussion.qmd >}}
