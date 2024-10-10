@@ -125,8 +125,8 @@ ascii: true
 
 5️⃣ Structure du projet
 
-**6️⃣ Discussion
-**
+**6️⃣ Discussion**
+
 # 6️⃣ Discussion
 
 {{< include sections/6-discussion.qmd >}}
