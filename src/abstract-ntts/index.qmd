@@ -1,12 +1,41 @@
 ---
+title: "Independent Address Identification Search Engine for National Statistical Institute Using ElasticSearch"
+author:
+    - name: Raya Berova
+      email: raya.berova@insee.fr
+      affiliations: 
+          - id: Insee
+            name: Insee
+            department: DMRG
+            city: Montrouge
+            postal-code: 92541
+
+date: last-modified
+lang: en-EN
+
+# abstract: |
+#   blabla
+
 format:
-  html:
-    header-includes: |
-        <link rel="icon" type="image/png" sizes="32x32" href="../_extensions/InseeFrLab/onyxia/favicon-32x32.png">
-  pdf: default
-sidebar: false
+  typst:
+    toc: false
+    toc-indent: auto
+    section-numbering: 1.1.a
+    columns: 1
+    keep-typ: true
+    bibliography: biblio.bib
+    bibliographystyle: apa
+    template-partials:
+      - definitions.typ
 ---
 
-## Abstract pour NTTS 2025 (Eurostat)
+{{< pagebreak >}}
 
-<embed src="ntts2025_abstract.pdf" type="application/pdf" width="100%" height="600px" />
+# Introduction {.unnumbered}
+
+In order for survey interviewers to reach individuals, it is essential to accurately identify and geolocate their addresses. Address data, used in a wide range of statistical processes—from census to surveys—is often difficult to process due to inconsistencies, variations
+in input, and the volume of records.
+
+In matters of address search, many rely on established services like Google Maps or OpenStreetMap. However, these platforms often pose limitations in terms of data control and reliability. Creating a custom address identification search engine provides complete control over the data, addressing concerns about data source transparency and monthly data updates.
+
+A solution employing ElasticSearch (ES), a powerful software used to create and configure search engines, is here proposed to build an independent process for identifying address data for the National Statistical Institute (NSI). Moreover, ES enables text-based address search and supports the storage of geometric objects, considering the spatial aspect of addresses. This approach optimizes both processing time and accuracy by employing a two-step strategy: an initial strict search for precise address identification, followed by a flexible matching phase for addresses not identified in the first step, which accounts for spelling errors and variations in the input.

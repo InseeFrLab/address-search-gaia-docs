@@ -8,7 +8,7 @@ description: |
 author: Raya Berova
 slides:
   text: pdf
-  url: src/abstract-ntts/index.html
+  url: src/abstract-ntts/index.pdf
 order: 3
 lang: fr-FR
 ---
