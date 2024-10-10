@@ -10,11 +10,11 @@
 | D | verdier                      |
 | E | des cours                   |
 
-### Recherche par token
+## Recherche par token
 
 **Un token = un mot**
 
-Si on cherche "88 avenue du général charles de gaulle", pour chaque nom de voie, on doit compter le nombre de :
+Si on cherche **"88 avenue du général charles de gaulle"**, pour chaque nom de voie, on doit compter le nombre de :
 - "88"
 - "avenue"
 - "du"
@@ -70,7 +70,16 @@ Exemple : découpage du texte "avenue verdier"
 Pour retourner la voie la plus pertinente, on construit un score pour chaque voie :
 somme occurence x boost pour chaque n-grams de l'adresse recherchée
 
-## Fuzzi ?
+## Limites des n-grams
+
+- Plus le n-grams est petit, plus le temps de recherche est long
+- Limitation à minimum n=3 pour notre cas
+
+## Fuzzi
+
+Contourner les fautes d'orthographes d'une autre façon :
+
+...
 
 ## Score global 
 
