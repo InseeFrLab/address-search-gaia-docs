@@ -4,7 +4,7 @@ Entraîner un modèle de *Computer Vision* pour classifier automatiquement une i
 
 1. L'ensemble des données annoté est divisé en deux parties : **données d'entraînement** et **données de validation**
    
-2. **Division en Batches** : Les données sont ensuite divisées en petits sous-ensembles appelés **batches**
+2. **Division en Batches** : Les données sont ensuite divisées en petits sous-ensembles appelés **batches**.
 
 ## Entraînement de modèle
 
