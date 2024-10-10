@@ -10,7 +10,7 @@
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.57">
 
-  <title>Moteur de recherche d'adresse Gaïa – Challenge : détection automatisée de zones d’occupation humaines sur imagerie satellite</title>
+  <title>Moteur de recherche d'adresse Gaïa – Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -324,8 +324,8 @@
     }
   </style>
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<meta property="og:title" content="Challenge : détection automatisée de zones d’occupation humaines sur imagerie satellite – Moteur de recherche d’adresse Gaïa">
-<meta property="og:description" content="Raya Berova &amp; Mohamed Sekouri">
+<meta property="og:title" content="Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa) – Moteur de recherche d’adresse Gaïa">
+<meta property="og:description" content="Raya Berova (DMRG)">
 <meta property="og:site_name" content="Moteur de recherche d'adresse Gaïa">
 </head>
 <body class="quarto-light">
@@ -333,13 +333,13 @@
     <div class="slides">
 
 <section id="title-slide" data-background-image="../_extensions/InseeFrLab/onyxia/background.svg" data-background-size="contain" class="quarto-title-block center">
-  <h1 class="title">Challenge : détection automatisée de zones d’occupation humaines sur imagerie satellite</h1>
-  <p class="subtitle"></p><p><strong><span class="orange">Raya Berova &amp; Mohamed Sekouri</span></strong></p><p></p>
+  <h1 class="title">Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)</h1>
+  <p class="subtitle"></p><p><strong><span class="orange">Raya Berova (DMRG)</span></strong></p><p></p>
 
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">10 octobre 2024</p>
+  <p class="date">28 novembre 2024</p>
 </section>
 <section id="plan-de-la-présentation" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>
@@ -356,13 +356,8 @@
 <h1>1️⃣ Introduction</h1>
 
 </section>
-<section id="contexte" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Contexte</h2>
-<p><strong>INEGI</strong> : Institut national des statistiques et de la Géographie au Mexique</p>
-
-<img data-src="img/inegi.png" class="quarto-figure quarto-figure-center r-stretch" style="width:30.0%"><p>Besoin de détecter les zones d’occupation humaine au Mexique pour connaître la <strong>croissance rapide du pays</strong>.</p>
-<p><strong>Images satellites</strong>: pour voir les zones sans faire déplacer des agents.</p>
-<p><strong>Méthode de détection automatisée</strong> car à l’oeil nu c’est trop lent et coûteux.</p>
+<section id="intro" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Intro</h2>
 </section></section>
 <section id="plan-de-la-présentation-1" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>
@@ -379,34 +374,8 @@
 <h1>2️⃣ Les données</h1>
 
 </section>
-<section id="une-image-dans-le-jeu-de-données" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Une image dans le jeu de données</h2>
-<p>Les images sont des empilement de plusieurs sources de données satellitaires, ce qui donne des images incompréhensibles à l’oeil nu, juste un amas de pixels</p>
-<p>Une image dans le jeu de données fourni = une matrice de <strong>16x16 pixels</strong> avec 6 dimensions (ici les <em>bandes spectrales</em>)</p>
-<p>Les différentes bandes :</p>
-<ul>
-<li>Bleu</li>
-<li>Vert</li>
-<li>Rouge</li>
-<li>Proche infrarouge (NIR)</li>
-<li>Infrarouge à ondes courtes 1 (SWIR 1)</li>
-<li>Infrarouge à ondes courtes 2 (SWIR 2)</li>
-</ul>
-</section>
-<section id="bandes-spectrales" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Bandes spectrales</h2>
-
-<img data-src="img/ondes.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"></section>
-<section id="jeu-de-données" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Jeu de données</h2>
-<ul>
-<li>1,1M d’images annotées (1 si zone d’occupation humaine, 0 sinon) :
-<ul>
-<li>200 000 images annotées <strong>1</strong></li>
-<li>900 000 images annotées <strong>0</strong></li>
-</ul></li>
-<li>Jeu d’images à annoter pour évaluation : <strong>120 000 images</strong></li>
-</ul>
+<section id="data" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Data</h2>
 </section></section>
 <section id="plan-de-la-présentation-2" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>
@@ -423,48 +392,146 @@
 <h1>3️⃣ Méthodologie</h1>
 
 </section>
-<section id="entraînement-de-modèle" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Entraînement de modèle</h2>
-<p>Entraîner un modèle de <em>Computer Vision</em> pour classifier automatiquement une image selon la présence ou non de zone d’occupation humaine :</p>
-<ol type="1">
-<li><p>L’ensemble des données annoté est divisé en deux parties : <strong>données d’entraînement</strong> et <strong>données de validation</strong></p></li>
-<li><p><strong>Division en Batches</strong> : Les données sont ensuite divisées en petits sous-ensembles appelés <strong>batches</strong>.</p></li>
-</ol>
+<section id="base-de-données-classique" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Base de données classique</h2>
+<p><strong>Table 1: Exemple de base de données</strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>id</th>
+<th style="text-align: left;">nom de voie</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td style="text-align: left;">du général leclerc</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td style="text-align: left;">du général charles de gaulle</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td style="text-align: left;">du point du jour</td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td style="text-align: left;">verdier</td>
+</tr>
+<tr class="odd">
+<td>E</td>
+<td style="text-align: left;">des cours</td>
+</tr>
+</tbody>
+</table>
+<h3 data-background-image="background.svg" data-background-size="contain" id="recherche-par-token">Recherche par token</h3>
+<p><strong>Un token = un mot</strong></p>
+<p>Si on cherche “88 avenue du général charles de gaulle”, pour chaque nom de voie, on doit compter le nombre de : - “88” - “avenue” - “du” - “général” - “charles” - “de” - “gaulle”</p>
+<p><strong>C’est extrêment long</strong></p>
 </section>
-<section id="entraînement-de-modèle---bis" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Entraînement de modèle - bis</h2>
-<ol start="3" type="1">
-<li><p>À la fin de chaque batch, le modèle est validé sur les <strong>données de validation</strong> pour évaluer sa performance afin de s’améliorer</p></li>
-<li><p><strong>Plusieurs passages d’epochs</strong> : Chaque epoch consiste à faire passer tous les batches dans le réseau de neurones</p></li>
-</ol>
-<p>Avoir un GPU pour faire tourner plus rapidement les entraînements.</p>
+<section id="index-inversé-token" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Index inversé token</h2>
+<p><strong>Table 2: Exemple d’index inversé</strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>token</th>
+<th>occurrences</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>général</td>
+<td>{“A”: 1, “B”: 1}</td>
+</tr>
+<tr class="even">
+<td>jour</td>
+<td>{“A”: 1}</td>
+</tr>
+<tr class="odd">
+<td>verdier</td>
+<td>{“B”: 1}</td>
+</tr>
+</tbody>
+</table>
+<p><strong>On a directement le comptage par token</strong></p>
 </section>
-<section id="prétraitement-des-données" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Prétraitement des données</h2>
+<section id="score-par-token" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Score par token</h2>
+<p>Pour retourner la voie la plus pertinente, on construit un score pour chaque voie : somme occurence x boost pour chaque token de l’adresse recherchée</p>
+</section>
+<section id="recherche-par-n-grams-de-caractères" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Recherche par n-grams de caractères</h2>
+<p>Contourner les fautes d’orthographes : chaque token est découpé en sous-chaînes de n caractères consécutifs</p>
+<p>Exemple : découpage du texte “avenue verdier”</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>token</th>
+<th>3-grams</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>avenue</td>
+<td>ave, ven, enu, nue</td>
+</tr>
+<tr class="even">
+<td>verdier</td>
+<td>ver, erd, rdi, die, ier</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="index-inversé-3-grams" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Index inversé 3-grams</h2>
+<p><strong>Table 3: Exemple d’index inversé 3-grams</strong></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>3-grams</th>
+<th>occurrences</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>“gén”</td>
+<td>{“A”: 1, “B”: 1}</td>
+</tr>
+<tr class="even">
+<td>“char”</td>
+<td>{“B”: 1}</td>
+</tr>
+<tr class="odd">
+<td>“our”</td>
+<td>{“C”: 1, “E”: 1}</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="score-par-n-grams" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Score par n-grams</h2>
+<p>Pour retourner la voie la plus pertinente, on construit un score pour chaque voie : somme occurence x boost pour chaque n-grams de l’adresse recherchée</p>
+</section>
+<section id="fuzzi" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Fuzzi ?</h2>
+</section>
+<section id="score-global" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Score global</h2>
+<p>Le score global va donc combiner la somme des matchs au niveau :</p>
 <ul>
-<li>Avoir un jeu de données <strong>équilibré</strong> : même nombre d’images 0 et 1</li>
-<li>Jeu de données stables pour comparer les différents entraînements (toujours les mêmes) :
-<ul>
-<li>240 000 images entraînement</li>
-<li>80 000 images validation</li>
-<li>80 000 images test</li>
-</ul></li>
-<li>Normaliser les images avec la moyenne</li>
+<li>token</li>
+<li>n-grams</li>
+<li>fuzziness</li>
 </ul>
-</section>
-<section id="réseau-de-neurones-et-loss" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Réseau de neurones et loss</h2>
-<ul>
-<li>Choisir un <strong>modèle</strong> adapté (réseau de neurones) et le <strong>fine tuner</strong> (le modifier pour nos données)</li>
-<li>Sélectionner une <strong>loss</strong> : fonction qui calcule la perte entre les annotations qui représentent la vérité et les prédictions pendant l’entraînement (utilisé lors de l’étape de validation)</li>
-<li>Surveiller les entraînement pour éviter le sur-apprentissage</li>
-</ul>
-</section>
-<section id="evaluation-des-performances" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Evaluation des performances</h2>
-<p>Les perfomances doivent être évalués sur des données qui n’ont pas servis à l’entraînement: <strong>les images test</strong>.</p>
-<p>Utilisation de métriques parlantes : accuracy, precision, recall, <strong>AUC</strong> (métrique utilisée par INEGI pour départager les entraînements des participants).</p>
+<p>Ce score prendra en compte les boosts, le n des n-grams et le niveau de fuzziness choisis au moment du paramétrage du moteur : ceci constitue <strong>la requête</strong>.</p>
 </section></section>
+<section id="mettre-des-couleurs-et-faire-les-formules-mathématiques" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<h1>Mettre des couleurs et faire les formules mathématiques !</h1>
+
+</section>
+
 <section id="plan-de-la-présentation-3" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>
 <p>1️⃣ Contexte</p>
@@ -482,25 +549,6 @@
 </section>
 <section id="résultats" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Résultats</h2>
-<p>Meilleur entraînement :</p>
-<ul>
-<li>un modèle ResNet18</li>
-<li>une loss binary cross-entropy</li>
-<li>22 epochs</li>
-<li>Fini en 5 minutes</li>
-</ul>
-<p>Métriques sur images test :</p>
-<ul>
-<li>Accuracy : 0.81</li>
-<li>Precision : 0.81</li>
-<li>Recall : 0.82</li>
-<li>AUC : 0.81</li>
-</ul>
-</section>
-<section id="score-obtenu-lors-du-challenge" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Score obtenu lors du challenge</h2>
-<p>Une fois le fichier à annoter soumis, on a obtenu : <strong>AUC = 0.76</strong></p>
-<p>Score du gagnant du challenge : <strong>AUC = 0.86</strong></p>
 </section></section>
 <section id="plan-de-la-présentation-4" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>
@@ -519,9 +567,6 @@
 </section>
 <section id="outils" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Outils</h2>
-<p>Datalab pour utiliser un GPU.</p>
-<p>MLflow pour surveiller les entraînements, les stocker et les comparer : <a href="https://projet-slums-detection-mlflow.user.lab.sspcloud.fr/">lien MLFLOW</a>.</p>
-<p>Template en python pour entraîner des modèles de Deep Learning facile à modifier et adaptée pour essayer plein de paramètres différents : <a href="https://github.com/InseeFrLab/satellite-images-challenge-human-settlements">dépot git</a>.</p>
 </section></section>
 <section id="plan-de-la-présentation-5" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>
@@ -540,10 +585,6 @@
 </section>
 <section id="pistes-damélioration" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Pistes d’amélioration</h2>
-<ul>
-<li>Meilleure compréhension des données pour trouver des solutions adaptées</li>
-<li>Contrôle de la pertinence des annotations fournies</li>
-</ul>
 </section></section>
 <section id="merci-pour-votre-attention" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Merci pour votre attention !</h1>

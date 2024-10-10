@@ -1,94 +1,94 @@
 [
   {
-    "objectID": "src/seminaire-dms/index.html#contexte",
-    "href": "src/seminaire-dms/index.html#contexte",
-    "title": "Challenge : détection automatisée de zones d’occupation humaines sur imagerie satellite",
-    "section": "Contexte",
-    "text": "Contexte\nINEGI : Institut national des statistiques et de la Géographie au Mexique\n\nBesoin de détecter les zones d’occupation humaine au Mexique pour connaître la croissance rapide du pays.\nImages satellites: pour voir les zones sans faire déplacer des agents.\nMéthode de détection automatisée car à l’oeil nu c’est trop lent et coûteux."
+    "objectID": "src/seminaire-dms/index.html#intro",
+    "href": "src/seminaire-dms/index.html#intro",
+    "title": "Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)",
+    "section": "Intro",
+    "text": "Intro"
   },
   {
-    "objectID": "src/seminaire-dms/index.html#une-image-dans-le-jeu-de-données",
-    "href": "src/seminaire-dms/index.html#une-image-dans-le-jeu-de-données",
-    "title": "Challenge : détection automatisée de zones d’occupation humaines sur imagerie satellite",
-    "section": "Une image dans le jeu de données",
-    "text": "Une image dans le jeu de données\nLes images sont des empilement de plusieurs sources de données satellitaires, ce qui donne des images incompréhensibles à l’oeil nu, juste un amas de pixels\nUne image dans le jeu de données fourni = une matrice de 16x16 pixels avec 6 dimensions (ici les bandes spectrales)\nLes différentes bandes :\n\nBleu\nVert\nRouge\nProche infrarouge (NIR)\nInfrarouge à ondes courtes 1 (SWIR 1)\nInfrarouge à ondes courtes 2 (SWIR 2)"
+    "objectID": "src/seminaire-dms/index.html#data",
+    "href": "src/seminaire-dms/index.html#data",
+    "title": "Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)",
+    "section": "Data",
+    "text": "Data"
   },
   {
-    "objectID": "src/seminaire-dms/index.html#bandes-spectrales",
-    "href": "src/seminaire-dms/index.html#bandes-spectrales",
-    "title": "Challenge : détection automatisée de zones d’occupation humaines sur imagerie satellite",
-    "section": "Bandes spectrales",
-    "text": "Bandes spectrales"
+    "objectID": "src/seminaire-dms/index.html#base-de-données-classique",
+    "href": "src/seminaire-dms/index.html#base-de-données-classique",
+    "title": "Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)",
+    "section": "Base de données classique",
+    "text": "Base de données classique\nTable 1: Exemple de base de données\n\n\n\nid\nnom de voie\n\n\n\n\nA\ndu général leclerc\n\n\nB\ndu général charles de gaulle\n\n\nC\ndu point du jour\n\n\nD\nverdier\n\n\nE\ndes cours\n\n\n\nRecherche par token\nUn token = un mot\nSi on cherche “88 avenue du général charles de gaulle”, pour chaque nom de voie, on doit compter le nombre de : - “88” - “avenue” - “du” - “général” - “charles” - “de” - “gaulle”\nC’est extrêment long"
   },
   {
-    "objectID": "src/seminaire-dms/index.html#jeu-de-données",
-    "href": "src/seminaire-dms/index.html#jeu-de-données",
-    "title": "Challenge : détection automatisée de zones d’occupation humaines sur imagerie satellite",
-    "section": "Jeu de données",
-    "text": "Jeu de données\n\n1,1M d’images annotées (1 si zone d’occupation humaine, 0 sinon) :\n\n200 000 images annotées 1\n900 000 images annotées 0\n\nJeu d’images à annoter pour évaluation : 120 000 images"
+    "objectID": "src/seminaire-dms/index.html#index-inversé-token",
+    "href": "src/seminaire-dms/index.html#index-inversé-token",
+    "title": "Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)",
+    "section": "Index inversé token",
+    "text": "Index inversé token\nTable 2: Exemple d’index inversé\n\n\n\ntoken\noccurrences\n\n\n\n\ngénéral\n{“A”: 1, “B”: 1}\n\n\njour\n{“A”: 1}\n\n\nverdier\n{“B”: 1}\n\n\n\nOn a directement le comptage par token"
   },
   {
-    "objectID": "src/seminaire-dms/index.html#entraînement-de-modèle",
-    "href": "src/seminaire-dms/index.html#entraînement-de-modèle",
-    "title": "Challenge : détection automatisée de zones d’occupation humaines sur imagerie satellite",
-    "section": "Entraînement de modèle",
-    "text": "Entraînement de modèle\nEntraîner un modèle de Computer Vision pour classifier automatiquement une image selon la présence ou non de zone d’occupation humaine :\n\nL’ensemble des données annoté est divisé en deux parties : données d’entraînement et données de validation\nDivision en Batches : Les données sont ensuite divisées en petits sous-ensembles appelés batches."
+    "objectID": "src/seminaire-dms/index.html#score-par-token",
+    "href": "src/seminaire-dms/index.html#score-par-token",
+    "title": "Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)",
+    "section": "Score par token",
+    "text": "Score par token\nPour retourner la voie la plus pertinente, on construit un score pour chaque voie : somme occurence x boost pour chaque token de l’adresse recherchée"
   },
   {
-    "objectID": "src/seminaire-dms/index.html#entraînement-de-modèle---bis",
-    "href": "src/seminaire-dms/index.html#entraînement-de-modèle---bis",
-    "title": "Challenge : détection automatisée de zones d’occupation humaines sur imagerie satellite",
-    "section": "Entraînement de modèle - bis",
-    "text": "Entraînement de modèle - bis\n\nÀ la fin de chaque batch, le modèle est validé sur les données de validation pour évaluer sa performance afin de s’améliorer\nPlusieurs passages d’epochs : Chaque epoch consiste à faire passer tous les batches dans le réseau de neurones\n\nAvoir un GPU pour faire tourner plus rapidement les entraînements."
+    "objectID": "src/seminaire-dms/index.html#recherche-par-n-grams-de-caractères",
+    "href": "src/seminaire-dms/index.html#recherche-par-n-grams-de-caractères",
+    "title": "Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)",
+    "section": "Recherche par n-grams de caractères",
+    "text": "Recherche par n-grams de caractères\nContourner les fautes d’orthographes : chaque token est découpé en sous-chaînes de n caractères consécutifs\nExemple : découpage du texte “avenue verdier”\n\n\n\ntoken\n3-grams\n\n\n\n\navenue\nave, ven, enu, nue\n\n\nverdier\nver, erd, rdi, die, ier"
   },
   {
-    "objectID": "src/seminaire-dms/index.html#prétraitement-des-données",
-    "href": "src/seminaire-dms/index.html#prétraitement-des-données",
-    "title": "Challenge : détection automatisée de zones d’occupation humaines sur imagerie satellite",
-    "section": "Prétraitement des données",
-    "text": "Prétraitement des données\n\nAvoir un jeu de données équilibré : même nombre d’images 0 et 1\nJeu de données stables pour comparer les différents entraînements (toujours les mêmes) :\n\n240 000 images entraînement\n80 000 images validation\n80 000 images test\n\nNormaliser les images avec la moyenne"
+    "objectID": "src/seminaire-dms/index.html#index-inversé-3-grams",
+    "href": "src/seminaire-dms/index.html#index-inversé-3-grams",
+    "title": "Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)",
+    "section": "Index inversé 3-grams",
+    "text": "Index inversé 3-grams\nTable 3: Exemple d’index inversé 3-grams\n\n\n\n3-grams\noccurrences\n\n\n\n\n“gén”\n{“A”: 1, “B”: 1}\n\n\n“char”\n{“B”: 1}\n\n\n“our”\n{“C”: 1, “E”: 1}"
   },
   {
-    "objectID": "src/seminaire-dms/index.html#réseau-de-neurones-et-loss",
-    "href": "src/seminaire-dms/index.html#réseau-de-neurones-et-loss",
-    "title": "Challenge : détection automatisée de zones d’occupation humaines sur imagerie satellite",
-    "section": "Réseau de neurones et loss",
-    "text": "Réseau de neurones et loss\n\nChoisir un modèle adapté (réseau de neurones) et le fine tuner (le modifier pour nos données)\nSélectionner une loss : fonction qui calcule la perte entre les annotations qui représentent la vérité et les prédictions pendant l’entraînement (utilisé lors de l’étape de validation)\nSurveiller les entraînement pour éviter le sur-apprentissage"
+    "objectID": "src/seminaire-dms/index.html#score-par-n-grams",
+    "href": "src/seminaire-dms/index.html#score-par-n-grams",
+    "title": "Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)",
+    "section": "Score par n-grams",
+    "text": "Score par n-grams\nPour retourner la voie la plus pertinente, on construit un score pour chaque voie : somme occurence x boost pour chaque n-grams de l’adresse recherchée"
   },
   {
-    "objectID": "src/seminaire-dms/index.html#evaluation-des-performances",
-    "href": "src/seminaire-dms/index.html#evaluation-des-performances",
-    "title": "Challenge : détection automatisée de zones d’occupation humaines sur imagerie satellite",
-    "section": "Evaluation des performances",
-    "text": "Evaluation des performances\nLes perfomances doivent être évalués sur des données qui n’ont pas servis à l’entraînement: les images test.\nUtilisation de métriques parlantes : accuracy, precision, recall, AUC (métrique utilisée par INEGI pour départager les entraînements des participants)."
+    "objectID": "src/seminaire-dms/index.html#fuzzi",
+    "href": "src/seminaire-dms/index.html#fuzzi",
+    "title": "Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)",
+    "section": "Fuzzi ?",
+    "text": "Fuzzi ?"
+  },
+  {
+    "objectID": "src/seminaire-dms/index.html#score-global",
+    "href": "src/seminaire-dms/index.html#score-global",
+    "title": "Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)",
+    "section": "Score global",
+    "text": "Score global\nLe score global va donc combiner la somme des matchs au niveau :\n\ntoken\nn-grams\nfuzziness\n\nCe score prendra en compte les boosts, le n des n-grams et le niveau de fuzziness choisis au moment du paramétrage du moteur : ceci constitue la requête."
   },
   {
     "objectID": "src/seminaire-dms/index.html#résultats",
     "href": "src/seminaire-dms/index.html#résultats",
-    "title": "Challenge : détection automatisée de zones d’occupation humaines sur imagerie satellite",
+    "title": "Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)",
     "section": "Résultats",
-    "text": "Résultats\nMeilleur entraînement :\n\nun modèle ResNet18\nune loss binary cross-entropy\n22 epochs\nFini en 5 minutes\n\nMétriques sur images test :\n\nAccuracy : 0.81\nPrecision : 0.81\nRecall : 0.82\nAUC : 0.81"
-  },
-  {
-    "objectID": "src/seminaire-dms/index.html#score-obtenu-lors-du-challenge",
-    "href": "src/seminaire-dms/index.html#score-obtenu-lors-du-challenge",
-    "title": "Challenge : détection automatisée de zones d’occupation humaines sur imagerie satellite",
-    "section": "Score obtenu lors du challenge",
-    "text": "Score obtenu lors du challenge\nUne fois le fichier à annoter soumis, on a obtenu : AUC = 0.76\nScore du gagnant du challenge : AUC = 0.86"
+    "text": "Résultats"
   },
   {
     "objectID": "src/seminaire-dms/index.html#outils",
     "href": "src/seminaire-dms/index.html#outils",
-    "title": "Challenge : détection automatisée de zones d’occupation humaines sur imagerie satellite",
+    "title": "Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)",
     "section": "Outils",
-    "text": "Outils\nDatalab pour utiliser un GPU.\nMLflow pour surveiller les entraînements, les stocker et les comparer : lien MLFLOW.\nTemplate en python pour entraîner des modèles de Deep Learning facile à modifier et adaptée pour essayer plein de paramètres différents : dépot git."
+    "text": "Outils"
   },
   {
     "objectID": "src/seminaire-dms/index.html#pistes-damélioration",
     "href": "src/seminaire-dms/index.html#pistes-damélioration",
-    "title": "Challenge : détection automatisée de zones d’occupation humaines sur imagerie satellite",
+    "title": "Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)",
     "section": "Pistes d’amélioration",
-    "text": "Pistes d’amélioration\n\nMeilleure compréhension des données pour trouver des solutions adaptées\nContrôle de la pertinence des annotations fournies"
+    "text": "Pistes d’amélioration"
   },
   {
     "objectID": "src/documentation/elasticsearch.html",
