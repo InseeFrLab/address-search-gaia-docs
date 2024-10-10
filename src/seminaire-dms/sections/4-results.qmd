@@ -16,6 +16,6 @@ Métriques sur images test :
 
 ## Score obtenu lors du challenge
 
-Une fois le fichier à annoter soumis, on a obtenus :  **AUC = 0.76**
+Une fois le fichier à annoter soumis, on a obtenu :  **AUC = 0.76**
 
 Score du gagnant du challenge : **AUC = 0.86**
