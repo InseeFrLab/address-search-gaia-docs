@@ -1,0 +1,59 @@
+project:
+  type: website
+  render:
+    - /src/**/index.qmd
+    - index.qmd
+    - /cards/*.qmd
+    - /src/documentation/elasticsearch.qmd
+
+website:
+  page-navigation: true
+  title: "Moteur de recherche d'adresse Gaïa"
+  site-url: "https://inseefrlab.github.io/address-search-gaia-docs"
+  repo-url: "https://gitlab.insee.fr/sprint-gaia/moteur_es"
+  open-graph: true
+  page-footer:
+    left: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
+    right:
+    - text: "License"
+      href: LICENSE
+  navbar:
+    logo: https://upload.wikimedia.org/wikipedia/fr/thumb/1/10/Logo_Insee.svg/1200px-Logo_Insee.svg.png
+    align: center
+    title: false
+    collapse-below: lg
+    right:
+      - icon: github
+        href: "https://gitlab.insee.fr/sprint-gaia/moteur_es"
+        aria-label: GitHub
+    left:
+      - href: index.qmd
+        text: Accueil
+  sidebar:
+    - style: "docked"
+      background: light
+      contents:
+        - section: "Navigation"
+          contents:
+          - text: "Accueil"
+            href: "src/documentation/index.qmd"
+          - text: "ElasticSearch"
+            href: "src/documentation/elasticsearch.qmd"
+
+format:
+  html:
+    theme:
+      light: [cosmo, style/styles.scss]
+      dark: [cyborg, style/styles.scss]
+    reference-location: margin
+    toc: true
+    code-copy: true
+    code-overflow: wrap
+    include-in-header: "style/fontawesome.html"
+    header-includes: |
+        <link rel="icon" type="image/png" sizes="32x32" href="src/_extensions/InseeFrLab/onyxia/favicon-32x32.png">
+
+publish:
+  gh-pages:
+    branch: gh-pages
+    dist: _site
