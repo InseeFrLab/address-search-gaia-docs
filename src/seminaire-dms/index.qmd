@@ -1,8 +1,8 @@
 ---
-title: "Challenge : détection automatisée de zones d'occupation humaines sur imagerie satellite" # Séminaire interne DMS : moteur de recherche d'adresse avec ElasticSearch (Gaïa) **[Raya Berova (DMRG)]{.orange}**
+title: "Séminaire interne DMS : moteur de recherche d'adresse avec ElasticSearch (Gaïa)"
 subtitle: |
-  **[Raya Berova & Mohamed Sekouri]{.orange}** 
-date: "10/10/2024"
+  **[Raya Berova (DMRG)]{.orange}**
+date: "11/28/2024"
 date-format: "D MMMM YYYY"
 slide-number: true
 # uncomment for French presentations:
@@ -131,3 +131,4 @@ ascii: true
 
 {{< include sections/6-discussion.qmd >}}
 
+# Merci pour votre attention !

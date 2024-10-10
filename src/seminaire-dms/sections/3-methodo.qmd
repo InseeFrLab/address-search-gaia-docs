@@ -1,37 +1,85 @@
-## Entraînement de modèle
+## Base de données classique
 
-Entraîner un modèle de *Computer Vision* pour classifier automatiquement une image selon la présence ou non de zone d'occupation humaine :
+**Table 1: Exemple de base de données**  
 
-1. L'ensemble des données annoté est divisé en deux parties : **données d'entraînement** et **données de validation**
-   
-2. **Division en Batches** : Les données sont ensuite divisées en petits sous-ensembles appelés **batches**.
+| id | nom de voie                 |
+|---|:-----------------------------|
+| A | du général leclerc           |
+| B | du général charles de gaulle |
+| C | du point du jour             |
+| D | verdier                      |
+| E | des cours                   |
 
-## Entraînement de modèle - bis
+### Recherche par token
 
-3. À la fin de chaque batch, le modèle est validé sur les **données de validation** pour évaluer sa performance afin de s'améliorer
+**Un token = un mot**
 
-4. **Plusieurs passages d'epochs** : Chaque epoch consiste à faire passer tous les batches dans le réseau de neurones
+Si on cherche "88 avenue du général charles de gaulle", pour chaque nom de voie, on doit compter le nombre de :
+- "88"
+- "avenue"
+- "du"
+- "général"
+- "charles"
+- "de"
+- "gaulle"
 
-Avoir un GPU pour faire tourner plus rapidement les entraînements.
+**C'est extrêment long**
 
-## Prétraitement des données
+## Index inversé token
 
-- Avoir un jeu de données **équilibré** : même nombre d'images 0 et 1
-- Jeu de données stables pour comparer les différents entraînements (toujours les mêmes) :
-    - 240 000 images entraînement
-    - 80 000 images validation
-    - 80 000 images test
-- Normaliser les images avec la moyenne
+**Table 2: Exemple d'index inversé**  
 
-## Réseau de neurones et loss
+| token     | occurrences              |
+|-----------|--------------------------|
+| général   | {"A": 1, "B": 1}         |
+| jour      | {"A": 1}                 |
+| verdier   | {"B": 1}                 |
 
-- Choisir un **modèle** adapté (réseau de neurones) et le **fine tuner** (le modifier pour nos données)
-- Sélectionner une **loss** : fonction qui calcule la perte entre les annotations qui représentent la vérité et les prédictions pendant l'entraînement (utilisé lors de l'étape de validation)
-- Surveiller les entraînement pour éviter le sur-apprentissage
+**On a directement le comptage par token**
+
+## Score par token
+
+Pour retourner la voie la plus pertinente, on construit un score pour chaque voie :
+somme occurence x boost pour chaque token de l'adresse recherchée
+
+## Recherche par n-grams de caractères
+
+Contourner les fautes d'orthographes : chaque token est découpé en sous-chaînes de n caractères consécutifs
+
+Exemple : découpage du texte "avenue verdier"  
+
+| token    | 3-grams                 |
+|----------|-------------------------|
+| avenue   | ave, ven, enu, nue      |
+| verdier  | ver, erd, rdi, die, ier |
 
 
-## Evaluation des performances
+## Index inversé 3-grams
 
-Les perfomances doivent être évalués sur des données qui n'ont pas servis à l'entraînement: **les images test**.
+**Table 3: Exemple d'index inversé 3-grams**  
 
-Utilisation de métriques parlantes : accuracy, precision, recall, **AUC** (métrique utilisée par INEGI pour départager les entraînements des participants).
+| 3-grams   | occurrences             |
+|-----------|-------------------------|
+| "gén"     | {"A": 1, "B": 1}        |
+| "char"    | {"B": 1}                |
+| "our"     | {"C": 1, "E": 1}        |
+
+
+## Score par n-grams
+
+Pour retourner la voie la plus pertinente, on construit un score pour chaque voie :
+somme occurence x boost pour chaque n-grams de l'adresse recherchée
+
+## Fuzzi ?
+
+## Score global 
+
+Le score global va donc combiner la somme des matchs au niveau :
+
+- token
+- n-grams
+- fuzziness
+
+Ce score prendra en compte les boosts, le n des n-grams et le niveau de fuzziness choisis au moment du paramétrage du moteur : ceci constitue **la requête**.
+
+# Mettre des couleurs et faire les formules mathématiques !
