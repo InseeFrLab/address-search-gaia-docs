@@ -12,9 +12,10 @@
 
 ## Recherche par token
 
-**Un token = un mot**
+[**Un token = un mot**]{.green2}  
 
-Si on cherche **"88 avenue du général charles de gaulle"**, pour chaque nom de voie, on doit compter le nombre de :
+Si on cherche **"88 avenue du général charles de gaulle"**, [**pour chaque nom de voie**]{.blue2}, on doit compter le nombre de :
+
 - "88"
 - "avenue"
 - "du"
@@ -23,7 +24,7 @@ Si on cherche **"88 avenue du général charles de gaulle"**, pour chaque nom de
 - "de"
 - "gaulle"
 
-**C'est extrêment long**
+[**C'est extrêment long**]{.green2}
 
 ## Index inversé token
 
@@ -32,19 +33,25 @@ Si on cherche **"88 avenue du général charles de gaulle"**, pour chaque nom de
 | token     | occurrences              |
 |-----------|--------------------------|
 | général   | {"A": 1, "B": 1}         |
-| jour      | {"A": 1}                 |
+| jour      | {"C": 1}                 |
 | verdier   | {"B": 1}                 |
+| ...       | ...                      |
 
-**On a directement le comptage par token**
+[**On a directement le comptage par token**]{.green2}
 
 ## Score par token
 
 Pour retourner la voie la plus pertinente, on construit un score pour chaque voie :
-somme occurence x boost pour chaque token de l'adresse recherchée
+$$
+\sum_{\text{∀t} \in \text{T}} occurence_t
+$$
+
+t = token  
+T = ensemble des tokens de l'adresse recherchée  
 
 ## Recherche par n-grams de caractères
 
-Contourner les fautes d'orthographes : chaque token est découpé en sous-chaînes de n caractères consécutifs
+[**Contourner les fautes d'orthographes**]{.blue2} : chaque token est découpé en sous-chaînes de n caractères consécutifs  
 
 Exemple : découpage du texte "avenue verdier"  
 
@@ -63,23 +70,38 @@ Exemple : découpage du texte "avenue verdier"
 | "gén"     | {"A": 1, "B": 1}        |
 | "char"    | {"B": 1}                |
 | "our"     | {"C": 1, "E": 1}        |
+| ...       | ...                     |
 
 
 ## Score par n-grams
 
 Pour retourner la voie la plus pertinente, on construit un score pour chaque voie :
-somme occurence x boost pour chaque n-grams de l'adresse recherchée
+$$
+\sum_{\text{∀ngram} \in \text{N}} occurence_{ngram}
+$$
+
+N = ensemble des n-grams de l'adresse recherchée
 
 ## Limites des n-grams
 
-- Plus le n-grams est petit, plus le temps de recherche est long
-- Limitation à minimum n=3 pour notre cas
+$$
+\downarrow \text{taille n-grams}
+\Rightarrow \text{taille index inversé} \uparrow 
+\Rightarrow \text{temps de recherche} \uparrow
+$$
 
-## Fuzzi
+Limitation à minimum n=3 pour notre cas
 
-Contourner les fautes d'orthographes d'une autre façon :
+## Fuzziness
 
-...
+Contourner les fautes d'orthographes d'une autre façon : [**fuzziness**]{.green2}  
+
+Pour matcher deux tokens avec une fuzziness de niveau 1 = corriger l'un des tokens :
+
+- Ajout d'une lettre
+- Suppression d'une lettre
+- Remplacement d'une lettre
+- Echanger deux lettres de place
 
 ## Score global 
 
@@ -89,6 +111,30 @@ Le score global va donc combiner la somme des matchs au niveau :
 - n-grams
 - fuzziness
 
-Ce score prendra en compte les boosts, le n des n-grams et le niveau de fuzziness choisis au moment du paramétrage du moteur : ceci constitue **la requête**.
+Ce score prendra en compte les [**boosts**]{.green2}, le n des n-grams et le niveau de fuzziness choisis au moment du paramétrage du moteur : ceci constitue [**la requête**]{.blue2}
 
-# Mettre des couleurs et faire les formules mathématiques !
+## Boost
+
+On peut donner plus ou moins d'importance aux différents matchs grâce aux [**boosts**]{.green2}  
+
+Chaque occurence est multipliée par un facteur choisi : [**boost**]{.blue2}  
+
+Exemple de boosts : 
+
+| match au niveau | boost |
+|----------|----|
+| token    | 20 |
+| fuzzi 1  | 15 |
+| 3-grams  | 1  |
+| 4-ngrams | 1  |
+| 5-grams  | 1  |
+
+## Retour sur le score global
+
+$$
+\sum_{\text{∀dn} \in \text{N}} \sum_{\text{∀sc} \in \text{dn}} boost_{dn}*occurence_{sc}
+$$
+
+N = ensemble des niveaux de découpage de l'adresse recherchée (niveau token, niveau fuzzi...)
+dn = découpage de l'adresse recherchée selon le niveau (boost associé)
+sc = sous-chaîne (un token, un 3-grams...)

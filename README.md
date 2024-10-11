@@ -24,3 +24,9 @@ Pour render le site, exécutez la commande suivante depuis la racine du projet
 ```sh
 quarto preview --host 0.0.0.0 --port 5000
 ```
+
+Fermer le site ouvert sur le port 5000 :
+
+```sh
+fuser -k 5000/tcp
+```
