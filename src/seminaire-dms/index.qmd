@@ -1,7 +1,7 @@
 ---
 title: "Séminaire interne DMS : moteur de recherche d'adresse avec ElasticSearch (Gaïa)"
 subtitle: |
-  **[Raya Berova (DMRG)]{.blue}**
+  **[Raya Berova (DMRG)]{.blue2}**
 date: "11/28/2024"
 date-format: "D MMMM YYYY"
 slide-number: true
