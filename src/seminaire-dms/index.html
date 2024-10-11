@@ -334,7 +334,7 @@
 
 <section id="title-slide" data-background-image="../_extensions/InseeFrLab/onyxia/background.svg" data-background-size="contain" class="quarto-title-block center">
   <h1 class="title">Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)</h1>
-  <p class="subtitle"></p><p><strong><span class="orange">Raya Berova (DMRG)</span></strong></p><p></p>
+  <p class="subtitle"></p><p><strong><span class="blue">Raya Berova (DMRG)</span></strong></p><p></p>
 
 <div class="quarto-title-authors">
 </div>
@@ -428,9 +428,18 @@
 </section>
 <section id="recherche-par-token" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Recherche par token</h2>
-<p><strong>Un token = un mot</strong></p>
-<p>Si on cherche <strong>“88 avenue du général charles de gaulle”</strong>, pour chaque nom de voie, on doit compter le nombre de : - “88” - “avenue” - “du” - “général” - “charles” - “de” - “gaulle”</p>
-<p><strong>C’est extrêment long</strong></p>
+<p><span class="green2"><strong>Un token = un mot</strong></span></p>
+<p>Si on cherche <strong>“88 avenue du général charles de gaulle”</strong>, <span class="blue2"><strong>pour chaque nom de voie</strong></span>, on doit compter le nombre de :</p>
+<ul>
+<li>“88”</li>
+<li>“avenue”</li>
+<li>“du”</li>
+<li>“général”</li>
+<li>“charles”</li>
+<li>“de”</li>
+<li>“gaulle”</li>
+</ul>
+<p><span class="green2"><strong>C’est extrêment long</strong></span></p>
 </section>
 <section id="index-inversé-token" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Index inversé token</h2>
@@ -449,23 +458,31 @@
 </tr>
 <tr class="even">
 <td>jour</td>
-<td>{“A”: 1}</td>
+<td>{“C”: 1}</td>
 </tr>
 <tr class="odd">
 <td>verdier</td>
 <td>{“B”: 1}</td>
 </tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+</tr>
 </tbody>
 </table>
-<p><strong>On a directement le comptage par token</strong></p>
+<p><span class="green2"><strong>On a directement le comptage par token</strong></span></p>
 </section>
 <section id="score-par-token" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Score par token</h2>
-<p>Pour retourner la voie la plus pertinente, on construit un score pour chaque voie : somme occurence x boost pour chaque token de l’adresse recherchée</p>
+<p>Pour retourner la voie la plus pertinente, on construit un score pour chaque voie : <span class="math display">\[
+\sum_{\text{∀t} \in \text{T}} occurence_t
+\]</span></p>
+<p>t = token<br>
+T = ensemble des tokens de l’adresse recherchée</p>
 </section>
 <section id="recherche-par-n-grams-de-caractères" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Recherche par n-grams de caractères</h2>
-<p>Contourner les fautes d’orthographes : chaque token est découpé en sous-chaînes de n caractères consécutifs</p>
+<p><span class="blue2"><strong>Contourner les fautes d’orthographes</strong></span> : chaque token est découpé en sous-chaînes de n caractères consécutifs</p>
 <p>Exemple : découpage du texte “avenue verdier”</p>
 <table class="caption-top">
 <thead>
@@ -509,24 +526,39 @@
 <td>“our”</td>
 <td>{“C”: 1, “E”: 1}</td>
 </tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+</tr>
 </tbody>
 </table>
 </section>
 <section id="score-par-n-grams" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Score par n-grams</h2>
-<p>Pour retourner la voie la plus pertinente, on construit un score pour chaque voie : somme occurence x boost pour chaque n-grams de l’adresse recherchée</p>
+<p>Pour retourner la voie la plus pertinente, on construit un score pour chaque voie : <span class="math display">\[
+\sum_{\text{∀ngram} \in \text{N}} occurence_{ngram}
+\]</span></p>
+<p>N = ensemble des n-grams de l’adresse recherchée</p>
 </section>
 <section id="limites-des-n-grams" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Limites des n-grams</h2>
-<ul>
-<li>Plus le n-grams est petit, plus le temps de recherche est long</li>
-<li>Limitation à minimum n=3 pour notre cas</li>
-</ul>
+<p><span class="math display">\[
+\downarrow \text{taille n-grams}
+\Rightarrow \text{taille index inversé} \uparrow
+\Rightarrow \text{temps de recherche} \uparrow
+\]</span></p>
+<p>Limitation à minimum n=3 pour notre cas</p>
 </section>
-<section id="fuzzi" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Fuzzi</h2>
-<p>Contourner les fautes d’orthographes d’une autre façon :</p>
-<p>…</p>
+<section id="fuzziness" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Fuzziness</h2>
+<p>Contourner les fautes d’orthographes d’une autre façon : <span class="green2"><strong>fuzziness</strong></span></p>
+<p>Pour matcher deux tokens avec une fuzziness de niveau 1 = corriger l’un des tokens :</p>
+<ul>
+<li>Ajout d’une lettre</li>
+<li>Suppression d’une lettre</li>
+<li>Remplacement d’une lettre</li>
+<li>Echanger deux lettres de place</li>
+</ul>
 </section>
 <section id="score-global" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Score global</h2>
@@ -536,13 +568,51 @@
 <li>n-grams</li>
 <li>fuzziness</li>
 </ul>
-<p>Ce score prendra en compte les boosts, le n des n-grams et le niveau de fuzziness choisis au moment du paramétrage du moteur : ceci constitue <strong>la requête</strong>.</p>
-</section></section>
-<section id="mettre-des-couleurs-et-faire-les-formules-mathématiques" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1>Mettre des couleurs et faire les formules mathématiques !</h1>
-
+<p>Ce score prendra en compte les <span class="green2"><strong>boosts</strong></span>, le n des n-grams et le niveau de fuzziness choisis au moment du paramétrage du moteur : ceci constitue <span class="blue2"><strong>la requête</strong></span></p>
 </section>
-
+<section id="boost" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Boost</h2>
+<p>On peut donner plus ou moins d’importance aux différents matchs grâce aux <span class="green2"><strong>boosts</strong></span></p>
+<p>Chaque occurence est multipliée par un facteur choisi : <span class="blue2"><strong>boost</strong></span></p>
+<p>Exemple de boosts :</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>match au niveau</th>
+<th>boost</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>token</td>
+<td>20</td>
+</tr>
+<tr class="even">
+<td>fuzzi 1</td>
+<td>15</td>
+</tr>
+<tr class="odd">
+<td>3-grams</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>4-ngrams</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>5-grams</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="retour-sur-le-score-global" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Retour sur le score global</h2>
+<p><span class="math display">\[
+\sum_{\text{∀dn} \in \text{N}} \sum_{\text{∀sc} \in \text{dn}} boost_{dn}*occurence_{sc}
+\]</span></p>
+<p>N = ensemble des niveaux de découpage de l’adresse recherchée (niveau token, niveau fuzzi…) dn = découpage de l’adresse recherchée selon le niveau (boost associé) sc = sous-chaîne (un token, un 3-grams…)</p>
+</section></section>
 <section id="plan-de-la-présentation-3" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>
 <p>1️⃣ Contexte</p>

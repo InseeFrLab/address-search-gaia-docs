@@ -25,21 +25,21 @@
     "href": "src/seminaire-dms/index.html#recherche-par-token",
     "title": "Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)",
     "section": "Recherche par token",
-    "text": "Recherche par token\nUn token = un mot\nSi on cherche “88 avenue du général charles de gaulle”, pour chaque nom de voie, on doit compter le nombre de : - “88” - “avenue” - “du” - “général” - “charles” - “de” - “gaulle”\nC’est extrêment long"
+    "text": "Recherche par token\nUn token = un mot\nSi on cherche “88 avenue du général charles de gaulle”, pour chaque nom de voie, on doit compter le nombre de :\n\n“88”\n“avenue”\n“du”\n“général”\n“charles”\n“de”\n“gaulle”\n\nC’est extrêment long"
   },
   {
     "objectID": "src/seminaire-dms/index.html#index-inversé-token",
     "href": "src/seminaire-dms/index.html#index-inversé-token",
     "title": "Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)",
     "section": "Index inversé token",
-    "text": "Index inversé token\nTable 2: Exemple d’index inversé\n\n\n\ntoken\noccurrences\n\n\n\n\ngénéral\n{“A”: 1, “B”: 1}\n\n\njour\n{“A”: 1}\n\n\nverdier\n{“B”: 1}\n\n\n\nOn a directement le comptage par token"
+    "text": "Index inversé token\nTable 2: Exemple d’index inversé\n\n\n\ntoken\noccurrences\n\n\n\n\ngénéral\n{“A”: 1, “B”: 1}\n\n\njour\n{“C”: 1}\n\n\nverdier\n{“B”: 1}\n\n\n…\n…\n\n\n\nOn a directement le comptage par token"
   },
   {
     "objectID": "src/seminaire-dms/index.html#score-par-token",
     "href": "src/seminaire-dms/index.html#score-par-token",
     "title": "Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)",
     "section": "Score par token",
-    "text": "Score par token\nPour retourner la voie la plus pertinente, on construit un score pour chaque voie : somme occurence x boost pour chaque token de l’adresse recherchée"
+    "text": "Score par token\nPour retourner la voie la plus pertinente, on construit un score pour chaque voie : \\[\n\\sum_{\\text{∀t} \\in \\text{T}} occurence_t\n\\]\nt = token\nT = ensemble des tokens de l’adresse recherchée"
   },
   {
     "objectID": "src/seminaire-dms/index.html#recherche-par-n-grams-de-caractères",
@@ -53,35 +53,49 @@
     "href": "src/seminaire-dms/index.html#index-inversé-3-grams",
     "title": "Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)",
     "section": "Index inversé 3-grams",
-    "text": "Index inversé 3-grams\nTable 3: Exemple d’index inversé 3-grams\n\n\n\n3-grams\noccurrences\n\n\n\n\n“gén”\n{“A”: 1, “B”: 1}\n\n\n“char”\n{“B”: 1}\n\n\n“our”\n{“C”: 1, “E”: 1}"
+    "text": "Index inversé 3-grams\nTable 3: Exemple d’index inversé 3-grams\n\n\n\n3-grams\noccurrences\n\n\n\n\n“gén”\n{“A”: 1, “B”: 1}\n\n\n“char”\n{“B”: 1}\n\n\n“our”\n{“C”: 1, “E”: 1}\n\n\n…\n…"
   },
   {
     "objectID": "src/seminaire-dms/index.html#score-par-n-grams",
     "href": "src/seminaire-dms/index.html#score-par-n-grams",
     "title": "Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)",
     "section": "Score par n-grams",
-    "text": "Score par n-grams\nPour retourner la voie la plus pertinente, on construit un score pour chaque voie : somme occurence x boost pour chaque n-grams de l’adresse recherchée"
+    "text": "Score par n-grams\nPour retourner la voie la plus pertinente, on construit un score pour chaque voie : \\[\n\\sum_{\\text{∀ngram} \\in \\text{N}} occurence_{ngram}\n\\]\nN = ensemble des n-grams de l’adresse recherchée"
   },
   {
     "objectID": "src/seminaire-dms/index.html#limites-des-n-grams",
     "href": "src/seminaire-dms/index.html#limites-des-n-grams",
     "title": "Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)",
     "section": "Limites des n-grams",
-    "text": "Limites des n-grams\n\nPlus le n-grams est petit, plus le temps de recherche est long\nLimitation à minimum n=3 pour notre cas"
+    "text": "Limites des n-grams\n\\[\n\\downarrow \\text{taille n-grams}\n\\Rightarrow \\text{taille index inversé} \\uparrow\n\\Rightarrow \\text{temps de recherche} \\uparrow\n\\]\nLimitation à minimum n=3 pour notre cas"
   },
   {
-    "objectID": "src/seminaire-dms/index.html#fuzzi",
-    "href": "src/seminaire-dms/index.html#fuzzi",
+    "objectID": "src/seminaire-dms/index.html#fuzziness",
+    "href": "src/seminaire-dms/index.html#fuzziness",
     "title": "Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)",
-    "section": "Fuzzi",
-    "text": "Fuzzi\nContourner les fautes d’orthographes d’une autre façon :\n…"
+    "section": "Fuzziness",
+    "text": "Fuzziness\nContourner les fautes d’orthographes d’une autre façon : fuzziness\nPour matcher deux tokens avec une fuzziness de niveau 1 = corriger l’un des tokens :\n\nAjout d’une lettre\nSuppression d’une lettre\nRemplacement d’une lettre\nEchanger deux lettres de place"
   },
   {
     "objectID": "src/seminaire-dms/index.html#score-global",
     "href": "src/seminaire-dms/index.html#score-global",
     "title": "Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)",
     "section": "Score global",
-    "text": "Score global\nLe score global va donc combiner la somme des matchs au niveau :\n\ntoken\nn-grams\nfuzziness\n\nCe score prendra en compte les boosts, le n des n-grams et le niveau de fuzziness choisis au moment du paramétrage du moteur : ceci constitue la requête."
+    "text": "Score global\nLe score global va donc combiner la somme des matchs au niveau :\n\ntoken\nn-grams\nfuzziness\n\nCe score prendra en compte les boosts, le n des n-grams et le niveau de fuzziness choisis au moment du paramétrage du moteur : ceci constitue la requête"
+  },
+  {
+    "objectID": "src/seminaire-dms/index.html#boost",
+    "href": "src/seminaire-dms/index.html#boost",
+    "title": "Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)",
+    "section": "Boost",
+    "text": "Boost\nOn peut donner plus ou moins d’importance aux différents matchs grâce aux boosts\nChaque occurence est multipliée par un facteur choisi : boost\nExemple de boosts :\n\n\n\nmatch au niveau\nboost\n\n\n\n\ntoken\n20\n\n\nfuzzi 1\n15\n\n\n3-grams\n1\n\n\n4-ngrams\n1\n\n\n5-grams\n1"
+  },
+  {
+    "objectID": "src/seminaire-dms/index.html#retour-sur-le-score-global",
+    "href": "src/seminaire-dms/index.html#retour-sur-le-score-global",
+    "title": "Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)",
+    "section": "Retour sur le score global",
+    "text": "Retour sur le score global\n\\[\n\\sum_{\\text{∀dn} \\in \\text{N}} \\sum_{\\text{∀sc} \\in \\text{dn}} boost_{dn}*occurence_{sc}\n\\]\nN = ensemble des niveaux de découpage de l’adresse recherchée (niveau token, niveau fuzzi…) dn = découpage de l’adresse recherchée selon le niveau (boost associé) sc = sous-chaîne (un token, un 3-grams…)"
   },
   {
     "objectID": "src/seminaire-dms/index.html#résultats",
@@ -121,7 +135,7 @@
     "href": "index.html",
     "title": "Moteur de recherche d’adresse Gaïa",
     "section": "",
-    "text": "Moteur de recherche d’adresse Gaïa\n\n\n\n\n  \n     \n      \n        \n          \n            \n          \n         \n        \n          \n            Documentation\n            \n\n            \n              Description : Ici est rassemblée toute la documentation technique sur le moteur de recherche d'adresse textuel Gaïa\n\n            \n\n            \n            \n              \n                Raya Berova\n                Oct 10, 2024\n              \n            \n            \n            \n              \n                \n                  \n                    \n                      \n                        doc\n                      \n                    \n                  \n                \n              \n            \n          \n        \n\n        \n\n      \n     \n  \n\n  \n     \n      \n        \n          \n            \n          \n         \n        \n          \n            Séminaire interne DMS\n            \n\n            \n              Description : Ce séminaire a pour but de présenter le moteur de recherche d'adresse Gaïa et de diffuser les connaissances sur ElasticSearch au sein de l'Insee.\n\n            \n\n            \n            \n              \n                Raya Berova\n                Oct 10, 2024\n              \n            \n            \n            \n              \n                \n                  \n                    \n                      \n                        pdf\n                      \n                    \n                  \n                \n              \n            \n          \n        \n\n        \n\n      \n     \n  \n\n  \n     \n      \n        \n          \n            \n          \n         \n        \n          \n            Abstract NTTS 2025 (Eurostat)\n            \n\n            \n              Description : Abstract en anglais soumis à NTTS 2025.\n\n            \n\n            \n            \n              \n                Raya Berova\n                Oct 10, 2024\n              \n            \n            \n            \n              \n                \n                  \n                    \n                      \n                        pdf\n                      \n                    \n                  \n                \n              \n            \n          \n        \n\n        \n\n      \n     \n  \n\n\n\n\nNo matching items"
+    "text": "Moteur de recherche d’adresse Gaïa\n\n\n\n\n  \n     \n      \n        \n          \n            \n          \n         \n        \n          \n            Documentation\n            \n\n            \n              Description : Ici est rassemblée toute la documentation technique sur le moteur de recherche d'adresse textuel Gaïa\n\n            \n\n            \n            \n              \n                Raya Berova\n                Oct 11, 2024\n              \n            \n            \n            \n              \n                \n                  \n                    \n                      \n                        doc\n                      \n                    \n                  \n                \n              \n            \n          \n        \n\n        \n\n      \n     \n  \n\n  \n     \n      \n        \n          \n            \n          \n         \n        \n          \n            Séminaire interne DMS\n            \n\n            \n              Description : Ce séminaire a pour but de présenter le moteur de recherche d'adresse Gaïa et de diffuser les connaissances sur ElasticSearch au sein de l'Insee.\n\n            \n\n            \n            \n              \n                Raya Berova\n                Oct 11, 2024\n              \n            \n            \n            \n              \n                \n                  \n                    \n                      \n                        pdf\n                      \n                    \n                  \n                \n              \n            \n          \n        \n\n        \n\n      \n     \n  \n\n  \n     \n      \n        \n          \n            \n          \n         \n        \n          \n            Abstract NTTS 2025 (Eurostat)\n            \n\n            \n              Description : Abstract en anglais soumis à NTTS 2025.\n\n            \n\n            \n            \n              \n                Raya Berova\n                Oct 11, 2024\n              \n            \n            \n            \n              \n                \n                  \n                    \n                      \n                        pdf\n                      \n                    \n                  \n                \n              \n            \n          \n        \n\n        \n\n      \n     \n  \n\n\n\n\nNo matching items"
   },
   {
     "objectID": "src/documentation/index.html",
