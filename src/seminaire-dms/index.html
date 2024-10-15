@@ -429,16 +429,7 @@
 <section id="recherche-par-token" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Recherche par token</h2>
 <p><span class="green2"><strong>Un token = un mot</strong></span></p>
-<p>Si on cherche <strong>“88 avenue du général charles de gaulle”</strong>, <span class="blue2"><strong>pour chaque nom de voie</strong></span>, on doit compter le nombre de :</p>
-<ul>
-<li>“88”</li>
-<li>“avenue”</li>
-<li>“du”</li>
-<li>“général”</li>
-<li>“charles”</li>
-<li>“de”</li>
-<li>“gaulle”</li>
-</ul>
+<p>Si on cherche <strong>“88 avenue du général charles de gaulle”</strong>, <span class="blue2"><strong>pour chaque nom de voie</strong></span>, on doit compter le nombre de : “88”, “avenue”, “du”, “général”…</p>
 <p><span class="green2"><strong>C’est extrêment long</strong></span></p>
 </section>
 <section id="index-inversé-token" class="slide level2" data-background-image="background.svg" data-background-size="contain">
@@ -470,11 +461,11 @@
 </tr>
 </tbody>
 </table>
-<p><span class="green2"><strong>On a directement le comptage par token</strong></span></p>
+<p><span class="green2"><strong>On a directement le comptage de chaque token par voie</strong></span></p>
 </section>
 <section id="score-par-token" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Score par token</h2>
-<p>Pour retourner la voie la plus pertinente, on construit un score pour chaque voie : <span class="math display">\[
+<p><span class="blue2"><strong>Pour retourner la voie la plus pertinente</strong></span>, on construit un score pour chaque voie : <span class="math display">\[
 \sum_{\text{∀t} \in \text{T}} occurence_t
 \]</span></p>
 <p>t = token<br>
@@ -483,7 +474,7 @@ T = ensemble des tokens de l’adresse recherchée</p>
 <section id="recherche-par-n-grams-de-caractères" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Recherche par n-grams de caractères</h2>
 <p><span class="blue2"><strong>Contourner les fautes d’orthographes</strong></span> : chaque token est découpé en sous-chaînes de n caractères consécutifs</p>
-<p>Exemple : découpage du texte “avenue verdier”</p>
+<p>Exemple : découpage en 3-grams de caractères du texte “avenue verdier”</p>
 <table class="caption-top">
 <thead>
 <tr class="header">
