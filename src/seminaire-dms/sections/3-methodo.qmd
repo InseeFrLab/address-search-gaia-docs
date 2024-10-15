@@ -15,14 +15,7 @@
 [**Un token = un mot**]{.green2}  
 
 Si on cherche **"88 avenue du général charles de gaulle"**, [**pour chaque nom de voie**]{.blue2}, on doit compter le nombre de :
-
-- "88"
-- "avenue"
-- "du"
-- "général"
-- "charles"
-- "de"
-- "gaulle"
+"88", "avenue", "du", "général"...
 
 [**C'est extrêment long**]{.green2}
 
@@ -37,11 +30,11 @@ Si on cherche **"88 avenue du général charles de gaulle"**, [**pour chaque nom
 | verdier   | {"B": 1}                 |
 | ...       | ...                      |
 
-[**On a directement le comptage par token**]{.green2}
+[**On a directement le comptage de chaque token par voie**]{.green2}
 
 ## Score par token
 
-Pour retourner la voie la plus pertinente, on construit un score pour chaque voie :
+[**Pour retourner la voie la plus pertinente**]{.blue2}, on construit un score pour chaque voie :
 $$
 \sum_{\text{∀t} \in \text{T}} occurence_t
 $$
@@ -53,7 +46,7 @@ T = ensemble des tokens de l'adresse recherchée
 
 [**Contourner les fautes d'orthographes**]{.blue2} : chaque token est découpé en sous-chaînes de n caractères consécutifs  
 
-Exemple : découpage du texte "avenue verdier"  
+Exemple : découpage en 3-grams de caractères du texte "avenue verdier"  
 
 | token    | 3-grams                 |
 |----------|-------------------------|
