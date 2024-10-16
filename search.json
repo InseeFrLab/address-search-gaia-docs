@@ -142,7 +142,7 @@
     "href": "src/documentation/index.html",
     "title": "Accueil de la documentation",
     "section": "",
-    "text": "Accueil de la documentation\nPour lancer une identification avec le moteur ElasticSearch développé en python, il faut aller sur le dépôt git et lire le READ.ME. Il est possible d’accéder au dépôt en cliquant ici [lien git](https://gitlab.insee.fr/sprint-gaia/moteur_es]. Puis aller sur LS3 pour cloner le projet.\n⚠️ Attention : il faut avoir les droits pour accéder au dépôt et être dans le projet LS3. Si ce n’est pas le cas, contactez l’équipe Gaïa sur Tchap ou mail.",
+    "text": "Accueil de la documentation\nPour lancer une identification avec le moteur ElasticSearch développé en python, il faut aller sur le dépôt git et lire le README. Il est possible d’accéder au dépôt en cliquant ici [lien git](https://gitlab.insee.fr/sprint-gaia/moteur_es]. Puis aller sur LS3 pour cloner le projet.\n⚠️ Attention : il faut avoir les droits pour accéder au dépôt et être dans le projet LS3. Si ce n’est pas le cas, contactez l’équipe Gaïa sur Tchap ou mail.",
     "crumbs": [
       "Accueil",
       "Navigation",
