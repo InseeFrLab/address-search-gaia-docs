@@ -24,7 +24,7 @@ website:
     collapse-below: lg
     right:
       - icon: github
-        href: "https://gitlab.insee.fr/sprint-gaia/moteur_es"
+        href: "https://github.com/InseeFrLab/address-search-gaia-docs"
         aria-label: GitHub
     left:
       - href: index.qmd
