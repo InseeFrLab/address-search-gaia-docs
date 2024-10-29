@@ -6,6 +6,22 @@ format:
 ---
 
 # Accueil de la documentation
+## Recherche simple : les swaggers
+
+Informations de connexion via Filezilla en protocole FTP (connexion FTP simple)
+
+| Plateforme | URL                                                                         | VM              |
+| ---------- | --------------------------------------------------------------------------- | --------------- |
+| DV         | https://api-interrogation-geo.developpement.insee.fr/swagger-ui/index.html  | dvgaialm001     |
+| DV2        | https://api-interrogation-geo.developpement2.insee.fr/swagger-ui/index.html | dvgaialm002     |
+| PREPROD    | https://api-interrogation-geo.preprod.insee.fr/swagger-ui/index.html        | pdgaialm001/2/3 |
+| PROD       | https://api-interrogation-geo.insee.fr/swagger-ui/index.html                | pdgaialm001/2/3 |
+
+
+Pour requêter le service d'identification, il faut que l'utilisateur soit authentifié en ayant récupéré un jeton Keycloak au préalable et qu'il bénéficie du rôle IDENTIFICATION_GAIA. Si ce n'est pas le cas, contactez l'équipe Gaïa sur Tchap ou mail.
+
+
+## Recherche avancée : code Python
 
 Pour lancer une identification avec le moteur ElasticSearch développé en python, il faut aller sur le dépôt git et lire le README. Il est possible d'accéder au dépôt en cliquant ici [Moteur de recherche Gaïa](https://gitlab.insee.fr/sprint-gaia/moteur_es). Puis aller sur LS3 pour cloner le projet.
 

@@ -37,7 +37,7 @@ website:
           contents:
           - text: "Accueil"
             href: "src/documentation/index.qmd"
-          - text: "ElasticSearch"
+          - text: "Identification d'adresse avec ElasticSearch"
             href: "src/documentation/elasticsearch.qmd"
 
 format:
