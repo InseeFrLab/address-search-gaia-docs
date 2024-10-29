@@ -75,7 +75,6 @@ ul.task-list li input[type="checkbox"] {
 
 
 <meta property="og:title" content="Moteur de recherche d’adresse Gaïa">
-<meta property="og:description" content="">
 <meta property="og:site_name" content="Moteur de recherche d'adresse Gaïa">
 </head>
 
@@ -149,7 +148,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/documentation/elasticsearch.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">ElasticSearch</span></a>
+ <span class="menu-text">Identification d’adresse avec ElasticSearch</span></a>
   </div>
 </li>
       </ul>
@@ -164,7 +163,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#accueil-de-la-documentation" id="toc-accueil-de-la-documentation" class="nav-link active" data-scroll-target="#accueil-de-la-documentation">Accueil de la documentation</a></li>
+  <li><a href="#accueil-de-la-documentation" id="toc-accueil-de-la-documentation" class="nav-link active" data-scroll-target="#accueil-de-la-documentation">Accueil de la documentation</a>
+  <ul class="collapse">
+  <li><a href="#recherche-simple-les-swaggers" id="toc-recherche-simple-les-swaggers" class="nav-link" data-scroll-target="#recherche-simple-les-swaggers">Recherche simple : les swaggers</a></li>
+  <li><a href="#recherche-avancée-code-python" id="toc-recherche-avancée-code-python" class="nav-link" data-scroll-target="#recherche-avancée-code-python">Recherche avancée : code Python</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -176,10 +179,54 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="accueil-de-la-documentation" class="level1">
 <h1>Accueil de la documentation</h1>
+<section id="recherche-simple-les-swaggers" class="level2">
+<h2 class="anchored" data-anchor-id="recherche-simple-les-swaggers">Recherche simple : les swaggers</h2>
+<p>Informations de connexion via Filezilla en protocole FTP (connexion FTP simple)</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 75%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Plateforme</th>
+<th>URL</th>
+<th>VM</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>DV</td>
+<td>https://api-interrogation-geo.developpement.insee.fr/swagger-ui/index.html</td>
+<td>dvgaialm001</td>
+</tr>
+<tr class="even">
+<td>DV2</td>
+<td>https://api-interrogation-geo.developpement2.insee.fr/swagger-ui/index.html</td>
+<td>dvgaialm002</td>
+</tr>
+<tr class="odd">
+<td>PREPROD</td>
+<td>https://api-interrogation-geo.preprod.insee.fr/swagger-ui/index.html</td>
+<td>pdgaialm001/2/3</td>
+</tr>
+<tr class="even">
+<td>PROD</td>
+<td>https://api-interrogation-geo.insee.fr/swagger-ui/index.html</td>
+<td>pdgaialm001/2/3</td>
+</tr>
+</tbody>
+</table>
+<p>Pour requêter le service d’identification, il faut que l’utilisateur soit authentifié en ayant récupéré un jeton Keycloak au préalable et qu’il bénéficie du rôle IDENTIFICATION_GAIA. Si ce n’est pas le cas, contactez l’équipe Gaïa sur Tchap ou mail.</p>
+</section>
+<section id="recherche-avancée-code-python" class="level2">
+<h2 class="anchored" data-anchor-id="recherche-avancée-code-python">Recherche avancée : code Python</h2>
 <p>Pour lancer une identification avec le moteur ElasticSearch développé en python, il faut aller sur le dépôt git et lire le README. Il est possible d’accéder au dépôt en cliquant ici <a href="https://gitlab.insee.fr/sprint-gaia/moteur_es">Moteur de recherche Gaïa</a>. Puis aller sur LS3 pour cloner le projet.</p>
 <p>⚠️ Attention : il faut avoir les droits pour accéder au dépôt et être dans le projet LS3. Si ce n’est pas le cas, contactez l’équipe Gaïa sur Tchap ou mail.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -751,8 +798,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../src/documentation/elasticsearch.html" class="pagination-link" aria-label="ElasticSearch">
-        <span class="nav-page-text">ElasticSearch</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../src/documentation/elasticsearch.html" class="pagination-link" aria-label="Identification d'adresse avec ElasticSearch">
+        <span class="nav-page-text">Identification d’adresse avec ElasticSearch</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

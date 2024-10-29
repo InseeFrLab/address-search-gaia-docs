@@ -75,6 +75,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <meta property="og:title" content="Moteur de recherche d’adresse Gaïa">
+<meta property="og:description" content="">
 <meta property="og:site_name" content="Moteur de recherche d'adresse Gaïa">
 </head>
 
@@ -118,7 +119,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/documentation/index.html">Navigation</a></li><li class="breadcrumb-item"><a href="../../src/documentation/elasticsearch.html">ElasticSearch</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../src/documentation/index.html">Navigation</a></li><li class="breadcrumb-item"><a href="../../src/documentation/elasticsearch.html">Identification d’adresse avec ElasticSearch</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -148,7 +149,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../src/documentation/elasticsearch.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">ElasticSearch</span></a>
+ <span class="menu-text">Identification d’adresse avec ElasticSearch</span></a>
   </div>
 </li>
       </ul>
@@ -163,7 +164,22 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#elasticsearch" id="toc-elasticsearch" class="nav-link active" data-scroll-target="#elasticsearch">ElasticSearch</a></li>
+  <li><a href="#identification-dadresse" id="toc-identification-dadresse" class="nav-link active" data-scroll-target="#identification-dadresse">Identification d’adresse</a>
+  <ul class="collapse">
+  <li><a href="#fonctionnement-de-lidentification" id="toc-fonctionnement-de-lidentification" class="nav-link" data-scroll-target="#fonctionnement-de-lidentification">Fonctionnement de l’identification</a>
+  <ul class="collapse">
+  <li><a href="#premier-niveau-un-code-retour-de-lappariement" id="toc-premier-niveau-un-code-retour-de-lappariement" class="nav-link" data-scroll-target="#premier-niveau-un-code-retour-de-lappariement">Premier niveau : un code retour de l’appariement</a></li>
+  <li><a href="#second-niveau-un-ratio-de-score-relatif-des-deux-premiers-échos-issus-de-la-requête-dans-lindex-voies" id="toc-second-niveau-un-ratio-de-score-relatif-des-deux-premiers-échos-issus-de-la-requête-dans-lindex-voies" class="nav-link" data-scroll-target="#second-niveau-un-ratio-de-score-relatif-des-deux-premiers-échos-issus-de-la-requête-dans-lindex-voies">Second niveau : un ratio de score relatif des deux premiers échos issus de la requête dans l’index voies</a></li>
+  </ul></li>
+  <li><a href="#algorithme-didentification" id="toc-algorithme-didentification" class="nav-link" data-scroll-target="#algorithme-didentification">Algorithme d’identification</a>
+  <ul class="collapse">
+  <li><a href="#prétraitements" id="toc-prétraitements" class="nav-link" data-scroll-target="#prétraitements">Prétraitements</a></li>
+  <li><a href="#identification-de-la-commune" id="toc-identification-de-la-commune" class="nav-link" data-scroll-target="#identification-de-la-commune">0 - Identification de la commune</a></li>
+  <li><a href="#identification-adresse-exacte" id="toc-identification-adresse-exacte" class="nav-link" data-scroll-target="#identification-adresse-exacte">1 - Identification adresse exacte</a></li>
+  <li><a href="#identification-voie" id="toc-identification-voie" class="nav-link" data-scroll-target="#identification-voie">2 - Identification voie</a></li>
+  <li><a href="#identification-adresse" id="toc-identification-adresse" class="nav-link" data-scroll-target="#identification-adresse">3 - Identification adresse</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -173,10 +189,169 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="elasticsearch" class="level1">
-<h1>ElasticSearch</h1>
+<section id="identification-dadresse" class="level1">
+<h1>Identification d’adresse</h1>
+<p>L’objectif est de founir un service qui prend une adresse en entrée (couple string adresse/string code insee), et renvoie un identifiant Gaïa le plus précis possible et des informations sur la qualité de l’identification. Il y a 3 niveaux d’identifiants Gaïa :<br>
+- IdGaïaAdresse (le plus précis)<br>
+- IdGaïaVoie (lorsque le numéro n’est pas retrouvé, mais que la voie si)<br>
+- idGaïaCommune (lorsque ni l’adresse, ni la voie ne sont identifiées)</p>
+<p><em>Exemple : {“adresseComplete”: “29 bis rue des murlins”, “depcom”: “45324”}</em> Le depcom est le Code Officiel Géographique de la commune.</p>
+<section id="fonctionnement-de-lidentification" class="level2">
+<h2 class="anchored" data-anchor-id="fonctionnement-de-lidentification">Fonctionnement de l’identification</h2>
+<p>Il existe deux indices : <em>adresses</em> contenant toutes les adresses fraçaises et <em>voies</em> contenant toutes les voies fraçaises. <em>Exemple : une adresse est “20 rue hoche” et une voie est “rue hoche”</em></p>
+<p>La première étape est la recherche stricte de l’adresse recherchée dans l’index <em>adresses</em> sur les adresses de la commune <strong>uniquement</strong>. Si aucun IdGaïaAdresse ne ressort à l’issue de l’étape 1, alors :<br>
+- Recherche floue dans l’index <em>voies</em> sur les adresses de la commune <strong>uniquement</strong>, pour retrouver l’IdGaïaVoie (étape 2).<br>
+- Recherche dans l’index <em>adresses</em> sur les adresses de la voie trouvée à l’étape 1 <strong>uniquement</strong>, pour retrouver l’idGaïaAdresse (étape 3).</p>
+<p>La qualité globale de l’appariement est appréciée au travers de deux indicateurs : un code retour qui donne, sur une échelle de 0 à 10, une vision globale sur le retour de l’algorithme et un score relatif pour repérer d’éventuelles concurrences entre réponses de qualité proche.</p>
+<section id="premier-niveau-un-code-retour-de-lappariement" class="level3">
+<h3 class="anchored" data-anchor-id="premier-niveau-un-code-retour-de-lappariement">Premier niveau : un code retour de l’appariement</h3>
+<p>L’information principale est fournie par un code retour, qui vise à indiquer les éléments qui ont été identifiés dans le processus d’appariement.</p>
+<p>L’algorithme recherche d’abord la commune indiquée (pour l’instant cette étape n’est pas faite avec ElasticSearch), puis la voie au sein de la commune et enfin l’adresse dans la voie, c’est-à-dire l’existence du numéro et de l’indice de répétition dans les adresses de la voie.</p>
+<p>La voie retrouvée est typée selon quatre catégories, en fonction du nombre de trigrammes retrouvés :</p>
+<ul>
+<li>voie sûre : l’adresse contient plus de 65 % des trigrammes de la voie du référentiel</li>
+<li>voie peu douteuse : l’adresse contient entre 35 % et 65 % des trigrammes de la voie du référentiel</li>
+<li>voie douteuse : l’adresse contient entre 10 % et 35 % des trigrammes de la voie du référentiel</li>
+<li>voie non retrouvée : pas d’écho ou l’adresse contient moins de 10 % des trigrammes de la voie du référentiel</li>
+</ul>
+<p>En ce qui concerne les adresses, les contrôles portent sur le numéro et l’indice de répétition :</p>
+<ul>
+<li>Si l’adresse demandée ne contient pas d’indice de répétition et que le numéro est trouvé, alors l’adresse est sûre.</li>
+<li>Si l’adresse demandée contient un indice de répétition et s’il est retrouvé, l’adresse est sûre.</li>
+<li>Si l’adresse demandée contient un indice de répétition mais qu’il n’est pas retrouvé, alors l’adresse est douteuse.</li>
+<li>Si le numéro n’est pas retrouvé exactement, aucune adresse n’est retournée.</li>
+</ul>
+<p>Si une voie est douteuse, alors la qualité de l’adresse globale est douteuse : on ne distingue donc pas les cas où l’adresse est sûre et douteuse.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 17%">
+<col style="width: 9%">
+<col style="width: 54%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Adresse</th>
+<th>Voie</th>
+<th>Code_retour</th>
+<th>Libellé</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>sûre</td>
+<td>sûre</td>
+<td>10</td>
+<td>Appariement direct sur l’adresse</td>
+</tr>
+<tr class="even">
+<td>sûre</td>
+<td>sûre</td>
+<td>9</td>
+<td>Adresse sûre</td>
+</tr>
+<tr class="odd">
+<td>douteuse</td>
+<td>sûre</td>
+<td>8</td>
+<td>Adresse douteuse dans voie sûre</td>
+</tr>
+<tr class="even">
+<td>sûre &amp; douteuse</td>
+<td>douteuse</td>
+<td>7</td>
+<td>Adresse dans voie douteuse</td>
+</tr>
+<tr class="odd">
+<td>sûre &amp; douteuse</td>
+<td>très douteuse</td>
+<td>6</td>
+<td>Adresse dans voie très douteuse</td>
+</tr>
+<tr class="even">
+<td>pas d’adresse trouvée</td>
+<td>sûre</td>
+<td>5</td>
+<td>Voie sûre sans adresse</td>
+</tr>
+<tr class="odd">
+<td>pas d’adresse trouvée</td>
+<td>douteuse</td>
+<td>4</td>
+<td>Voie douteuse sans adresse</td>
+</tr>
+<tr class="even">
+<td>pas d’adresse trouvée</td>
+<td>très douteuse</td>
+<td>3</td>
+<td>Voie très douteuse sans adresse</td>
+</tr>
+<tr class="odd">
+<td>pas d’adresse trouvée</td>
+<td>pas de voie trouvée</td>
+<td>2</td>
+<td>Commune seulement</td>
+</tr>
+<tr class="even">
+<td>pas d’adresse trouvée</td>
+<td>pas de voie trouvée</td>
+<td>1</td>
+<td>Adresse à l’étranger</td>
+</tr>
+<tr class="odd">
+<td>pas d’adresse trouvée</td>
+<td>pas de voie trouvée</td>
+<td>0</td>
+<td>Problème dans les données (par exemple, commune non trouvée)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="second-niveau-un-ratio-de-score-relatif-des-deux-premiers-échos-issus-de-la-requête-dans-lindex-voies" class="level3">
+<h3 class="anchored" data-anchor-id="second-niveau-un-ratio-de-score-relatif-des-deux-premiers-échos-issus-de-la-requête-dans-lindex-voies">Second niveau : un ratio de score relatif des deux premiers échos issus de la requête dans l’index voies</h3>
+<p>L’objectif de cette information complémentaire est d’indiquer la position de l’écho retourné par rapport aux autres échos possibles dans l’index <em>voies</em>, lors de la requête à l’étape 2. Il permet d’évaluer si le score Elastic du premier écho (noté R1) est bien supérieur au score du second (noté R2).</p>
+<p>La formule du ratio est 1-(R2/R1) ; si le score est supérieur à 0,9999, il est ramené à 0,9999.</p>
+<p>Si la valeur est proche de 1, alors le premier écho se détache nettement des autres et donc la recherche est sans ambiguïté. A l’inverse, si la valeur est proche de 0, alors le premier et le second écho ont le même score et la recherche aurait donc pu retourner un autre résultat.</p>
+<p>Le score relatif est compris entre 0 et 1 et donné avec 4 décimales. Le score maximal est de 0,9999, afin de pouvoir être utilisé en combinaison avec le code retour.</p>
+</section>
+</section>
+<section id="algorithme-didentification" class="level2">
+<h2 class="anchored" data-anchor-id="algorithme-didentification">Algorithme d’identification</h2>
+<p>La logique globale de l’algorithme est la suivante :</p>
+<ul>
+<li>On va enchaîner des étapes de contrôles, d’interrogation d’ElasticSearch, de règles de décision.</li>
+<li>A chaque étape, il est possible d’attribuer un code retour “sortant” à l’adresse qu’on souhaite identifier. Par exemple, si l’adresse est vide, on attribue un code retour 0 et l’adresse ne va pas plus loin dans l’algorithme.</li>
+<li>Si l’adresse n’a pas de code retour attribué, alors on continue dans l’algorithme.</li>
+</ul>
+<p>Comme précisé plus haut, l’algorithme marche en 4 étapes d’identification: commune —&gt; adresse exacte –si pas de match-&gt; voie —&gt; adresse</p>
+<section id="prétraitements" class="level3">
+<h3 class="anchored" data-anchor-id="prétraitements">Prétraitements</h3>
+<p>Les données du client et dans l’index sont traitées de la même façon pour maximiser les matchs : - Lowercase - Asciifolding - Traitement de la ponctuation - Utilisation de listes de synonymes</p>
+</section>
+<section id="identification-de-la-commune" class="level3">
+<h3 class="anchored" data-anchor-id="identification-de-la-commune">0 - Identification de la commune</h3>
+<p>L’identification à la commune se fait à travers un dictionnaire, pour récupérer l’idGaïaCommune et passer à l’étape suivante.</p>
+</section>
+<section id="identification-adresse-exacte" class="level3">
+<h3 class="anchored" data-anchor-id="identification-adresse-exacte">1 - Identification adresse exacte</h3>
+<p>Afin d’accélerer notre procédure d’identification, une requête simple et rapide nous permet d’identifier une adresse si son orthographe est parfaite. Cette requête consiste à rechercher au sein des adresses de la commune identifiée à l’étape précédente grâce à un <strong>filter</strong> sur l’idGaïaCommune, les adresses dont la variable <em>adresseComplete</em> (string représentant l’adresse contenant le numéro, l’indice de répétition, le type et le nom de voie) correspond parfaitement au string envoyé par le client. Ceci est assuré par le caractère stricte de la requête <strong>must</strong>, accompagné d’un <strong>minimum_should_match=100%</strong>. Pour gagner encore plus de temps, la variable <em>adresseComplete</em> ainsi que le string client ne sont pas découpés en token, comme dans les réglages par défaut d’ElasticSearch (le minimum should match est un seuil sur le nombre ou la proportion de bouts matchés entre le résultats de l’index et la demande du client, et un bout peut être le string complet, tout comme un token ou un ngram). Alors, le moteur va retourner l’adresse qui est parfaitement incluse dans le string envoyé.</p>
+<p>En présence d’un résultat à cette requête, le premier echo est conservé avec un code retour 10 et l’algorithme d’identification se termine à cette étape.</p>
+</section>
+<section id="identification-voie" class="level3">
+<h3 class="anchored" data-anchor-id="identification-voie">2 - Identification voie</h3>
+<p>La requête pour identifier à la voie est plus complexe car elle inclut la possibilité d’avoir du flou dans l’adresse à rechercher. Pour faciliter la recherche, un filtre est appliqué pour ne requêter que les voies dans la commune identifiée à l’étape 0. C’est une succession de <strong>should</strong> où au moins l’un d’entre eux doit être validé pour que la voie soit renvoyée : - Le nom de voie dans l’index non tokenisé est matché avec une fuzziness de 1 (boost : 200) - Le type de voie et/ou le nom de voie du référentiel sont inclus dans l’adresse client avec une fuzziness de 1 (boosts respectifs : 5 et 15) - Au moins un ngram du nom de voie de l’index, de taille 3 à 5, correspond (boost par ngram : 1)</p>
+<p>Ensuite, une multitude de vérifications sont appliquées sur le premier echo (s’il existe), qui va déterminer si la voie est sûre, peu douteuse, douteuse ou non retrouvée (citées plus haut). S’il n’y a pas de retour ElasticSearch ou si la voie est jugée comme non retrouvée d’après les règles, un code retour 2 sera affiché.</p>
+</section>
+<section id="identification-adresse" class="level3">
+<h3 class="anchored" data-anchor-id="identification-adresse">3 - Identification adresse</h3>
+<p>Pour retrouver l’adresse à partir de la voie, nous allons chercher dans les adresses de la voie identifiée à l’étape 2 (avec un <strong>filter</strong> sur idGaïaVoie) et demander à matcher sur les champs <strong>numéro</strong> et/ou <strong>indice de répétition</strong> dans notre base. Des regex ont été développées pour extraire le numéro de l’adresse dans le string client et qui détecte la présence d’indice de répétition dans celle-ci. Ensuite, un <strong>must</strong> est appliqué sur le champ <em>numéro</em> avec l’extraction du numéro. Si l’extraction ne retourne rien, le numéro recherché par le must sera alors “0”. L’indice de répétition sera recherché avec un <strong>should</strong>. Si le moteur retourne plusieurs adresses, l’adresse retournée sera :<br>
+- celle qui a un indice de répétition si un indice a été détecté dans l’adresse recherchée<br>
+- celle qui n’a pas d’indice de répétition si aucun indice n’a été détecté dans l’adresse recherchée Dans le cas où un idGaïaAdresse est trouvé, il sera accompagné d’un code retour 7, 8 ou 9.</p>
+<p>Finalement, dans le cas où aucune adresse ne ressort, alors un code retour 3, 4 ou 5 sera attribué en fonction de la fiabilité de la voie identifiée.</p>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
