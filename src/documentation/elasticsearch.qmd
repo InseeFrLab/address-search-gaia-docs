@@ -11,8 +11,11 @@ L'objectif est de founir un service qui prend une adresse en entrée (couple str
 - IdGaïaVoie (lorsque le numéro n'est pas retrouvé, mais que la voie si)  
 - idGaïaCommune (lorsque ni l'adresse, ni la voie ne sont identifiées)  
 
-*Exemple : {"adresseComplete": "29 bis rue des murlins", "depcom": "45324"}.*  
+*Exemple : {"adresseComplete": "131 rue du faubourg bannier", "depcom": "45324"}.*  
 Le depcom est le Code Officiel Géographique de la commune.  
+
+
+![Schéma algorithme d'identification d'adresse avec ElasticSearch](img/schema_moteur_fr.png){fig-align="center" width=75%}
 
 
 ## Fonctionnement de l’identification
