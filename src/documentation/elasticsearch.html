@@ -195,8 +195,14 @@ ul.task-list li input[type="checkbox"] {
 - IdGaïaAdresse (le plus précis)<br>
 - IdGaïaVoie (lorsque le numéro n’est pas retrouvé, mais que la voie si)<br>
 - idGaïaCommune (lorsque ni l’adresse, ni la voie ne sont identifiées)</p>
-<p><em>Exemple : {“adresseComplete”: “29 bis rue des murlins”, “depcom”: “45324”}.</em><br>
+<p><em>Exemple : {“adresseComplete”: “131 rue du faubourg bannier”, “depcom”: “45324”}.</em><br>
 Le depcom est le Code Officiel Géographique de la commune.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/schema_moteur_fr.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<figcaption>Schéma algorithme d’identification d’adresse avec ElasticSearch</figcaption>
+</figure>
+</div>
 <section id="fonctionnement-de-lidentification" class="level2">
 <h2 class="anchored" data-anchor-id="fonctionnement-de-lidentification">Fonctionnement de l’identification</h2>
 <p>Il existe deux indices : <em>adresses</em> contenant toutes les adresses fraçaises et <em>voies</em> contenant toutes les voies fraçaises.<br>
