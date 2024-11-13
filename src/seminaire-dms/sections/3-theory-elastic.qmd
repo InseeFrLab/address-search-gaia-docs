@@ -8,9 +8,9 @@ C'est un package
 
 Recherche SQL ?
 
-Adock ?
+Addok ?
 
-Rapidité
+Rapidité et précision.
 
 ## Outils pour créer un moteur ElasticSearch
 
@@ -18,7 +18,7 @@ Rapidité
 - Mappings.
 - Requêtes.
 
-Eventuellement, savoir coder en Python, Java...
+Eventuellement, savoir coder en Python/Java...
 
 ## Base de données classique
 
@@ -160,9 +160,19 @@ sc = sous-chaîne (un token, un 3-grams...)
 Une fois qu'on a la théorie, il faut l'appliquer en pratique.
 
 Le package ElasticSearch permet d'indexer les données en fournissant :
-- Un dataframe de données
+- Un dataframe des données du référentiel Gaïa
 - Des settings (json) où on définit nos filtres, différents analyzers, différents tokenizers...
-- Des mappings (json) où pour chaque variable, un analyzer et un tokenizer.
+- Des mappings (json) où pour chaque variable, on fournit un analyzer et un tokenizer.
+
+## Filtres
+
+Il est possible d'appliquer des "filtres" sur l'adresse recherchée et sur les adresses du référentiel :
+- lowercase
+- asciifolding
+- ponctuation
+- séparation des nombres et lettres (ex : 14bis --> 14 bis)
+- suppression des espaces supplémentaires
+- [**dillatation des accronymes/prise en compte des synonymes**]{.red2}
 
 ## Faire des recherches
 

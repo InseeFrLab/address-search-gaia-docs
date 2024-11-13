@@ -1,1 +1,20 @@
 ## Algorithme d'identification d'adresses
+
+- Succession de requêtes ElasticSearch.
+- Etapes de validation des résultats après chaque requête.
+- Retourne :
+    - le(s) identifiant(s) Gaïa retrouvés 
+    - une indicatrice sur qualité de l'identification.
+    - un ratio qui mesure l'écart entre la 1ère et la 2ème possibilité retournées par Elastic.
+
+## Schéma de l'algorithme
+
+<!-- Inserer schema -->
+
+## Indicatrice qualité
+
+<!-- Insérer tableau score -->
+
+## Ratio 1er/2eme
+
+<!-- Explications -->

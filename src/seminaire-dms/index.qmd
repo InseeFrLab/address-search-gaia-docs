@@ -32,7 +32,7 @@ ascii: true
 
 4️⃣ Algorithme d'identification d'adresses
 
-5️⃣ Résultats obtenus
+5️⃣ Performances de l'algorithme d'identification
 
 6️⃣ Discussion
 
@@ -51,7 +51,7 @@ ascii: true
 
 4️⃣ Algorithme d'identification d'adresses
 
-5️⃣ Résultats obtenus
+5️⃣ Performances de l'algorithme d'identification
 
 6️⃣ Discussion
 
@@ -69,7 +69,7 @@ ascii: true
 
 4️⃣ Algorithme d'identification d'adresses
 
-5️⃣ Résultats obtenus
+5️⃣ Performances de l'algorithme d'identification
 
 6️⃣ Discussion
 
@@ -87,7 +87,7 @@ ascii: true
 
 **4️⃣ Algorithme d'identification d'adresses**
 
-5️⃣ Résultats obtenus
+5️⃣ Performances de l'algorithme d'identification
 
 6️⃣ Discussion
 
@@ -105,11 +105,11 @@ ascii: true
 
 4️⃣ Algorithme d'identification d'adresses
 
-**5️⃣ Résultats obtenus**
+**5️⃣ Performances de l'algorithme d'identification**
 
 6️⃣ Discussion
 
-# 5️⃣ Résultats obtenus
+# 5️⃣ Performances de l'algorithme d'identification
 
 {{< include sections/5-results.qmd >}}
 
@@ -123,7 +123,7 @@ ascii: true
 
 4️⃣ Algorithme d'identification d'adresses
 
-5️⃣ Résultats obtenus
+5️⃣ Performances de l'algorithme d'identification
 
 **6️⃣ Discussion**
 
@@ -131,4 +131,6 @@ ascii: true
 
 {{< include sections/6-discussion.qmd >}}
 
-# Merci pour votre attention !
+## Merci au SSPlab : Julien Pramil, Lino Galiana, Olivier Meslin, Marie-Pierre Joubert et Tom Seimandi
+## Merci à Heidi Koumarianos
+## Et enfin, merci pour votre attention !
