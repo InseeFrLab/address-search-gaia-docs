@@ -1,3 +1,25 @@
+## C'est quoi ElasticSearch ?
+
+Résumé
+
+C'est un package
+
+## Pourquoi ElasticSearch ?
+
+Recherche SQL ?
+
+Adock ?
+
+Rapidité
+
+## Outils pour créer un moteur ElasticSearch
+
+- Settings.
+- Mappings.
+- Requêtes.
+
+Eventuellement, savoir coder en Python, Java...
+
 ## Base de données classique
 
 **Table 1: Exemple de base de données**  
@@ -131,3 +153,19 @@ $$
 N = ensemble des niveaux de découpage de l'adresse recherchée (niveau token, niveau fuzzi...)
 dn = découpage de l'adresse recherchée selon le niveau (boost associé)
 sc = sous-chaîne (un token, un 3-grams...)
+
+
+## Configurer le moteur
+
+Une fois qu'on a la théorie, il faut l'appliquer en pratique.
+
+Le package ElasticSearch permet d'indexer les données en fournissant :
+- Un dataframe de données
+- Des settings (json) où on définit nos filtres, différents analyzers, différents tokenizers...
+- Des mappings (json) où pour chaque variable, un analyzer et un tokenizer.
+
+## Faire des recherches
+
+Une fois le moteur configuré, on peut faire des requêtes.
+
+Exemple de requêtes :

@@ -1,1 +1,55 @@
-## Intro
+## Origine du projet
+
+[**Gaïa**]{.green2} : Référentiel Géographique d'Adresses avec Informations Géolocalisantes
+
+- Besoin d'un référentiel complet, stable, fiable, mis à jour.
+- Faciliter la [**gestion des adresses**]{.blue2} au sein du SSP.
+- Clients : Résil, Géoloc, DMTR...
+
+## Le référentiel Gaïa
+
+[**20 bis avenue de la marne 95046**]{.blue2}
+
+<!-- Centrer l'adresse -->
+
+Une adresse est un numéro et/ou un indice de répétition qui est associée à une voie.
+
+Une voie est un type de voie et un nom de voie pur qui est associé à une commune.
+
+- Pour chaque adresse Gaïa : point gps, lien parcelle, identifiant ban, majic, rca...
+- Pour chaque commune : polygone.
+
+<!-- Peut etre mettre un schema des données finalement -->
+
+## Identifiants Gaïa
+
+[**Identifiant unique et stable**]{.green2} pour assurer le suivi des objets géographiques dans le temps.  
+
+Trois niveaux :
+
+- Identifiant adresse
+- Identifiant voie
+- Identifiant commune
+
+## Construction du référentiel
+
+Sources fiables pour constituer le référentiel d'adresses :
+
+- Majic
+- BAN
+- RCA
+
+## D'autres données
+
+- Polygones BDTOPO
+- Polygones Parcelles du cadastre
+- Liens code postaux - libellés commune - COG
+- Polygones QPV
+
+Pas d'identifiant Gaïa, donc **pas de suivi dans le temps de ces objets**.
+
+## Mises à jour
+
+Au moins une mise à jour par mois  
+
+Mettre le schema temporel de mis à jour

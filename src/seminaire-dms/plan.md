@@ -26,3 +26,6 @@ Perspectives de développement : Améliorations prévues pour le moteur de reche
 # Conclusion et Perspectives
 Résumé des bénéfices de Gaïa pour l'Insee : Impact sur la qualité et l’accessibilité des données d’adresses.
 Prochaines étapes : Optimisation du moteur ElasticSearch, renforcement des liens avec les autres projets géographiques.
+
+
+Pour zoomer sur une slide : alt + clic

@@ -1,7 +1,7 @@
 ---
-title: "Séminaire interne DMS : moteur de recherche d'adresse avec ElasticSearch (Gaïa)"
+title: "[Séminaire interne DMS]{.red2} [Gaïa :]{.green2} Moteur de recherche d'adresses avec ElasticSearch"
 subtitle: |
-  **[Raya Berova (DMRG)]{.blue2}**
+  **[Raya Berova & Benoît Hurpeau (DMRG)]{.blue2}**
 date: "11/28/2024"
 date-format: "D MMMM YYYY"
 slide-number: true
@@ -26,13 +26,13 @@ ascii: true
 
 1️⃣ Contexte
 
-2️⃣ Les données
+2️⃣ Utilisation du référentiel Gaïa
 
-3️⃣ Méthodologie
+3️⃣ Moteur de recherche ElasticSearch
 
-4️⃣ Résultats obtenus
+4️⃣ Algorithme d'identification d'adresses
 
-5️⃣ Structure du projet
+5️⃣ Résultats obtenus
 
 6️⃣ Discussion
 
@@ -45,17 +45,17 @@ ascii: true
 
 1️⃣ Contexte
 
-**2️⃣ Les données**
+**2️⃣ Utilisation du référentiel Gaïa**
 
-3️⃣ Méthodologie
+3️⃣ Moteur de recherche ElasticSearch
 
-4️⃣ Résultats obtenus
+4️⃣ Algorithme d'identification d'adresses
 
-5️⃣ Structure du projet
+5️⃣ Résultats obtenus
 
 6️⃣ Discussion
 
-# 2️⃣ Les données
+# 2️⃣ Utilisation du référentiel Gaïa
 
 {{< include sections/2-data.qmd >}}
 
@@ -63,67 +63,67 @@ ascii: true
 
 1️⃣ Contexte
 
-2️⃣ Les données
+2️⃣ Utilisation du référentiel Gaïa
 
-**3️⃣ Méthodologie**
+**3️⃣ Moteur de recherche ElasticSearch**
 
-4️⃣ Résultats obtenus
+4️⃣ Algorithme d'identification d'adresses
 
-5️⃣ Structure du projet
+5️⃣ Résultats obtenus
 
 6️⃣ Discussion
 
-# 3️⃣ Méthodologie
+# 3️⃣ Moteur de recherche ElasticSearch
 
-{{< include sections/3-methodo.qmd >}}
+{{< include sections/3-theory-elastic.qmd >}}
 
 # Plan de la présentation
 
 1️⃣ Contexte
 
-2️⃣ Les données
+2️⃣ Utilisation du référentiel Gaïa
 
-3️⃣ Méthodologie
+3️⃣ Moteur de recherche ElasticSearch
 
-**4️⃣ Résultats obtenus**
+**4️⃣ Algorithme d'identification d'adresses**
 
-5️⃣ Structure du projet
+5️⃣ Résultats obtenus
 
 6️⃣ Discussion
 
-# 4️⃣ Résultats obtenus
+# 4️⃣ Algorithme d'identification d'adresses
 
-{{< include sections/4-results.qmd >}}
+{{< include sections/4-algo-identif.qmd >}}
 
 # Plan de la présentation
 
 1️⃣ Contexte
 
-2️⃣ Les données
+2️⃣ Utilisation du référentiel Gaïa
 
-3️⃣ Méthodologie
+3️⃣ Moteur de recherche ElasticSearch
 
-4️⃣ Résultats obtenus
+4️⃣ Algorithme d'identification d'adresses
 
-**5️⃣ Structure du projet**
+**5️⃣ Résultats obtenus**
 
 6️⃣ Discussion
 
-# 5️⃣ Structure du projet
+# 5️⃣ Résultats obtenus
 
-{{< include sections/5-tools.qmd >}}
+{{< include sections/5-results.qmd >}}
 
 # Plan de la présentation
 
 1️⃣ Contexte
 
-2️⃣ Les données
+2️⃣ Utilisation du référentiel Gaïa
 
-3️⃣ Méthodologie
+3️⃣ Moteur de recherche ElasticSearch
 
-4️⃣ Résultats obtenus
+4️⃣ Algorithme d'identification d'adresses
 
-5️⃣ Structure du projet
+5️⃣ Résultats obtenus
 
 **6️⃣ Discussion**
 
