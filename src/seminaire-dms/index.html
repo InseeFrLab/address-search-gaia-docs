@@ -10,7 +10,7 @@
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.57">
 
-  <title>Moteur de recherche d'adresse Gaïa – Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)</title>
+  <title>Moteur de recherche d'adresse Gaïa – Séminaire interne DMS Gaïa : Moteur de recherche d’adresses avec ElasticSearch</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -324,8 +324,8 @@
     }
   </style>
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<meta property="og:title" content="Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa) – Moteur de recherche d’adresse Gaïa">
-<meta property="og:description" content="Raya Berova (DMRG)">
+<meta property="og:title" content="Séminaire interne DMS Gaïa : Moteur de recherche d’adresses avec ElasticSearch – Moteur de recherche d’adresse Gaïa">
+<meta property="og:description" content="Raya Berova &amp; Benoît Hurpeau (DMRG)">
 <meta property="og:site_name" content="Moteur de recherche d'adresse Gaïa">
 </head>
 <body class="quarto-light">
@@ -333,8 +333,8 @@
     <div class="slides">
 
 <section id="title-slide" data-background-image="../_extensions/InseeFrLab/onyxia/background.svg" data-background-size="contain" class="quarto-title-block center">
-  <h1 class="title">Séminaire interne DMS : moteur de recherche d’adresse avec ElasticSearch (Gaïa)</h1>
-  <p class="subtitle"></p><p><strong><span class="blue2">Raya Berova (DMRG)</span></strong></p><p></p>
+  <h1 class="title"><span class="red2">Séminaire interne DMS</span> <span class="green2">Gaïa :</span> Moteur de recherche d’adresses avec ElasticSearch</h1>
+  <p class="subtitle"></p><p><strong><span class="blue2">Raya Berova &amp; Benoît Hurpeau (DMRG)</span></strong></p><p></p>
 
 <div class="quarto-title-authors">
 </div>
@@ -344,10 +344,10 @@
 <section id="plan-de-la-présentation" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>
 <p>1️⃣ Contexte</p>
-<p>2️⃣ Les données</p>
-<p>3️⃣ Méthodologie</p>
-<p>4️⃣ Résultats obtenus</p>
-<p>5️⃣ Structure du projet</p>
+<p>2️⃣ Utilisation du référentiel Gaïa</p>
+<p>3️⃣ Moteur de recherche ElasticSearch</p>
+<p>4️⃣ Algorithme d’identification d’adresses</p>
+<p>5️⃣ Résultats obtenus</p>
 <p>6️⃣ Discussion</p>
 </section>
 
@@ -356,41 +356,134 @@
 <h1>1️⃣ Introduction</h1>
 
 </section>
-<section id="intro" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Intro</h2>
+<section id="origine-du-projet" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Origine du projet</h2>
+<p><span class="green2"><strong>Gaïa</strong></span> : Référentiel Géographique d’Adresses avec Informations Géolocalisantes</p>
+<ul>
+<li>Besoin d’un référentiel complet, stable, fiable, mis à jour.</li>
+<li>Faciliter la <span class="blue2"><strong>gestion des adresses</strong></span> au sein du SSP.</li>
+<li>Clients : Résil, Géoloc, DMTR…</li>
+</ul>
+</section>
+<section id="le-référentiel-gaïa" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Le référentiel Gaïa</h2>
+<p><span class="blue2"><strong>20 bis avenue de la marne 95046</strong></span></p>
+<!-- Centrer l'adresse -->
+<p>Une adresse est un numéro et/ou un indice de répétition qui est associée à une voie.</p>
+<p>Une voie est un type de voie et un nom de voie pur qui est associé à une commune.</p>
+<ul>
+<li>Pour chaque adresse Gaïa : point gps, lien parcelle, identifiant ban, majic, rca…</li>
+<li>Pour chaque commune : polygone.</li>
+</ul>
+<!-- Peut etre mettre un schema des donn&#xE9;es finalement -->
+</section>
+<section id="identifiants-gaïa" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Identifiants Gaïa</h2>
+<p><span class="green2"><strong>Identifiant unique et stable</strong></span> pour assurer le suivi des objets géographiques dans le temps.</p>
+<p>Trois niveaux :</p>
+<ul>
+<li>Identifiant adresse</li>
+<li>Identifiant voie</li>
+<li>Identifiant commune</li>
+</ul>
+</section>
+<section id="construction-du-référentiel" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Construction du référentiel</h2>
+<p>Sources fiables pour constituer le référentiel d’adresses :</p>
+<ul>
+<li>Majic</li>
+<li>BAN</li>
+<li>RCA</li>
+</ul>
+</section>
+<section id="dautres-données" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>D’autres données</h2>
+<ul>
+<li>Polygones BDTOPO</li>
+<li>Polygones Parcelles du cadastre</li>
+<li>Liens code postaux - libellés commune - COG</li>
+<li>Polygones QPV</li>
+</ul>
+<p>Pas d’identifiant Gaïa, donc <strong>pas de suivi dans le temps de ces objets</strong>.</p>
+</section>
+<section id="mises-à-jour" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Mises à jour</h2>
+<p>Au moins une mise à jour par mois</p>
+<p>Mettre le schema temporel de mis à jour</p>
 </section></section>
 <section id="plan-de-la-présentation-1" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>
 <p>1️⃣ Contexte</p>
-<p><strong>2️⃣ Les données</strong></p>
-<p>3️⃣ Méthodologie</p>
-<p>4️⃣ Résultats obtenus</p>
-<p>5️⃣ Structure du projet</p>
+<p><strong>2️⃣ Utilisation du référentiel Gaïa</strong></p>
+<p>3️⃣ Moteur de recherche ElasticSearch</p>
+<p>4️⃣ Algorithme d’identification d’adresses</p>
+<p>5️⃣ Résultats obtenus</p>
 <p>6️⃣ Discussion</p>
 </section>
 
 <section>
-<section id="les-données" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1>2️⃣ Les données</h1>
+<section id="utilisation-du-référentiel-gaïa" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<h1>2️⃣ Utilisation du référentiel Gaïa</h1>
 
 </section>
-<section id="data" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Data</h2>
+<section id="différents-besoins-au-sein-du-ssp" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Différents besoins au sein du SSP</h2>
+<ul>
+<li><span class="red2"><strong>Résil :</strong></span> identifier le(s) adresse(s) des individus pour sélectionner la plus récente.</li>
+<li><strong>Géoloc :</strong> <!-- Explication -->.</li>
+<li><strong>DMTR :</strong> <!-- Explication -->.</li>
+<li>Autres utilisateurs : par exemple identification des adresses sur les certificats de décès…</li>
+</ul>
+</section>
+<section id="regroupements-dadresses" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Regroupements d’adresses</h2>
+<p>Nouvel objet géographique :<br>
+<!-- Explication sch&#xE9;ma lieu g&#xE9;ographique. --></p>
+<p><strong>Utilisation :</strong> Résil, pour regrouper les adresses avec différents libellés et donc différents identifiants mais qui représentent le même lieu. Exemple : plusieurs adresses pour une même maison si elle a différentes entrées.</p>
+</section>
+<section id="besoin-didentification-des-adresses-textuelles" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Besoin d’identification des adresses textuelles</h2>
+<p><span class="green2"><strong>Trouver l’identifiant d’adresse à partir d’un libellé d’adresse plus ou moins correcte.</strong></span></p>
+<ul>
+<li>Besoin récurrent au SSP</li>
+<li>Indispensable pour construire et mettre à jour le référentiel</li>
+</ul>
+<p>Il faut donc un <span class="blue2"><strong>moteur de recherche</strong></span>.</p>
 </section></section>
 <section id="plan-de-la-présentation-2" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>
 <p>1️⃣ Contexte</p>
-<p>2️⃣ Les données</p>
-<p><strong>3️⃣ Méthodologie</strong></p>
-<p>4️⃣ Résultats obtenus</p>
-<p>5️⃣ Structure du projet</p>
+<p>2️⃣ Utilisation du référentiel Gaïa</p>
+<p><strong>3️⃣ Moteur de recherche ElasticSearch</strong></p>
+<p>4️⃣ Algorithme d’identification d’adresses</p>
+<p>5️⃣ Résultats obtenus</p>
 <p>6️⃣ Discussion</p>
 </section>
 
 <section>
-<section id="méthodologie" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1>3️⃣ Méthodologie</h1>
+<section id="moteur-de-recherche-elasticsearch" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<h1>3️⃣ Moteur de recherche ElasticSearch</h1>
 
+</section>
+<section id="cest-quoi-elasticsearch" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>C’est quoi ElasticSearch ?</h2>
+<p>Résumé</p>
+<p>C’est un package</p>
+</section>
+<section id="pourquoi-elasticsearch" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Pourquoi ElasticSearch ?</h2>
+<p>Recherche SQL ?</p>
+<p>Adock ?</p>
+<p>Rapidité</p>
+</section>
+<section id="outils-pour-créer-un-moteur-elasticsearch" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Outils pour créer un moteur ElasticSearch</h2>
+<ul>
+<li>Settings.</li>
+<li>Mappings.</li>
+<li>Requêtes.</li>
+</ul>
+<p>Eventuellement, savoir coder en Python, Java…</p>
 </section>
 <section id="base-de-données-classique" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Base de données classique</h2>
@@ -603,50 +696,60 @@ T = ensemble des tokens de l’adresse recherchée</p>
 \sum_{\text{∀dn} \in \text{N}} \sum_{\text{∀sc} \in \text{dn}} boost_{dn}*occurence_{sc}
 \]</span></p>
 <p>N = ensemble des niveaux de découpage de l’adresse recherchée (niveau token, niveau fuzzi…) dn = découpage de l’adresse recherchée selon le niveau (boost associé) sc = sous-chaîne (un token, un 3-grams…)</p>
+</section>
+<section id="configurer-le-moteur" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Configurer le moteur</h2>
+<p>Une fois qu’on a la théorie, il faut l’appliquer en pratique.</p>
+<p>Le package ElasticSearch permet d’indexer les données en fournissant : - Un dataframe de données - Des settings (json) où on définit nos filtres, différents analyzers, différents tokenizers… - Des mappings (json) où pour chaque variable, un analyzer et un tokenizer.</p>
+</section>
+<section id="faire-des-recherches" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Faire des recherches</h2>
+<p>Une fois le moteur configuré, on peut faire des requêtes.</p>
+<p>Exemple de requêtes :</p>
 </section></section>
 <section id="plan-de-la-présentation-3" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>
 <p>1️⃣ Contexte</p>
-<p>2️⃣ Les données</p>
-<p>3️⃣ Méthodologie</p>
-<p><strong>4️⃣ Résultats obtenus</strong></p>
-<p>5️⃣ Structure du projet</p>
+<p>2️⃣ Utilisation du référentiel Gaïa</p>
+<p>3️⃣ Moteur de recherche ElasticSearch</p>
+<p><strong>4️⃣ Algorithme d’identification d’adresses</strong></p>
+<p>5️⃣ Résultats obtenus</p>
+<p>6️⃣ Discussion</p>
+</section>
+
+<section>
+<section id="algorithme-didentification-dadresses" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<h1>4️⃣ Algorithme d’identification d’adresses</h1>
+
+</section>
+<section id="algorithme-didentification-dadresses-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Algorithme d’identification d’adresses</h2>
+</section></section>
+<section id="plan-de-la-présentation-4" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<h1>Plan de la présentation</h1>
+<p>1️⃣ Contexte</p>
+<p>2️⃣ Utilisation du référentiel Gaïa</p>
+<p>3️⃣ Moteur de recherche ElasticSearch</p>
+<p>4️⃣ Algorithme d’identification d’adresses</p>
+<p><strong>5️⃣ Résultats obtenus</strong></p>
 <p>6️⃣ Discussion</p>
 </section>
 
 <section>
 <section id="résultats-obtenus" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1>4️⃣ Résultats obtenus</h1>
+<h1>5️⃣ Résultats obtenus</h1>
 
 </section>
 <section id="résultats" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Résultats</h2>
 </section></section>
-<section id="plan-de-la-présentation-4" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1>Plan de la présentation</h1>
-<p>1️⃣ Contexte</p>
-<p>2️⃣ Les données</p>
-<p>3️⃣ Méthodologie</p>
-<p>4️⃣ Résultats obtenus</p>
-<p><strong>5️⃣ Structure du projet</strong></p>
-<p>6️⃣ Discussion</p>
-</section>
-
-<section>
-<section id="structure-du-projet" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1>5️⃣ Structure du projet</h1>
-
-</section>
-<section id="outils" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Outils</h2>
-</section></section>
 <section id="plan-de-la-présentation-5" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>
 <p>1️⃣ Contexte</p>
-<p>2️⃣ Les données</p>
-<p>3️⃣ Méthodologie</p>
-<p>4️⃣ Résultats obtenus</p>
-<p>5️⃣ Structure du projet</p>
+<p>2️⃣ Utilisation du référentiel Gaïa</p>
+<p>3️⃣ Moteur de recherche ElasticSearch</p>
+<p>4️⃣ Algorithme d’identification d’adresses</p>
+<p>5️⃣ Résultats obtenus</p>
 <p><strong>6️⃣ Discussion</strong></p>
 </section>
 
