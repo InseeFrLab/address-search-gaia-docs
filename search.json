@@ -74,14 +74,14 @@
     "href": "src/seminaire-dms/index.html#pourquoi-elasticsearch",
     "title": "Séminaire interne DMS Gaïa : Moteur de recherche d’adresses avec ElasticSearch",
     "section": "Pourquoi ElasticSearch ?",
-    "text": "Pourquoi ElasticSearch ?\nRecherche SQL ?\nAdock ?\nRapidité"
+    "text": "Pourquoi ElasticSearch ?\nRecherche SQL ?\nAddok ?\nRapidité et précision."
   },
   {
     "objectID": "src/seminaire-dms/index.html#outils-pour-créer-un-moteur-elasticsearch",
     "href": "src/seminaire-dms/index.html#outils-pour-créer-un-moteur-elasticsearch",
     "title": "Séminaire interne DMS Gaïa : Moteur de recherche d’adresses avec ElasticSearch",
     "section": "Outils pour créer un moteur ElasticSearch",
-    "text": "Outils pour créer un moteur ElasticSearch\n\nSettings.\nMappings.\nRequêtes.\n\nEventuellement, savoir coder en Python, Java…"
+    "text": "Outils pour créer un moteur ElasticSearch\n\nSettings.\nMappings.\nRequêtes.\n\nEventuellement, savoir coder en Python/Java…"
   },
   {
     "objectID": "src/seminaire-dms/index.html#base-de-données-classique",
@@ -172,7 +172,14 @@
     "href": "src/seminaire-dms/index.html#configurer-le-moteur",
     "title": "Séminaire interne DMS Gaïa : Moteur de recherche d’adresses avec ElasticSearch",
     "section": "Configurer le moteur",
-    "text": "Configurer le moteur\nUne fois qu’on a la théorie, il faut l’appliquer en pratique.\nLe package ElasticSearch permet d’indexer les données en fournissant : - Un dataframe de données - Des settings (json) où on définit nos filtres, différents analyzers, différents tokenizers… - Des mappings (json) où pour chaque variable, un analyzer et un tokenizer."
+    "text": "Configurer le moteur\nUne fois qu’on a la théorie, il faut l’appliquer en pratique.\nLe package ElasticSearch permet d’indexer les données en fournissant : - Un dataframe des données du référentiel Gaïa - Des settings (json) où on définit nos filtres, différents analyzers, différents tokenizers… - Des mappings (json) où pour chaque variable, on fournit un analyzer et un tokenizer."
+  },
+  {
+    "objectID": "src/seminaire-dms/index.html#filtres",
+    "href": "src/seminaire-dms/index.html#filtres",
+    "title": "Séminaire interne DMS Gaïa : Moteur de recherche d’adresses avec ElasticSearch",
+    "section": "Filtres",
+    "text": "Filtres\nIl est possible d’appliquer des “filtres” sur l’adresse recherchée et sur les adresses du référentiel : - lowercase - asciifolding - ponctuation - séparation des nombres et lettres (ex : 14bis –&gt; 14 bis) - suppression des espaces supplémentaires - dillatation des accronymes/prise en compte des synonymes"
   },
   {
     "objectID": "src/seminaire-dms/index.html#faire-des-recherches",
@@ -186,14 +193,49 @@
     "href": "src/seminaire-dms/index.html#algorithme-didentification-dadresses-1",
     "title": "Séminaire interne DMS Gaïa : Moteur de recherche d’adresses avec ElasticSearch",
     "section": "Algorithme d’identification d’adresses",
-    "text": "Algorithme d’identification d’adresses"
+    "text": "Algorithme d’identification d’adresses\n\nSuccession de requêtes ElasticSearch.\nEtapes de validation des résultats après chaque requête.\nRetourne :\n\nle(s) identifiant(s) Gaïa retrouvés\nune indicatrice sur qualité de l’identification.\nun ratio qui mesure l’écart entre la 1ère et la 2ème possibilité retournées par Elastic."
   },
   {
-    "objectID": "src/seminaire-dms/index.html#résultats",
-    "href": "src/seminaire-dms/index.html#résultats",
+    "objectID": "src/seminaire-dms/index.html#schéma-de-lalgorithme",
+    "href": "src/seminaire-dms/index.html#schéma-de-lalgorithme",
     "title": "Séminaire interne DMS Gaïa : Moteur de recherche d’adresses avec ElasticSearch",
-    "section": "Résultats",
-    "text": "Résultats"
+    "section": "Schéma de l’algorithme",
+    "text": "Schéma de l’algorithme"
+  },
+  {
+    "objectID": "src/seminaire-dms/index.html#indicatrice-qualité",
+    "href": "src/seminaire-dms/index.html#indicatrice-qualité",
+    "title": "Séminaire interne DMS Gaïa : Moteur de recherche d’adresses avec ElasticSearch",
+    "section": "Indicatrice qualité",
+    "text": "Indicatrice qualité"
+  },
+  {
+    "objectID": "src/seminaire-dms/index.html#ratio-1er2eme",
+    "href": "src/seminaire-dms/index.html#ratio-1er2eme",
+    "title": "Séminaire interne DMS Gaïa : Moteur de recherche d’adresses avec ElasticSearch",
+    "section": "Ratio 1er/2eme",
+    "text": "Ratio 1er/2eme"
+  },
+  {
+    "objectID": "src/seminaire-dms/index.html#evaluation-de-lalgorithme-didentification",
+    "href": "src/seminaire-dms/index.html#evaluation-de-lalgorithme-didentification",
+    "title": "Séminaire interne DMS Gaïa : Moteur de recherche d’adresses avec ElasticSearch",
+    "section": "Evaluation de l’algorithme d’identification",
+    "text": "Evaluation de l’algorithme d’identification\nJeu de test d’adresses pasrau x resil x majic x gaia\nSur 100 000 adresses sur tout le territoire : - Accuracy : … - …"
+  },
+  {
+    "objectID": "src/seminaire-dms/index.html#rapidité-de-lalgorithme",
+    "href": "src/seminaire-dms/index.html#rapidité-de-lalgorithme",
+    "title": "Séminaire interne DMS Gaïa : Moteur de recherche d’adresses avec ElasticSearch",
+    "section": "Rapidité de l’algorithme",
+    "text": "Rapidité de l’algorithme\nXXX secondes pour XXX adresses\nDémonstration en utilisant l’API Gaïa : url."
+  },
+  {
+    "objectID": "src/seminaire-dms/index.html#utilisation-du-moteur-au-sein-du-projet-gaïa",
+    "href": "src/seminaire-dms/index.html#utilisation-du-moteur-au-sein-du-projet-gaïa",
+    "title": "Séminaire interne DMS Gaïa : Moteur de recherche d’adresses avec ElasticSearch",
+    "section": "Utilisation du moteur au sein du projet Gaïa",
+    "text": "Utilisation du moteur au sein du projet Gaïa\nMétriques sur les mises à jour du référentiel : - …."
   },
   {
     "objectID": "src/seminaire-dms/index.html#pistes-damélioration",
@@ -201,6 +243,27 @@
     "title": "Séminaire interne DMS Gaïa : Moteur de recherche d’adresses avec ElasticSearch",
     "section": "Pistes d’amélioration",
     "text": "Pistes d’amélioration"
+  },
+  {
+    "objectID": "src/seminaire-dms/index.html#merci-au-ssplab-julien-pramil-lino-galiana-olivier-meslin-marie-pierre-joubert-et-tom-seimandi",
+    "href": "src/seminaire-dms/index.html#merci-au-ssplab-julien-pramil-lino-galiana-olivier-meslin-marie-pierre-joubert-et-tom-seimandi",
+    "title": "Séminaire interne DMS Gaïa : Moteur de recherche d’adresses avec ElasticSearch",
+    "section": "Merci au SSPlab : Julien Pramil, Lino Galiana, Olivier Meslin, Marie-Pierre Joubert et Tom Seimandi",
+    "text": "Merci au SSPlab : Julien Pramil, Lino Galiana, Olivier Meslin, Marie-Pierre Joubert et Tom Seimandi"
+  },
+  {
+    "objectID": "src/seminaire-dms/index.html#merci-à-heidi-koumarianos",
+    "href": "src/seminaire-dms/index.html#merci-à-heidi-koumarianos",
+    "title": "Séminaire interne DMS Gaïa : Moteur de recherche d’adresses avec ElasticSearch",
+    "section": "Merci à Heidi Koumarianos",
+    "text": "Merci à Heidi Koumarianos"
+  },
+  {
+    "objectID": "src/seminaire-dms/index.html#et-enfin-merci-pour-votre-attention",
+    "href": "src/seminaire-dms/index.html#et-enfin-merci-pour-votre-attention",
+    "title": "Séminaire interne DMS Gaïa : Moteur de recherche d’adresses avec ElasticSearch",
+    "section": "Et enfin, merci pour votre attention !",
+    "text": "Et enfin, merci pour votre attention !"
   },
   {
     "objectID": "src/documentation/elasticsearch.html",

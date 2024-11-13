@@ -347,7 +347,7 @@
 <p>2️⃣ Utilisation du référentiel Gaïa</p>
 <p>3️⃣ Moteur de recherche ElasticSearch</p>
 <p>4️⃣ Algorithme d’identification d’adresses</p>
-<p>5️⃣ Résultats obtenus</p>
+<p>5️⃣ Performances de l’algorithme d’identification</p>
 <p>6️⃣ Discussion</p>
 </section>
 
@@ -417,7 +417,7 @@
 <p><strong>2️⃣ Utilisation du référentiel Gaïa</strong></p>
 <p>3️⃣ Moteur de recherche ElasticSearch</p>
 <p>4️⃣ Algorithme d’identification d’adresses</p>
-<p>5️⃣ Résultats obtenus</p>
+<p>5️⃣ Performances de l’algorithme d’identification</p>
 <p>6️⃣ Discussion</p>
 </section>
 
@@ -456,7 +456,7 @@
 <p>2️⃣ Utilisation du référentiel Gaïa</p>
 <p><strong>3️⃣ Moteur de recherche ElasticSearch</strong></p>
 <p>4️⃣ Algorithme d’identification d’adresses</p>
-<p>5️⃣ Résultats obtenus</p>
+<p>5️⃣ Performances de l’algorithme d’identification</p>
 <p>6️⃣ Discussion</p>
 </section>
 
@@ -473,8 +473,8 @@
 <section id="pourquoi-elasticsearch" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Pourquoi ElasticSearch ?</h2>
 <p>Recherche SQL ?</p>
-<p>Adock ?</p>
-<p>Rapidité</p>
+<p>Addok ?</p>
+<p>Rapidité et précision.</p>
 </section>
 <section id="outils-pour-créer-un-moteur-elasticsearch" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Outils pour créer un moteur ElasticSearch</h2>
@@ -483,7 +483,7 @@
 <li>Mappings.</li>
 <li>Requêtes.</li>
 </ul>
-<p>Eventuellement, savoir coder en Python, Java…</p>
+<p>Eventuellement, savoir coder en Python/Java…</p>
 </section>
 <section id="base-de-données-classique" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Base de données classique</h2>
@@ -700,7 +700,11 @@ T = ensemble des tokens de l’adresse recherchée</p>
 <section id="configurer-le-moteur" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Configurer le moteur</h2>
 <p>Une fois qu’on a la théorie, il faut l’appliquer en pratique.</p>
-<p>Le package ElasticSearch permet d’indexer les données en fournissant : - Un dataframe de données - Des settings (json) où on définit nos filtres, différents analyzers, différents tokenizers… - Des mappings (json) où pour chaque variable, un analyzer et un tokenizer.</p>
+<p>Le package ElasticSearch permet d’indexer les données en fournissant : - Un dataframe des données du référentiel Gaïa - Des settings (json) où on définit nos filtres, différents analyzers, différents tokenizers… - Des mappings (json) où pour chaque variable, on fournit un analyzer et un tokenizer.</p>
+</section>
+<section id="filtres" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Filtres</h2>
+<p>Il est possible d’appliquer des “filtres” sur l’adresse recherchée et sur les adresses du référentiel : - lowercase - asciifolding - ponctuation - séparation des nombres et lettres (ex : 14bis –&gt; 14 bis) - suppression des espaces supplémentaires - <span class="red2"><strong>dillatation des accronymes/prise en compte des synonymes</strong></span></p>
 </section>
 <section id="faire-des-recherches" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Faire des recherches</h2>
@@ -713,7 +717,7 @@ T = ensemble des tokens de l’adresse recherchée</p>
 <p>2️⃣ Utilisation du référentiel Gaïa</p>
 <p>3️⃣ Moteur de recherche ElasticSearch</p>
 <p><strong>4️⃣ Algorithme d’identification d’adresses</strong></p>
-<p>5️⃣ Résultats obtenus</p>
+<p>5️⃣ Performances de l’algorithme d’identification</p>
 <p>6️⃣ Discussion</p>
 </section>
 
@@ -724,6 +728,28 @@ T = ensemble des tokens de l’adresse recherchée</p>
 </section>
 <section id="algorithme-didentification-dadresses-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Algorithme d’identification d’adresses</h2>
+<ul>
+<li>Succession de requêtes ElasticSearch.</li>
+<li>Etapes de validation des résultats après chaque requête.</li>
+<li>Retourne :
+<ul>
+<li>le(s) identifiant(s) Gaïa retrouvés</li>
+<li>une indicatrice sur qualité de l’identification.</li>
+<li>un ratio qui mesure l’écart entre la 1ère et la 2ème possibilité retournées par Elastic.</li>
+</ul></li>
+</ul>
+</section>
+<section id="schéma-de-lalgorithme" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Schéma de l’algorithme</h2>
+<!-- Inserer schema -->
+</section>
+<section id="indicatrice-qualité" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Indicatrice qualité</h2>
+<!-- Ins&#xE9;rer tableau score -->
+</section>
+<section id="ratio-1er2eme" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Ratio 1er/2eme</h2>
+<!-- Explications -->
 </section></section>
 <section id="plan-de-la-présentation-4" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>
@@ -731,17 +757,28 @@ T = ensemble des tokens de l’adresse recherchée</p>
 <p>2️⃣ Utilisation du référentiel Gaïa</p>
 <p>3️⃣ Moteur de recherche ElasticSearch</p>
 <p>4️⃣ Algorithme d’identification d’adresses</p>
-<p><strong>5️⃣ Résultats obtenus</strong></p>
+<p><strong>5️⃣ Performances de l’algorithme d’identification</strong></p>
 <p>6️⃣ Discussion</p>
 </section>
 
 <section>
-<section id="résultats-obtenus" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1>5️⃣ Résultats obtenus</h1>
+<section id="performances-de-lalgorithme-didentification" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<h1>5️⃣ Performances de l’algorithme d’identification</h1>
 
 </section>
-<section id="résultats" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Résultats</h2>
+<section id="evaluation-de-lalgorithme-didentification" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Evaluation de l’algorithme d’identification</h2>
+<p>Jeu de test d’adresses pasrau x resil x majic x gaia</p>
+<p>Sur 100 000 adresses sur tout le territoire : - Accuracy : … - …</p>
+</section>
+<section id="rapidité-de-lalgorithme" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Rapidité de l’algorithme</h2>
+<p><span class="blue2"><strong>XXX secondes pour XXX adresses</strong></span></p>
+<p>Démonstration en utilisant l’API Gaïa : url.</p>
+</section>
+<section id="utilisation-du-moteur-au-sein-du-projet-gaïa" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Utilisation du moteur au sein du projet Gaïa</h2>
+<p>Métriques sur les mises à jour du référentiel : - ….</p>
 </section></section>
 <section id="plan-de-la-présentation-5" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>
@@ -749,7 +786,7 @@ T = ensemble des tokens de l’adresse recherchée</p>
 <p>2️⃣ Utilisation du référentiel Gaïa</p>
 <p>3️⃣ Moteur de recherche ElasticSearch</p>
 <p>4️⃣ Algorithme d’identification d’adresses</p>
-<p>5️⃣ Résultats obtenus</p>
+<p>5️⃣ Performances de l’algorithme d’identification</p>
 <p><strong>6️⃣ Discussion</strong></p>
 </section>
 
@@ -760,16 +797,22 @@ T = ensemble des tokens de l’adresse recherchée</p>
 </section>
 <section id="pistes-damélioration" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Pistes d’amélioration</h2>
-</section></section>
-<section id="merci-pour-votre-attention" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1>Merci pour votre attention !</h1>
+</section>
+<section id="merci-au-ssplab-julien-pramil-lino-galiana-olivier-meslin-marie-pierre-joubert-et-tom-seimandi" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Merci au SSPlab : Julien Pramil, Lino Galiana, Olivier Meslin, Marie-Pierre Joubert et Tom Seimandi</h2>
+</section>
+<section id="merci-à-heidi-koumarianos" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Merci à Heidi Koumarianos</h2>
+</section>
+<section id="et-enfin-merci-pour-votre-attention" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Et enfin, merci pour votre attention !</h2>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
 </div>
 </div>
-</section>
+</section></section>
     </div>
   </div>
 
