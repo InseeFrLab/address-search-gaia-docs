@@ -1,5 +1,5 @@
 ---
-title: "[Séminaire interne DMS]{.red2} [Gaïa :]{.green2} Moteur de recherche d'adresses avec ElasticSearch"
+title: "[Séminaire interne DMS]{.red2} Moteur de recherche d'adresses avec ElasticSearch pour le [projet Gaïa]{.green2}"
 subtitle: |
   **[Raya Berova & Benoît Hurpeau (DMRG)]{.blue2}**
 date: "11/28/2024"
