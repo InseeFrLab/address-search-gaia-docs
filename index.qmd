@@ -10,7 +10,7 @@ page-layout: full
 toc: false
 ---
 
-# Moteur de recherche d'adresse Gaïa
+# Moteur de recherche d'adresses Gaïa
 
 
 ::: {#presentations}
