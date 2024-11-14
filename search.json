@@ -77,11 +77,11 @@
     "text": "C’est quoi ElasticSearch ?\n\nElasticSearch : logiciel pour l’indexation de données et la recherche de données.\nUtilisation en pratique avec Python : packages elasticsearch et elasticsearch-dsl."
   },
   {
-    "objectID": "src/seminaire-dms/index.html#pourquoi-elasticsearch",
-    "href": "src/seminaire-dms/index.html#pourquoi-elasticsearch",
+    "objectID": "src/seminaire-dms/index.html#pourquoi-elasticsearch-pour-la-recherche-textuelle",
+    "href": "src/seminaire-dms/index.html#pourquoi-elasticsearch-pour-la-recherche-textuelle",
     "title": "Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa",
-    "section": "Pourquoi ElasticSearch ?",
-    "text": "Pourquoi ElasticSearch ?\n\n\n\n\n\n\n\n\n\nCritères\nElasticsearch\nSQL\nAddok*\n\n\n\n\nRecherche de texte avancée\n✅\n❌\n✅\n\n\nContrôle des données\n✅\n✅\n❌\n\n\nRapidité & Précision\n✅\n❌\n⚠️\n\n\nPersonnalisation des recherches\n✅\n❌\n❌\n\n\nFacilité d’implémentation\n❌\n✅\n✅\n\n\nRessources\n❌\n✅\n✅\n\n\n\n*Addok: géocodeur de la BAN."
+    "section": "Pourquoi ElasticSearch pour la recherche textuelle ?",
+    "text": "Pourquoi ElasticSearch pour la recherche textuelle ?\n\n\n\n\n\n\n\n\n\nCritères\nElasticsearch\nSQL\nAddok*\n\n\n\n\nRecherche de texte avancée\n✅\n❌\n✅\n\n\nRapidité\n✅\n✅\n⚠️\n\n\nPrécision\n✅\n❌\n⚠️\n\n\nPersonnalisation des recherches\n✅\n❌\n❌\n\n\nFacilité d’implémentation\n❌\n✅\n✅\n\n\nRessources\n❌\n✅\n✅\n\n\n\n*Addok: géocodeur de la BAN."
   },
   {
     "objectID": "src/seminaire-dms/index.html#outils-pour-créer-un-moteur-elasticsearch",
