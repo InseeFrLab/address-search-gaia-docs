@@ -5,13 +5,13 @@
 - Utilisation en pratique avec [**Python**]{.green2} : packages *elasticsearch* et *elasticsearch-dsl*.
 
 
-## Pourquoi ElasticSearch ?
+## Pourquoi ElasticSearch pour la recherche textuelle ?
 
 | **Critères**                         | **Elasticsearch** | **SQL** | **Addok\***|
 |:-------------------------------------|:-----------------:|:-------:|:-------:|
 | **Recherche de texte avancée**       | ✅ | ❌ | ✅ |
-| **Contrôle des données**             | ✅ | ✅ | ❌ |
-| **Rapidité & Précision**             | ✅ | ❌ | ⚠️ |
+| **Rapidité**                         | ✅ | ✅ | ⚠️ |
+| **Précision**                        | ✅ | ❌ | ⚠️ |
 | **Personnalisation des recherches**  | ✅ | ❌ | ❌ |
 | **Facilité d'implémentation**        | ❌ | ✅ | ✅ |
 | **Ressources**                       | ❌ | ✅ | ✅ |
