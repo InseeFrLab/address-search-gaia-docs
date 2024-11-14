@@ -1,16 +1,19 @@
 ## Origine du projet
 
-[**Gaïa**]{.green2} : Référentiel Géographique d'Adresses avec Informations Géolocalisantes
+[**Gaïa**]{.green2} : Référentiel Géographique d'Adresses avec Informations Géolocalisantes.
+<!-- Est ce que la définition est bonne ? -->
 
 - Besoin d'un référentiel complet, stable, fiable, mis à jour.
 - Faciliter la [**gestion des adresses**]{.blue2} au sein du SSP.
 - Clients : Résil, Géoloc, DMTR...
 
+<!-- Est ce que la liste des clients est ok ? -->
+
 ## Le référentiel Gaïa
 
-[**20 bis avenue de la marne 95046**]{.blue2}
+<center>[**20 bis avenue de la marne   |   95046**]{.blue2}</center>
 
-<!-- Centrer l'adresse -->
+<br>
 
 Une adresse est un numéro et/ou un indice de répétition qui est associée à une voie.
 
@@ -46,10 +49,23 @@ Sources fiables pour constituer le référentiel d'adresses :
 - Liens code postaux - libellés commune - COG
 - Polygones QPV
 
-Pas d'identifiant Gaïa, donc **pas de suivi dans le temps de ces objets**.
+Pas d'identifiant Gaïa, donc [**pas de suivi dans le temps de ces objets**]{.blue2}.
 
 ## Mises à jour
 
 Au moins une mise à jour par mois  
 
-Mettre le schema temporel de mis à jour
+<!-- Mettre le schema temporel de mis à jour -->
+
+## Quelques métriques sur le référentiel
+
+$$
+\text{Nombre d'adresses} \approx 27 \, \text{millions}
+$$
+
+$$
+\text{Nombre de voies} \approx 3 \, \text{millions}
+$$
+
+<!-- Est ce que les métriques sont correctes ? -->
+

@@ -10,13 +10,15 @@
 Nouvel objet géographique :  
 <!-- Explication schéma lieu géographique. -->
 
-**Utilisation :** Résil, pour regrouper les adresses avec différents libellés et donc différents identifiants mais qui représentent le même lieu. Exemple : plusieurs adresses pour une même maison si elle a différentes entrées.
+<br>
+
+[**Utilisation :**]{.blue2} Résil, pour regrouper les adresses avec différents libellés et donc différents identifiants mais qui représentent le même lieu. Exemple : plusieurs adresses pour une même maison si elle a différentes entrées.
 
 ## Besoin d'identification des adresses textuelles
 
 [**Trouver l'identifiant d'adresse à partir d'un libellé d'adresse plus ou moins correcte.**]{.green2}
 
-- Besoin récurrent au SSP
-- Indispensable pour construire et mettre à jour le référentiel
+- Besoin récurrent au SSP.
+- Indispensable pour construire et mettre à jour le référentiel.
 
 Il faut donc un [**moteur de recherche**]{.blue2}.

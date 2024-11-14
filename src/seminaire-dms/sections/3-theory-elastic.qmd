@@ -1,16 +1,35 @@
 ## C'est quoi ElasticSearch ?
 
-Résumé
+- [**ElasticSearch**]{.blue2} : logiciel pour l'indexation de données et la recherche de données.
 
-C'est un package
+- Utilisation en pratique avec [**Python**]{.green2} : packages *elasticsearch* et *elasticsearch-dsl*.
+
 
 ## Pourquoi ElasticSearch ?
 
-Recherche SQL ?
+| **Critères**                         | **Elasticsearch** | **SQL** | **Addok\***|
+|:-------------------------------------|:-----------------:|:-------:|:-------:|
+| **Recherche de texte avancée**       | ✅ | ❌ | ✅ |
+| **Contrôle des données**             | ✅ | ✅ | ❌ |
+| **Rapidité & Précision**             | ✅ | ❌ | ⚠️ |
+| **Personnalisation des recherches**  | ✅ | ❌ | ❌ |
+| **Facilité d'implémentation**        | ❌ | ✅ | ✅ |
+| **Ressources**                       | ❌ | ✅ | ✅ |
 
-Addok ?
+**\*Addok**: géocodeur de la BAN.
 
-Rapidité et précision.
+<!-- a refaire car je ne connais pas addok, j'ai pas compris -->
+
+<!-- | **Critères**                     | **Elasticsearch (Avantages)**                                                                                             | **SQL (Inconvénients)**                                                                                       |
+|----------------------------------|----------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| **Recherche de texte avancée**   | Conçu pour la recherche full-text avec tolérance aux fautes d'orthographe (fuzzy search, correspondance partielle)         | Requêtes full-text limitées et moins adaptées aux variations d'orthographe                                    |
+| **Performances**                 | Optimisé pour les recherches intensives sur de gros volumes de texte                                                       | Moins performant pour des recherches complexes ou de grandes quantités de données textuelles                  |
+| **Personnalisation des scores**  | Permet de pondérer et personnaliser les scores des résultats pour une meilleure pertinence                                | Les options de personnalisation des scores sont limitées                                                      |
+| **Scalabilité**                  | Distribution facile sur plusieurs nœuds pour gérer de grands ensembles de données                                         | Scalabilité plus complexe et généralement moins performante pour des recherches intensives                    |
+| **Flexibilité des requêtes**     | Recherches avancées comme les synonymes, phonétique, et suggestions automatiques                                          | Requêtes avancées limitées, difficile à implémenter en SQL                                                    |
+| **Complexité d'implémentation**  | Peut être complexe à mettre en œuvre pour des équipes non familières avec l'outil                                         | Plus simple et souvent mieux maîtrisé par les équipes                                                        |
+| **Consommation des ressources**  | Consomme plus de mémoire et de CPU, en particulier pour l'indexation initiale                                             | Consommation de ressources généralement inférieure pour des requêtes simples                                  |
+| **Coût de stockage**             | Peut impliquer une duplication des données (coût supplémentaire de stockage)                                              | Pas de duplication nécessaire                                                                                 | -->
 
 ## Outils pour créer un moteur ElasticSearch
 
@@ -18,19 +37,19 @@ Rapidité et précision.
 - Mappings.
 - Requêtes.
 
-Eventuellement, savoir coder en Python/Java...
+Éventuellement, savoir coder en Python/Java...
 
 ## Base de données classique
 
 **Table 1: Exemple de base de données**  
 
-| id | nom de voie                 |
+| idVoie | nom de voie                 |
 |---|:-----------------------------|
 | A | du général leclerc           |
 | B | du général charles de gaulle |
 | C | du point du jour             |
 | D | verdier                      |
-| E | des cours                   |
+| E | des cours                    |
 
 ## Recherche par token
 
@@ -39,7 +58,7 @@ Eventuellement, savoir coder en Python/Java...
 Si on cherche **"88 avenue du général charles de gaulle"**, [**pour chaque nom de voie**]{.blue2}, on doit compter le nombre de :
 "88", "avenue", "du", "général"...
 
-[**C'est extrêment long**]{.green2}
+[**C'est extrêment long**]{.red2}
 
 ## Index inversé token
 
@@ -52,7 +71,7 @@ Si on cherche **"88 avenue du général charles de gaulle"**, [**pour chaque nom
 | verdier   | {"B": 1}                 |
 | ...       | ...                      |
 
-[**On a directement le comptage de chaque token par voie**]{.green2}
+[**On a directement le comptage de chaque token par idVoie**]{.green2}
 
 ## Score par token
 
@@ -116,7 +135,7 @@ Pour matcher deux tokens avec une fuzziness de niveau 1 = corriger l'un des toke
 - Ajout d'une lettre
 - Suppression d'une lettre
 - Remplacement d'une lettre
-- Echanger deux lettres de place
+- Échanger deux lettres de place
 
 ## Score global 
 
