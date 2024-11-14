@@ -358,17 +358,20 @@
 </section>
 <section id="origine-du-projet" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Origine du projet</h2>
-<p><span class="green2"><strong>Gaïa</strong></span> : Référentiel Géographique d’Adresses avec Informations Géolocalisantes</p>
+<p><span class="green2"><strong>Gaïa</strong></span> : Référentiel Géographique d’Adresses avec Informations Géolocalisantes. <!-- Est ce que la d&#xE9;finition est bonne ? --></p>
 <ul>
 <li>Besoin d’un référentiel complet, stable, fiable, mis à jour.</li>
 <li>Faciliter la <span class="blue2"><strong>gestion des adresses</strong></span> au sein du SSP.</li>
 <li>Clients : Résil, Géoloc, DMTR…</li>
 </ul>
+<!-- Est ce que la liste des clients est ok ? -->
 </section>
 <section id="le-référentiel-gaïa" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Le référentiel Gaïa</h2>
-<p><span class="blue2"><strong>20 bis avenue de la marne 95046</strong></span></p>
-<!-- Centrer l'adresse -->
+<center>
+<span class="blue2"><strong>20 bis avenue de la marne | 95046</strong></span>
+</center>
+<p><br></p>
 <p>Une adresse est un numéro et/ou un indice de répétition qui est associée à une voie.</p>
 <p>Une voie est un type de voie et un nom de voie pur qui est associé à une commune.</p>
 <ul>
@@ -404,12 +407,22 @@
 <li>Liens code postaux - libellés commune - COG</li>
 <li>Polygones QPV</li>
 </ul>
-<p>Pas d’identifiant Gaïa, donc <strong>pas de suivi dans le temps de ces objets</strong>.</p>
+<p>Pas d’identifiant Gaïa, donc <span class="blue2"><strong>pas de suivi dans le temps de ces objets</strong></span>.</p>
 </section>
 <section id="mises-à-jour" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Mises à jour</h2>
 <p>Au moins une mise à jour par mois</p>
-<p>Mettre le schema temporel de mis à jour</p>
+<!-- Mettre le schema temporel de mis &#xE0; jour -->
+</section>
+<section id="quelques-métriques-sur-le-référentiel" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Quelques métriques sur le référentiel</h2>
+<p><span class="math display">\[
+\text{Nombre d'adresses} \approx 27 \, \text{millions}
+\]</span></p>
+<p><span class="math display">\[
+\text{Nombre de voies} \approx 3 \, \text{millions}
+\]</span></p>
+<!-- Est ce que les m&#xE9;triques sont correctes ? -->
 </section></section>
 <section id="plan-de-la-présentation-1" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>
@@ -439,14 +452,15 @@
 <h2>Regroupements d’adresses</h2>
 <p>Nouvel objet géographique :<br>
 <!-- Explication sch&#xE9;ma lieu g&#xE9;ographique. --></p>
-<p><strong>Utilisation :</strong> Résil, pour regrouper les adresses avec différents libellés et donc différents identifiants mais qui représentent le même lieu. Exemple : plusieurs adresses pour une même maison si elle a différentes entrées.</p>
+<p><br></p>
+<p><span class="blue2"><strong>Utilisation :</strong></span> Résil, pour regrouper les adresses avec différents libellés et donc différents identifiants mais qui représentent le même lieu. Exemple : plusieurs adresses pour une même maison si elle a différentes entrées.</p>
 </section>
 <section id="besoin-didentification-des-adresses-textuelles" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Besoin d’identification des adresses textuelles</h2>
 <p><span class="green2"><strong>Trouver l’identifiant d’adresse à partir d’un libellé d’adresse plus ou moins correcte.</strong></span></p>
 <ul>
-<li>Besoin récurrent au SSP</li>
-<li>Indispensable pour construire et mettre à jour le référentiel</li>
+<li>Besoin récurrent au SSP.</li>
+<li>Indispensable pour construire et mettre à jour le référentiel.</li>
 </ul>
 <p>Il faut donc un <span class="blue2"><strong>moteur de recherche</strong></span>.</p>
 </section></section>
@@ -467,14 +481,79 @@
 </section>
 <section id="cest-quoi-elasticsearch" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>C’est quoi ElasticSearch ?</h2>
-<p>Résumé</p>
-<p>C’est un package</p>
+<ul>
+<li><p><span class="blue2"><strong>ElasticSearch</strong></span> : logiciel pour l’indexation de données et la recherche de données.</p></li>
+<li><p>Utilisation en pratique avec <span class="green2"><strong>Python</strong></span> : packages <em>elasticsearch</em> et <em>elasticsearch-dsl</em>.</p></li>
+</ul>
 </section>
 <section id="pourquoi-elasticsearch" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Pourquoi ElasticSearch ?</h2>
-<p>Recherche SQL ?</p>
-<p>Addok ?</p>
-<p>Rapidité et précision.</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 25%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Critères</strong></th>
+<th style="text-align: center;"><strong>Elasticsearch</strong></th>
+<th style="text-align: center;"><strong>SQL</strong></th>
+<th style="text-align: center;"><strong>Addok*</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Recherche de texte avancée</strong></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Contrôle des données</strong></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Rapidité &amp; Précision</strong></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">⚠️</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Personnalisation des recherches</strong></td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">❌</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Facilité d’implémentation</strong></td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Ressources</strong></td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+</tbody>
+</table>
+<p><strong>*Addok</strong>: géocodeur de la BAN.</p>
+<!-- a refaire car je ne connais pas addok, j'ai pas compris -->
+<!-- | **Crit&#xE8;res**                     | **Elasticsearch (Avantages)**                                                                                             | **SQL (Inconv&#xE9;nients)**                                                                                       |
+|----------------------------------|----------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
+| **Recherche de texte avanc&#xE9;e**   | Con&#xE7;u pour la recherche full-text avec tol&#xE9;rance aux fautes d'orthographe (fuzzy search, correspondance partielle)         | Requ&#xEA;tes full-text limit&#xE9;es et moins adapt&#xE9;es aux variations d'orthographe                                    |
+| **Performances**                 | Optimis&#xE9; pour les recherches intensives sur de gros volumes de texte                                                       | Moins performant pour des recherches complexes ou de grandes quantit&#xE9;s de donn&#xE9;es textuelles                  |
+| **Personnalisation des scores**  | Permet de pond&#xE9;rer et personnaliser les scores des r&#xE9;sultats pour une meilleure pertinence                                | Les options de personnalisation des scores sont limit&#xE9;es                                                      |
+| **Scalabilit&#xE9;**                  | Distribution facile sur plusieurs n&#x153;uds pour g&#xE9;rer de grands ensembles de donn&#xE9;es                                         | Scalabilit&#xE9; plus complexe et g&#xE9;n&#xE9;ralement moins performante pour des recherches intensives                    |
+| **Flexibilit&#xE9; des requ&#xEA;tes**     | Recherches avanc&#xE9;es comme les synonymes, phon&#xE9;tique, et suggestions automatiques                                          | Requ&#xEA;tes avanc&#xE9;es limit&#xE9;es, difficile &#xE0; impl&#xE9;menter en SQL                                                    |
+| **Complexit&#xE9; d'impl&#xE9;mentation**  | Peut &#xEA;tre complexe &#xE0; mettre en &#x153;uvre pour des &#xE9;quipes non famili&#xE8;res avec l'outil                                         | Plus simple et souvent mieux ma&#xEE;tris&#xE9; par les &#xE9;quipes                                                        |
+| **Consommation des ressources**  | Consomme plus de m&#xE9;moire et de CPU, en particulier pour l'indexation initiale                                             | Consommation de ressources g&#xE9;n&#xE9;ralement inf&#xE9;rieure pour des requ&#xEA;tes simples                                  |
+| **Co&#xFB;t de stockage**             | Peut impliquer une duplication des donn&#xE9;es (co&#xFB;t suppl&#xE9;mentaire de stockage)                                              | Pas de duplication n&#xE9;cessaire                                                                                 | -->
 </section>
 <section id="outils-pour-créer-un-moteur-elasticsearch" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Outils pour créer un moteur ElasticSearch</h2>
@@ -483,7 +562,7 @@
 <li>Mappings.</li>
 <li>Requêtes.</li>
 </ul>
-<p>Eventuellement, savoir coder en Python/Java…</p>
+<p>Éventuellement, savoir coder en Python/Java…</p>
 </section>
 <section id="base-de-données-classique" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Base de données classique</h2>
@@ -491,7 +570,7 @@
 <table class="caption-top">
 <thead>
 <tr class="header">
-<th>id</th>
+<th>idVoie</th>
 <th style="text-align: left;">nom de voie</th>
 </tr>
 </thead>
@@ -523,7 +602,7 @@
 <h2>Recherche par token</h2>
 <p><span class="green2"><strong>Un token = un mot</strong></span></p>
 <p>Si on cherche <strong>“88 avenue du général charles de gaulle”</strong>, <span class="blue2"><strong>pour chaque nom de voie</strong></span>, on doit compter le nombre de : “88”, “avenue”, “du”, “général”…</p>
-<p><span class="green2"><strong>C’est extrêment long</strong></span></p>
+<p><span class="red2"><strong>C’est extrêment long</strong></span></p>
 </section>
 <section id="index-inversé-token" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Index inversé token</h2>
@@ -554,7 +633,7 @@
 </tr>
 </tbody>
 </table>
-<p><span class="green2"><strong>On a directement le comptage de chaque token par voie</strong></span></p>
+<p><span class="green2"><strong>On a directement le comptage de chaque token par idVoie</strong></span></p>
 </section>
 <section id="score-par-token" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Score par token</h2>
@@ -641,7 +720,7 @@ T = ensemble des tokens de l’adresse recherchée</p>
 <li>Ajout d’une lettre</li>
 <li>Suppression d’une lettre</li>
 <li>Remplacement d’une lettre</li>
-<li>Echanger deux lettres de place</li>
+<li>Échanger deux lettres de place</li>
 </ul>
 </section>
 <section id="score-global" class="slide level2" data-background-image="background.svg" data-background-size="contain">
