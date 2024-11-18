@@ -72,13 +72,8 @@ Pas d'identifiant Gaïa, donc [**pas de suivi dans le temps de ces objets**]{.bl
 
 ## Quelques métriques sur le référentiel
 
-$$
-\text{Nombre d'adresses} \approx 27 \, \text{millions}
-$$
-
-$$
-\text{Nombre de voies} \approx 3 \, \text{millions}
-$$
+- Nombre d'adresses ≃ 27 millions.  
+- Nombre de voies ≃ 3 millions.  
 
 <!-- Est ce que les métriques sont correctes ? -->
 

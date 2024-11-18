@@ -9,12 +9,12 @@
 
 | **Critères**                         | **Elasticsearch** | **SQL** | **Addok\***|
 |:-------------------------------------|:-----------------:|:-------:|:-------:|
-| **Recherche de texte avancée**       | ✅ | ❌ | ✅ |
-| **Rapidité**                         | ✅ | ✅ | ⚠️ |
-| **Précision**                        | ✅ | ❌ | ⚠️ |
-| **Personnalisation des recherches**  | ✅ | ❌ | ❌ |
-| **Facilité d'implémentation**        | ❌ | ✅ | ✅ |
-| **Ressources**                       | ❌ | ✅ | ✅ |
+| Recherche de texte avancée       | ✅ | ❌ | ✅ |
+| Rapidité                         | ✅ | ✅ | ⚠️ |
+| Précision                        | ✅ | ❌ | ⚠️ |
+| Personnalisation des recherches  | ✅ | ❌ | ❌ |
+| Facilité d'implémentation        | ❌ | ✅ | ✅ |
+| Ressources                       | ❌ | ✅ | ✅ |
 
 **\*Addok**: géocodeur de la BAN.
 
