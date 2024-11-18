@@ -25,10 +25,10 @@
 | **Recherche de texte avancée**   | Conçu pour la recherche full-text avec tolérance aux fautes d'orthographe (fuzzy search, correspondance partielle)         | Requêtes full-text limitées et moins adaptées aux variations d'orthographe                                    |
 | **Performances**                 | Optimisé pour les recherches intensives sur de gros volumes de texte                                                       | Moins performant pour des recherches complexes ou de grandes quantités de données textuelles                  |
 | **Personnalisation des scores**  | Permet de pondérer et personnaliser les scores des résultats pour une meilleure pertinence                                | Les options de personnalisation des scores sont limitées                                                      |
-| **Scalabilité**                  | Distribution facile sur plusieurs nœuds pour gérer de grands ensembles de données                                         | Scalabilité plus complexe et généralement moins performante pour des recherches intensives                    |
+| **Scalabilité**                  | Distribution facile sur plusieurs nœuds pour gérer de grands ensembles de données                                         | Scalabilité plus complexe et generalement moins performante pour des recherches intensives                    |
 | **Flexibilité des requêtes**     | Recherches avancées comme les synonymes, phonétique, et suggestions automatiques                                          | Requêtes avancées limitées, difficile à implémenter en SQL                                                    |
 | **Complexité d'implémentation**  | Peut être complexe à mettre en œuvre pour des équipes non familières avec l'outil                                         | Plus simple et souvent mieux maîtrisé par les équipes                                                        |
-| **Consommation des ressources**  | Consomme plus de mémoire et de CPU, en particulier pour l'indexation initiale                                             | Consommation de ressources généralement inférieure pour des requêtes simples                                  |
+| **Consommation des ressources**  | Consomme plus de mémoire et de CPU, en particulier pour l'indexation initiale                                             | Consommation de ressources generalement inférieure pour des requêtes simples                                  |
 | **Coût de stockage**             | Peut impliquer une duplication des données (coût supplémentaire de stockage)                                              | Pas de duplication nécessaire                                                                                 | -->
 
 ## Outils pour créer un moteur ElasticSearch
@@ -39,14 +39,31 @@
 
 Éventuellement, savoir coder en Python/Java...
 
+## Filtres
+
+- Définis dans les mappings.  
+- Pour normaliser les données.  
+- Pour les données du référentiel et pour les adresses recherchées.
+
+## Filtres implémentés
+
+- lowercase  
+- asciifolding  
+- ponctuation  
+- séparation des nombres et lettres (ex : 14bis --> 14 bis)  
+- suppression des espaces supplémentaires  
+- [**dillatation des accronymes/prise en compte des synonymes**]{.red2}  
+
+Maintenant, on peut comparer l'adresse recherchée avec les données Gaïa.
+
 ## Base de données classique
 
-**Table 1: Exemple de base de données**  
+*Exemple*  
 
-| idVoie | nom de voie                 |
+| idVoie | nom de voie             |
 |---|:-----------------------------|
-| A | du général leclerc           |
-| B | du général charles de gaulle |
+| A | du general leclerc           |
+| B | du general charles de gaulle |
 | C | du point du jour             |
 | D | verdier                      |
 | E | des cours                    |
@@ -55,49 +72,62 @@
 
 [**Un token = un mot**]{.green2}  
 
-Si on cherche **"88 avenue du général charles de gaulle"**, [**pour chaque nom de voie**]{.blue2}, on doit compter le nombre de :
-"88", "avenue", "du", "général"...
+Si on cherche **"88 avenue du general charles de gaulle"**, [**pour chaque nom de voie**]{.blue2}, on doit compter le nombre de :  
+"88", "avenue", "du", "general"...
 
-[**C'est extrêment long**]{.red2}
+[**C'est extrêment long.**]{.red2}
 
 ## Index inversé token
 
-**Table 2: Exemple d'index inversé**  
+*Exemple*  
 
 | token     | occurrences              |
 |-----------|--------------------------|
-| général   | {"A": 1, "B": 1}         |
+| general   | {"A": 1, "B": 1}         |
 | jour      | {"C": 1}                 |
-| verdier   | {"B": 1}                 |
+| du        | {"A": 1, "B": 1, "C": 2} |
 | ...       | ...                      |
 
-[**On a directement le comptage de chaque token par idVoie**]{.green2}
+[**On a directement le comptage de chaque token par idVoie.**]{.green2}
 
 ## Score par token
 
 [**Pour retourner la voie la plus pertinente**]{.blue2}, on construit un score pour chaque voie :
 $$
-\sum_{\text{∀t} \in \text{T}} occurence_t
+\sum_{\text{∀t} \in \text{T}} {nb_occurence}_t
 $$
 
 t = token  
 T = ensemble des tokens de l'adresse recherchée  
 
+## Score par token
+
+*Exemple : score par token de "88 avenue du general charles de gaulle"*
+
+| idVoie | nom de voie             | score |
+|---|:-----------------------------|-------|
+| A | **du general** leclerc           | 2     |
+| B | **du general charles de gaulle** | 5     |
+| C | **du** point **du** jour         | 2     |
+| D | verdier                          | 0     |
+| E | des cours                        | 0     |
+
 ## Recherche par n-grams de caractères
 
-[**Contourner les fautes d'orthographes**]{.blue2} : chaque token est découpé en sous-chaînes de n caractères consécutifs  
+[**Contourner les fautes d'orthographes**]{.blue2} : chaque token est découpé en sous-chaînes de n caractères consécutifs.  
 
-Exemple : découpage en 3-grams de caractères du texte "avenue verdier"  
+*Exemple de découpage en 3-grams de caractères du texte "avenue verdier" :*  
+**ave, ven, enu, nue, ver, erd, rdi, die, ier**
 
-| token    | 3-grams                 |
+<!-- | token    | 3-grams                 |
 |----------|-------------------------|
 | avenue   | ave, ven, enu, nue      |
-| verdier  | ver, erd, rdi, die, ier |
+| verdier  | ver, erd, rdi, die, ier | -->
 
 
 ## Index inversé 3-grams
 
-**Table 3: Exemple d'index inversé 3-grams**  
+*Exemple*  
 
 | 3-grams | occurrences           |
 |---------|-----------------------|
@@ -124,7 +154,7 @@ $$
 \Rightarrow \text{temps de recherche} \uparrow
 $$
 
-Limitation à minimum n=3 pour notre cas
+Limitation à minimum n=3 pour notre cas.
 
 ## Fuzziness
 
@@ -132,28 +162,33 @@ Contourner les fautes d'orthographes d'une autre façon : [**fuzziness**]{.green
 
 Pour matcher deux tokens avec une fuzziness de niveau 1 = corriger l'un des tokens :
 
-- Ajout d'une lettre
-- Suppression d'une lettre
-- Remplacement d'une lettre
-- Échanger deux lettres de place
+- Ajout d'une lettre.  
+- Suppression d'une lettre.  
+- Remplacement d'une lettre.  
+- Échanger deux lettres de place.  
 
 ## Score global 
 
 Le score global va donc combiner la somme des matchs au niveau :
 
-- token
-- n-grams
-- fuzziness
+- token.  
+- n-grams.  
+- fuzziness.  
 
-Ce score prendra en compte les [**boosts**]{.green2}, le n des n-grams et le niveau de fuzziness choisis au moment du paramétrage du moteur : ceci constitue [**la requête**]{.blue2}
+Ce score prendra en compte : 
+
+- Les [**boosts**]{.green2}.  
+- Le niveau de fuzziness choisis.  
+
+Ceci constitue [**la requête**]{.blue2}.
 
 ## Boost
 
 On peut donner plus ou moins d'importance aux différents matchs grâce aux [**boosts**]{.green2}  
 
-Chaque occurence est multipliée par un facteur choisi : [**boost**]{.blue2}  
+Chaque occurence est multipliée par un facteur qui dépend du niveau de match : [**boost**]{.blue2}  
 
-Exemple de boosts : 
+*Boosts actuels :*
 
 | match au niveau | boost |
 |----------|----|
@@ -169,32 +204,28 @@ $$
 \sum_{\text{∀dn} \in \text{N}} \sum_{\text{∀sc} \in \text{dn}} boost_{dn}*occurence_{sc}
 $$
 
-N = ensemble des niveaux de découpage de l'adresse recherchée (niveau token, niveau fuzzi...)
-dn = découpage de l'adresse recherchée selon le niveau (boost associé)
-sc = sous-chaîne (un token, un 3-grams...)
-
+N = ensemble des niveaux de découpage de l'adresse recherchée (niveau token, niveau fuzzi...)  
+dn = découpage de l'adresse recherchée selon le niveau (boost associé)  
+sc = sous-chaîne (un token, un 3-grams...)  
 
 ## Configurer le moteur
 
-Une fois qu'on a la théorie, il faut l'appliquer en pratique.
+Une fois qu'on a la théorie, il faut l'appliquer en pratique.  
 
-Le package ElasticSearch permet d'indexer les données en fournissant :
-- Un dataframe des données du référentiel Gaïa
-- Des settings (json) où on définit nos filtres, différents analyzers, différents tokenizers...
-- Des mappings (json) où pour chaque variable, on fournit un analyzer et un tokenizer.
+Le package ElasticSearch permet d'indexer les données en fournissant :  
 
-## Filtres
-
-Il est possible d'appliquer des "filtres" sur l'adresse recherchée et sur les adresses du référentiel :
-- lowercase
-- asciifolding
-- ponctuation
-- séparation des nombres et lettres (ex : 14bis --> 14 bis)
-- suppression des espaces supplémentaires
-- [**dillatation des accronymes/prise en compte des synonymes**]{.red2}
+- Un dataframe des données du référentiel Gaïa.  
+- Des [**settings**]{.blue2} (json) où on définit nos différents **analyzers**, englobant les filtres et le tokenizer.  
+- Des [**mappings**]{.green2} (json) où pour chaque **variable**, on fournit un analyzer.  
 
 ## Faire des recherches
 
 Une fois le moteur configuré, on peut faire des requêtes.
 
-Exemple de requêtes :
+*Requête pour retrouver la voie :*
+
+- Match token sur nom de voie avec fuzzi 1 → boost 20.  
+- Match token sur type de voie ou nom de voie → boost 15.  
+- Match 3 à 5-grams sur nom de voie → boost 1.  
+
+À chaque fois qu'une sous-chaîne valide l'une de ces conditions, le score va augmenter en fonction du boost.  

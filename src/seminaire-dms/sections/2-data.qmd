@@ -7,12 +7,14 @@
 
 ## Regroupements d'adresses
 
-Nouvel objet géographique :  
+Nouvel objet géographique :  [**le lieu géographique**]{.green2}
 <!-- Explication schéma lieu géographique. -->
 
 <br>
 
-[**Utilisation :**]{.blue2} Résil, pour regrouper les adresses avec différents libellés et donc différents identifiants mais qui représentent le même lieu. Exemple : plusieurs adresses pour une même maison si elle a différentes entrées.
+[**Utilisation :**]{.blue2} Regrouper les adresses avec différents identifiants Gaïa mais qui représentent le même lieu.  
+
+*Exemple : plusieurs adresses pour une même maison si elle a différentes entrées → même lieu géographique.*
 
 ## Besoin d'identification des adresses textuelles
 

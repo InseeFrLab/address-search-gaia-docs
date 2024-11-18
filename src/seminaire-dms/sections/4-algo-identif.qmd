@@ -1,20 +1,45 @@
 ## Algorithme d'identification d'adresses
 
 - Succession de requêtes ElasticSearch.
-- Etapes de validation des résultats après chaque requête.
+- Étapes de validation des résultats après chaque requête.
 - Retourne :
-    - le(s) identifiant(s) Gaïa retrouvés 
-    - une indicatrice sur qualité de l'identification.
-    - un ratio qui mesure l'écart entre la 1ère et la 2ème possibilité retournées par Elastic.
+    - le(s) identifiant(s) Gaïa retrouvés.  
+    - une indicatrice sur qualité de l'identification.  
+    - un ratio qui mesure l'écart entre la 1ère et la 2ème possibilité retournées par Elastic.  
 
 ## Schéma de l'algorithme
 
-<!-- Inserer schema -->
+![](img/schema_moteur_fr.png){width=75% fig-align="center"}
 
 ## Indicatrice qualité
 
-<!-- Insérer tableau score -->
+Dépend du pourcentage de 3-grams de la voie du référentiel contenus dans l'adresse recherche.
 
-## Ratio 1er/2eme
+| Voie qualifiée de | Pourcentage de 3-grams |
+|-------------------|------------------------|
+| sûre              | ≥ 65%         |
+| peu douteuse      | 35% ≤ x < 65% |
+| douteuse          | 10% ≤ x < 35% |
+| non retrouvée     | < 10%         |
 
-<!-- Explications -->
+*Exemple : 100% des 3-grams de "avenue de la marne" dans "20 bis avenue de la marne".*
+
+## Valeurs de l'indicatrice qualité
+
+| Valeur | idGaïa maximum retrouvé |
+|--------|-------------------------|
+| 6 à 10 | idAdresse |
+| 3 à 5  | idVoie |
+| 2      | idCommune |
+| 0 à 1  | Aucun |
+
+## Ratio 1er/2ème possibilité de voie
+
+$$
+\text{ratio} = 1 - \frac{R_2}{R_1}
+$$
+
+R1 = score Elastic de la 1ère possibilité  
+R2 = score Elasrtic de la 2ème possibilité
+
+Plus le ratio est proche de 1, plus le résultat retourné est loin de la 2ème proposition.

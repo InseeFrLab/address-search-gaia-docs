@@ -9,24 +9,39 @@
 
 <!-- Est ce que la liste des clients est ok ? -->
 
-## Le référentiel Gaïa
+## Une adresse
 
-<center>[**20 bis avenue de la marne   |   95046**]{.blue2}</center>
+<center><p>[**numéro**]{.green2} <span style="margin-left: 150px;">[**type de voie**]{.blue2}</span> <span style="margin-left: 150px;">**COG**</span></p></center>
 
 <br>
 
-Une adresse est un numéro et/ou un indice de répétition qui est associée à une voie.
+<br>
 
-Une voie est un type de voie et un nom de voie pur qui est associé à une commune.
+<center><p>[**20 bis avenue de la marne**]{.red2} <span style="margin-left: 130px;">[**92046**]{.red2}</span></p></center>
 
-- Pour chaque adresse Gaïa : point gps, lien parcelle, identifiant ban, majic, rca...
-- Pour chaque commune : polygone.
+<br>
 
-<!-- Peut etre mettre un schema des données finalement -->
+<br>
+
+<center><p>[**indice de répétition**]{.green2} <span style="margin-left: 190px;">[**nom de voie**]{.blue2}</span></p></center>
+
+## Le référentiel Gaïa
+
+![](img/voies_adresses.png){width=75% fig-align="center"}
+
+Autres données disponibles (aspect géométrique des objets) :  
+
+- Pour chaque adresse Gaïa : point gps, lien parcelle.  
+- Pour chaque commune Gaïa : polygone.  
+
+<!-- A verifier -->
+
 
 ## Identifiants Gaïa
 
-[**Identifiant unique et stable**]{.green2} pour assurer le suivi des objets géographiques dans le temps.  
+[**Identifiant unique et stable**]{.green2} pour assurer le suivi des objets dans le temps. 
+
+<br>
 
 Trois niveaux :
 
@@ -36,11 +51,14 @@ Trois niveaux :
 
 ## Construction du référentiel
 
-Sources fiables pour constituer le référentiel d'adresses :
+Sources fiables :
 
 - Majic
 - BAN
 - RCA
+
+Au moins une mise à jour par mois (avec conservation des identifiants Gaïa).  
+
 
 ## D'autres données
 
@@ -51,11 +69,6 @@ Sources fiables pour constituer le référentiel d'adresses :
 
 Pas d'identifiant Gaïa, donc [**pas de suivi dans le temps de ces objets**]{.blue2}.
 
-## Mises à jour
-
-Au moins une mise à jour par mois  
-
-<!-- Mettre le schema temporel de mis à jour -->
 
 ## Quelques métriques sur le référentiel
 
