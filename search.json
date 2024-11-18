@@ -46,7 +46,7 @@
     "href": "src/seminaire-dms/index.html#quelques-métriques-sur-le-référentiel",
     "title": "Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa",
     "section": "Quelques métriques sur le référentiel",
-    "text": "Quelques métriques sur le référentiel\n\\[\n\\text{Nombre d'adresses} \\approx 27 \\, \\text{millions}\n\\]\n\\[\n\\text{Nombre de voies} \\approx 3 \\, \\text{millions}\n\\]"
+    "text": "Quelques métriques sur le référentiel\n\nNombre d’adresses ≃ 27 millions.\n\nNombre de voies ≃ 3 millions."
   },
   {
     "objectID": "src/seminaire-dms/index.html#différents-besoins-au-sein-du-ssp",
