@@ -366,23 +366,43 @@
 </ul>
 <!-- Est ce que la liste des clients est ok ? -->
 </section>
-<section id="le-référentiel-gaïa" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Le référentiel Gaïa</h2>
+<section id="une-adresse" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Une adresse</h2>
 <center>
-<span class="blue2"><strong>20 bis avenue de la marne | 95046</strong></span>
+<p>
+<span class="green2"><strong>numéro</strong></span> <span style="margin-left: 150px;"><span class="blue2"><strong>type de voie</strong></span></span> <span style="margin-left: 150px;"><strong>COG</strong></span>
+</p>
 </center>
 <p><br></p>
-<p>Une adresse est un numéro et/ou un indice de répétition qui est associée à une voie.</p>
-<p>Une voie est un type de voie et un nom de voie pur qui est associé à une commune.</p>
+<p><br></p>
+<center>
+<p>
+<span class="red2"><strong>20 bis avenue de la marne</strong></span> <span style="margin-left: 130px;"><span class="red2"><strong>92046</strong></span></span>
+</p>
+</center>
+<p><br></p>
+<p><br></p>
+<center>
+<p>
+<span class="green2"><strong>indice de répétition</strong></span> <span style="margin-left: 190px;"><span class="blue2"><strong>nom de voie</strong></span></span>
+</p>
+</center>
+</section>
+<section id="le-référentiel-gaïa" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Le référentiel Gaïa</h2>
+
+<img data-src="img/voies_adresses.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"><p>Autres données disponibles (aspect géométrique des objets) :</p>
 <ul>
-<li>Pour chaque adresse Gaïa : point gps, lien parcelle, identifiant ban, majic, rca…</li>
-<li>Pour chaque commune : polygone.</li>
+<li>Pour chaque adresse Gaïa : point gps, lien parcelle.<br>
+</li>
+<li>Pour chaque commune Gaïa : polygone.</li>
 </ul>
-<!-- Peut etre mettre un schema des donn&#xE9;es finalement -->
+<!-- A verifier -->
 </section>
 <section id="identifiants-gaïa" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Identifiants Gaïa</h2>
-<p><span class="green2"><strong>Identifiant unique et stable</strong></span> pour assurer le suivi des objets géographiques dans le temps.</p>
+<p><span class="green2"><strong>Identifiant unique et stable</strong></span> pour assurer le suivi des objets dans le temps.</p>
+<p><br></p>
 <p>Trois niveaux :</p>
 <ul>
 <li>Identifiant adresse</li>
@@ -392,12 +412,13 @@
 </section>
 <section id="construction-du-référentiel" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Construction du référentiel</h2>
-<p>Sources fiables pour constituer le référentiel d’adresses :</p>
+<p>Sources fiables :</p>
 <ul>
 <li>Majic</li>
 <li>BAN</li>
 <li>RCA</li>
 </ul>
+<p>Au moins une mise à jour par mois (avec conservation des identifiants Gaïa).</p>
 </section>
 <section id="dautres-données" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>D’autres données</h2>
@@ -408,11 +429,6 @@
 <li>Polygones QPV</li>
 </ul>
 <p>Pas d’identifiant Gaïa, donc <span class="blue2"><strong>pas de suivi dans le temps de ces objets</strong></span>.</p>
-</section>
-<section id="mises-à-jour" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Mises à jour</h2>
-<p>Au moins une mise à jour par mois</p>
-<!-- Mettre le schema temporel de mis &#xE0; jour -->
 </section>
 <section id="quelques-métriques-sur-le-référentiel" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Quelques métriques sur le référentiel</h2>
@@ -450,10 +466,10 @@
 </section>
 <section id="regroupements-dadresses" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Regroupements d’adresses</h2>
-<p>Nouvel objet géographique :<br>
-<!-- Explication sch&#xE9;ma lieu g&#xE9;ographique. --></p>
+<p>Nouvel objet géographique : <span class="green2"><strong>le lieu géographique</strong></span> <!-- Explication sch&#xE9;ma lieu g&#xE9;ographique. --></p>
 <p><br></p>
-<p><span class="blue2"><strong>Utilisation :</strong></span> Résil, pour regrouper les adresses avec différents libellés et donc différents identifiants mais qui représentent le même lieu. Exemple : plusieurs adresses pour une même maison si elle a différentes entrées.</p>
+<p><span class="blue2"><strong>Utilisation :</strong></span> Regrouper les adresses avec différents identifiants Gaïa mais qui représentent le même lieu.</p>
+<p><em>Exemple : plusieurs adresses pour une même maison si elle a différentes entrées → même lieu géographique.</em></p>
 </section>
 <section id="besoin-didentification-des-adresses-textuelles" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Besoin d’identification des adresses textuelles</h2>
@@ -549,10 +565,10 @@
 | **Recherche de texte avanc&#xE9;e**   | Con&#xE7;u pour la recherche full-text avec tol&#xE9;rance aux fautes d'orthographe (fuzzy search, correspondance partielle)         | Requ&#xEA;tes full-text limit&#xE9;es et moins adapt&#xE9;es aux variations d'orthographe                                    |
 | **Performances**                 | Optimis&#xE9; pour les recherches intensives sur de gros volumes de texte                                                       | Moins performant pour des recherches complexes ou de grandes quantit&#xE9;s de donn&#xE9;es textuelles                  |
 | **Personnalisation des scores**  | Permet de pond&#xE9;rer et personnaliser les scores des r&#xE9;sultats pour une meilleure pertinence                                | Les options de personnalisation des scores sont limit&#xE9;es                                                      |
-| **Scalabilit&#xE9;**                  | Distribution facile sur plusieurs n&#x153;uds pour g&#xE9;rer de grands ensembles de donn&#xE9;es                                         | Scalabilit&#xE9; plus complexe et g&#xE9;n&#xE9;ralement moins performante pour des recherches intensives                    |
+| **Scalabilit&#xE9;**                  | Distribution facile sur plusieurs n&#x153;uds pour g&#xE9;rer de grands ensembles de donn&#xE9;es                                         | Scalabilit&#xE9; plus complexe et generalement moins performante pour des recherches intensives                    |
 | **Flexibilit&#xE9; des requ&#xEA;tes**     | Recherches avanc&#xE9;es comme les synonymes, phon&#xE9;tique, et suggestions automatiques                                          | Requ&#xEA;tes avanc&#xE9;es limit&#xE9;es, difficile &#xE0; impl&#xE9;menter en SQL                                                    |
 | **Complexit&#xE9; d'impl&#xE9;mentation**  | Peut &#xEA;tre complexe &#xE0; mettre en &#x153;uvre pour des &#xE9;quipes non famili&#xE8;res avec l'outil                                         | Plus simple et souvent mieux ma&#xEE;tris&#xE9; par les &#xE9;quipes                                                        |
-| **Consommation des ressources**  | Consomme plus de m&#xE9;moire et de CPU, en particulier pour l'indexation initiale                                             | Consommation de ressources g&#xE9;n&#xE9;ralement inf&#xE9;rieure pour des requ&#xEA;tes simples                                  |
+| **Consommation des ressources**  | Consomme plus de m&#xE9;moire et de CPU, en particulier pour l'indexation initiale                                             | Consommation de ressources generalement inf&#xE9;rieure pour des requ&#xEA;tes simples                                  |
 | **Co&#xFB;t de stockage**             | Peut impliquer une duplication des donn&#xE9;es (co&#xFB;t suppl&#xE9;mentaire de stockage)                                              | Pas de duplication n&#xE9;cessaire                                                                                 | -->
 </section>
 <section id="outils-pour-créer-un-moteur-elasticsearch" class="slide level2" data-background-image="background.svg" data-background-size="contain">
@@ -564,9 +580,36 @@
 </ul>
 <p>Éventuellement, savoir coder en Python/Java…</p>
 </section>
+<section id="filtres" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Filtres</h2>
+<ul>
+<li>Définis dans les mappings.<br>
+</li>
+<li>Pour normaliser les données.<br>
+</li>
+<li>Pour les données du référentiel et pour les adresses recherchées.</li>
+</ul>
+</section>
+<section id="filtres-implémentés" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Filtres implémentés</h2>
+<ul>
+<li>lowercase<br>
+</li>
+<li>asciifolding<br>
+</li>
+<li>ponctuation<br>
+</li>
+<li>séparation des nombres et lettres (ex : 14bis –&gt; 14 bis)<br>
+</li>
+<li>suppression des espaces supplémentaires<br>
+</li>
+<li><span class="red2"><strong>dillatation des accronymes/prise en compte des synonymes</strong></span></li>
+</ul>
+<p>Maintenant, on peut comparer l’adresse recherchée avec les données Gaïa.</p>
+</section>
 <section id="base-de-données-classique" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Base de données classique</h2>
-<p><strong>Table 1: Exemple de base de données</strong></p>
+<p><em>Exemple</em></p>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -577,11 +620,11 @@
 <tbody>
 <tr class="odd">
 <td>A</td>
-<td style="text-align: left;">du général leclerc</td>
+<td style="text-align: left;">du general leclerc</td>
 </tr>
 <tr class="even">
 <td>B</td>
-<td style="text-align: left;">du général charles de gaulle</td>
+<td style="text-align: left;">du general charles de gaulle</td>
 </tr>
 <tr class="odd">
 <td>C</td>
@@ -601,12 +644,13 @@
 <section id="recherche-par-token" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Recherche par token</h2>
 <p><span class="green2"><strong>Un token = un mot</strong></span></p>
-<p>Si on cherche <strong>“88 avenue du général charles de gaulle”</strong>, <span class="blue2"><strong>pour chaque nom de voie</strong></span>, on doit compter le nombre de : “88”, “avenue”, “du”, “général”…</p>
-<p><span class="red2"><strong>C’est extrêment long</strong></span></p>
+<p>Si on cherche <strong>“88 avenue du general charles de gaulle”</strong>, <span class="blue2"><strong>pour chaque nom de voie</strong></span>, on doit compter le nombre de :<br>
+“88”, “avenue”, “du”, “general”…</p>
+<p><span class="red2"><strong>C’est extrêment long.</strong></span></p>
 </section>
 <section id="index-inversé-token" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Index inversé token</h2>
-<p><strong>Table 2: Exemple d’index inversé</strong></p>
+<p><em>Exemple</em></p>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -616,7 +660,7 @@
 </thead>
 <tbody>
 <tr class="odd">
-<td>général</td>
+<td>general</td>
 <td>{“A”: 1, “B”: 1}</td>
 </tr>
 <tr class="even">
@@ -624,8 +668,8 @@
 <td>{“C”: 1}</td>
 </tr>
 <tr class="odd">
-<td>verdier</td>
-<td>{“B”: 1}</td>
+<td>du</td>
+<td>{“A”: 1, “B”: 1, “C”: 2}</td>
 </tr>
 <tr class="even">
 <td>…</td>
@@ -633,42 +677,69 @@
 </tr>
 </tbody>
 </table>
-<p><span class="green2"><strong>On a directement le comptage de chaque token par idVoie</strong></span></p>
+<p><span class="green2"><strong>On a directement le comptage de chaque token par idVoie.</strong></span></p>
 </section>
 <section id="score-par-token" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Score par token</h2>
 <p><span class="blue2"><strong>Pour retourner la voie la plus pertinente</strong></span>, on construit un score pour chaque voie : <span class="math display">\[
-\sum_{\text{∀t} \in \text{T}} occurence_t
+\sum_{\text{∀t} \in \text{T}} {nb_occurence}_t
 \]</span></p>
 <p>t = token<br>
 T = ensemble des tokens de l’adresse recherchée</p>
 </section>
-<section id="recherche-par-n-grams-de-caractères" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Recherche par n-grams de caractères</h2>
-<p><span class="blue2"><strong>Contourner les fautes d’orthographes</strong></span> : chaque token est découpé en sous-chaînes de n caractères consécutifs</p>
-<p>Exemple : découpage en 3-grams de caractères du texte “avenue verdier”</p>
+<section id="score-par-token-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Score par token</h2>
+<p><em>Exemple : score par token de “88 avenue du general charles de gaulle”</em></p>
 <table class="caption-top">
 <thead>
 <tr class="header">
-<th>token</th>
-<th>3-grams</th>
+<th>idVoie</th>
+<th style="text-align: left;">nom de voie</th>
+<th>score</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>avenue</td>
-<td>ave, ven, enu, nue</td>
+<td>A</td>
+<td style="text-align: left;"><strong>du general</strong> leclerc</td>
+<td>2</td>
 </tr>
 <tr class="even">
-<td>verdier</td>
-<td>ver, erd, rdi, die, ier</td>
+<td>B</td>
+<td style="text-align: left;"><strong>du general charles de gaulle</strong></td>
+<td>5</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td style="text-align: left;"><strong>du</strong> point <strong>du</strong> jour</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td style="text-align: left;">verdier</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>E</td>
+<td style="text-align: left;">des cours</td>
+<td>0</td>
 </tr>
 </tbody>
 </table>
 </section>
+<section id="recherche-par-n-grams-de-caractères" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Recherche par n-grams de caractères</h2>
+<p><span class="blue2"><strong>Contourner les fautes d’orthographes</strong></span> : chaque token est découpé en sous-chaînes de n caractères consécutifs.</p>
+<p><em>Exemple de découpage en 3-grams de caractères du texte “avenue verdier” :</em><br>
+<strong>ave, ven, enu, nue, ver, erd, rdi, die, ier</strong></p>
+<!-- | token    | 3-grams                 |
+|----------|-------------------------|
+| avenue   | ave, ven, enu, nue      |
+| verdier  | ver, erd, rdi, die, ier | -->
+</section>
 <section id="index-inversé-3-grams" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Index inversé 3-grams</h2>
-<p><strong>Table 3: Exemple d’index inversé 3-grams</strong></p>
+<p><em>Exemple</em></p>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -710,34 +781,45 @@ T = ensemble des tokens de l’adresse recherchée</p>
 \Rightarrow \text{taille index inversé} \uparrow
 \Rightarrow \text{temps de recherche} \uparrow
 \]</span></p>
-<p>Limitation à minimum n=3 pour notre cas</p>
+<p>Limitation à minimum n=3 pour notre cas.</p>
 </section>
 <section id="fuzziness" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Fuzziness</h2>
 <p>Contourner les fautes d’orthographes d’une autre façon : <span class="green2"><strong>fuzziness</strong></span></p>
 <p>Pour matcher deux tokens avec une fuzziness de niveau 1 = corriger l’un des tokens :</p>
 <ul>
-<li>Ajout d’une lettre</li>
-<li>Suppression d’une lettre</li>
-<li>Remplacement d’une lettre</li>
-<li>Échanger deux lettres de place</li>
+<li>Ajout d’une lettre.<br>
+</li>
+<li>Suppression d’une lettre.<br>
+</li>
+<li>Remplacement d’une lettre.<br>
+</li>
+<li>Échanger deux lettres de place.</li>
 </ul>
 </section>
 <section id="score-global" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Score global</h2>
 <p>Le score global va donc combiner la somme des matchs au niveau :</p>
 <ul>
-<li>token</li>
-<li>n-grams</li>
-<li>fuzziness</li>
+<li>token.<br>
+</li>
+<li>n-grams.<br>
+</li>
+<li>fuzziness.</li>
 </ul>
-<p>Ce score prendra en compte les <span class="green2"><strong>boosts</strong></span>, le n des n-grams et le niveau de fuzziness choisis au moment du paramétrage du moteur : ceci constitue <span class="blue2"><strong>la requête</strong></span></p>
+<p>Ce score prendra en compte :</p>
+<ul>
+<li>Les <span class="green2"><strong>boosts</strong></span>.<br>
+</li>
+<li>Le niveau de fuzziness choisis.</li>
+</ul>
+<p>Ceci constitue <span class="blue2"><strong>la requête</strong></span>.</p>
 </section>
 <section id="boost" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Boost</h2>
 <p>On peut donner plus ou moins d’importance aux différents matchs grâce aux <span class="green2"><strong>boosts</strong></span></p>
-<p>Chaque occurence est multipliée par un facteur choisi : <span class="blue2"><strong>boost</strong></span></p>
-<p>Exemple de boosts :</p>
+<p>Chaque occurence est multipliée par un facteur qui dépend du niveau de match : <span class="blue2"><strong>boost</strong></span></p>
+<p><em>Boosts actuels :</em></p>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -774,21 +856,34 @@ T = ensemble des tokens de l’adresse recherchée</p>
 <p><span class="math display">\[
 \sum_{\text{∀dn} \in \text{N}} \sum_{\text{∀sc} \in \text{dn}} boost_{dn}*occurence_{sc}
 \]</span></p>
-<p>N = ensemble des niveaux de découpage de l’adresse recherchée (niveau token, niveau fuzzi…) dn = découpage de l’adresse recherchée selon le niveau (boost associé) sc = sous-chaîne (un token, un 3-grams…)</p>
+<p>N = ensemble des niveaux de découpage de l’adresse recherchée (niveau token, niveau fuzzi…)<br>
+dn = découpage de l’adresse recherchée selon le niveau (boost associé)<br>
+sc = sous-chaîne (un token, un 3-grams…)</p>
 </section>
 <section id="configurer-le-moteur" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Configurer le moteur</h2>
 <p>Une fois qu’on a la théorie, il faut l’appliquer en pratique.</p>
-<p>Le package ElasticSearch permet d’indexer les données en fournissant : - Un dataframe des données du référentiel Gaïa - Des settings (json) où on définit nos filtres, différents analyzers, différents tokenizers… - Des mappings (json) où pour chaque variable, on fournit un analyzer et un tokenizer.</p>
-</section>
-<section id="filtres" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Filtres</h2>
-<p>Il est possible d’appliquer des “filtres” sur l’adresse recherchée et sur les adresses du référentiel : - lowercase - asciifolding - ponctuation - séparation des nombres et lettres (ex : 14bis –&gt; 14 bis) - suppression des espaces supplémentaires - <span class="red2"><strong>dillatation des accronymes/prise en compte des synonymes</strong></span></p>
+<p>Le package ElasticSearch permet d’indexer les données en fournissant :</p>
+<ul>
+<li>Un dataframe des données du référentiel Gaïa.<br>
+</li>
+<li>Des <span class="blue2"><strong>settings</strong></span> (json) où on définit nos différents <strong>analyzers</strong>, englobant les filtres et le tokenizer.<br>
+</li>
+<li>Des <span class="green2"><strong>mappings</strong></span> (json) où pour chaque <strong>variable</strong>, on fournit un analyzer.</li>
+</ul>
 </section>
 <section id="faire-des-recherches" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Faire des recherches</h2>
 <p>Une fois le moteur configuré, on peut faire des requêtes.</p>
-<p>Exemple de requêtes :</p>
+<p><em>Requête pour retrouver la voie :</em></p>
+<ul>
+<li>Match token sur nom de voie avec fuzzi 1 → boost 20.<br>
+</li>
+<li>Match token sur type de voie ou nom de voie → boost 15.<br>
+</li>
+<li>Match 3 à 5-grams sur nom de voie → boost 1.</li>
+</ul>
+<p>À chaque fois qu’une sous-chaîne valide l’une de ces conditions, le score va augmenter en fonction du boost.</p>
 </section></section>
 <section id="plan-de-la-présentation-3" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>
@@ -809,26 +904,89 @@ T = ensemble des tokens de l’adresse recherchée</p>
 <h2>Algorithme d’identification d’adresses</h2>
 <ul>
 <li>Succession de requêtes ElasticSearch.</li>
-<li>Etapes de validation des résultats après chaque requête.</li>
+<li>Étapes de validation des résultats après chaque requête.</li>
 <li>Retourne :
 <ul>
-<li>le(s) identifiant(s) Gaïa retrouvés</li>
-<li>une indicatrice sur qualité de l’identification.</li>
+<li>le(s) identifiant(s) Gaïa retrouvés.<br>
+</li>
+<li>une indicatrice sur qualité de l’identification.<br>
+</li>
 <li>un ratio qui mesure l’écart entre la 1ère et la 2ème possibilité retournées par Elastic.</li>
 </ul></li>
 </ul>
 </section>
 <section id="schéma-de-lalgorithme" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Schéma de l’algorithme</h2>
-<!-- Inserer schema -->
-</section>
+
+<img data-src="img/schema_moteur_fr.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"></section>
 <section id="indicatrice-qualité" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Indicatrice qualité</h2>
-<!-- Ins&#xE9;rer tableau score -->
+<p>Dépend du pourcentage de 3-grams de la voie du référentiel contenus dans l’adresse recherche.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Voie qualifiée de</th>
+<th>Pourcentage de 3-grams</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>sûre</td>
+<td>≥ 65%</td>
+</tr>
+<tr class="even">
+<td>peu douteuse</td>
+<td>35% ≤ x &lt; 65%</td>
+</tr>
+<tr class="odd">
+<td>douteuse</td>
+<td>10% ≤ x &lt; 35%</td>
+</tr>
+<tr class="even">
+<td>non retrouvée</td>
+<td>&lt; 10%</td>
+</tr>
+</tbody>
+</table>
+<p><em>Exemple : 100% des 3-grams de “avenue de la marne” dans “20 bis avenue de la marne”.</em></p>
 </section>
-<section id="ratio-1er2eme" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Ratio 1er/2eme</h2>
-<!-- Explications -->
+<section id="valeurs-de-lindicatrice-qualité" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Valeurs de l’indicatrice qualité</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Valeur</th>
+<th>idGaïa maximum retrouvé</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>6 à 10</td>
+<td>idAdresse</td>
+</tr>
+<tr class="even">
+<td>3 à 5</td>
+<td>idVoie</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>idCommune</td>
+</tr>
+<tr class="even">
+<td>0 à 1</td>
+<td>Aucun</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="ratio-1er2ème-possibilité-de-voie" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Ratio 1er/2ème possibilité de voie</h2>
+<p><span class="math display">\[
+\text{ratio} = 1 - \frac{R_2}{R_1}
+\]</span></p>
+<p>R1 = score Elastic de la 1ère possibilité<br>
+R2 = score Elasrtic de la 2ème possibilité</p>
+<p>Plus le ratio est proche de 1, plus le résultat retourné est loin de la 2ème proposition.</p>
 </section></section>
 <section id="plan-de-la-présentation-4" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>
