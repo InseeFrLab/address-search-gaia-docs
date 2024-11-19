@@ -1,9 +1,10 @@
 ## Différents besoins au sein du SSP
 
-- [**Résil :**]{.red2} identifier le(s) adresse(s) des individus pour sélectionner la plus récente.
-- **Géoloc :** <!-- Explication -->.
-- **DMTR :** <!-- Explication -->.
-- Autres utilisateurs : par exemple identification des adresses sur les certificats de décès...
+- [**Résil :**]{.red2} identifier le(s) adresse(s) des individus pour sélectionner la plus récente.  
+- **Géoloc :** identification du référentiel Géoloc et génération de leur nouveau référentiel.  
+- Autres utilisateurs possibles : 
+    - Identification des adresses sur les certificats de décès.  
+    - Identification des adresses de Sirus.  
 
 ## Regroupements d'adresses
 

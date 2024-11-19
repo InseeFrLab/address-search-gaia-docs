@@ -7,7 +7,7 @@
 
 ## Pourquoi ElasticSearch pour la recherche textuelle ?
 
-| **Critères**                         | **Elasticsearch** | **SQL** | **Addok\***|
+| **Critères**                         | **ElasticSearch** | **SQL** | **Addok\***|
 |:-------------------------------------|:-----------------:|:-------:|:-------:|
 | Recherche de texte avancée           | ✅ | ❌ | ✅ |
 | Rapidité                             | ✅ | ✅ | ⚠️ |
@@ -15,8 +15,13 @@
 | Personnalisation des recherches      | ✅ | ❌ | ❌ |
 | Facilité d'implémentation            | ❌ | ✅ | ✅ |
 | Ressources                           | ❌ | ✅ | ✅ |
+| Maintenance                          | ⚠️ | ✅ | ❌ |
 
-**\*Addok**: géocodeur de la BAN.
+::: {.notes}
+Donner explication addok
+::: 
+
+
 
 <!-- a refaire car je ne connais pas addok, j'ai pas compris -->
 
@@ -47,7 +52,7 @@ On peut commencer à créer notre moteur ⚙️.
 
 ## Filtres
 
-- Définis dans les settings 🛠️.  
+- Définis dans les *settings* 🛠️.  
 - Normalisent les données.  
 - Pour les données du référentiel et pour les adresses recherchées.
 
@@ -76,25 +81,23 @@ On peut commencer à créer notre moteur ⚙️.
 
 ## Recherche par token
 
-[**Un token = un mot**]{.green2}  
+- [**Tokenizer**]{.blue2} : "token".
+- [**Un token = un mot.**]{.green2}  
+- [**Pour chaque nom de voie du référentiel**]{.blue2}, compter le nombre de tokens qui matchent 🎯 avec les tokens de l'adresse recherchée.
 
-Pour chaque token de l'adresse recherchée, il faut compter le nombre de match 🎯 avec les tokens [**des noms de voie du référentiel**]{.blue2}.
-
-Pour **"88 avenue du general charles de gaulle"**, compter le nombre de :  "88", "avenue", "du", "general"... dans tous les noms de voie.
-
-## Score par token
+## Score avec tokenizer "token"
 
 [**Pour retourner la voie la plus pertinente**]{.blue2}, on construit un score pour chaque voie :
 $$
-\sum_{\text{∀t} \in \text{T}} {nb\_occurrence}_t
+score_{voie} = \sum_{\text{∀t} \in \text{T}} {nb\_occurrence}_t
 $$
 
 t = token  
 T = ensemble des tokens de l'adresse recherchée  
 
-## Score par token
+## Score avec tokenizer "token"
 
-*Exemple : score par token de "88 avenue du general charles de gaulle"*
+*Exemple : score avec tokenizer "token" de "88 avenue du general charles de gaulle"*
 
 | idVoie | nom de voie             | score |
 |---|:-----------------------------|-------|
@@ -104,7 +107,7 @@ T = ensemble des tokens de l'adresse recherchée
 | D | verdier                          | 0     |
 | E | des cours                        | 0     |
 
-[**Dans une grande base de données, c'est extrêment long.**]{.red2}
+[**Dans une grande base de données, c'est extrêmement long.**]{.red2}
 
 # Étape 3 : utiliser un index inversé. Mais qu'est ce donc ?
 
@@ -292,11 +295,11 @@ Nous obtenons directement le comptage de chaque token par idVoie, pour tous les 
 </table>
 </div>
 
-## Score par n-grams
+## Score avec tokenizer "n-grams"
 
-Pour retourner la voie la plus pertinente, on construit un score pour chaque voie :
+Score pour chaque voie :
 $$
-\sum_{\text{∀ngram} \in \text{N}} {nb\_occurrence}_{ngram}
+score_{voie} = \sum_{\text{∀ngram} \in \text{N}} {nb\_occurrence}_{ngram}
 $$
 
 N = ensemble des n-grams de l'adresse recherchée
@@ -313,9 +316,11 @@ Limitation à minimum n∈{3,4,5} pour notre cas.
 
 ## Fuzziness
 
-Contourner les fautes d'orthographes d'une autre façon : [**fuzziness**]{.green2}  
+Contourner les fautes d'orthographes d'une autre façon : [**fuzziness**]{.green2}.  
 
-Pour matcher deux tokens avec une fuzziness de niveau 1 = corriger l'un des tokens :
+<br>
+
+Pour matcher 🎯 deux tokens avec une fuzziness de niveau 1 = corriger l'un des tokens :
 
 - Ajout d'une lettre.  
 - Suppression d'une lettre.  
@@ -324,43 +329,37 @@ Pour matcher deux tokens avec une fuzziness de niveau 1 = corriger l'un des toke
 
 ## Score global 
 
-Le score global va donc combiner la somme des matchs au niveau :
+Le score global va donc combiner la somme des matchs 🎯 au niveau :
 
 - token.  
 - n-grams.  
 - fuzziness.  
 
-Ce score prendra en compte : 
-
-- Les [**boosts**]{.green2}.  
-- Le niveau de fuzziness choisis.  
-
-Ceci constitue [**la requête**]{.blue2} 🔍.
-
 ## Boost
 
-On peut donner plus ou moins d'importance aux différents matchs grâce aux [**boosts**]{.green2}  
-
-Chaque occurrence est multipliée par un facteur qui dépend du niveau de match : [**boost**]{.blue2}  
+On peut donner plus ou moins d'importance aux différents matchs 🎯.  
+Chaque occurrence est multipliée par un facteur, appelé [**boost**]{.blue2}, qui dépend du niveau de match 🎯.
 
 *Boosts actuels :*
 
-| match au niveau | boost |
-|----------|----|
-| token    | 20 |
-| fuzzi 1  | 15 |
-| 3-grams  | 1  |
-| 4-ngrams | 1  |
-| 5-grams  | 1  |
+| **match au niveau**| **boost** | **exemple** |
+|----------|----|----------|
+| token    | 20 | "verdier" avec "verdier" |
+| fuzzi 1  | 15 | "verdie" avec "verdier" |
+| 3-grams  | 1  | "ver" avec "ver" |
+| 4-ngrams | 1  | "erdi" avec "erdi" |
+| 5-grams  | 1  | "verdi" avec "verdi" |
+
+*Exemple : recherche de "88 avenue verdier" et dans la base il y a la voie D : "verdier".*
 
 ## Retour sur le score global
 
 $$
-\sum_{\text{∀dn} \in \text{N}} \sum_{\text{∀sc} \in \text{dn}} boost_{dn}*{nb\_occurrence}_{sc}
+score_{voie} = \sum_{\text{∀n} \in \text{N}} \sum_{\text{∀sc} \in \text{n}} boost_{n}*{nb\_occurrence}_{sc}
 $$
 
-N = ensemble des niveaux de découpage de l'adresse recherchée *(niveau token, niveau fuzzi...)*  
-dn = découpage de l'adresse recherchée selon le niveau *(boost associé)*  
+N = ensemble des niveaux *(niveau token, niveau fuzzi...)*  
+n = niveau  
 sc = sous-chaîne *(un token, un 3-grams...)*  
 
 ## Configurer le moteur ⚙️

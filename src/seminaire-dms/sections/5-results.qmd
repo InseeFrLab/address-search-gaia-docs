@@ -12,7 +12,7 @@ Sur 100 000 adresses sur tout le territoire :
 
 Démonstration en utilisant l'API Gaïa : url.
 
-## Utilisation du moteur au sein du projet Gaïa
+<!-- ## Utilisation du moteur au sein du projet Gaïa
 
 Métriques sur les mises à jour du référentiel :
-- ....
+- .... -->

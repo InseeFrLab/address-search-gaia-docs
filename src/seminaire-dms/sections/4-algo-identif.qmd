@@ -1,19 +1,20 @@
 ## Algorithme d'identification d'adresses
 
+![](img/schema_moteur_fr.png){width=75% fig-align="center"}
+
+::: {.notes}
 - Succession de requêtes ElasticSearch.
 - Étapes de validation des résultats après chaque requête.
 - Retourne :
     - le(s) identifiant(s) Gaïa retrouvés.  
     - une indicatrice sur qualité de l'identification.  
     - un ratio qui mesure l'écart entre la 1ère et la 2ème possibilité retournées par Elastic.  
-
-## Schéma de l'algorithme
-
-![](img/schema_moteur_fr.png){width=75% fig-align="center"}
+::: 
 
 ## Indicatrice qualité
 
-Dépend du pourcentage de 3-grams de la voie du référentiel contenus dans l'adresse recherche.
+- Dépend du pourcentage de 3-grams de la voie du référentiel contenus dans l'adresse recherchée.
+- Calcul non réalisable avec Elastic, donc effectué post requête.
 
 | Voie qualifiée de | Pourcentage de 3-grams |
 |-------------------|------------------------|
@@ -33,13 +34,13 @@ Dépend du pourcentage de 3-grams de la voie du référentiel contenus dans l'ad
 | 2      | idCommune |
 | 0 à 1  | Aucun |
 
-## Ratio 1er/2ème possibilité de voie
+## Distance entre la 1ère et la 2ème voie la plus pertinente
 
 $$
 \text{ratio} = 1 - \frac{R_2}{R_1}
 $$
 
-R1 = score Elastic de la 1ère possibilité  
-R2 = score Elasrtic de la 2ème possibilité
+R1 = score Elastic de la 1ère voie la plus pertinente  
+R2 = score Elastic de la 2ème voie la plus pertinente
 
 Plus le ratio est proche de 1, plus le résultat retourné est loin de la 2ème proposition.

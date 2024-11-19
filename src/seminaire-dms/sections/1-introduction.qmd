@@ -8,6 +8,7 @@
 - Clients : Résil, Géoloc, DMTR...
 
 <!-- Est ce que la liste des clients est ok ? -->
+<!-- Preciser que ce ne sont pas que des adresses -->
 
 ## Une adresse
 
@@ -72,7 +73,7 @@ L'étape d'identification des adresses permet de ne pas écraser les identifiant
 
 ## D'autres données
 
-- Polygones BDTOPO
+- Polygones du bâti
 - Polygones Parcelles du cadastre
 - Liens code postaux - libellés commune - COG
 - Polygones QPV
