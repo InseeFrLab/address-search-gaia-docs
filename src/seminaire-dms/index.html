@@ -391,12 +391,24 @@
 <section id="le-référentiel-gaïa" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Le référentiel Gaïa</h2>
 
-<img data-src="img/voies_adresses.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"><p>Autres données disponibles (aspect géométrique des objets) :</p>
+<img data-src="img/voies_adresses.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"><aside class="notes">
+<p>Autres données disponibles (aspect géométrique des objets) :</p>
 <ul>
 <li>Pour chaque adresse Gaïa : point gps, lien parcelle.<br>
 </li>
 <li>Pour chaque commune Gaïa : polygone.</li>
 </ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 <!-- A verifier -->
 </section>
 <section id="identifiants-gaïa" class="slide level2" data-background-image="background.svg" data-background-size="contain">
@@ -419,6 +431,19 @@
 <li>RCA</li>
 </ul>
 <p>Au moins une mise à jour par mois (avec conservation des identifiants Gaïa).</p>
+<aside class="notes">
+<p>Une mise à jour : 1. Récupérer la nouvelle base d’une source données. 2. Identifier les adresses textuellement : - Les adresses qui sont retrouvées sont alors modifiées si des nouveautés apparaissent. - Les adresses non retrouvées entraînent la création de nouveaux objets Gaïa. L’étape d’identification des adresses permet de ne pas écraser les identifiants Gaïa.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="dautres-données" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>D’autres données</h2>
@@ -468,6 +493,7 @@
 <p>Nouvel objet géographique : <span class="green2"><strong>le lieu géographique</strong></span> <!-- Explication sch&#xE9;ma lieu g&#xE9;ographique. --></p>
 <p><br></p>
 <p><span class="blue2"><strong>Utilisation :</strong></span> Regrouper les adresses avec différents identifiants Gaïa mais qui représentent le même lieu.</p>
+<p><br></p>
 <p><em>Exemple : plusieurs adresses pour une même maison si elle a différentes entrées → même lieu géographique.</em></p>
 </section>
 <section id="besoin-didentification-des-adresses-textuelles" class="slide level2" data-background-image="background.svg" data-background-size="contain">
@@ -477,7 +503,7 @@
 <li>Besoin récurrent au SSP.</li>
 <li>Indispensable pour construire et mettre à jour le référentiel.</li>
 </ul>
-<p>Il faut donc un <span class="blue2"><strong>moteur de recherche</strong></span>.</p>
+<p>Il faut donc un <span class="blue2"><strong>moteur de recherche</strong></span> ⚙️.</p>
 </section></section>
 <section id="plan-de-la-présentation-2" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>
@@ -497,7 +523,7 @@
 <section id="cest-quoi-elasticsearch" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>C’est quoi ElasticSearch ?</h2>
 <ul>
-<li><p><span class="blue2"><strong>ElasticSearch</strong></span> : logiciel pour l’indexation de données et la recherche de données.</p></li>
+<li><p><span class="blue2"><strong>ElasticSearch</strong></span> : logiciel pour l’indexation et la recherche de données.</p></li>
 <li><p>Utilisation en pratique avec <span class="green2"><strong>Python</strong></span> : packages <em>elasticsearch</em> et <em>elasticsearch-dsl</em>.</p></li>
 </ul>
 </section>
@@ -573,18 +599,36 @@
 <section id="outils-pour-créer-un-moteur-elasticsearch" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Outils pour créer un moteur ElasticSearch</h2>
 <ul>
-<li>Settings.</li>
-<li>Mappings.</li>
-<li>Requêtes.</li>
+<li><span class="blue2"><strong>Mappings</strong></span> 🏷️ : spécifier les traitements à appliquer pour chaque variable.</li>
+<li><span class="blue2"><strong>Settings</strong></span> 🛠️ : définir les différents traitements.</li>
+<li><span class="blue2"><strong>Requêtes</strong></span> 🔍 : recherche sur les variables définies dans les mappings.</li>
 </ul>
-<p>Éventuellement, savoir coder en Python/Java…</p>
+<aside class="notes">
+<p>Et éventuellement, savoir coder en Python/Java…</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<p>On peut commencer à créer notre moteur ⚙️.</p>
+</section></section>
+<section>
+<section id="étape-1-pouvoir-comparer-ladresse-recherchée-avec-les-données-gaïa." class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<h1>Étape 1 : pouvoir comparer l’adresse recherchée avec les données Gaïa.</h1>
+
 </section>
 <section id="filtres" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Filtres</h2>
 <ul>
-<li>Définis dans les mappings.<br>
+<li>Définis dans les settings 🛠️.<br>
 </li>
-<li>Pour normaliser les données.<br>
+<li>Normalisent les données.<br>
 </li>
 <li>Pour les données du référentiel et pour les adresses recherchées.</li>
 </ul>
@@ -592,19 +636,23 @@
 <section id="filtres-implémentés" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Filtres implémentés</h2>
 <ul>
-<li>lowercase<br>
+<li>Lowercase<br>
 </li>
-<li>asciifolding<br>
+<li>Asciifolding<br>
 </li>
-<li>ponctuation<br>
+<li>Ponctuation<br>
 </li>
-<li>séparation des nombres et lettres (ex : 14bis –&gt; 14 bis)<br>
+<li>Séparation des nombres et lettres <em>(ex : 14bis → 14 bis)</em><br>
 </li>
-<li>suppression des espaces supplémentaires<br>
+<li>Suppression des espaces supplémentaires<br>
 </li>
-<li><span class="red2"><strong>dillatation des accronymes/prise en compte des synonymes</strong></span></li>
+<li><span class="red2"><strong>Dillatation des accronymes/prise en compte des synonymes</strong></span></li>
 </ul>
-<p>Maintenant, on peut comparer l’adresse recherchée avec les données Gaïa.</p>
+</section></section>
+<section>
+<section id="étape-2-définir-un-score." class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<h1>Étape 2 : définir un score.</h1>
+
 </section>
 <section id="base-de-données-classique" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Base de données classique</h2>
@@ -643,45 +691,13 @@
 <section id="recherche-par-token" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Recherche par token</h2>
 <p><span class="green2"><strong>Un token = un mot</strong></span></p>
-<p>Si on cherche <strong>“88 avenue du general charles de gaulle”</strong>, <span class="blue2"><strong>pour chaque nom de voie</strong></span>, on doit compter le nombre de :<br>
-“88”, “avenue”, “du”, “general”…</p>
-<p><span class="red2"><strong>C’est extrêment long.</strong></span></p>
-</section>
-<section id="index-inversé-token" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Index inversé token</h2>
-<p><em>Exemple</em></p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>token</th>
-<th>occurrences</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>general</td>
-<td>{“A”: 1, “B”: 1}</td>
-</tr>
-<tr class="even">
-<td>jour</td>
-<td>{“C”: 1}</td>
-</tr>
-<tr class="odd">
-<td>du</td>
-<td>{“A”: 1, “B”: 1, “C”: 2}</td>
-</tr>
-<tr class="even">
-<td>…</td>
-<td>…</td>
-</tr>
-</tbody>
-</table>
-<p><span class="green2"><strong>On a directement le comptage de chaque token par idVoie.</strong></span></p>
+<p>Pour chaque token de l’adresse recherchée, il faut compter le nombre de match 🎯 avec les tokens <span class="blue2"><strong>des noms de voie du référentiel</strong></span>.</p>
+<p>Pour <strong>“88 avenue du general charles de gaulle”</strong>, compter le nombre de : “88”, “avenue”, “du”, “general”… dans tous les noms de voie.</p>
 </section>
 <section id="score-par-token" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Score par token</h2>
 <p><span class="blue2"><strong>Pour retourner la voie la plus pertinente</strong></span>, on construit un score pour chaque voie : <span class="math display">\[
-\sum_{\text{∀t} \in \text{T}} {nb_occurence}_t
+\sum_{\text{∀t} \in \text{T}} {nb\_occurrence}_t
 \]</span></p>
 <p>t = token<br>
 T = ensemble des tokens de l’adresse recherchée</p>
@@ -725,6 +741,157 @@ T = ensemble des tokens de l’adresse recherchée</p>
 </tr>
 </tbody>
 </table>
+<p><span class="red2"><strong>Dans une grande base de données, c’est extrêment long.</strong></span></p>
+</section></section>
+<section>
+<section id="étape-3-utiliser-un-index-inversé.-mais-quest-ce-donc" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<h1>Étape 3 : utiliser un index inversé. Mais qu’est ce donc ?</h1>
+
+</section>
+<section id="index-inversé-token" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Index inversé token</h2>
+<p><em>Exemple</em></p>
+<!-- | idVoie | nom de voie             |                        | token     | occurrences              |
+|---|:-----------------------------|                        |-----------|--------------------------|
+| A | du general leclerc           |                        | general   | {"A": 1, "B": 1}         |
+| B | du general charles de gaulle |        devient         | jour      | {"C": 1}                 |
+| C | du point du jour             |                        | du        | {"A": 1, "B": 1, "C": 2} |
+| D | verdier                      |                        | ...       | ...                      |
+| E | des cours                    | -->
+<div style="display: flex; justify-content: space-between;">
+<table>
+<thead>
+<tr>
+<th>
+idVoie
+</th>
+<th>
+nom de voie
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+A
+</td>
+<td>
+du general leclerc
+</td>
+</tr>
+<tr>
+<td>
+B
+</td>
+<td>
+du general charles de gaulle
+</td>
+</tr>
+<tr>
+<td>
+C
+</td>
+<td>
+du point du jour
+</td>
+</tr>
+<tr>
+<td>
+D
+</td>
+<td>
+verdier
+</td>
+</tr>
+<tr>
+<td>
+E
+</td>
+<td>
+des cours
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Ajoutez un espacement entre les deux tableaux -->
+<div style="margin-left: 130px;">
+
+</div>
+<table>
+<thead>
+<tr>
+<th>
+token
+</th>
+<th>
+occurrences
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+general
+</td>
+<td>
+{“A”: 1, “B”: 1}
+</td>
+</tr>
+<tr>
+<td>
+jour
+</td>
+<td>
+{“C”: 1}
+</td>
+</tr>
+<tr>
+<td>
+du
+</td>
+<td>
+{“A”: 1, “B”: 1, “C”: 2}
+</td>
+</tr>
+<tr>
+<td>
+cours
+</td>
+<td>
+{“E”: 1}
+</td>
+</tr>
+<tr>
+<td>
+…
+</td>
+<td>
+…
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><span class="green2"><strong>Comptage direct ⚡ des occurrences</strong></span> de chaque token de la base par idVoie.</p>
+<aside class="notes">
+<p>Faire un index inversé par token, c’est récupérer tous les tokens des noms de voie dans le référentiel et on les applati dans une colonne.</p>
+<p>Nous obtenons directement le comptage de chaque token par idVoie, pour tous les tokens présents dans les noms de voie du référentiel.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="étape-4-prendre-en-compte-les-variations-textuelles." class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<h1>Étape 4 : prendre en compte les variations textuelles.</h1>
+
 </section>
 <section id="recherche-par-n-grams-de-caractères" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Recherche par n-grams de caractères</h2>
@@ -739,37 +906,131 @@ T = ensemble des tokens de l’adresse recherchée</p>
 <section id="index-inversé-3-grams" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Index inversé 3-grams</h2>
 <p><em>Exemple</em></p>
-<table class="caption-top">
+<!-- | 3-grams | occurrences           |
+|---------|-----------------------|
+| gen     | {"A": 1, "B": 1}      |
+| char    | {"B": 1}              |
+| our     | {"C": 1, "E": 1}      |
+| ...     | ...                   | -->
+<div style="display: flex; justify-content: space-between;">
+<table>
 <thead>
-<tr class="header">
-<th>3-grams</th>
-<th>occurrences</th>
+<tr>
+<th>
+idVoie
+</th>
+<th>
+nom de voie
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td>gén</td>
-<td>{“A”: 1, “B”: 1}</td>
+<tr>
+<td>
+A
+</td>
+<td>
+du general leclerc
+</td>
 </tr>
-<tr class="even">
-<td>char</td>
-<td>{“B”: 1}</td>
+<tr>
+<td>
+B
+</td>
+<td>
+du general charles de gaulle
+</td>
 </tr>
-<tr class="odd">
-<td>our</td>
-<td>{“C”: 1, “E”: 1}</td>
+<tr>
+<td>
+C
+</td>
+<td>
+du point du jour
+</td>
 </tr>
-<tr class="even">
-<td>…</td>
-<td>…</td>
+<tr>
+<td>
+D
+</td>
+<td>
+verdier
+</td>
+</tr>
+<tr>
+<td>
+E
+</td>
+<td>
+des cours
+</td>
 </tr>
 </tbody>
 </table>
+<!-- Ajoutez un espacement entre les deux tableaux -->
+<div style="margin-left: 130px;">
+
+</div>
+<table>
+<thead>
+<tr>
+<th>
+3-gram
+</th>
+<th>
+occurrences
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+gen
+</td>
+<td>
+{“A”: 1, “B”: 1}
+</td>
+</tr>
+<tr>
+<td>
+char
+</td>
+<td>
+{“B”: 1}
+</td>
+</tr>
+<tr>
+<td>
+our
+</td>
+<td>
+{“C”: 1, “E”: 1}
+</td>
+</tr>
+<tr>
+<td>
+oin
+</td>
+<td>
+{“C”: 1}
+</td>
+</tr>
+<tr>
+<td>
+…
+</td>
+<td>
+…
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 </section>
 <section id="score-par-n-grams" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Score par n-grams</h2>
 <p>Pour retourner la voie la plus pertinente, on construit un score pour chaque voie : <span class="math display">\[
-\sum_{\text{∀ngram} \in \text{N}} occurence_{ngram}
+\sum_{\text{∀ngram} \in \text{N}} {nb\_occurrence}_{ngram}
 \]</span></p>
 <p>N = ensemble des n-grams de l’adresse recherchée</p>
 </section>
@@ -780,7 +1041,7 @@ T = ensemble des tokens de l’adresse recherchée</p>
 \Rightarrow \text{taille index inversé} \uparrow
 \Rightarrow \text{temps de recherche} \uparrow
 \]</span></p>
-<p>Limitation à minimum n=3 pour notre cas.</p>
+<p>Limitation à minimum n∈{3,4,5} pour notre cas.</p>
 </section>
 <section id="fuzziness" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Fuzziness</h2>
@@ -812,12 +1073,12 @@ T = ensemble des tokens de l’adresse recherchée</p>
 </li>
 <li>Le niveau de fuzziness choisis.</li>
 </ul>
-<p>Ceci constitue <span class="blue2"><strong>la requête</strong></span>.</p>
+<p>Ceci constitue <span class="blue2"><strong>la requête</strong></span> 🔍.</p>
 </section>
 <section id="boost" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Boost</h2>
 <p>On peut donner plus ou moins d’importance aux différents matchs grâce aux <span class="green2"><strong>boosts</strong></span></p>
-<p>Chaque occurence est multipliée par un facteur qui dépend du niveau de match : <span class="blue2"><strong>boost</strong></span></p>
+<p>Chaque occurrence est multipliée par un facteur qui dépend du niveau de match : <span class="blue2"><strong>boost</strong></span></p>
 <p><em>Boosts actuels :</em></p>
 <table class="caption-top">
 <thead>
@@ -853,36 +1114,38 @@ T = ensemble des tokens de l’adresse recherchée</p>
 <section id="retour-sur-le-score-global" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Retour sur le score global</h2>
 <p><span class="math display">\[
-\sum_{\text{∀dn} \in \text{N}} \sum_{\text{∀sc} \in \text{dn}} boost_{dn}*occurence_{sc}
+\sum_{\text{∀dn} \in \text{N}} \sum_{\text{∀sc} \in \text{dn}} boost_{dn}*{nb\_occurrence}_{sc}
 \]</span></p>
-<p>N = ensemble des niveaux de découpage de l’adresse recherchée (niveau token, niveau fuzzi…)<br>
-dn = découpage de l’adresse recherchée selon le niveau (boost associé)<br>
-sc = sous-chaîne (un token, un 3-grams…)</p>
+<p>N = ensemble des niveaux de découpage de l’adresse recherchée <em>(niveau token, niveau fuzzi…)</em><br>
+dn = découpage de l’adresse recherchée selon le niveau <em>(boost associé)</em><br>
+sc = sous-chaîne <em>(un token, un 3-grams…)</em></p>
 </section>
 <section id="configurer-le-moteur" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Configurer le moteur</h2>
+<h2>Configurer le moteur ⚙️</h2>
 <p>Une fois qu’on a la théorie, il faut l’appliquer en pratique.</p>
-<p>Le package ElasticSearch permet d’indexer les données en fournissant :</p>
+<p>Le package elasticsearch permet d’indexer les données en fournissant :</p>
 <ul>
-<li>Un dataframe des données du référentiel Gaïa.<br>
+<li>Un dataframe 📋 des données du référentiel Gaïa.<br>
 </li>
-<li>Des <span class="blue2"><strong>settings</strong></span> (json) où on définit nos différents <strong>analyzers</strong>, englobant les filtres et le tokenizer.<br>
+<li>Des <span class="blue2"><strong>settings</strong></span> 🛠️ où on définit nos différents <strong>analyzers</strong>, englobant les filtres et le tokenizer.<br>
 </li>
-<li>Des <span class="green2"><strong>mappings</strong></span> (json) où pour chaque <strong>variable</strong>, on fournit un analyzer.</li>
+<li>Des <span class="green2"><strong>mappings</strong></span> 🏷️ où pour chaque <strong>variable</strong>, on fournit un analyzer.</li>
 </ul>
 </section>
 <section id="faire-des-recherches" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Faire des recherches</h2>
-<p>Une fois le moteur configuré, on peut faire des requêtes.</p>
+<p>Une fois le moteur configuré, on peut faire des requêtes 🔍.</p>
 <p><em>Requête pour retrouver la voie :</em></p>
 <ul>
-<li>Match token sur nom de voie avec fuzzi 1 → boost 20.<br>
+<li>Match 🎯 token sur nom de voie avec fuzzi 1 → boost 20.<br>
 </li>
-<li>Match token sur type de voie ou nom de voie → boost 15.<br>
+<li>Match 🎯 token sur type de voie ou nom de voie → boost 15.<br>
 </li>
-<li>Match 3 à 5-grams sur nom de voie → boost 1.</li>
+<li>Match 🎯 3 à 5-grams sur nom de voie → boost 1.</li>
 </ul>
-<p>À chaque fois qu’une sous-chaîne valide l’une de ces conditions, le score va augmenter en fonction du boost.</p>
+<p><span class="math display">\[
+\text{À chaque fois qu'une sous-chaîne valide l'une de ces conditions, le score va} \uparrow \text{en fonction du boost associé}.  
+\]</span></p>
 </section></section>
 <section id="plan-de-la-présentation-3" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>
