@@ -433,7 +433,20 @@
 </ul>
 <p>Au moins une mise à jour par mois (avec conservation des identifiants Gaïa).</p>
 <aside class="notes">
-<p>Une mise à jour : 1. Récupérer la nouvelle base d’une source données. 2. Identifier les adresses textuellement : - Les adresses qui sont retrouvées sont alors modifiées si des nouveautés apparaissent. - Les adresses non retrouvées entraînent la création de nouveaux objets Gaïa. L’étape d’identification des adresses permet de ne pas écraser les identifiants Gaïa.</p>
+<p>Une mise à jour :</p>
+<ol type="1">
+<li>Récupérer la nouvelle base d’une source données.<br>
+</li>
+<li>Identifier les adresses textuellement :<br>
+</li>
+</ol>
+<ul>
+<li>Les adresses qui sont retrouvées sont alors modifiées si des nouveautés apparaissent.<br>
+</li>
+<li>Les adresses non retrouvées entraînent la création de nouveaux objets Gaïa.<br>
+L’étape d’identification des adresses permet de ne pas écraser les identifiants Gaïa.<br>
+</li>
+</ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -507,7 +520,7 @@
 <h2>Besoin d’identification des adresses textuelles</h2>
 <p><span class="green2"><strong>Trouver l’identifiant d’adresse à partir d’un libellé d’adresse plus ou moins correcte.</strong></span></p>
 <ul>
-<li>Besoin récurrent au SSP.</li>
+<li>Besoin récurrent au sein du SSP.</li>
 <li>Indispensable pour construire et mettre à jour le référentiel.</li>
 </ul>
 <p>Il faut donc un <span class="blue2"><strong>moteur de recherche</strong></span> ⚙️.</p>
@@ -548,7 +561,7 @@
 <th style="text-align: left;"><strong>Critères</strong></th>
 <th style="text-align: center;"><strong>ElasticSearch</strong></th>
 <th style="text-align: center;"><strong>SQL</strong></th>
-<th style="text-align: center;"><strong>Addok*</strong></th>
+<th style="text-align: center;"><strong>Addok</strong></th>
 </tr>
 </thead>
 <tbody>
@@ -1255,7 +1268,7 @@ sc = sous-chaîne <em>(un token, un 3-grams…)</em></p>
 <p><em>Exemple : 80% des 3-grams de “verdier” dans “88 avenue verdie”.</em></p>
 <aside class="notes">
 <ul>
-<li>Le trigram ier n’est jamais matché<br>
+<li>Le trigram “ier” n’est jamais matché<br>
 </li>
 <li>verdier : 5 trigrams<br>
 </li>

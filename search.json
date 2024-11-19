@@ -32,7 +32,7 @@
     "href": "src/seminaire-dms/index.html#construction-du-référentiel",
     "title": "Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa",
     "section": "Construction du référentiel",
-    "text": "Construction du référentiel\nSources fiables :\n\nMajic\nBAN\nRCA\n\nAu moins une mise à jour par mois (avec conservation des identifiants Gaïa).\n\nUne mise à jour : 1. Récupérer la nouvelle base d’une source données. 2. Identifier les adresses textuellement : - Les adresses qui sont retrouvées sont alors modifiées si des nouveautés apparaissent. - Les adresses non retrouvées entraînent la création de nouveaux objets Gaïa. L’étape d’identification des adresses permet de ne pas écraser les identifiants Gaïa."
+    "text": "Construction du référentiel\nSources fiables :\n\nMajic\nBAN\nRCA\n\nAu moins une mise à jour par mois (avec conservation des identifiants Gaïa).\n\nUne mise à jour :\n\nRécupérer la nouvelle base d’une source données.\n\nIdentifier les adresses textuellement :\n\n\n\nLes adresses qui sont retrouvées sont alors modifiées si des nouveautés apparaissent.\n\nLes adresses non retrouvées entraînent la création de nouveaux objets Gaïa.\nL’étape d’identification des adresses permet de ne pas écraser les identifiants Gaïa."
   },
   {
     "objectID": "src/seminaire-dms/index.html#dautres-données",
@@ -67,7 +67,7 @@
     "href": "src/seminaire-dms/index.html#besoin-didentification-des-adresses-textuelles",
     "title": "Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa",
     "section": "Besoin d’identification des adresses textuelles",
-    "text": "Besoin d’identification des adresses textuelles\nTrouver l’identifiant d’adresse à partir d’un libellé d’adresse plus ou moins correcte.\n\nBesoin récurrent au SSP.\nIndispensable pour construire et mettre à jour le référentiel.\n\nIl faut donc un moteur de recherche ⚙️."
+    "text": "Besoin d’identification des adresses textuelles\nTrouver l’identifiant d’adresse à partir d’un libellé d’adresse plus ou moins correcte.\n\nBesoin récurrent au sein du SSP.\nIndispensable pour construire et mettre à jour le référentiel.\n\nIl faut donc un moteur de recherche ⚙️."
   },
   {
     "objectID": "src/seminaire-dms/index.html#cest-quoi-elasticsearch",
@@ -81,7 +81,7 @@
     "href": "src/seminaire-dms/index.html#pourquoi-elasticsearch-pour-la-recherche-textuelle",
     "title": "Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa",
     "section": "Pourquoi ElasticSearch pour la recherche textuelle ?",
-    "text": "Pourquoi ElasticSearch pour la recherche textuelle ?\n\n\n\n\n\n\n\n\n\nCritères\nElasticSearch\nSQL\nAddok*\n\n\n\n\nRecherche de texte avancée\n✅\n❌\n✅\n\n\nRapidité\n✅\n✅\n⚠️\n\n\nPrécision\n✅\n❌\n⚠️\n\n\nPersonnalisation des recherches\n✅\n❌\n❌\n\n\nFacilité d’implémentation\n❌\n✅\n✅\n\n\nRessources\n❌\n✅\n✅\n\n\nMaintenance\n⚠️\n✅\n❌\n\n\n\n\nDonner explication addok"
+    "text": "Pourquoi ElasticSearch pour la recherche textuelle ?\n\n\n\n\n\n\n\n\n\nCritères\nElasticSearch\nSQL\nAddok\n\n\n\n\nRecherche de texte avancée\n✅\n❌\n✅\n\n\nRapidité\n✅\n✅\n⚠️\n\n\nPrécision\n✅\n❌\n⚠️\n\n\nPersonnalisation des recherches\n✅\n❌\n❌\n\n\nFacilité d’implémentation\n❌\n✅\n✅\n\n\nRessources\n❌\n✅\n✅\n\n\nMaintenance\n⚠️\n✅\n❌\n\n\n\n\nDonner explication addok"
   },
   {
     "objectID": "src/seminaire-dms/index.html#outils-pour-créer-un-moteur-elasticsearch",
@@ -221,7 +221,7 @@
     "href": "src/seminaire-dms/index.html#indicatrice-qualité",
     "title": "Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa",
     "section": "Indicatrice qualité",
-    "text": "Indicatrice qualité\n\nDépend du pourcentage de 3-grams de la voie du référentiel contenus dans l’adresse recherchée.\nCalcul non réalisable avec Elastic, donc effectué post requête.\n\n\n\n\nVoie qualifiée de\nPourcentage de 3-grams\n\n\n\n\nsûre\n≥ 65%\n\n\npeu douteuse\n35% ≤ x &lt; 65%\n\n\ndouteuse\n10% ≤ x &lt; 35%\n\n\nnon retrouvée\n&lt; 10%\n\n\n\nExemple : 80% des 3-grams de “verdier” dans “88 avenue verdie”.\n\n\nLe trigram ier n’est jamais matché\n\nverdier : 5 trigrams\n\n4 trigrams retrouvés dans 88 avenue verdier\n\n4*100/5 = 80"
+    "text": "Indicatrice qualité\n\nDépend du pourcentage de 3-grams de la voie du référentiel contenus dans l’adresse recherchée.\nCalcul non réalisable avec Elastic, donc effectué post requête.\n\n\n\n\nVoie qualifiée de\nPourcentage de 3-grams\n\n\n\n\nsûre\n≥ 65%\n\n\npeu douteuse\n35% ≤ x &lt; 65%\n\n\ndouteuse\n10% ≤ x &lt; 35%\n\n\nnon retrouvée\n&lt; 10%\n\n\n\nExemple : 80% des 3-grams de “verdier” dans “88 avenue verdie”.\n\n\nLe trigram “ier” n’est jamais matché\n\nverdier : 5 trigrams\n\n4 trigrams retrouvés dans 88 avenue verdier\n\n4*100/5 = 80"
   },
   {
     "objectID": "src/seminaire-dms/index.html#valeurs-de-lindicatrice-qualité",
