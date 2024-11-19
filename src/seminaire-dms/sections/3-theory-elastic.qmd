@@ -345,7 +345,7 @@ Chaque occurrence est multipliée par un facteur, appelé [**boost**]{.blue2}, q
 | **match au niveau**| **boost** | **exemple** |
 |----------|----|----------|
 | token    | 20 | "verdier" avec "verdier" |
-| fuzzi 1  | 15 | "verdie" avec "verdier" |
+| fuzzi 1  | 15 | "verdier" avec "verdie" |
 | 3-grams  | 1  | "ver" avec "ver" |
 | 4-ngrams | 1  | "erdi" avec "erdi" |
 | 5-grams  | 1  | "verdi" avec "verdi" |

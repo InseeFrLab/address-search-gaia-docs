@@ -23,7 +23,14 @@
 | douteuse          | 10% ≤ x < 35% |
 | non retrouvée     | < 10%         |
 
-*Exemple : 100% des 3-grams de "avenue de la marne" dans "20 bis avenue de la marne".*
+*Exemple : 80% des 3-grams de "verdier" dans "88 avenue verdie".*
+
+::: {.notes}
+- Le trigram ier n'est jamais matché  
+- verdier : 5 trigrams  
+- 4 trigrams retrouvés dans 88 avenue verdier  
+- 4*100/5 = 80  
+::: 
 
 ## Valeurs de l'indicatrice qualité
 
