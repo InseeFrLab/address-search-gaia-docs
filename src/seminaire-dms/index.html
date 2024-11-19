@@ -1119,7 +1119,7 @@ Chaque occurrence est multipliée par un facteur, appelé <span class="blue2"><s
 <tr class="even">
 <td>fuzzi 1</td>
 <td>15</td>
-<td>“verdie” avec “verdier”</td>
+<td>“verdier” avec “verdie”</td>
 </tr>
 <tr class="odd">
 <td>3-grams</td>
@@ -1252,7 +1252,29 @@ sc = sous-chaîne <em>(un token, un 3-grams…)</em></p>
 </tr>
 </tbody>
 </table>
-<p><em>Exemple : 100% des 3-grams de “avenue de la marne” dans “20 bis avenue de la marne”.</em></p>
+<p><em>Exemple : 80% des 3-grams de “verdier” dans “88 avenue verdie”.</em></p>
+<aside class="notes">
+<ul>
+<li>Le trigram ier n’est jamais matché<br>
+</li>
+<li>verdier : 5 trigrams<br>
+</li>
+<li>4 trigrams retrouvés dans 88 avenue verdier<br>
+</li>
+<li>4*100/5 = 80<br>
+</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="valeurs-de-lindicatrice-qualité" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Valeurs de l’indicatrice qualité</h2>

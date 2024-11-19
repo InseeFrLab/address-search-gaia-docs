@@ -186,7 +186,7 @@
     "href": "src/seminaire-dms/index.html#boost",
     "title": "Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa",
     "section": "Boost",
-    "text": "Boost\nOn peut donner plus ou moins d’importance aux différents matchs 🎯.\nChaque occurrence est multipliée par un facteur, appelé boost, qui dépend du niveau de match 🎯.\nBoosts actuels :\n\n\n\nmatch au niveau\nboost\nexemple\n\n\n\n\ntoken\n20\n“verdier” avec “verdier”\n\n\nfuzzi 1\n15\n“verdie” avec “verdier”\n\n\n3-grams\n1\n“ver” avec “ver”\n\n\n4-ngrams\n1\n“erdi” avec “erdi”\n\n\n5-grams\n1\n“verdi” avec “verdi”\n\n\n\nExemple : recherche de “88 avenue verdier” et dans la base il y a la voie D : “verdier”."
+    "text": "Boost\nOn peut donner plus ou moins d’importance aux différents matchs 🎯.\nChaque occurrence est multipliée par un facteur, appelé boost, qui dépend du niveau de match 🎯.\nBoosts actuels :\n\n\n\nmatch au niveau\nboost\nexemple\n\n\n\n\ntoken\n20\n“verdier” avec “verdier”\n\n\nfuzzi 1\n15\n“verdier” avec “verdie”\n\n\n3-grams\n1\n“ver” avec “ver”\n\n\n4-ngrams\n1\n“erdi” avec “erdi”\n\n\n5-grams\n1\n“verdi” avec “verdi”\n\n\n\nExemple : recherche de “88 avenue verdier” et dans la base il y a la voie D : “verdier”."
   },
   {
     "objectID": "src/seminaire-dms/index.html#retour-sur-le-score-global",
@@ -221,7 +221,7 @@
     "href": "src/seminaire-dms/index.html#indicatrice-qualité",
     "title": "Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa",
     "section": "Indicatrice qualité",
-    "text": "Indicatrice qualité\n\nDépend du pourcentage de 3-grams de la voie du référentiel contenus dans l’adresse recherchée.\nCalcul non réalisable avec Elastic, donc effectué post requête.\n\n\n\n\nVoie qualifiée de\nPourcentage de 3-grams\n\n\n\n\nsûre\n≥ 65%\n\n\npeu douteuse\n35% ≤ x &lt; 65%\n\n\ndouteuse\n10% ≤ x &lt; 35%\n\n\nnon retrouvée\n&lt; 10%\n\n\n\nExemple : 100% des 3-grams de “avenue de la marne” dans “20 bis avenue de la marne”."
+    "text": "Indicatrice qualité\n\nDépend du pourcentage de 3-grams de la voie du référentiel contenus dans l’adresse recherchée.\nCalcul non réalisable avec Elastic, donc effectué post requête.\n\n\n\n\nVoie qualifiée de\nPourcentage de 3-grams\n\n\n\n\nsûre\n≥ 65%\n\n\npeu douteuse\n35% ≤ x &lt; 65%\n\n\ndouteuse\n10% ≤ x &lt; 35%\n\n\nnon retrouvée\n&lt; 10%\n\n\n\nExemple : 80% des 3-grams de “verdier” dans “88 avenue verdie”.\n\n\nLe trigram ier n’est jamais matché\n\nverdier : 5 trigrams\n\n4 trigrams retrouvés dans 88 avenue verdier\n\n4*100/5 = 80"
   },
   {
     "objectID": "src/seminaire-dms/index.html#valeurs-de-lindicatrice-qualité",
