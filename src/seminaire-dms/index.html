@@ -365,6 +365,7 @@
 <li>Clients : Résil, Géoloc, DMTR…</li>
 </ul>
 <!-- Est ce que la liste des clients est ok ? -->
+<!-- Preciser que ce ne sont pas que des adresses -->
 </section>
 <section id="une-adresse" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Une adresse</h2>
@@ -448,7 +449,7 @@
 <section id="dautres-données" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>D’autres données</h2>
 <ul>
-<li>Polygones BDTOPO</li>
+<li>Polygones du bâti</li>
 <li>Polygones Parcelles du cadastre</li>
 <li>Liens code postaux - libellés commune - COG</li>
 <li>Polygones QPV</li>
@@ -482,10 +483,16 @@
 <section id="différents-besoins-au-sein-du-ssp" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Différents besoins au sein du SSP</h2>
 <ul>
-<li><span class="red2"><strong>Résil :</strong></span> identifier le(s) adresse(s) des individus pour sélectionner la plus récente.</li>
-<li><strong>Géoloc :</strong> <!-- Explication -->.</li>
-<li><strong>DMTR :</strong> <!-- Explication -->.</li>
-<li>Autres utilisateurs : par exemple identification des adresses sur les certificats de décès…</li>
+<li><span class="red2"><strong>Résil :</strong></span> identifier le(s) adresse(s) des individus pour sélectionner la plus récente.<br>
+</li>
+<li><strong>Géoloc :</strong> identification du référentiel Géoloc et génération de leur nouveau référentiel.<br>
+</li>
+<li>Autres utilisateurs possibles :
+<ul>
+<li>Identification des adresses sur les certificats de décès.<br>
+</li>
+<li>Identification des adresses de Sirus.</li>
+</ul></li>
 </ul>
 </section>
 <section id="regroupements-dadresses" class="slide level2" data-background-image="background.svg" data-background-size="contain">
@@ -539,7 +546,7 @@
 <thead>
 <tr class="header">
 <th style="text-align: left;"><strong>Critères</strong></th>
-<th style="text-align: center;"><strong>Elasticsearch</strong></th>
+<th style="text-align: center;"><strong>ElasticSearch</strong></th>
 <th style="text-align: center;"><strong>SQL</strong></th>
 <th style="text-align: center;"><strong>Addok*</strong></th>
 </tr>
@@ -581,9 +588,27 @@
 <td style="text-align: center;">✅</td>
 <td style="text-align: center;">✅</td>
 </tr>
+<tr class="odd">
+<td style="text-align: left;">Maintenance</td>
+<td style="text-align: center;">⚠️</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌</td>
+</tr>
 </tbody>
 </table>
-<p><strong>*Addok</strong>: géocodeur de la BAN.</p>
+<aside class="notes">
+<p>Donner explication addok</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 <!-- a refaire car je ne connais pas addok, j'ai pas compris -->
 <!-- | **Crit&#xE8;res**                     | **Elasticsearch (Avantages)**                                                                                             | **SQL (Inconv&#xE9;nients)**                                                                                       |
 |----------------------------------|----------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
@@ -626,7 +651,7 @@
 <section id="filtres" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Filtres</h2>
 <ul>
-<li>Définis dans les settings 🛠️.<br>
+<li>Définis dans les <em>settings</em> 🛠️.<br>
 </li>
 <li>Normalisent les données.<br>
 </li>
@@ -690,21 +715,24 @@
 </section>
 <section id="recherche-par-token" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Recherche par token</h2>
-<p><span class="green2"><strong>Un token = un mot</strong></span></p>
-<p>Pour chaque token de l’adresse recherchée, il faut compter le nombre de match 🎯 avec les tokens <span class="blue2"><strong>des noms de voie du référentiel</strong></span>.</p>
-<p>Pour <strong>“88 avenue du general charles de gaulle”</strong>, compter le nombre de : “88”, “avenue”, “du”, “general”… dans tous les noms de voie.</p>
+<ul>
+<li><span class="blue2"><strong>Tokenizer</strong></span> : “token”.</li>
+<li><span class="green2"><strong>Un token = un mot.</strong></span><br>
+</li>
+<li><span class="blue2"><strong>Pour chaque nom de voie du référentiel</strong></span>, compter le nombre de tokens qui matchent 🎯 avec les tokens de l’adresse recherchée.</li>
+</ul>
 </section>
-<section id="score-par-token" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Score par token</h2>
+<section id="score-avec-tokenizer-token" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Score avec tokenizer “token”</h2>
 <p><span class="blue2"><strong>Pour retourner la voie la plus pertinente</strong></span>, on construit un score pour chaque voie : <span class="math display">\[
-\sum_{\text{∀t} \in \text{T}} {nb\_occurrence}_t
+score_{voie} = \sum_{\text{∀t} \in \text{T}} {nb\_occurrence}_t
 \]</span></p>
 <p>t = token<br>
 T = ensemble des tokens de l’adresse recherchée</p>
 </section>
-<section id="score-par-token-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Score par token</h2>
-<p><em>Exemple : score par token de “88 avenue du general charles de gaulle”</em></p>
+<section id="score-avec-tokenizer-token-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Score avec tokenizer “token”</h2>
+<p><em>Exemple : score avec tokenizer “token” de “88 avenue du general charles de gaulle”</em></p>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -741,7 +769,7 @@ T = ensemble des tokens de l’adresse recherchée</p>
 </tr>
 </tbody>
 </table>
-<p><span class="red2"><strong>Dans une grande base de données, c’est extrêment long.</strong></span></p>
+<p><span class="red2"><strong>Dans une grande base de données, c’est extrêmement long.</strong></span></p>
 </section></section>
 <section>
 <section id="étape-3-utiliser-un-index-inversé.-mais-quest-ce-donc" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
@@ -1027,10 +1055,10 @@ oin
 </table>
 </div>
 </section>
-<section id="score-par-n-grams" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Score par n-grams</h2>
-<p>Pour retourner la voie la plus pertinente, on construit un score pour chaque voie : <span class="math display">\[
-\sum_{\text{∀ngram} \in \text{N}} {nb\_occurrence}_{ngram}
+<section id="score-avec-tokenizer-n-grams" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Score avec tokenizer “n-grams”</h2>
+<p>Score pour chaque voie : <span class="math display">\[
+score_{voie} = \sum_{\text{∀ngram} \in \text{N}} {nb\_occurrence}_{ngram}
 \]</span></p>
 <p>N = ensemble des n-grams de l’adresse recherchée</p>
 </section>
@@ -1045,8 +1073,9 @@ oin
 </section>
 <section id="fuzziness" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Fuzziness</h2>
-<p>Contourner les fautes d’orthographes d’une autre façon : <span class="green2"><strong>fuzziness</strong></span></p>
-<p>Pour matcher deux tokens avec une fuzziness de niveau 1 = corriger l’un des tokens :</p>
+<p>Contourner les fautes d’orthographes d’une autre façon : <span class="green2"><strong>fuzziness</strong></span>.</p>
+<p><br></p>
+<p>Pour matcher 🎯 deux tokens avec une fuzziness de niveau 1 = corriger l’un des tokens :</p>
 <ul>
 <li>Ajout d’une lettre.<br>
 </li>
@@ -1059,7 +1088,7 @@ oin
 </section>
 <section id="score-global" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Score global</h2>
-<p>Le score global va donc combiner la somme des matchs au niveau :</p>
+<p>Le score global va donc combiner la somme des matchs 🎯 au niveau :</p>
 <ul>
 <li>token.<br>
 </li>
@@ -1067,57 +1096,57 @@ oin
 </li>
 <li>fuzziness.</li>
 </ul>
-<p>Ce score prendra en compte :</p>
-<ul>
-<li>Les <span class="green2"><strong>boosts</strong></span>.<br>
-</li>
-<li>Le niveau de fuzziness choisis.</li>
-</ul>
-<p>Ceci constitue <span class="blue2"><strong>la requête</strong></span> 🔍.</p>
 </section>
 <section id="boost" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Boost</h2>
-<p>On peut donner plus ou moins d’importance aux différents matchs grâce aux <span class="green2"><strong>boosts</strong></span></p>
-<p>Chaque occurrence est multipliée par un facteur qui dépend du niveau de match : <span class="blue2"><strong>boost</strong></span></p>
+<p>On peut donner plus ou moins d’importance aux différents matchs 🎯.<br>
+Chaque occurrence est multipliée par un facteur, appelé <span class="blue2"><strong>boost</strong></span>, qui dépend du niveau de match 🎯.</p>
 <p><em>Boosts actuels :</em></p>
 <table class="caption-top">
 <thead>
 <tr class="header">
-<th>match au niveau</th>
-<th>boost</th>
+<th><strong>match au niveau</strong></th>
+<th><strong>boost</strong></th>
+<th><strong>exemple</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td>token</td>
 <td>20</td>
+<td>“verdier” avec “verdier”</td>
 </tr>
 <tr class="even">
 <td>fuzzi 1</td>
 <td>15</td>
+<td>“verdie” avec “verdier”</td>
 </tr>
 <tr class="odd">
 <td>3-grams</td>
 <td>1</td>
+<td>“ver” avec “ver”</td>
 </tr>
 <tr class="even">
 <td>4-ngrams</td>
 <td>1</td>
+<td>“erdi” avec “erdi”</td>
 </tr>
 <tr class="odd">
 <td>5-grams</td>
 <td>1</td>
+<td>“verdi” avec “verdi”</td>
 </tr>
 </tbody>
 </table>
+<p><em>Exemple : recherche de “88 avenue verdier” et dans la base il y a la voie D : “verdier”.</em></p>
 </section>
 <section id="retour-sur-le-score-global" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Retour sur le score global</h2>
 <p><span class="math display">\[
-\sum_{\text{∀dn} \in \text{N}} \sum_{\text{∀sc} \in \text{dn}} boost_{dn}*{nb\_occurrence}_{sc}
+score_{voie} = \sum_{\text{∀n} \in \text{N}} \sum_{\text{∀sc} \in \text{n}} boost_{n}*{nb\_occurrence}_{sc}
 \]</span></p>
-<p>N = ensemble des niveaux de découpage de l’adresse recherchée <em>(niveau token, niveau fuzzi…)</em><br>
-dn = découpage de l’adresse recherchée selon le niveau <em>(boost associé)</em><br>
+<p>N = ensemble des niveaux <em>(niveau token, niveau fuzzi…)</em><br>
+n = niveau<br>
 sc = sous-chaîne <em>(un token, un 3-grams…)</em></p>
 </section>
 <section id="configurer-le-moteur" class="slide level2" data-background-image="background.svg" data-background-size="contain">
@@ -1164,6 +1193,8 @@ sc = sous-chaîne <em>(un token, un 3-grams…)</em></p>
 </section>
 <section id="algorithme-didentification-dadresses-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Algorithme d’identification d’adresses</h2>
+
+<img data-src="img/schema_moteur_fr.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"><aside class="notes">
 <ul>
 <li>Succession de requêtes ElasticSearch.</li>
 <li>Étapes de validation des résultats après chaque requête.</li>
@@ -1173,17 +1204,28 @@ sc = sous-chaîne <em>(un token, un 3-grams…)</em></p>
 </li>
 <li>une indicatrice sur qualité de l’identification.<br>
 </li>
-<li>un ratio qui mesure l’écart entre la 1ère et la 2ème possibilité retournées par Elastic.</li>
+<li>un ratio qui mesure l’écart entre la 1ère et la 2ème possibilité retournées par Elastic.<br>
+</li>
 </ul></li>
 </ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
-<section id="schéma-de-lalgorithme" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Schéma de l’algorithme</h2>
-
-<img data-src="img/schema_moteur_fr.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"></section>
 <section id="indicatrice-qualité" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Indicatrice qualité</h2>
-<p>Dépend du pourcentage de 3-grams de la voie du référentiel contenus dans l’adresse recherche.</p>
+<ul>
+<li>Dépend du pourcentage de 3-grams de la voie du référentiel contenus dans l’adresse recherchée.</li>
+<li>Calcul non réalisable avec Elastic, donc effectué post requête.</li>
+</ul>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -1241,13 +1283,13 @@ sc = sous-chaîne <em>(un token, un 3-grams…)</em></p>
 </tbody>
 </table>
 </section>
-<section id="ratio-1er2ème-possibilité-de-voie" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Ratio 1er/2ème possibilité de voie</h2>
+<section id="distance-entre-la-1ère-et-la-2ème-voie-la-plus-pertinente" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Distance entre la 1ère et la 2ème voie la plus pertinente</h2>
 <p><span class="math display">\[
 \text{ratio} = 1 - \frac{R_2}{R_1}
 \]</span></p>
-<p>R1 = score Elastic de la 1ère possibilité<br>
-R2 = score Elasrtic de la 2ème possibilité</p>
+<p>R1 = score Elastic de la 1ère voie la plus pertinente<br>
+R2 = score Elastic de la 2ème voie la plus pertinente</p>
 <p>Plus le ratio est proche de 1, plus le résultat retourné est loin de la 2ème proposition.</p>
 </section></section>
 <section id="plan-de-la-présentation-4" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
@@ -1274,10 +1316,10 @@ R2 = score Elasrtic de la 2ème possibilité</p>
 <h2>Rapidité de l’algorithme</h2>
 <p><span class="blue2"><strong>XXX secondes pour XXX adresses</strong></span></p>
 <p>Démonstration en utilisant l’API Gaïa : url.</p>
-</section>
-<section id="utilisation-du-moteur-au-sein-du-projet-gaïa" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Utilisation du moteur au sein du projet Gaïa</h2>
-<p>Métriques sur les mises à jour du référentiel : - ….</p>
+<!-- ## Utilisation du moteur au sein du projet Ga&#xEF;a
+
+M&#xE9;triques sur les mises &#xE0; jour du r&#xE9;f&#xE9;rentiel :
+- .... -->
 </section></section>
 <section id="plan-de-la-présentation-5" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>

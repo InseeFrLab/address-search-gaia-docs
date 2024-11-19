@@ -39,7 +39,7 @@
     "href": "src/seminaire-dms/index.html#dautres-données",
     "title": "Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa",
     "section": "D’autres données",
-    "text": "D’autres données\n\nPolygones BDTOPO\nPolygones Parcelles du cadastre\nLiens code postaux - libellés commune - COG\nPolygones QPV\n\nPas d’identifiant Gaïa, donc pas de suivi dans le temps de ces objets."
+    "text": "D’autres données\n\nPolygones du bâti\nPolygones Parcelles du cadastre\nLiens code postaux - libellés commune - COG\nPolygones QPV\n\nPas d’identifiant Gaïa, donc pas de suivi dans le temps de ces objets."
   },
   {
     "objectID": "src/seminaire-dms/index.html#quelques-métriques-sur-le-référentiel",
@@ -53,7 +53,7 @@
     "href": "src/seminaire-dms/index.html#différents-besoins-au-sein-du-ssp",
     "title": "Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa",
     "section": "Différents besoins au sein du SSP",
-    "text": "Différents besoins au sein du SSP\n\nRésil : identifier le(s) adresse(s) des individus pour sélectionner la plus récente.\nGéoloc : .\nDMTR : .\nAutres utilisateurs : par exemple identification des adresses sur les certificats de décès…"
+    "text": "Différents besoins au sein du SSP\n\nRésil : identifier le(s) adresse(s) des individus pour sélectionner la plus récente.\n\nGéoloc : identification du référentiel Géoloc et génération de leur nouveau référentiel.\n\nAutres utilisateurs possibles :\n\nIdentification des adresses sur les certificats de décès.\n\nIdentification des adresses de Sirus."
   },
   {
     "objectID": "src/seminaire-dms/index.html#regroupements-dadresses",
@@ -81,7 +81,7 @@
     "href": "src/seminaire-dms/index.html#pourquoi-elasticsearch-pour-la-recherche-textuelle",
     "title": "Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa",
     "section": "Pourquoi ElasticSearch pour la recherche textuelle ?",
-    "text": "Pourquoi ElasticSearch pour la recherche textuelle ?\n\n\n\n\n\n\n\n\n\nCritères\nElasticsearch\nSQL\nAddok*\n\n\n\n\nRecherche de texte avancée\n✅\n❌\n✅\n\n\nRapidité\n✅\n✅\n⚠️\n\n\nPrécision\n✅\n❌\n⚠️\n\n\nPersonnalisation des recherches\n✅\n❌\n❌\n\n\nFacilité d’implémentation\n❌\n✅\n✅\n\n\nRessources\n❌\n✅\n✅\n\n\n\n*Addok: géocodeur de la BAN."
+    "text": "Pourquoi ElasticSearch pour la recherche textuelle ?\n\n\n\n\n\n\n\n\n\nCritères\nElasticSearch\nSQL\nAddok*\n\n\n\n\nRecherche de texte avancée\n✅\n❌\n✅\n\n\nRapidité\n✅\n✅\n⚠️\n\n\nPrécision\n✅\n❌\n⚠️\n\n\nPersonnalisation des recherches\n✅\n❌\n❌\n\n\nFacilité d’implémentation\n❌\n✅\n✅\n\n\nRessources\n❌\n✅\n✅\n\n\nMaintenance\n⚠️\n✅\n❌\n\n\n\n\nDonner explication addok"
   },
   {
     "objectID": "src/seminaire-dms/index.html#outils-pour-créer-un-moteur-elasticsearch",
@@ -116,21 +116,21 @@
     "href": "src/seminaire-dms/index.html#recherche-par-token",
     "title": "Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa",
     "section": "Recherche par token",
-    "text": "Recherche par token\nUn token = un mot\nPour chaque token de l’adresse recherchée, il faut compter le nombre de match 🎯 avec les tokens des noms de voie du référentiel.\nPour “88 avenue du general charles de gaulle”, compter le nombre de : “88”, “avenue”, “du”, “general”… dans tous les noms de voie."
+    "text": "Recherche par token\n\nTokenizer : “token”.\nUn token = un mot.\n\nPour chaque nom de voie du référentiel, compter le nombre de tokens qui matchent 🎯 avec les tokens de l’adresse recherchée."
   },
   {
-    "objectID": "src/seminaire-dms/index.html#score-par-token",
-    "href": "src/seminaire-dms/index.html#score-par-token",
+    "objectID": "src/seminaire-dms/index.html#score-avec-tokenizer-token",
+    "href": "src/seminaire-dms/index.html#score-avec-tokenizer-token",
     "title": "Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa",
-    "section": "Score par token",
-    "text": "Score par token\nPour retourner la voie la plus pertinente, on construit un score pour chaque voie : \\[\n\\sum_{\\text{∀t} \\in \\text{T}} {nb\\_occurrence}_t\n\\]\nt = token\nT = ensemble des tokens de l’adresse recherchée"
+    "section": "Score avec tokenizer “token”",
+    "text": "Score avec tokenizer “token”\nPour retourner la voie la plus pertinente, on construit un score pour chaque voie : \\[\nscore_{voie} = \\sum_{\\text{∀t} \\in \\text{T}} {nb\\_occurrence}_t\n\\]\nt = token\nT = ensemble des tokens de l’adresse recherchée"
   },
   {
-    "objectID": "src/seminaire-dms/index.html#score-par-token-1",
-    "href": "src/seminaire-dms/index.html#score-par-token-1",
+    "objectID": "src/seminaire-dms/index.html#score-avec-tokenizer-token-1",
+    "href": "src/seminaire-dms/index.html#score-avec-tokenizer-token-1",
     "title": "Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa",
-    "section": "Score par token",
-    "text": "Score par token\nExemple : score par token de “88 avenue du general charles de gaulle”\n\n\n\nidVoie\nnom de voie\nscore\n\n\n\n\nA\ndu general leclerc\n2\n\n\nB\ndu general charles de gaulle\n5\n\n\nC\ndu point du jour\n2\n\n\nD\nverdier\n0\n\n\nE\ndes cours\n0\n\n\n\nDans une grande base de données, c’est extrêment long."
+    "section": "Score avec tokenizer “token”",
+    "text": "Score avec tokenizer “token”\nExemple : score avec tokenizer “token” de “88 avenue du general charles de gaulle”\n\n\n\nidVoie\nnom de voie\nscore\n\n\n\n\nA\ndu general leclerc\n2\n\n\nB\ndu general charles de gaulle\n5\n\n\nC\ndu point du jour\n2\n\n\nD\nverdier\n0\n\n\nE\ndes cours\n0\n\n\n\nDans une grande base de données, c’est extrêmement long."
   },
   {
     "objectID": "src/seminaire-dms/index.html#index-inversé-token",
@@ -154,11 +154,11 @@
     "text": "Index inversé 3-grams\nExemple\n\n\n\n\n\n\nidVoie\n\n\nnom de voie\n\n\n\n\n\n\nA\n\n\ndu general leclerc\n\n\n\n\nB\n\n\ndu general charles de gaulle\n\n\n\n\nC\n\n\ndu point du jour\n\n\n\n\nD\n\n\nverdier\n\n\n\n\nE\n\n\ndes cours\n\n\n\n\n\n\n\n\n\n\n\n\n3-gram\n\n\noccurrences\n\n\n\n\n\n\ngen\n\n\n{“A”: 1, “B”: 1}\n\n\n\n\nchar\n\n\n{“B”: 1}\n\n\n\n\nour\n\n\n{“C”: 1, “E”: 1}\n\n\n\n\noin\n\n\n{“C”: 1}\n\n\n\n\n…\n\n\n…"
   },
   {
-    "objectID": "src/seminaire-dms/index.html#score-par-n-grams",
-    "href": "src/seminaire-dms/index.html#score-par-n-grams",
+    "objectID": "src/seminaire-dms/index.html#score-avec-tokenizer-n-grams",
+    "href": "src/seminaire-dms/index.html#score-avec-tokenizer-n-grams",
     "title": "Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa",
-    "section": "Score par n-grams",
-    "text": "Score par n-grams\nPour retourner la voie la plus pertinente, on construit un score pour chaque voie : \\[\n\\sum_{\\text{∀ngram} \\in \\text{N}} {nb\\_occurrence}_{ngram}\n\\]\nN = ensemble des n-grams de l’adresse recherchée"
+    "section": "Score avec tokenizer “n-grams”",
+    "text": "Score avec tokenizer “n-grams”\nScore pour chaque voie : \\[\nscore_{voie} = \\sum_{\\text{∀ngram} \\in \\text{N}} {nb\\_occurrence}_{ngram}\n\\]\nN = ensemble des n-grams de l’adresse recherchée"
   },
   {
     "objectID": "src/seminaire-dms/index.html#limites-des-n-grams",
@@ -172,28 +172,28 @@
     "href": "src/seminaire-dms/index.html#fuzziness",
     "title": "Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa",
     "section": "Fuzziness",
-    "text": "Fuzziness\nContourner les fautes d’orthographes d’une autre façon : fuzziness\nPour matcher deux tokens avec une fuzziness de niveau 1 = corriger l’un des tokens :\n\nAjout d’une lettre.\n\nSuppression d’une lettre.\n\nRemplacement d’une lettre.\n\nÉchanger deux lettres de place."
+    "text": "Fuzziness\nContourner les fautes d’orthographes d’une autre façon : fuzziness.\n\nPour matcher 🎯 deux tokens avec une fuzziness de niveau 1 = corriger l’un des tokens :\n\nAjout d’une lettre.\n\nSuppression d’une lettre.\n\nRemplacement d’une lettre.\n\nÉchanger deux lettres de place."
   },
   {
     "objectID": "src/seminaire-dms/index.html#score-global",
     "href": "src/seminaire-dms/index.html#score-global",
     "title": "Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa",
     "section": "Score global",
-    "text": "Score global\nLe score global va donc combiner la somme des matchs au niveau :\n\ntoken.\n\nn-grams.\n\nfuzziness.\n\nCe score prendra en compte :\n\nLes boosts.\n\nLe niveau de fuzziness choisis.\n\nCeci constitue la requête 🔍."
+    "text": "Score global\nLe score global va donc combiner la somme des matchs 🎯 au niveau :\n\ntoken.\n\nn-grams.\n\nfuzziness."
   },
   {
     "objectID": "src/seminaire-dms/index.html#boost",
     "href": "src/seminaire-dms/index.html#boost",
     "title": "Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa",
     "section": "Boost",
-    "text": "Boost\nOn peut donner plus ou moins d’importance aux différents matchs grâce aux boosts\nChaque occurrence est multipliée par un facteur qui dépend du niveau de match : boost\nBoosts actuels :\n\n\n\nmatch au niveau\nboost\n\n\n\n\ntoken\n20\n\n\nfuzzi 1\n15\n\n\n3-grams\n1\n\n\n4-ngrams\n1\n\n\n5-grams\n1"
+    "text": "Boost\nOn peut donner plus ou moins d’importance aux différents matchs 🎯.\nChaque occurrence est multipliée par un facteur, appelé boost, qui dépend du niveau de match 🎯.\nBoosts actuels :\n\n\n\nmatch au niveau\nboost\nexemple\n\n\n\n\ntoken\n20\n“verdier” avec “verdier”\n\n\nfuzzi 1\n15\n“verdie” avec “verdier”\n\n\n3-grams\n1\n“ver” avec “ver”\n\n\n4-ngrams\n1\n“erdi” avec “erdi”\n\n\n5-grams\n1\n“verdi” avec “verdi”\n\n\n\nExemple : recherche de “88 avenue verdier” et dans la base il y a la voie D : “verdier”."
   },
   {
     "objectID": "src/seminaire-dms/index.html#retour-sur-le-score-global",
     "href": "src/seminaire-dms/index.html#retour-sur-le-score-global",
     "title": "Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa",
     "section": "Retour sur le score global",
-    "text": "Retour sur le score global\n\\[\n\\sum_{\\text{∀dn} \\in \\text{N}} \\sum_{\\text{∀sc} \\in \\text{dn}} boost_{dn}*{nb\\_occurrence}_{sc}\n\\]\nN = ensemble des niveaux de découpage de l’adresse recherchée (niveau token, niveau fuzzi…)\ndn = découpage de l’adresse recherchée selon le niveau (boost associé)\nsc = sous-chaîne (un token, un 3-grams…)"
+    "text": "Retour sur le score global\n\\[\nscore_{voie} = \\sum_{\\text{∀n} \\in \\text{N}} \\sum_{\\text{∀sc} \\in \\text{n}} boost_{n}*{nb\\_occurrence}_{sc}\n\\]\nN = ensemble des niveaux (niveau token, niveau fuzzi…)\nn = niveau\nsc = sous-chaîne (un token, un 3-grams…)"
   },
   {
     "objectID": "src/seminaire-dms/index.html#configurer-le-moteur",
@@ -214,21 +214,14 @@
     "href": "src/seminaire-dms/index.html#algorithme-didentification-dadresses-1",
     "title": "Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa",
     "section": "Algorithme d’identification d’adresses",
-    "text": "Algorithme d’identification d’adresses\n\nSuccession de requêtes ElasticSearch.\nÉtapes de validation des résultats après chaque requête.\nRetourne :\n\nle(s) identifiant(s) Gaïa retrouvés.\n\nune indicatrice sur qualité de l’identification.\n\nun ratio qui mesure l’écart entre la 1ère et la 2ème possibilité retournées par Elastic."
-  },
-  {
-    "objectID": "src/seminaire-dms/index.html#schéma-de-lalgorithme",
-    "href": "src/seminaire-dms/index.html#schéma-de-lalgorithme",
-    "title": "Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa",
-    "section": "Schéma de l’algorithme",
-    "text": "Schéma de l’algorithme"
+    "text": "Algorithme d’identification d’adresses\n\n\n\nSuccession de requêtes ElasticSearch.\nÉtapes de validation des résultats après chaque requête.\nRetourne :\n\nle(s) identifiant(s) Gaïa retrouvés.\n\nune indicatrice sur qualité de l’identification.\n\nun ratio qui mesure l’écart entre la 1ère et la 2ème possibilité retournées par Elastic."
   },
   {
     "objectID": "src/seminaire-dms/index.html#indicatrice-qualité",
     "href": "src/seminaire-dms/index.html#indicatrice-qualité",
     "title": "Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa",
     "section": "Indicatrice qualité",
-    "text": "Indicatrice qualité\nDépend du pourcentage de 3-grams de la voie du référentiel contenus dans l’adresse recherche.\n\n\n\nVoie qualifiée de\nPourcentage de 3-grams\n\n\n\n\nsûre\n≥ 65%\n\n\npeu douteuse\n35% ≤ x &lt; 65%\n\n\ndouteuse\n10% ≤ x &lt; 35%\n\n\nnon retrouvée\n&lt; 10%\n\n\n\nExemple : 100% des 3-grams de “avenue de la marne” dans “20 bis avenue de la marne”."
+    "text": "Indicatrice qualité\n\nDépend du pourcentage de 3-grams de la voie du référentiel contenus dans l’adresse recherchée.\nCalcul non réalisable avec Elastic, donc effectué post requête.\n\n\n\n\nVoie qualifiée de\nPourcentage de 3-grams\n\n\n\n\nsûre\n≥ 65%\n\n\npeu douteuse\n35% ≤ x &lt; 65%\n\n\ndouteuse\n10% ≤ x &lt; 35%\n\n\nnon retrouvée\n&lt; 10%\n\n\n\nExemple : 100% des 3-grams de “avenue de la marne” dans “20 bis avenue de la marne”."
   },
   {
     "objectID": "src/seminaire-dms/index.html#valeurs-de-lindicatrice-qualité",
@@ -238,11 +231,11 @@
     "text": "Valeurs de l’indicatrice qualité\n\n\n\nValeur\nidGaïa maximum retrouvé\n\n\n\n\n6 à 10\nidAdresse\n\n\n3 à 5\nidVoie\n\n\n2\nidCommune\n\n\n0 à 1\nAucun"
   },
   {
-    "objectID": "src/seminaire-dms/index.html#ratio-1er2ème-possibilité-de-voie",
-    "href": "src/seminaire-dms/index.html#ratio-1er2ème-possibilité-de-voie",
+    "objectID": "src/seminaire-dms/index.html#distance-entre-la-1ère-et-la-2ème-voie-la-plus-pertinente",
+    "href": "src/seminaire-dms/index.html#distance-entre-la-1ère-et-la-2ème-voie-la-plus-pertinente",
     "title": "Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa",
-    "section": "Ratio 1er/2ème possibilité de voie",
-    "text": "Ratio 1er/2ème possibilité de voie\n\\[\n\\text{ratio} = 1 - \\frac{R_2}{R_1}\n\\]\nR1 = score Elastic de la 1ère possibilité\nR2 = score Elasrtic de la 2ème possibilité\nPlus le ratio est proche de 1, plus le résultat retourné est loin de la 2ème proposition."
+    "section": "Distance entre la 1ère et la 2ème voie la plus pertinente",
+    "text": "Distance entre la 1ère et la 2ème voie la plus pertinente\n\\[\n\\text{ratio} = 1 - \\frac{R_2}{R_1}\n\\]\nR1 = score Elastic de la 1ère voie la plus pertinente\nR2 = score Elastic de la 2ème voie la plus pertinente\nPlus le ratio est proche de 1, plus le résultat retourné est loin de la 2ème proposition."
   },
   {
     "objectID": "src/seminaire-dms/index.html#evaluation-de-lalgorithme-didentification",
@@ -257,13 +250,6 @@
     "title": "Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa",
     "section": "Rapidité de l’algorithme",
     "text": "Rapidité de l’algorithme\nXXX secondes pour XXX adresses\nDémonstration en utilisant l’API Gaïa : url."
-  },
-  {
-    "objectID": "src/seminaire-dms/index.html#utilisation-du-moteur-au-sein-du-projet-gaïa",
-    "href": "src/seminaire-dms/index.html#utilisation-du-moteur-au-sein-du-projet-gaïa",
-    "title": "Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa",
-    "section": "Utilisation du moteur au sein du projet Gaïa",
-    "text": "Utilisation du moteur au sein du projet Gaïa\nMétriques sur les mises à jour du référentiel : - …."
   },
   {
     "objectID": "src/seminaire-dms/index.html#pistes-damélioration",
