@@ -29,10 +29,12 @@
 
 ![](img/voies_adresses.png){width=75% fig-align="center"}
 
+::: {.notes}
 Autres données disponibles (aspect géométrique des objets) :  
 
 - Pour chaque adresse Gaïa : point gps, lien parcelle.  
-- Pour chaque commune Gaïa : polygone.  
+- Pour chaque commune Gaïa : polygone.
+:::    
 
 <!-- A verifier -->
 
@@ -59,6 +61,14 @@ Sources fiables :
 
 Au moins une mise à jour par mois (avec conservation des identifiants Gaïa).  
 
+::: {.notes}
+Une mise à jour : 
+1. Récupérer la nouvelle base d'une source données.
+2. Identifier les adresses textuellement : 
+- Les adresses qui sont retrouvées sont alors modifiées si des nouveautés apparaissent.
+- Les adresses non retrouvées entraînent la création de nouveaux objets Gaïa.
+L'étape d'identification des adresses permet de ne pas écraser les identifiants Gaïa.
+:::    
 
 ## D'autres données
 

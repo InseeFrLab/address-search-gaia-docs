@@ -12,7 +12,9 @@ Nouvel objet géographique :  [**le lieu géographique**]{.green2}
 
 <br>
 
-[**Utilisation :**]{.blue2} Regrouper les adresses avec différents identifiants Gaïa mais qui représentent le même lieu.  
+[**Utilisation :**]{.blue2} Regrouper les adresses avec différents identifiants Gaïa mais qui représentent le même lieu. 
+
+<br>
 
 *Exemple : plusieurs adresses pour une même maison si elle a différentes entrées → même lieu géographique.*
 
@@ -23,4 +25,4 @@ Nouvel objet géographique :  [**le lieu géographique**]{.green2}
 - Besoin récurrent au SSP.
 - Indispensable pour construire et mettre à jour le référentiel.
 
-Il faut donc un [**moteur de recherche**]{.blue2}.
+Il faut donc un [**moteur de recherche**]{.blue2} ⚙️.
