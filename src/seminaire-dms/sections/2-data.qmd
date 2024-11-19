@@ -23,7 +23,7 @@ Nouvel objet géographique :  [**le lieu géographique**]{.green2}
 
 [**Trouver l'identifiant d'adresse à partir d'un libellé d'adresse plus ou moins correcte.**]{.green2}
 
-- Besoin récurrent au SSP.
+- Besoin récurrent au sein du SSP.
 - Indispensable pour construire et mettre à jour le référentiel.
 
 Il faut donc un [**moteur de recherche**]{.blue2} ⚙️.

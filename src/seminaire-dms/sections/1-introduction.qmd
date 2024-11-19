@@ -64,11 +64,12 @@ Au moins une mise à jour par mois (avec conservation des identifiants Gaïa).
 
 ::: {.notes}
 Une mise à jour : 
-1. Récupérer la nouvelle base d'une source données.
-2. Identifier les adresses textuellement : 
-- Les adresses qui sont retrouvées sont alors modifiées si des nouveautés apparaissent.
-- Les adresses non retrouvées entraînent la création de nouveaux objets Gaïa.
-L'étape d'identification des adresses permet de ne pas écraser les identifiants Gaïa.
+
+1. Récupérer la nouvelle base d'une source données.  
+2. Identifier les adresses textuellement :  
+- Les adresses qui sont retrouvées sont alors modifiées si des nouveautés apparaissent.  
+- Les adresses non retrouvées entraînent la création de nouveaux objets Gaïa.  
+L'étape d'identification des adresses permet de ne pas écraser les identifiants Gaïa.  
 :::    
 
 ## D'autres données

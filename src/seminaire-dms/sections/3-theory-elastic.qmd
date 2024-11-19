@@ -7,7 +7,7 @@
 
 ## Pourquoi ElasticSearch pour la recherche textuelle ?
 
-| **Critères**                         | **ElasticSearch** | **SQL** | **Addok\***|
+| **Critères**                         | **ElasticSearch** | **SQL** | **Addok**|
 |:-------------------------------------|:-----------------:|:-------:|:-------:|
 | Recherche de texte avancée           | ✅ | ❌ | ✅ |
 | Rapidité                             | ✅ | ✅ | ⚠️ |
@@ -20,8 +20,6 @@
 ::: {.notes}
 Donner explication addok
 ::: 
-
-
 
 <!-- a refaire car je ne connais pas addok, j'ai pas compris -->
 
