@@ -2,7 +2,7 @@
 
 - [**Résil :**]{.red2} identifier le(s) adresse(s) des individus pour sélectionner la plus récente.  
 - **Géoloc :** identification du référentiel Géoloc et génération de leur nouveau référentiel.  
-- Autres utilisateurs possibles : 
+- Autres utilisateurs possibles :  
     - Identification des adresses sur les certificats de décès.  
     - Identification des adresses de Sirus.  
 

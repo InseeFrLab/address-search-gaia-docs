@@ -34,11 +34,16 @@ Donner explication addok
 | **Consommation des ressources**  | Consomme plus de mémoire et de CPU, en particulier pour l'indexation initiale                                             | Consommation de ressources generalement inférieure pour des requêtes simples                                  |
 | **Coût de stockage**             | Peut impliquer une duplication des données (coût supplémentaire de stockage)                                              | Pas de duplication nécessaire                                                                                 | -->
 
-## Outils pour créer un moteur ElasticSearch
+## Outils pour moteur ElasticSearch
 
-- [**Mappings**]{.blue2} 🏷️ : spécifier les traitements à appliquer pour chaque variable.
-- [**Settings**]{.blue2} 🛠️ : définir les différents traitements.
-- [**Requêtes**]{.blue2} 🔍 : recherche sur les variables définies dans les mappings.
+- [**Mappings**]{.blue2} 🏷️ : spécifier les traitements à appliquer pour chaque variable de nos données.  
+  - *Variable_a → Analyzer_for_numbers*  
+  - *Variable_b → Analyzer_for_address_text*  
+  - *Variable_c → Analyzer_for_address_text*  
+- [**Settings**]{.blue2} 🛠️ : définir les différents traitements.  
+  - *Analyzer_for_numbers → Filtre_α, Filtre_β + Tokenizer_1*  
+  - *Analyzer_for_address_text → Filtre_γ, Filtre_δ, Filtre_ε + Tokenizer_2*  
+- [**Requêtes**]{.blue2} 🔍 : recherche sur les variables définies dans les mappings.  
 
 ::: {.notes}
 Et éventuellement, savoir coder en Python/Java...
@@ -79,7 +84,6 @@ On peut commencer à créer notre moteur ⚙️.
 
 ## Recherche par token
 
-- [**Tokenizer**]{.blue2} : "token".
 - [**Un token = un mot.**]{.green2}  
 - [**Pour chaque nom de voie du référentiel**]{.blue2}, compter le nombre de tokens qui matchent 🎯 avec les tokens de l'adresse recherchée.
 
@@ -192,7 +196,7 @@ T = ensemble des tokens de l'adresse recherchée
 [**Comptage direct ⚡ des occurrences**]{.green2} de chaque token de la base par idVoie.
 
 ::: {.notes}
-Faire un index inversé par token, c'est récupérer tous les tokens des noms de voie dans le référentiel et on les applati dans une colonne.
+Faire un index inversé par token, c'est récupérer tous les tokens des noms de voie dans le référentiel et on les aplati dans une colonne.
 
 Nous obtenons directement le comptage de chaque token par idVoie, pour tous les tokens présents dans les noms de voie du référentiel.
 ::: 
