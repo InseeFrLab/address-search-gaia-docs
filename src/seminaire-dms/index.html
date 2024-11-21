@@ -510,8 +510,10 @@ L’étape d’identification des adresses permet de ne pas écraser les identif
 </section>
 <section id="regroupements-dadresses" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Regroupements d’adresses</h2>
-<p>Nouvel objet géographique : <span class="green2"><strong>le lieu géographique</strong></span> <!-- Explication sch&#xE9;ma lieu g&#xE9;ographique. --></p>
-<p><br></p>
+<p>Nouvel objet géographique : <span class="green2"><strong>le lieu géographique</strong></span> <!-- Explication sch&#xE9;ma lieu g&#xE9;ographique. --> schéma à venir</p>
+</section>
+<section id="le-lieu-géographique" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Le lieu géographique</h2>
 <p><span class="blue2"><strong>Utilisation :</strong></span> Regrouper les adresses avec différents identifiants Gaïa mais qui représentent le même lieu.</p>
 <p><br></p>
 <p><em>Exemple : plusieurs adresses pour une même maison si elle a différentes entrées → même lieu géographique.</em></p>
@@ -1355,15 +1357,49 @@ R2 = score Elastic de la 2ème voie la plus pertinente</p>
 <h1>5️⃣ Performances de l’algorithme d’identification</h1>
 
 </section>
-<section id="evaluation-de-lalgorithme-didentification" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Evaluation de l’algorithme d’identification</h2>
+<section id="constitution-dun-jeu-de-test" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Constitution d’un jeu de test</h2>
 <p>Jeu de test d’adresses pasrau x resil x majic x gaia</p>
-<p>Sur 100 000 adresses sur tout le territoire : - Accuracy : … - …</p>
+<p>Explications</p>
+</section>
+<section id="évaluation-de-lalgorithme-didentification" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Évaluation de l’algorithme d’identification</h2>
+<p>Sur 100 000 adresses sur tout le territoire français :</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 23%">
+<col style="width: 19%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Adresse trouvée</th>
+<th>Voie trouvée</th>
+<th>Commune trouvée/rien trouvé</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Pourcentage</td>
+<td>86,0%</td>
+<td>99,5%</td>
+<td>0,5%</td>
+</tr>
+<tr class="even">
+<td>Accuracy</td>
+<td>0.94</td>
+<td>0.94</td>
+<td>x</td>
+</tr>
+</tbody>
+</table>
 </section>
 <section id="rapidité-de-lalgorithme" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Rapidité de l’algorithme</h2>
-<p><span class="blue2"><strong>XXX secondes pour XXX adresses</strong></span></p>
-<p>Démonstration en utilisant l’API Gaïa : url.</p>
+<p><span class="blue2"><strong>2 secondes pour 500 adresses</strong></span></p>
+<p>Démonstration en utilisant <a href="https://api-interrogation-geo.insee.fr/swagger-ui/index.html">l’API Gaïa</a>.</p>
 <!-- ## Utilisation du moteur au sein du projet Ga&#xEF;a
 
 M&#xE9;triques sur les mises &#xE0; jour du r&#xE9;f&#xE9;rentiel :

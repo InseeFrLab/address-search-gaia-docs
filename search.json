@@ -60,7 +60,14 @@
     "href": "src/seminaire-dms/index.html#regroupements-dadresses",
     "title": "Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa",
     "section": "Regroupements d’adresses",
-    "text": "Regroupements d’adresses\nNouvel objet géographique : le lieu géographique \n\nUtilisation : Regrouper les adresses avec différents identifiants Gaïa mais qui représentent le même lieu.\n\nExemple : plusieurs adresses pour une même maison si elle a différentes entrées → même lieu géographique."
+    "text": "Regroupements d’adresses\nNouvel objet géographique : le lieu géographique  schéma à venir"
+  },
+  {
+    "objectID": "src/seminaire-dms/index.html#le-lieu-géographique",
+    "href": "src/seminaire-dms/index.html#le-lieu-géographique",
+    "title": "Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa",
+    "section": "Le lieu géographique",
+    "text": "Le lieu géographique\nUtilisation : Regrouper les adresses avec différents identifiants Gaïa mais qui représentent le même lieu.\n\nExemple : plusieurs adresses pour une même maison si elle a différentes entrées → même lieu géographique."
   },
   {
     "objectID": "src/seminaire-dms/index.html#besoin-didentification-des-adresses-textuelles",
@@ -238,18 +245,25 @@
     "text": "Distance entre la 1ère et la 2ème voie la plus pertinente\n\\[\n\\text{ratio} = 1 - \\frac{R_2}{R_1}\n\\]\nR1 = score Elastic de la 1ère voie la plus pertinente\nR2 = score Elastic de la 2ème voie la plus pertinente\nPlus le ratio est proche de 1, plus le résultat retourné est loin de la 2ème proposition."
   },
   {
-    "objectID": "src/seminaire-dms/index.html#evaluation-de-lalgorithme-didentification",
-    "href": "src/seminaire-dms/index.html#evaluation-de-lalgorithme-didentification",
+    "objectID": "src/seminaire-dms/index.html#constitution-dun-jeu-de-test",
+    "href": "src/seminaire-dms/index.html#constitution-dun-jeu-de-test",
     "title": "Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa",
-    "section": "Evaluation de l’algorithme d’identification",
-    "text": "Evaluation de l’algorithme d’identification\nJeu de test d’adresses pasrau x resil x majic x gaia\nSur 100 000 adresses sur tout le territoire : - Accuracy : … - …"
+    "section": "Constitution d’un jeu de test",
+    "text": "Constitution d’un jeu de test\nJeu de test d’adresses pasrau x resil x majic x gaia\nExplications"
+  },
+  {
+    "objectID": "src/seminaire-dms/index.html#évaluation-de-lalgorithme-didentification",
+    "href": "src/seminaire-dms/index.html#évaluation-de-lalgorithme-didentification",
+    "title": "Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa",
+    "section": "Évaluation de l’algorithme d’identification",
+    "text": "Évaluation de l’algorithme d’identification\nSur 100 000 adresses sur tout le territoire français :\n\n\n\n\n\n\n\n\n\n\nAdresse trouvée\nVoie trouvée\nCommune trouvée/rien trouvé\n\n\n\n\nPourcentage\n86,0%\n99,5%\n0,5%\n\n\nAccuracy\n0.94\n0.94\nx"
   },
   {
     "objectID": "src/seminaire-dms/index.html#rapidité-de-lalgorithme",
     "href": "src/seminaire-dms/index.html#rapidité-de-lalgorithme",
     "title": "Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa",
     "section": "Rapidité de l’algorithme",
-    "text": "Rapidité de l’algorithme\nXXX secondes pour XXX adresses\nDémonstration en utilisant l’API Gaïa : url."
+    "text": "Rapidité de l’algorithme\n2 secondes pour 500 adresses\nDémonstration en utilisant l’API Gaïa."
   },
   {
     "objectID": "src/seminaire-dms/index.html#pistes-damélioration",
