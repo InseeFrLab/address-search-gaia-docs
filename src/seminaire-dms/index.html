@@ -634,11 +634,25 @@ L’étape d’identification des adresses permet de ne pas écraser les identif
 | **Consommation des ressources**  | Consomme plus de m&#xE9;moire et de CPU, en particulier pour l'indexation initiale                                             | Consommation de ressources generalement inf&#xE9;rieure pour des requ&#xEA;tes simples                                  |
 | **Co&#xFB;t de stockage**             | Peut impliquer une duplication des donn&#xE9;es (co&#xFB;t suppl&#xE9;mentaire de stockage)                                              | Pas de duplication n&#xE9;cessaire                                                                                 | -->
 </section>
-<section id="outils-pour-créer-un-moteur-elasticsearch" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Outils pour créer un moteur ElasticSearch</h2>
+<section id="outils-pour-moteur-elasticsearch" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Outils pour moteur ElasticSearch</h2>
 <ul>
-<li><span class="blue2"><strong>Mappings</strong></span> 🏷️ : spécifier les traitements à appliquer pour chaque variable.</li>
-<li><span class="blue2"><strong>Settings</strong></span> 🛠️ : définir les différents traitements.</li>
+<li><span class="blue2"><strong>Mappings</strong></span> 🏷️ : spécifier les traitements à appliquer pour chaque variable de nos données.
+<ul>
+<li><em>Variable_a → Analyzer_for_numbers</em><br>
+</li>
+<li><em>Variable_b → Analyzer_for_address_text</em><br>
+</li>
+<li><em>Variable_c → Analyzer_for_address_text</em><br>
+</li>
+</ul></li>
+<li><span class="blue2"><strong>Settings</strong></span> 🛠️ : définir les différents traitements.
+<ul>
+<li><em>Analyzer_for_numbers → Filtre_α, Filtre_β + Tokenizer_1</em><br>
+</li>
+<li><em>Analyzer_for_address_text → Filtre_γ, Filtre_δ, Filtre_ε + Tokenizer_2</em><br>
+</li>
+</ul></li>
 <li><span class="blue2"><strong>Requêtes</strong></span> 🔍 : recherche sur les variables définies dans les mappings.</li>
 </ul>
 <aside class="notes">
@@ -729,7 +743,6 @@ L’étape d’identification des adresses permet de ne pas écraser les identif
 <section id="recherche-par-token" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Recherche par token</h2>
 <ul>
-<li><span class="blue2"><strong>Tokenizer</strong></span> : “token”.</li>
 <li><span class="green2"><strong>Un token = un mot.</strong></span><br>
 </li>
 <li><span class="blue2"><strong>Pour chaque nom de voie du référentiel</strong></span>, compter le nombre de tokens qui matchent 🎯 avec les tokens de l’adresse recherchée.</li>
@@ -915,7 +928,7 @@ cours
 </div>
 <p><span class="green2"><strong>Comptage direct ⚡ des occurrences</strong></span> de chaque token de la base par idVoie.</p>
 <aside class="notes">
-<p>Faire un index inversé par token, c’est récupérer tous les tokens des noms de voie dans le référentiel et on les applati dans une colonne.</p>
+<p>Faire un index inversé par token, c’est récupérer tous les tokens des noms de voie dans le référentiel et on les aplati dans une colonne.</p>
 <p>Nous obtenons directement le comptage de chaque token par idVoie, pour tous les tokens présents dans les noms de voie du référentiel.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
