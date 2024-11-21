@@ -1,16 +1,23 @@
-## Evaluation de l'algorithme d'identification
+## Constitution d'un jeu de test
 
 Jeu de test d'adresses pasrau x resil x majic x gaia
 
-Sur 100 000 adresses sur tout le territoire :
-- Accuracy : ...
-- ...
+Explications
+
+## Évaluation de l'algorithme d'identification
+
+Sur 100 000 adresses sur tout le territoire français :  
+
+|             | Adresse trouvée | Voie trouvée | Commune trouvée/rien trouvé |
+|-------------|-----------------|--------------|-----------------------------|
+| Pourcentage | 86,0% | 99,5% | 0,5% |
+| Accuracy    | 0.94  | 0.94  | x    |
 
 ## Rapidité de l'algorithme
 
-[**XXX secondes pour XXX adresses**]{.blue2}
+[**2 secondes pour 500 adresses**]{.blue2}
 
-Démonstration en utilisant l'API Gaïa : url.
+Démonstration en utilisant [l'API Gaïa](https://api-interrogation-geo.insee.fr/swagger-ui/index.html).
 
 <!-- ## Utilisation du moteur au sein du projet Gaïa
 

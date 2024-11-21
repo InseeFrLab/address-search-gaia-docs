@@ -10,8 +10,9 @@
 
 Nouvel objet géographique :  [**le lieu géographique**]{.green2}
 <!-- Explication schéma lieu géographique. -->
+schéma à venir
 
-<br>
+## Le lieu géographique
 
 [**Utilisation :**]{.blue2} Regrouper les adresses avec différents identifiants Gaïa mais qui représentent le même lieu. 
 
