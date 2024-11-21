@@ -8,10 +8,10 @@ Explications
 
 Sur 100 000 adresses sur tout le territoire français :  
 
-|             | Adresse trouvée | Voie trouvée | Commune trouvée/rien trouvé |
+|             | **Adresse trouvée** | **Voie trouvée** | **Commune trouvée/rien trouvé** |
 |-------------|-----------------|--------------|-----------------------------|
-| Pourcentage | 86,0% | 99,5% | 0,5% |
-| Accuracy    | 0.94  | 0.94  | x    |
+| **Pourcentage** | 86,0% | 99,5% | 0,5% |
+| **Accuracy**    | 0.94  | 0.94  | x    |
 
 ## Rapidité de l'algorithme
 

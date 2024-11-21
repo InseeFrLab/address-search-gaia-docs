@@ -13,7 +13,7 @@
 
 ## Indicatrice qualité
 
-- Dépend du pourcentage de 3-grams de la voie du référentiel contenus dans l'adresse recherchée.
+- Dépend du pourcentage de 3-grams de la [**voie du référentiel**].{.blue2} ⊂ [**l'adresse recherchée**]{.green2}.
 - Calcul non réalisable avec Elastic, donc effectué post requête.
 
 | Voie qualifiée de | Pourcentage de 3-grams |

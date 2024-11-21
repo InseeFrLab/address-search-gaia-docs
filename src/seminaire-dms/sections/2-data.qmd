@@ -8,7 +8,7 @@
 
 ## Regroupements d'adresses
 
-Nouvel objet géographique :  [**le lieu géographique**]{.green2}
+Nouvel objet géographique :  [**le lieu géographique**]{.green2}.  
 <!-- Explication schéma lieu géographique. -->
 schéma à venir
 

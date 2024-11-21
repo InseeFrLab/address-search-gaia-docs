@@ -10,9 +10,9 @@
 | **Critères**                         | **ElasticSearch** | **SQL** | **Addok**|
 |:-------------------------------------|:-----------------:|:-------:|:-------:|
 | Recherche de texte avancée           | ✅ | ❌ | ✅ |
-| Rapidité                             | ✅ | ✅ | ⚠️ |
-| Précision                            | ✅ | ❌ | ⚠️ |
 | Personnalisation des recherches      | ✅ | ❌ | ❌ |
+| Rapidité                             | ✅ | ✅ | ✅ |
+| Précision                            | ✅ | ❌ | ⚠️ |
 | Facilité d'implémentation            | ❌ | ✅ | ✅ |
 | Ressources                           | ❌ | ✅ | ✅ |
 | Maintenance                          | ⚠️ | ✅ | ❌ |
@@ -342,7 +342,7 @@ Le score global va donc combiner la somme des matchs 🎯 au niveau :
 On peut donner plus ou moins d'importance aux différents matchs 🎯.  
 Chaque occurrence est multipliée par un facteur, appelé [**boost**]{.blue2}, qui dépend du niveau de match 🎯.
 
-*Boosts actuels :*
+## Boosts dans Gaïa
 
 | **match au niveau**| **boost** | **exemple** |
 |----------|----|----------|
@@ -384,6 +384,4 @@ Une fois le moteur configuré, on peut faire des requêtes 🔍.
 - Match 🎯 token sur type de voie ou nom de voie → boost 15.  
 - Match 🎯 3 à 5-grams sur nom de voie → boost 1.  
 
-$$
-\text{À chaque fois qu'une sous-chaîne valide l'une de ces conditions, le score va} \uparrow \text{en fonction du boost associé}.  
-$$
+À chaque fois qu'une sous-chaîne valide l'une de ces conditions, le score va ⇡ en fonction du boost associé.
