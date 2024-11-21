@@ -510,7 +510,8 @@ L’étape d’identification des adresses permet de ne pas écraser les identif
 </section>
 <section id="regroupements-dadresses" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Regroupements d’adresses</h2>
-<p>Nouvel objet géographique : <span class="green2"><strong>le lieu géographique</strong></span> <!-- Explication sch&#xE9;ma lieu g&#xE9;ographique. --> schéma à venir</p>
+<p>Nouvel objet géographique : <span class="green2"><strong>le lieu géographique</strong></span>.<br>
+<!-- Explication sch&#xE9;ma lieu g&#xE9;ographique. --> schéma à venir</p>
 </section>
 <section id="le-lieu-géographique" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Le lieu géographique</h2>
@@ -574,22 +575,22 @@ L’étape d’identification des adresses permet de ne pas écraser les identif
 <td style="text-align: center;">✅</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Rapidité</td>
-<td style="text-align: center;">✅</td>
-<td style="text-align: center;">✅</td>
-<td style="text-align: center;">⚠️</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Précision</td>
-<td style="text-align: center;">✅</td>
-<td style="text-align: center;">❌</td>
-<td style="text-align: center;">⚠️</td>
-</tr>
-<tr class="even">
 <td style="text-align: left;">Personnalisation des recherches</td>
 <td style="text-align: center;">✅</td>
 <td style="text-align: center;">❌</td>
 <td style="text-align: center;">❌</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Rapidité</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">✅</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Précision</td>
+<td style="text-align: center;">✅</td>
+<td style="text-align: center;">❌</td>
+<td style="text-align: center;">⚠️</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Facilité d’implémentation</td>
@@ -1129,7 +1130,9 @@ score_{voie} = \sum_{\text{∀ngram} \in \text{N}} {nb\_occurrence}_{ngram}
 <h2>Boost</h2>
 <p>On peut donner plus ou moins d’importance aux différents matchs 🎯.<br>
 Chaque occurrence est multipliée par un facteur, appelé <span class="blue2"><strong>boost</strong></span>, qui dépend du niveau de match 🎯.</p>
-<p><em>Boosts actuels :</em></p>
+</section>
+<section id="boosts-dans-gaïa" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Boosts dans Gaïa</h2>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -1200,9 +1203,7 @@ sc = sous-chaîne <em>(un token, un 3-grams…)</em></p>
 </li>
 <li>Match 🎯 3 à 5-grams sur nom de voie → boost 1.</li>
 </ul>
-<p><span class="math display">\[
-\text{À chaque fois qu'une sous-chaîne valide l'une de ces conditions, le score va} \uparrow \text{en fonction du boost associé}.  
-\]</span></p>
+<p>À chaque fois qu’une sous-chaîne valide l’une de ces conditions, le score va ⇡ en fonction du boost associé.</p>
 </section></section>
 <section id="plan-de-la-présentation-3" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>
@@ -1251,7 +1252,7 @@ sc = sous-chaîne <em>(un token, un 3-grams…)</em></p>
 <section id="indicatrice-qualité" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Indicatrice qualité</h2>
 <ul>
-<li>Dépend du pourcentage de 3-grams de la voie du référentiel contenus dans l’adresse recherchée.</li>
+<li>Dépend du pourcentage de 3-grams de la [<strong>voie du référentiel</strong>].{.blue2} ⊂ <span class="green2"><strong>l’adresse recherchée</strong></span>.</li>
 <li>Calcul non réalisable avec Elastic, donc effectué post requête.</li>
 </ul>
 <table class="caption-top">
@@ -1375,20 +1376,20 @@ R2 = score Elastic de la 2ème voie la plus pertinente</p>
 <thead>
 <tr class="header">
 <th></th>
-<th>Adresse trouvée</th>
-<th>Voie trouvée</th>
-<th>Commune trouvée/rien trouvé</th>
+<th><strong>Adresse trouvée</strong></th>
+<th><strong>Voie trouvée</strong></th>
+<th><strong>Commune trouvée/rien trouvé</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Pourcentage</td>
+<td><strong>Pourcentage</strong></td>
 <td>86,0%</td>
 <td>99,5%</td>
 <td>0,5%</td>
 </tr>
 <tr class="even">
-<td>Accuracy</td>
+<td><strong>Accuracy</strong></td>
 <td>0.94</td>
 <td>0.94</td>
 <td>x</td>
