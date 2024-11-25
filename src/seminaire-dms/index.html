@@ -10,7 +10,7 @@
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.57">
 
-  <title>Moteur de recherche d'adresse Gaïa – Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa</title>
+  <title>Moteur de recherche d'adresse Gaïa – Identification d’adresses avec ElasticSearch</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -324,7 +324,7 @@
     }
   </style>
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<meta property="og:title" content="Séminaire interne DMS Moteur de recherche d’adresses avec ElasticSearch pour le projet Gaïa – Moteur de recherche d’adresse Gaïa">
+<meta property="og:title" content="Identification d’adresses avec ElasticSearch – Moteur de recherche d’adresse Gaïa">
 <meta property="og:description" content="Raya Berova &amp; Benoît Hurpeau (DMRG)">
 <meta property="og:site_name" content="Moteur de recherche d'adresse Gaïa">
 </head>
@@ -333,7 +333,7 @@
     <div class="slides">
 
 <section id="title-slide" data-background-image="../_extensions/InseeFrLab/onyxia/background.svg" data-background-size="contain" class="quarto-title-block center">
-  <h1 class="title"><span class="red2">Séminaire interne DMS</span> Moteur de recherche d’adresses avec ElasticSearch pour le <span class="green2">projet Gaïa</span></h1>
+  <h1 class="title">Identification d’adresses avec ElasticSearch</h1>
   <p class="subtitle"></p><p><strong><span class="blue2">Raya Berova &amp; Benoît Hurpeau (DMRG)</span></strong></p><p></p>
 
 <div class="quarto-title-authors">
@@ -358,37 +358,49 @@
 </section>
 <section id="origine-du-projet" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Origine du projet</h2>
-<p><span class="green2"><strong>Gaïa</strong></span> : Référentiel Géographique d’Adresses avec Informations Géolocalisantes. <!-- Est ce que la d&#xE9;finition est bonne ? --></p>
 <ul>
 <li>Besoin d’un référentiel complet, stable, fiable, mis à jour.</li>
 <li>Faciliter la <span class="blue2"><strong>gestion des adresses</strong></span> au sein du SSP.</li>
 <li>Clients : Résil, Géoloc, DMTR…</li>
 </ul>
+<p><span class="green2"><strong>Gaïa</strong></span> : Référentiel Géographique d’Adresses avec Informations Géolocalisantes.</p>
+<aside class="notes">
+<p>Parler de l’origine du projet, quand ca a été mis en place, comment, pq…</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<!-- Est ce que la d&#xE9;finition est bonne ? -->
 <!-- Est ce que la liste des clients est ok ? -->
 <!-- Preciser que ce ne sont pas que des adresses -->
 </section>
 <section id="une-adresse" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Une adresse</h2>
-<center>
-<p>
-<span class="green2"><strong>numéro</strong></span> <span style="margin-left: 150px;"><span class="blue2"><strong>type de voie</strong></span></span> <span style="margin-left: 150px;"><strong>COG</strong></span>
-</p>
-</center>
+<!-- 
+<center><p>[**num&#xE9;ro**]{.green2} <span style="margin-left: 150px;">[**type de voie**]{.blue2}</span> <span style="margin-left: 150px;">**COG**</span></p></center> -->
 <p><br></p>
 <p><br></p>
 <center>
 <p>
-<span class="red2"><strong>20 bis avenue de la marne</strong></span> <span style="margin-left: 130px;"><span class="red2"><strong>92046</strong></span></span>
+<span class="red2"><strong>20 bis avenue de la marne</strong></span> <span style="margin-left: 130px;"><span class="red2"><strong>92049</strong></span></span>
 </p>
 </center>
 <p><br></p>
 <p><br></p>
-<center>
-<p>
-<span class="green2"><strong>indice de répétition</strong></span> <span style="margin-left: 190px;"><span class="blue2"><strong>nom de voie</strong></span></span>
-</p>
-</center>
+<!-- <center><p>[**indice de r&#xE9;p&#xE9;tition**]{.green2} <span style="margin-left: 190px;">[**nom de voie**]{.blue2}</span></p></center> -->
 </section>
+<section id="géométrie-de-ladresse" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Géométrie de l’adresse</h2>
+<p><em>Exemple: 88 avenue verdier 92049 reliée à sa parcelle</em></p>
+
+<img data-src="img/adresse_parcelle.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"></section>
 <section id="le-référentiel-gaïa" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Le référentiel Gaïa</h2>
 
@@ -422,15 +434,20 @@
 <li>Identifiant voie</li>
 <li>Identifiant commune</li>
 </ul>
+<p><br></p>
+<p>Ceci permet la prise en charge des <span class="blue2"><strong>cissions et fusions de communes</strong></span>.</p>
 </section>
 <section id="construction-du-référentiel" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Construction du référentiel</h2>
 <p>Sources fiables :</p>
 <ul>
-<li>Majic</li>
-<li>BAN</li>
-<li>RCA</li>
+<li>Majic : Mise à jour des informations cadastrales.<br>
+</li>
+<li>BAN : Base Adresse Nationale.<br>
+</li>
+<li>RCA : Référentiel Commun d’Adresses.</li>
 </ul>
+<!-- Est ce que c'est assez d&#xE9;taill&#xE9; ? Peut etre mettre la source ? -->
 <p>Au moins une mise à jour par mois (avec conservation des identifiants Gaïa).</p>
 <aside class="notes">
 <p>Une mise à jour :</p>
@@ -469,6 +486,11 @@ L’étape d’identification des adresses permet de ne pas écraser les identif
 </ul>
 <p>Pas d’identifiant Gaïa, donc <span class="blue2"><strong>pas de suivi dans le temps de ces objets</strong></span>.</p>
 </section>
+<section id="exemples-de-géométries" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Exemples de géométries</h2>
+<p><em>Exemple de géométries d’adresses, parcelles et bâtis</em></p>
+
+<img data-src="img/adresses_parcelles_bati.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"></section>
 <section id="quelques-métriques-sur-le-référentiel" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Quelques métriques sur le référentiel</h2>
 <ul>
