@@ -1,30 +1,41 @@
 ## Origine du projet
 
-[**Gaïa**]{.green2} : Référentiel Géographique d'Adresses avec Informations Géolocalisantes.
-<!-- Est ce que la définition est bonne ? -->
-
 - Besoin d'un référentiel complet, stable, fiable, mis à jour.
 - Faciliter la [**gestion des adresses**]{.blue2} au sein du SSP.
 - Clients : Résil, Géoloc, DMTR...
+
+[**Gaïa**]{.green2} : Référentiel Géographique d'Adresses avec Informations Géolocalisantes.
+
+::: {.notes}
+Parler de l'origine du projet, quand ca a été mis en place, comment, pq...
+:::
+<!-- Est ce que la définition est bonne ? -->
 
 <!-- Est ce que la liste des clients est ok ? -->
 <!-- Preciser que ce ne sont pas que des adresses -->
 
 ## Une adresse
 
-<center><p>[**numéro**]{.green2} <span style="margin-left: 150px;">[**type de voie**]{.blue2}</span> <span style="margin-left: 150px;">**COG**</span></p></center>
+<!-- 
+<center><p>[**numéro**]{.green2} <span style="margin-left: 150px;">[**type de voie**]{.blue2}</span> <span style="margin-left: 150px;">**COG**</span></p></center> -->
 
 <br>
 
 <br>
 
-<center><p>[**20 bis avenue de la marne**]{.red2} <span style="margin-left: 130px;">[**92046**]{.red2}</span></p></center>
+<center><p>[**20 bis avenue de la marne**]{.red2} <span style="margin-left: 130px;">[**92049**]{.red2}</span></p></center>
 
 <br>
 
 <br>
 
-<center><p>[**indice de répétition**]{.green2} <span style="margin-left: 190px;">[**nom de voie**]{.blue2}</span></p></center>
+<!-- <center><p>[**indice de répétition**]{.green2} <span style="margin-left: 190px;">[**nom de voie**]{.blue2}</span></p></center> -->
+
+## Géométrie de l'adresse
+
+*Exemple: 88 avenue verdier 92049 reliée à sa parcelle*
+
+![](img/adresse_parcelle.png){width=75% fig-align="center"}
 
 ## Le référentiel Gaïa
 
@@ -52,13 +63,19 @@ Trois niveaux :
 - Identifiant voie
 - Identifiant commune
 
+<br>
+
+Ceci permet la prise en charge des [**cissions et fusions de communes**]{.blue2}.
+
 ## Construction du référentiel
 
 Sources fiables :
 
-- Majic
-- BAN
-- RCA
+- Majic : Mise à jour des informations cadastrales.  
+- BAN : Base Adresse Nationale.  
+- RCA : Référentiel Commun d'Adresses.  
+
+<!-- Est ce que c'est assez détaillé ? Peut etre mettre la source ? -->
 
 Au moins une mise à jour par mois (avec conservation des identifiants Gaïa).  
 
@@ -80,6 +97,12 @@ L'étape d'identification des adresses permet de ne pas écraser les identifiant
 - Polygones QPV
 
 Pas d'identifiant Gaïa, donc [**pas de suivi dans le temps de ces objets**]{.blue2}.
+
+## Exemples de géométries
+
+*Exemple de géométries d'adresses, parcelles et bâtis*
+
+![](img/adresses_parcelles_bati.png){width=75% fig-align="center"}
 
 
 ## Quelques métriques sur le référentiel
