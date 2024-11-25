@@ -1,4 +1,36 @@
-## C'est quoi ElasticSearch ?
+## Adresses à retrouver dans Gaïa
+
+*Exemple d'adresses à retrouver :*  
+
+| **Adresse à retrouver** | **COG** | **Code Postal** | **Libellé commune** |
+|-------------------------|---------|-----------------|---------------------|
+| 131, rue du fbg Bannier |         | 45000           | Orléans             |
+| 0033 ave J. Jaurès    | 92040   |            |              |
+
+Adresses dans Gaïa :  
+
+| **Adresse** | **COG** |
+|-------------|---------|
+| 131 rue du faubourg bannier | 45234 |
+| 33 avenue jean jaures | 92040 |
+
+C'est pourquoi il faut un moteur de recherche ⚙️.
+
+## Un moteur de recherche ⚙️
+
+- Google : recherche par mot clé.  
+- Pour la recherche d'adresse :  
+  - Google Maps.
+  - Addok, moteur de recherche de la BAN.
+
+## ElasticSearch 
+
+- Créé en 2010 par Shay Bannon.  
+- Moteur ⚙️ utilisable en n'importe quel langage (requêtes HTTP).  
+- Faire des recherches rapides sur tout type de données (textes, objets géométriques...).  
+
+
+## C'est quoi concrètement ElasticSearch ?
 
 - [**ElasticSearch**]{.blue2} : logiciel pour l'indexation et la recherche de données.
 
@@ -14,7 +46,6 @@
 | Rapidité                             | ✅ | ✅ | ✅ |
 | Précision                            | ✅ | ❌ | ⚠️ |
 | Facilité d'implémentation            | ❌ | ✅ | ✅ |
-| Ressources                           | ❌ | ✅ | ✅ |
 | Maintenance                          | ⚠️ | ✅ | ❌ |
 
 ::: {.notes}
@@ -34,7 +65,7 @@ Donner explication addok
 | **Consommation des ressources**  | Consomme plus de mémoire et de CPU, en particulier pour l'indexation initiale                                             | Consommation de ressources generalement inférieure pour des requêtes simples                                  |
 | **Coût de stockage**             | Peut impliquer une duplication des données (coût supplémentaire de stockage)                                              | Pas de duplication nécessaire                                                                                 | -->
 
-## Outils pour moteur ElasticSearch
+<!-- ## Outils pour moteur ElasticSearch
 
 - [**Mappings**]{.blue2} 🏷️ : spécifier les traitements à appliquer pour chaque variable de nos données.  
   - *Variable_a → Analyzer_for_numbers*  
@@ -49,13 +80,13 @@ Donner explication addok
 Et éventuellement, savoir coder en Python/Java...
 ::: 
 
-On peut commencer à créer notre moteur ⚙️.
+On peut commencer à créer notre moteur ⚙️. -->
 
 # Étape 1 : pouvoir comparer l'adresse recherchée avec les données Gaïa.
 
 ## Filtres
 
-- Définis dans les *settings* 🛠️.  
+<!-- - Définis dans les *settings* 🛠️.   -->
 - Normalisent les données.  
 - Pour les données du référentiel et pour les adresses recherchées.
 
@@ -66,9 +97,9 @@ On peut commencer à créer notre moteur ⚙️.
 - Ponctuation  
 - Séparation des nombres et lettres *(ex : 14bis → 14 bis)*  
 - Suppression des espaces supplémentaires  
-- [**Dillatation des accronymes/prise en compte des synonymes**]{.red2}  
+- [**Prise en compte des synonymes**]{.red2}  *(ex : ave = avenue, st = saint)*  
 
-# Étape 2 : définir un score.
+# Étape 2 : définir un score pour évaluer la pertinence.
 
 ## Base de données classique
 
@@ -82,12 +113,16 @@ On peut commencer à créer notre moteur ⚙️.
 | D | verdier                      |
 | E | des cours                    |
 
-## Recherche par token
+## Recherche par mot
 
-- [**Un token = un mot.**]{.green2}  
-- [**Pour chaque nom de voie du référentiel**]{.blue2}, compter le nombre de tokens qui matchent 🎯 avec les tokens de l'adresse recherchée.
+- [**Pour chaque nom de voie du référentiel**]{.blue2}, compter le nombre de mots qui matchent 🎯 avec les mots de l'adresse recherchée.  
+- Recherche par groupes de caractères également possible, abordée dans la suite.   
 
-## Score avec tokenizer "token"
+## Score avec tokenizer "mot"
+
+[**Tokenizer**]{.green2} = façon de découper le texte recherché et ciblé.  
+
+<br>
 
 [**Pour retourner la voie la plus pertinente**]{.blue2}, on construit un score pour chaque voie :
 $$
@@ -97,9 +132,9 @@ $$
 t = token  
 T = ensemble des tokens de l'adresse recherchée  
 
-## Score avec tokenizer "token"
+## Score avec tokenizer "mot"
 
-*Exemple : score avec tokenizer "token" de "88 avenue du general charles de gaulle"*
+*Exemple : score avec tokenizer "mot" de "88 avenue du general charles de gaulle"*
 
 | idVoie | nom de voie             | score |
 |---|:-----------------------------|-------|
@@ -113,11 +148,11 @@ T = ensemble des tokens de l'adresse recherchée
 
 # Étape 3 : utiliser un index inversé. Mais qu'est ce donc ?
 
-## Index inversé token
+## Index inversé mot
 
 *Exemple*  
 
-<!-- | idVoie | nom de voie             |                        | token     | occurrences              |
+<!-- | idVoie | nom de voie             |                        | mot     | occurrences              |
 |---|:-----------------------------|                        |-----------|--------------------------|
 | A | du general leclerc           |                        | general   | {"A": 1, "B": 1}         |
 | B | du general charles de gaulle |        devient         | jour      | {"C": 1}                 |
@@ -164,7 +199,7 @@ T = ensemble des tokens de l'adresse recherchée
 <table>
   <thead>
     <tr>
-      <th>token</th>
+      <th>mot</th>
       <th>occurrences</th>
     </tr>
   </thead>
@@ -193,19 +228,19 @@ T = ensemble des tokens de l'adresse recherchée
 </table>
 </div>
 
-[**Comptage direct ⚡ des occurrences**]{.green2} de chaque token de la base par idVoie.
+[**Comptage direct ⚡ des occurrences**]{.green2} de chaque mot de la base par idVoie.
 
 ::: {.notes}
-Faire un index inversé par token, c'est récupérer tous les tokens des noms de voie dans le référentiel et on les aplati dans une colonne.
+Faire un index inversé par mot, c'est récupérer tous les mots des noms de voie dans le référentiel et on les aplati dans une colonne.
 
-Nous obtenons directement le comptage de chaque token par idVoie, pour tous les tokens présents dans les noms de voie du référentiel.
+Nous obtenons directement le comptage de chaque mot par idVoie, pour tous les mots présents dans les noms de voie du référentiel.
 ::: 
 
 # Étape 4 : prendre en compte les variations textuelles.
 
 ## Recherche par n-grams de caractères
 
-[**Contourner les fautes d'orthographes**]{.blue2} : chaque token est découpé en sous-chaînes de n caractères consécutifs.  
+[**Contourner les fautes d'orthographes**]{.blue2} : chaque mot est découpé en sous-chaînes de n caractères consécutifs.  
 
 *Exemple de découpage en 3-grams de caractères du texte "avenue verdier" :*  
 **ave, ven, enu, nue, ver, erd, rdi, die, ier**
@@ -314,7 +349,7 @@ $$
 \Rightarrow \text{temps de recherche} \uparrow
 $$
 
-Limitation à minimum n∈{3,4,5} pour notre cas.
+Limitation à n∈{3,4,5} pour notre cas.
 
 ## Fuzziness
 
@@ -322,7 +357,7 @@ Contourner les fautes d'orthographes d'une autre façon : [**fuzziness**]{.green
 
 <br>
 
-Pour matcher 🎯 deux tokens avec une fuzziness de niveau 1 = corriger l'un des tokens :
+Pour matcher 🎯 deux mots avec une fuzziness de niveau 1 = corriger l'un des mots :
 
 - Ajout d'une lettre.  
 - Suppression d'une lettre.  
@@ -333,7 +368,7 @@ Pour matcher 🎯 deux tokens avec une fuzziness de niveau 1 = corriger l'un des
 
 Le score global va donc combiner la somme des matchs 🎯 au niveau :
 
-- token.  
+- mot.  
 - n-grams.  
 - fuzziness.  
 
@@ -344,15 +379,15 @@ Chaque occurrence est multipliée par un facteur, appelé [**boost**]{.blue2}, q
 
 ## Boosts dans Gaïa
 
+*Exemple : recherche de "88 avenue verdier" et dans la base il y a la voie D : "verdier".*  
+
 | **match au niveau**| **boost** | **exemple** |
 |----------|----|----------|
-| token    | 20 | "verdier" avec "verdier" |
+| mot    | 20 | "verdier" avec "verdier" |
 | fuzzi 1  | 15 | "verdier" avec "verdie" |
 | 3-grams  | 1  | "ver" avec "ver" |
 | 4-ngrams | 1  | "erdi" avec "erdi" |
 | 5-grams  | 1  | "verdi" avec "verdi" |
-
-*Exemple : recherche de "88 avenue verdier" et dans la base il y a la voie D : "verdier".*
 
 ## Retour sur le score global
 
@@ -360,28 +395,28 @@ $$
 score_{voie} = \sum_{\text{∀n} \in \text{N}} \sum_{\text{∀sc} \in \text{n}} boost_{n}*{nb\_occurrence}_{sc}
 $$
 
-N = ensemble des niveaux *(niveau token, niveau fuzzi...)*  
+N = ensemble des niveaux *(niveau mot, niveau fuzzi...)*  
 n = niveau  
-sc = sous-chaîne *(un token, un 3-grams...)*  
+sc = sous-chaîne *(un mot, un 3-grams...)*  
 
-## Configurer le moteur ⚙️
+<!-- ## Configurer le moteur ⚙️
 
 Une fois qu'on a la théorie, il faut l'appliquer en pratique.  
 
 Le package elasticsearch permet d'indexer les données en fournissant :  
 
 - Un dataframe 📋 des données du référentiel Gaïa.  
-- Des [**settings**]{.blue2} 🛠️ où on définit nos différents **analyzers**, englobant les filtres et le tokenizer.  
-- Des [**mappings**]{.green2} 🏷️ où pour chaque **variable**, on fournit un analyzer.  
+- Des [**settings**]{.blue2} 🛠️ où on définit nos différents **analyzers**, englobant les filtres et le motizer.  
+- Des [**mappings**]{.green2} 🏷️ où pour chaque **variable**, on fournit un analyzer.   -->
 
 ## Faire des recherches
 
-Une fois le moteur configuré, on peut faire des requêtes 🔍.
+Une recherche = une requête 🔍.
 
 *Requête pour retrouver la voie :*
 
-- Match 🎯 token sur nom de voie avec fuzzi 1 → boost 20.  
-- Match 🎯 token sur type de voie ou nom de voie → boost 15.  
+- Match 🎯 mot sur nom de voie avec fuzzi 1 → boost 20.  
+- Match 🎯 mot sur type de voie ou nom de voie → boost 15.  
 - Match 🎯 3 à 5-grams sur nom de voie → boost 1.  
 
 À chaque fois qu'une sous-chaîne valide l'une de ces conditions, le score va ⇡ en fonction du boost associé.

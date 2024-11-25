@@ -9,8 +9,11 @@
 ## Regroupements d'adresses
 
 Nouvel objet géographique :  [**le lieu géographique**]{.green2}.  
-<!-- Explication schéma lieu géographique. -->
-schéma à venir
+
+<br>
+
+![](img/adresses_parcelles_bati.png){width=75% fig-align="center"}
+
 
 ## Le lieu géographique
 
