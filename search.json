@@ -97,7 +97,7 @@
     "href": "src/seminaire-dms/index.html#géométrie-de-ladresse",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Géométrie de l’adresse",
-    "text": "Géométrie de l’adresse\nExemple: 88 avenue verdier 92049 reliée à sa parcelle"
+    "text": "Géométrie de l’adresse\nExemple: “88 avenue verdier | 92049” reliée à sa parcelle"
   },
   {
     "objectID": "src/seminaire-dms/index.html#le-référentiel-gaïa",
@@ -174,21 +174,21 @@
     "href": "src/seminaire-dms/index.html#adresses-à-retrouver-dans-gaïa",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Adresses à retrouver dans Gaïa",
-    "text": "Adresses à retrouver dans Gaïa\nExemple d’adresses à retrouver :\n\n\n\n\n\n\n\n\n\nAdresse à retrouver\nCOG\nCode Postal\nLibellé commune\n\n\n\n\n131, rue du fbg Bannier\n\n45000\nOrléans\n\n\n0033 ave J. Jaurès\n92040\n\n\n\n\n\nAdresses dans Gaïa :\n\n\n\nAdresse\nCOG\n\n\n\n\n131 rue du faubourg bannier\n45234\n\n\n33 avenue jean jaures\n92040\n\n\n\nC’est pourquoi il faut un moteur de recherche ⚙️."
+    "text": "Adresses à retrouver dans Gaïa\nExemple d’adresses à retrouver :\n\n\n\n\n\n\n\n\n\nAdresse à retrouver\nCOG\nCode Postal\nLibellé commune\n\n\n\n\n131, rue du fbg Bannier\n-\n45000\nOrléans\n\n\n0033 ave J. Jaurès\n92040\n-\n-\n\n\n\nAdresses dans Gaïa :\n\n\n\nAdresse\nCOG\n\n\n\n\n131 rue du faubourg bannier\n45234\n\n\n33 avenue jean jaures\n92040\n\n\n\nC’est pourquoi il faut un moteur de recherche ⚙️."
   },
   {
     "objectID": "src/seminaire-dms/index.html#un-moteur-de-recherche",
     "href": "src/seminaire-dms/index.html#un-moteur-de-recherche",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Un moteur de recherche ⚙️",
-    "text": "Un moteur de recherche ⚙️\n\nGoogle : recherche par mot clé.\n\nPour la recherche d’adresse :\n\nGoogle Maps.\nAddok, moteur de recherche de la BAN."
+    "text": "Un moteur de recherche ⚙️\n\nGoogle : recherche par mot clé.\n\nPour la recherche d’adresse :\n\nGoogle Maps.\nAddok : moteur de recherche de la BAN."
   },
   {
     "objectID": "src/seminaire-dms/index.html#elasticsearch",
     "href": "src/seminaire-dms/index.html#elasticsearch",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "ElasticSearch",
-    "text": "ElasticSearch\n\nCréé en 2010 par Shay Bannon.\n\nMoteur ⚙️ utilisable en n’importe quel langage (requêtes HTTP).\n\nFaire des recherches rapides sur tout type de données (textes, objets géométriques…)."
+    "text": "ElasticSearch\n\nCréé en 2010 par Shay Bannon.\n\nMoteur ⚙️ utilisable en n’importe quel langage de programmation (requêtes HTTP).\n\nFaire des recherches rapides sur tout type de données (textes, objets géométriques…)."
   },
   {
     "objectID": "src/seminaire-dms/index.html#cest-quoi-concrètement-elasticsearch",
@@ -209,14 +209,14 @@
     "href": "src/seminaire-dms/index.html#filtres",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Filtres",
-    "text": "Filtres\n\n\nNormalisent les données.\n\nPour les données du référentiel et pour les adresses recherchées."
+    "text": "Filtres\n\n\nNormaliser le texte pour la comparaison.\n\nPour les données du référentiel ET pour les adresses recherchées."
   },
   {
     "objectID": "src/seminaire-dms/index.html#filtres-implémentés",
     "href": "src/seminaire-dms/index.html#filtres-implémentés",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Filtres implémentés",
-    "text": "Filtres implémentés\n\nLowercase\n\nAsciifolding\n\nPonctuation\n\nSéparation des nombres et lettres (ex : 14bis → 14 bis)\n\nSuppression des espaces supplémentaires\n\nPrise en compte des synonymes (ex : ave = avenue, st = saint)"
+    "text": "Filtres implémentés\n\nLowercase\n\nAsciifolding\n\nPonctuation\n\nSéparation des nombres et lettres (ex : 1er → 1 er)\n\nSuppression des espaces supplémentaires\n\nSuppression des “0” devant les nombres (ex : 0033 → 33)\n\nPrise en compte des synonymes (ex : ave = avenue, st = saint)"
   },
   {
     "objectID": "src/seminaire-dms/index.html#base-de-données-classique",
@@ -237,7 +237,7 @@
     "href": "src/seminaire-dms/index.html#score-avec-tokenizer-mot",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Score avec tokenizer “mot”",
-    "text": "Score avec tokenizer “mot”\nTokenizer = façon de découper le texte recherché et ciblé.\n\nPour retourner la voie la plus pertinente, on construit un score pour chaque voie : \\[\nscore_{voie} = \\sum_{\\text{∀t} \\in \\text{T}} {nb\\_occurrence}_t\n\\]\nt = token\nT = ensemble des tokens de l’adresse recherchée"
+    "text": "Score avec tokenizer “mot”\nTokenizer = façon de découper le texte recherché et ciblé.\n\nPour retourner la voie la plus pertinente, on construit un score pour chaque voie : \\[\nscore_{voie} = \\sum_{\\text{∀m} \\in \\text{M}} {nb\\_occurrence}_m\n\\]\nm = mot\nM = ensemble des mots de l’adresse recherchée"
   },
   {
     "objectID": "src/seminaire-dms/index.html#score-avec-tokenizer-mot-1",
@@ -258,7 +258,7 @@
     "href": "src/seminaire-dms/index.html#recherche-par-n-grams-de-caractères",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Recherche par n-grams de caractères",
-    "text": "Recherche par n-grams de caractères\nContourner les fautes d’orthographes : chaque mot est découpé en sous-chaînes de n caractères consécutifs.\nExemple de découpage en 3-grams de caractères du texte “avenue verdier” :\nave, ven, enu, nue, ver, erd, rdi, die, ier"
+    "text": "Recherche par n-grams de caractères\nContourner les fautes d’orthographes : chaque mot est découpé en sous-chaînes de n caractères consécutifs.\nExemple de découpage en 3-grams de caractères du texte “avenue verdier” :\nave, ven, enu, nue, ver, erd, rdi, die, ier\n\nSi un mot est inférieur à la taille n, il n’aura pas de découpage en n-grams → pas présent dans l’index inversé n-gram."
   },
   {
     "objectID": "src/seminaire-dms/index.html#index-inversé-3-grams",
@@ -286,7 +286,7 @@
     "href": "src/seminaire-dms/index.html#fuzziness",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Fuzziness",
-    "text": "Fuzziness\nContourner les fautes d’orthographes d’une autre façon : fuzziness.\n\nPour matcher 🎯 deux mots avec une fuzziness de niveau 1 = corriger l’un des mots :\n\nAjout d’une lettre.\n\nSuppression d’une lettre.\n\nRemplacement d’une lettre.\n\nÉchanger deux lettres de place."
+    "text": "Fuzziness\nContourner les fautes d’orthographes d’une autre façon : fuzziness.\nPour matcher 🎯 deux mots avec une fuzziness de niveau 1 = corriger l’un des mots :\n\nAjout d’une lettre.\n\nSuppression d’une lettre.\n\nRemplacement d’une lettre.\n\nÉchanger deux lettres de place.\n\nIl est possible de comparer deux textes, deux ngrams ou n’importe quel autre groupe de caractères."
   },
   {
     "objectID": "src/seminaire-dms/index.html#score-global",
@@ -307,21 +307,21 @@
     "href": "src/seminaire-dms/index.html#retour-sur-le-score-global",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Retour sur le score global",
-    "text": "Retour sur le score global\n\\[\nscore_{voie} = \\sum_{\\text{∀n} \\in \\text{N}} \\sum_{\\text{∀sc} \\in \\text{n}} boost_{n}*{nb\\_occurrence}_{sc}\n\\]\nN = ensemble des niveaux (niveau mot, niveau fuzzi…)\nn = niveau\nsc = sous-chaîne (un mot, un 3-grams…)"
+    "text": "Retour sur le score global\n\\[\nscore_{voie} = \\sum_{\\text{∀n} \\in \\text{N}} \\sum_{\\text{∀t} \\in \\text{n}} boost_{n}*{nb\\_occurrence}_{t}\n\\]\nN = ensemble des niveaux (niveau mot, niveau fuzzi…)\nn = niveau\nt = token, sous-chaîne (un mot, un 3-grams…)"
   },
   {
     "objectID": "src/seminaire-dms/index.html#faire-des-recherches",
     "href": "src/seminaire-dms/index.html#faire-des-recherches",
     "title": "Identification d’adresses avec ElasticSearch",
-    "section": "Faire des recherches",
-    "text": "Faire des recherches\nUne recherche = une requête 🔍.\nRequête pour retrouver la voie :\n\nMatch 🎯 nom de voie entier sans découpage avec fuzzi 1 → boost 200. Ex : “3 rue du genral de gaulle” avec “du general de gaulle”.\n\nMatch 🎯 chaque mot du nom de voie avec fuzzi 1 → boost 15. Ex : “3 rue du genral de gaule” avec “du”, “general”, “de”, “gaulle”.\n\nMatch 🎯 chaque mot du type de voie avec fuzzi 1 → boost 5. Ex : “3 rue du general de gaule” avec “rue”.\n\nMatch 🎯 chaque 3 à 5-grams du nom de voie → boost 1.\n\nÀ chaque fois qu’une sous-chaîne valide l’une de ces conditions, le score va ⇡ en fonction du boost associé.\n\n\nOn match à chaque 3-grams, exemple avec verdier.\n\nLes ngrams c’est notre dernier recours, on va retourner comme voie plus pertinente les match sur nom de voie complet et sur token mais ngrams c’est notre roue de secours."
+    "section": "Faire des recherches 🔍",
+    "text": "Faire des recherches 🔍\nRequête 🔍 pour retrouver la voie :\n\nMatch 🎯 nom de voie entier sans découpage avec fuzzi 1 → boost 200. Ex : “3 rue du genral de gaulle” avec “du general de gaulle”.\n\nMatch 🎯 chaque mot du nom de voie avec fuzzi 1 → boost 15. Ex : “3 rue du genral de gaule” avec “du”, “general”, “de”, “gaulle”.\n\nMatch 🎯 chaque mot du type de voie avec fuzzi 1 → boost 5. Ex : “3 rue du general de gaule” avec “rue”.\n\nMatch 🎯 chaque 3 à 5-grams du nom de voie → boost 1.\n\nÀ chaque fois qu’une sous-chaîne valide l’une de ces conditions, le score va ⇡ en fonction du boost associé.\n\n\nOn match à chaque 3-grams, exemple avec verdier.\n\nLes ngrams c’est notre dernier recours, on va retourner comme voie plus pertinente les match sur nom de voie complet et sur token mais ngrams c’est notre roue de secours."
   },
   {
     "objectID": "src/seminaire-dms/index.html#algorithme-didentification-dadresses-1",
     "href": "src/seminaire-dms/index.html#algorithme-didentification-dadresses-1",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Algorithme d’identification d’adresses",
-    "text": "Algorithme d’identification d’adresses\n\nPrends en entrée un libellé d’adresse et un COG, ou à défaut, un code postal + libellé commune.\n\nSuccession de requêtes ElasticSearch.\nÉtapes de validation des résultats après chaque requête.\nRetourne :\n\nle(s) identifiant(s) Gaïa retrouvé(s).\n\nune indicatrice sur la qualité de l’identification (0 à 10).\n\nun ratio qui mesure l’écart entre la 1ère et la 2ème possibilité retournées par Elastic (0 à 1)."
+    "text": "Algorithme d’identification d’adresses\n\nPrends en entrée un libellé d’adresse et un COG, ou à défaut, un code postal + libellé commune.\n\nRetourne :\n\nle(s) identifiant(s) Gaïa retrouvé(s).\n\nune indicatrice sur la qualité de l’identification (0 à 10).\n\nun ratio qui mesure l’écart entre la 1ère et la 2ème possibilité retournées par Elastic (0 à 1)."
   },
   {
     "objectID": "src/seminaire-dms/index.html#schéma-algorithme-didentification",
@@ -356,7 +356,7 @@
     "href": "src/seminaire-dms/index.html#constitution-dun-jeu-de-test",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Constitution d’un jeu de test",
-    "text": "Constitution d’un jeu de test\n\nIdée : avoir des adresses avec des variations textuelles et leur idGaïaAdresse (vérité).\n\nLe jeu de test est une suite d’appariements de sources de données :\n\nPASRAU. \nTous salariés (TSSAL). \nFidéli."
+    "text": "Constitution d’un jeu de test\n\nIdée : avoir des adresses avec des variations textuelles et leur idGaïaAdresse associé (vérité).\n\nLe jeu de test est une suite d’appariements de sources de données :\n\nPASRAU. \nTous salariés (TSSAL). \nFidéli."
   },
   {
     "objectID": "src/seminaire-dms/index.html#schéma-appariements-jeu-de-test",
@@ -370,7 +370,7 @@
     "href": "src/seminaire-dms/index.html#évaluation-de-lalgorithme-didentification",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Évaluation de l’algorithme d’identification",
-    "text": "Évaluation de l’algorithme d’identification\nSur 100 000 adresses sur tout le territoire français :\n\n\n\n\n\n\n\n\n\n\nAdresse trouvée\nVoie trouvée\nCommune trouvée/rien trouvé\n\n\n\n\nPourcentage\n86,0%\n99,5%\n0,5%\n\n\nPrécision\n0.94\n0.94\nx\n\n\n\nAppariement direct avec filtres entre adresses à retrouver et référentiel Gaïa : 30% d’identification d’adresse.\n\n\nPrécision = Vrais positifs/ positifs (vp + fp)\nA titre de comparaison, un appariement direct entre les adresses à retrouver et le référentiel Gaïa donnerait 30% d’identification à condition que les filtres présentés précédemment soient appliqués."
+    "text": "Évaluation de l’algorithme d’identification\nPour 100 000 adresses issues du jeu de test sur tout le territoire français :\n\n\n\n\n\n\n\n\n\n\nAdresse trouvée\nVoie trouvée\nCommune trouvée/rien trouvé\n\n\n\n\nPourcentage\n86,0%\n99,5%\n0,5%\n\n\nPrécision\n0.94\n0.94\nx\n\n\n\nAppariement direct avec filtres entre adresses à retrouver et référentiel Gaïa : 30% d’identification d’adresse.\n\n\nPrécision = Vrais positifs/ positifs (vp + fp)\nA titre de comparaison, un appariement direct entre les adresses à retrouver et le référentiel Gaïa donnerait 30% d’identification à condition que les filtres présentés précédemment soient appliqués."
   },
   {
     "objectID": "src/seminaire-dms/index.html#rapidité-de-lalgorithme",
