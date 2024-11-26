@@ -118,7 +118,7 @@
     "href": "src/seminaire-dms/index.html#construction-du-référentiel",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Construction du référentiel",
-    "text": "Construction du référentiel\nSources fiables :\n\nMajic : Mise à jour des informations cadastrales.\n\nBAN : Base Adresse Nationale.\n\nRCA : Référentiel Commun d’Adresses.\n\n\nAu moins une mise à jour par mois (avec conservation des identifiants Gaïa).\n\nUne mise à jour :\n\nRécupérer la nouvelle base d’une source données.\n\nIdentifier les adresses textuellement :\n\n\n\nLes adresses qui sont retrouvées sont alors modifiées si des nouveautés apparaissent.\n\nLes adresses non retrouvées entraînent la création de nouveaux objets Gaïa.\nL’étape d’identification des adresses permet de ne pas écraser les identifiants Gaïa."
+    "text": "Construction du référentiel\nSources fiables :\n\nMajic : Mise à jour des informations cadastrales.\n\nBAN : Base Adresse Nationale.\n\nRCA : Référentiel Commun d’Adresses.\n\n\nAu moins une mise à jour par trimestre (avec conservation des identifiants Gaïa).\n\nUne mise à jour :\n\nRécupérer la nouvelle base d’une source données.\n\nIdentifier les adresses textuellement :\n\n\n\nLes adresses qui sont retrouvées sont alors modifiées si des nouveautés apparaissent.\n\nLes adresses non retrouvées entraînent la création de nouveaux objets Gaïa.\nL’étape d’identification des adresses permet de ne pas écraser les identifiants Gaïa."
   },
   {
     "objectID": "src/seminaire-dms/index.html#dautres-données",
