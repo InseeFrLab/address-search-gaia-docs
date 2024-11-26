@@ -231,9 +231,10 @@ T = ensemble des tokens de l'adresse recherchée
 [**Comptage direct ⚡ des occurrences**]{.green2} de chaque mot de la base par idVoie.
 
 ::: {.notes}
-Faire un index inversé par mot, c'est récupérer tous les mots des noms de voie dans le référentiel et on les aplati dans une colonne.
-
-Nous obtenons directement le comptage de chaque mot par idVoie, pour tous les mots présents dans les noms de voie du référentiel.
+- Faire un index inversé par mot, c'est récupérer tous les mots des noms de voie dans le référentiel et on les aplati dans une colonne.  
+- Il y a autant de lignes qu'il y a de mots différents dans les noms de voie du référentiel. Les mots les plus fréquents seront ceux qui ont le plus d'occurences.  
+- Nous obtenons directement le comptage de chaque mot par idVoie, pour tous les mots présents dans les noms de voie du référentiel.  
+- L'index inversé est fait en amont des requetes.  
 ::: 
 
 # Étape 4 : prendre en compte les variations textuelles.
@@ -332,6 +333,11 @@ Nous obtenons directement le comptage de chaque mot par idVoie, pour tous les mo
 </table>
 </div>
 
+::: {.notes}
+- Il y a autant de lignes qu'il ya de trigrams différents dans les noms de voie du référentiel.  
+- Si un mot est inférieur à la taille n=3, il ne sera pas pris en compte. Par exemple : du général de gaules, "du" et "de" n’apparaîtront pas dans l'index et donc ne seront pas pris en compte dans les matchs trigrams.  
+:::
+
 ## Score avec tokenizer "n-grams"
 
 Score pour chaque voie :
@@ -349,7 +355,8 @@ $$
 \Rightarrow \text{temps de recherche} \uparrow
 $$
 
-Limitation à n∈{3,4,5} pour notre cas.
+- Limitation à n∈{3,4,5} pour notre cas.  
+- Tests effectués pour choisir ces valeurs, en fonction de [**la précision et la rapidité**]{.blue2} des requêtes.  
 
 ## Fuzziness
 
@@ -374,20 +381,8 @@ Le score global va donc combiner la somme des matchs 🎯 au niveau :
 
 ## Boost
 
-On peut donner plus ou moins d'importance aux différents matchs 🎯.  
-Chaque occurrence est multipliée par un facteur, appelé [**boost**]{.blue2}, qui dépend du niveau de match 🎯.
-
-## Boosts dans Gaïa
-
-*Exemple : recherche de "88 avenue verdier" et dans la base il y a la voie D : "verdier".*  
-
-| **match au niveau**| **boost** | **exemple** |
-|----------|----|----------|
-| mot    | 20 | "verdier" avec "verdier" |
-| fuzzi 1  | 15 | "verdier" avec "verdie" |
-| 3-grams  | 1  | "ver" avec "ver" |
-| 4-ngrams | 1  | "erdi" avec "erdi" |
-| 5-grams  | 1  | "verdi" avec "verdi" |
+- On peut donner plus ou moins d'importance aux différents matchs 🎯.  
+- Chaque occurrence est multipliée par un facteur, appelé [**boost**]{.blue2}, qui dépend du niveau de match 🎯.  
 
 ## Retour sur le score global
 
@@ -411,12 +406,18 @@ Le package elasticsearch permet d'indexer les données en fournissant :
 
 ## Faire des recherches
 
-Une recherche = une requête 🔍.
+Une recherche = une requête 🔍.  
 
-*Requête pour retrouver la voie :*
+*Requête pour retrouver la voie :*  
 
-- Match 🎯 mot sur nom de voie avec fuzzi 1 → boost 20.  
-- Match 🎯 mot sur type de voie ou nom de voie → boost 15.  
-- Match 🎯 3 à 5-grams sur nom de voie → boost 1.  
+- Match 🎯 nom de voie entier sans découpage avec fuzzi 1 → boost 200. *Ex : "3 rue du genral de gaulle" avec "du gen**e**ral de gaulle"*.  
+- Match 🎯 chaque mot du nom de voie avec fuzzi 1 → boost 15. *Ex : "3 rue du genral de gaule" avec "du", "gen**e**ral", "de", "gaul**l**e"*.  
+- Match 🎯 chaque mot du type de voie avec fuzzi 1 → boost 5. *Ex : "3 rue du general de gaule" avec "rue"*.  
+- Match 🎯 chaque 3 à 5-grams du nom de voie → boost 1.  
 
 À chaque fois qu'une sous-chaîne valide l'une de ces conditions, le score va ⇡ en fonction du boost associé.
+
+::: {.notes}
+- On match à chaque 3-grams, exemple avec verdier.  
+- Les ngrams c'est notre dernier recours, on va retourner comme voie plus pertinente les match sur nom de voie complet et sur token mais ngrams c'est notre roue de secours.
+:::

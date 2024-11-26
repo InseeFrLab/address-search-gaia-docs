@@ -1,8 +1,22 @@
 ## Constitution d'un jeu de test
 
-Jeu de test d'adresses pasrau x resil x majic x gaia
+- **Idée : avoir des adresses avec des variations textuelles et leur idGaïaAdresse (vérité).**  
+- Le jeu de test est une suite d'appariements de sources de données :  
+    - PASRAU.  <!-- QUI EST PASRAU   -->
+    - Tous salariés (TSSAL).  <!-- QUI EST TSSAL   -->
+    - Fidéli.  <!-- QUI EST FIDELI   -->
+<!-- - Validation manuelle post-appariements des paires adresse non normalisée + idGaïaAdresse.   -->
 
-Explications
+## Schéma appariements jeu de test
+
+![](img/jeu_test.png){width=75% fig-align="center"}
+
+::: {.notes}
+- Adresses du PASRAU et Tous Salariés (TTSAL) avec le CSNS de l'individu connu pour chaque adresse.  
+- Grâce aux CSNS des individus Fidéli 2022, obtention de l'identifiant Majic de ces adresses.
+- Avec l'identifiant Majic des adresses, conservé dans le référentiel Gaïa, on retrouve l'idGaïaAdresse.  
+- Les adresses (PASRAU, TSSAL) sont comparées aux adresses du référentiel, et seules les paires considérées comme identiques sont conservées.  
+:::
 
 ## Évaluation de l'algorithme d'identification
 
@@ -11,13 +25,22 @@ Sur 100 000 adresses sur tout le territoire français :
 |             | **Adresse trouvée** | **Voie trouvée** | **Commune trouvée/rien trouvé** |
 |-------------|-----------------|--------------|-----------------------------|
 | **Pourcentage** | 86,0% | 99,5% | 0,5% |
-| **Accuracy**    | 0.94  | 0.94  | x    |
+| **Précision**    | 0.94  | 0.94  | x    |
+
+Appariement direct avec filtres entre adresses à retrouver et référentiel Gaïa : [**30% d'identification d'adresse**]{.blue2}.
+
+::: {.notes}
+
+- Précision = Vrais positifs/ positifs (vp + fp)  
+
+- A titre de comparaison, un appariement direct entre les adresses à retrouver et le référentiel Gaïa donnerait 30% d'identification à condition que les filtres présentés précédement soient appliqués.  
+:::
 
 ## Rapidité de l'algorithme
 
-[**2 secondes pour 500 adresses**]{.blue2}
-
-Démonstration en utilisant [l'API Gaïa](https://api-interrogation-geo.insee.fr/swagger-ui/index.html).
+- [**500 adresses en 2 secondes**]{.blue2}.  
+- Identification par gros paquets d'adresses : [**500 000 adresses en x minutes**]{.green2}.
+- Démonstration en utilisant [l'API Gaïa](https://api-interrogation-geo.insee.fr/swagger-ui/index.html).  
 
 <!-- ## Utilisation du moteur au sein du projet Gaïa
 

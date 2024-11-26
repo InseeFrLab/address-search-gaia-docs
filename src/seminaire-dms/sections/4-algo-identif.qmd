@@ -1,19 +1,26 @@
 ## Algorithme d'identification d'adresses
 
-![](img/schema_moteur_fr.png){width=75% fig-align="center"}
-
-::: {.notes}
+- Prends en entrée un [**libellé d'adresse**]{.green2} et un [**COG**]{.blue2}, ou à défaut, [**un code postal + libellé commune**]{.blue2}.  
 - Succession de requêtes ElasticSearch.
 - Étapes de validation des résultats après chaque requête.
 - Retourne :
-    - le(s) identifiant(s) Gaïa retrouvés.  
-    - une indicatrice sur qualité de l'identification.  
-    - un ratio qui mesure l'écart entre la 1ère et la 2ème possibilité retournées par Elastic.  
-::: 
+    - le(s) identifiant(s) Gaïa retrouvé(s).  
+    - une indicatrice sur la qualité de l'identification (0 à 10).  
+    - un ratio qui mesure l'écart entre la 1ère et la 2ème possibilité retournées par Elastic (0 à 1).  
+
+## Schéma algorithme d'identification
+
+![](img/schema_moteur_fr.png){width=75% fig-align="center"}
+
+::: {.notes}
+- Identification stricte : une recherche l'adresse comme un appariement direct avec notre référentiel Gaïa, mais on applique les filtres en amont.  
+- En moyenne, sur une base de données d'adresses non normalisées, il y a 30% des adresses qui passent à la première étape de l'identification. Cette identification stricte permet donc d'accélerer le processus, car elle prend 6 fois moins de temps que les requêtes floues sur le nom de voie.  
+- Comme les bases de données qui alimentent notre référentiel sont plutôt normalisées, cela accélère d'autant plus notre processus d'identification.  
+:::
 
 ## Indicatrice qualité
 
-- Dépend du pourcentage de 3-grams de la [**voie du référentiel**].{.blue2} ⊂ [**l'adresse recherchée**]{.green2}.
+- Dépend du pourcentage de 3-grams de la [**voie du référentiel**]{.blue2} ⊂ [**l'adresse recherchée**]{.green2}.
 - Calcul non réalisable avec Elastic, donc effectué post requête.
 
 | Voie qualifiée de | Pourcentage de 3-grams |
@@ -30,6 +37,10 @@
 - verdier : 5 trigrams  
 - 4 trigrams retrouvés dans 88 avenue verdier  
 - 4*100/5 = 80  
+
+- Ces valeurs n'ont pas été choisies aux hasard, elles ont été calculées grâce au jeu de test que nous allons vous présenter ensuite. Et nous avons regardé la courbe Précision-Rappel.
+- Précision = Vrais positifs/ positifs (vp + fp) 
+- Rappel = Vrais positifs / Bons prédits (vp + vn)
 ::: 
 
 ## Valeurs de l'indicatrice qualité
@@ -47,7 +58,7 @@ $$
 \text{ratio} = 1 - \frac{R_2}{R_1}
 $$
 
-R1 = score Elastic de la 1ère voie la plus pertinente  
-R2 = score Elastic de la 2ème voie la plus pertinente
+R1 = score Elastic de la 1ère voie la plus pertinente.  
+R2 = score Elastic de la 2ème voie la plus pertinente.
 
 Plus le ratio est proche de 1, plus le résultat retourné est loin de la 2ème proposition.
