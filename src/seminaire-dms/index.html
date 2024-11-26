@@ -806,8 +806,16 @@ cours
 </div>
 <p><span class="green2"><strong>Comptage direct ⚡ des occurrences</strong></span> de chaque mot de la base par idVoie.</p>
 <aside class="notes">
-<p>Faire un index inversé par mot, c’est récupérer tous les mots des noms de voie dans le référentiel et on les aplati dans une colonne.</p>
-<p>Nous obtenons directement le comptage de chaque mot par idVoie, pour tous les mots présents dans les noms de voie du référentiel.</p>
+<ul>
+<li>Faire un index inversé par mot, c’est récupérer tous les mots des noms de voie dans le référentiel et on les aplati dans une colonne.<br>
+</li>
+<li>Il y a autant de lignes qu’il y a de mots différents dans les noms de voie du référentiel. Les mots les plus fréquents seront ceux qui ont le plus d’occurences.<br>
+</li>
+<li>Nous obtenons directement le comptage de chaque mot par idVoie, pour tous les mots présents dans les noms de voie du référentiel.<br>
+</li>
+<li>L’index inversé est fait en amont des requetes.<br>
+</li>
+</ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -958,6 +966,24 @@ oin
 </tbody>
 </table>
 </div>
+<aside class="notes">
+<ul>
+<li>Il y a autant de lignes qu’il ya de trigrams différents dans les noms de voie du référentiel.<br>
+</li>
+<li>Si un mot est inférieur à la taille n=3, il ne sera pas pris en compte. Par exemple : du général de gaules, “du” et “de” n’apparaîtront pas dans l’index et donc ne seront pas pris en compte dans les matchs trigrams.<br>
+</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="score-avec-tokenizer-n-grams" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Score avec tokenizer “n-grams”</h2>
@@ -973,7 +999,11 @@ score_{voie} = \sum_{\text{∀ngram} \in \text{N}} {nb\_occurrence}_{ngram}
 \Rightarrow \text{taille index inversé} \uparrow
 \Rightarrow \text{temps de recherche} \uparrow
 \]</span></p>
-<p>Limitation à n∈{3,4,5} pour notre cas.</p>
+<ul>
+<li>Limitation à n∈{3,4,5} pour notre cas.<br>
+</li>
+<li>Tests effectués pour choisir ces valeurs, en fonction de <span class="blue2"><strong>la précision et la rapidité</strong></span> des requêtes.</li>
+</ul>
 </section>
 <section id="fuzziness" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Fuzziness</h2>
@@ -1003,48 +1033,11 @@ score_{voie} = \sum_{\text{∀ngram} \in \text{N}} {nb\_occurrence}_{ngram}
 </section>
 <section id="boost" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Boost</h2>
-<p>On peut donner plus ou moins d’importance aux différents matchs 🎯.<br>
-Chaque occurrence est multipliée par un facteur, appelé <span class="blue2"><strong>boost</strong></span>, qui dépend du niveau de match 🎯.</p>
-</section>
-<section id="boosts-dans-gaïa" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Boosts dans Gaïa</h2>
-<p><em>Exemple : recherche de “88 avenue verdier” et dans la base il y a la voie D : “verdier”.</em></p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th><strong>match au niveau</strong></th>
-<th><strong>boost</strong></th>
-<th><strong>exemple</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>mot</td>
-<td>20</td>
-<td>“verdier” avec “verdier”</td>
-</tr>
-<tr class="even">
-<td>fuzzi 1</td>
-<td>15</td>
-<td>“verdier” avec “verdie”</td>
-</tr>
-<tr class="odd">
-<td>3-grams</td>
-<td>1</td>
-<td>“ver” avec “ver”</td>
-</tr>
-<tr class="even">
-<td>4-ngrams</td>
-<td>1</td>
-<td>“erdi” avec “erdi”</td>
-</tr>
-<tr class="odd">
-<td>5-grams</td>
-<td>1</td>
-<td>“verdi” avec “verdi”</td>
-</tr>
-</tbody>
-</table>
+<ul>
+<li>On peut donner plus ou moins d’importance aux différents matchs 🎯.<br>
+</li>
+<li>Chaque occurrence est multipliée par un facteur, appelé <span class="blue2"><strong>boost</strong></span>, qui dépend du niveau de match 🎯.</li>
+</ul>
 </section>
 <section id="retour-sur-le-score-global" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Retour sur le score global</h2>
@@ -1069,13 +1062,32 @@ Le package elasticsearch permet d'indexer les donn&#xE9;es en fournissant :
 <p>Une recherche = une requête 🔍.</p>
 <p><em>Requête pour retrouver la voie :</em></p>
 <ul>
-<li>Match 🎯 mot sur nom de voie avec fuzzi 1 → boost 20.<br>
+<li>Match 🎯 nom de voie entier sans découpage avec fuzzi 1 → boost 200. <em>Ex : “3 rue du genral de gaulle” avec “du gen<strong>e</strong>ral de gaulle”</em>.<br>
 </li>
-<li>Match 🎯 mot sur type de voie ou nom de voie → boost 15.<br>
+<li>Match 🎯 chaque mot du nom de voie avec fuzzi 1 → boost 15. <em>Ex : “3 rue du genral de gaule” avec “du”, “gen<strong>e</strong>ral”, “de”, “gaul<strong>l</strong>e”</em>.<br>
 </li>
-<li>Match 🎯 3 à 5-grams sur nom de voie → boost 1.</li>
+<li>Match 🎯 chaque mot du type de voie avec fuzzi 1 → boost 5. <em>Ex : “3 rue du general de gaule” avec “rue”</em>.<br>
+</li>
+<li>Match 🎯 chaque 3 à 5-grams du nom de voie → boost 1.</li>
 </ul>
 <p>À chaque fois qu’une sous-chaîne valide l’une de ces conditions, le score va ⇡ en fonction du boost associé.</p>
+<aside class="notes">
+<ul>
+<li>On match à chaque 3-grams, exemple avec verdier.<br>
+</li>
+<li>Les ngrams c’est notre dernier recours, on va retourner comme voie plus pertinente les match sur nom de voie complet et sur token mais ngrams c’est notre roue de secours.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section></section>
 <section id="plan-de-la-présentation-3" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>
@@ -1094,20 +1106,32 @@ Le package elasticsearch permet d'indexer les donn&#xE9;es en fournissant :
 </section>
 <section id="algorithme-didentification-dadresses-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Algorithme d’identification d’adresses</h2>
-
-<img data-src="img/schema_moteur_fr.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"><aside class="notes">
 <ul>
+<li>Prends en entrée un <span class="green2"><strong>libellé d’adresse</strong></span> et un <span class="blue2"><strong>COG</strong></span>, ou à défaut, <span class="blue2"><strong>un code postal + libellé commune</strong></span>.<br>
+</li>
 <li>Succession de requêtes ElasticSearch.</li>
 <li>Étapes de validation des résultats après chaque requête.</li>
 <li>Retourne :
 <ul>
-<li>le(s) identifiant(s) Gaïa retrouvés.<br>
+<li>le(s) identifiant(s) Gaïa retrouvé(s).<br>
 </li>
-<li>une indicatrice sur qualité de l’identification.<br>
+<li>une indicatrice sur la qualité de l’identification (0 à 10).<br>
 </li>
-<li>un ratio qui mesure l’écart entre la 1ère et la 2ème possibilité retournées par Elastic.<br>
-</li>
+<li>un ratio qui mesure l’écart entre la 1ère et la 2ème possibilité retournées par Elastic (0 à 1).</li>
 </ul></li>
+</ul>
+</section>
+<section id="schéma-algorithme-didentification" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Schéma algorithme d’identification</h2>
+
+<img data-src="img/schema_moteur_fr.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"><aside class="notes">
+<ul>
+<li>Identification stricte : une recherche l’adresse comme un appariement direct avec notre référentiel Gaïa, mais on applique les filtres en amont.<br>
+</li>
+<li>En moyenne, sur une base de données d’adresses non normalisées, il y a 30% des adresses qui passent à la première étape de l’identification. Cette identification stricte permet donc d’accélerer le processus, car elle prend 6 fois moins de temps que les requêtes floues sur le nom de voie.<br>
+</li>
+<li>Comme les bases de données qui alimentent notre référentiel sont plutôt normalisées, cela accélère d’autant plus notre processus d’identification.<br>
+</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -1124,7 +1148,7 @@ Le package elasticsearch permet d'indexer les donn&#xE9;es en fournissant :
 <section id="indicatrice-qualité" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Indicatrice qualité</h2>
 <ul>
-<li>Dépend du pourcentage de 3-grams de la [<strong>voie du référentiel</strong>].{.blue2} ⊂ <span class="green2"><strong>l’adresse recherchée</strong></span>.</li>
+<li>Dépend du pourcentage de 3-grams de la <span class="blue2"><strong>voie du référentiel</strong></span> ⊂ <span class="green2"><strong>l’adresse recherchée</strong></span>.</li>
 <li>Calcul non réalisable avec Elastic, donc effectué post requête.</li>
 </ul>
 <table class="caption-top">
@@ -1156,14 +1180,16 @@ Le package elasticsearch permet d'indexer les donn&#xE9;es en fournissant :
 <p><em>Exemple : 80% des 3-grams de “verdier” dans “88 avenue verdie”.</em></p>
 <aside class="notes">
 <ul>
-<li>Le trigram “ier” n’est jamais matché<br>
-</li>
-<li>verdier : 5 trigrams<br>
-</li>
-<li>4 trigrams retrouvés dans 88 avenue verdier<br>
-</li>
-<li>4*100/5 = 80<br>
-</li>
+<li><p>Le trigram “ier” n’est jamais matché<br>
+</p></li>
+<li><p>verdier : 5 trigrams<br>
+</p></li>
+<li><p>4 trigrams retrouvés dans 88 avenue verdier<br>
+</p></li>
+<li><p>4*100/5 = 80</p></li>
+<li><p>Ces valeurs n’ont pas été choisies aux hasard, elles ont été calculées grâce au jeu de test que nous allons vous présenter ensuite. Et nous avons regardé la courbe Précision-Rappel.</p></li>
+<li><p>Précision = Vrais positifs/ positifs (vp + fp)</p></li>
+<li><p>Rappel = Vrais positifs / Bons prédits (vp + vn)</p></li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -1211,8 +1237,8 @@ Le package elasticsearch permet d'indexer les donn&#xE9;es en fournissant :
 <p><span class="math display">\[
 \text{ratio} = 1 - \frac{R_2}{R_1}
 \]</span></p>
-<p>R1 = score Elastic de la 1ère voie la plus pertinente<br>
-R2 = score Elastic de la 2ème voie la plus pertinente</p>
+<p>R1 = score Elastic de la 1ère voie la plus pertinente.<br>
+R2 = score Elastic de la 2ème voie la plus pertinente.</p>
 <p>Plus le ratio est proche de 1, plus le résultat retourné est loin de la 2ème proposition.</p>
 </section></section>
 <section id="plan-de-la-présentation-4" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
@@ -1232,8 +1258,41 @@ R2 = score Elastic de la 2ème voie la plus pertinente</p>
 </section>
 <section id="constitution-dun-jeu-de-test" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Constitution d’un jeu de test</h2>
-<p>Jeu de test d’adresses pasrau x resil x majic x gaia</p>
-<p>Explications</p>
+<ul>
+<li><strong>Idée : avoir des adresses avec des variations textuelles et leur idGaïaAdresse (vérité).</strong><br>
+</li>
+<li>Le jeu de test est une suite d’appariements de sources de données :
+<ul>
+<li>PASRAU. <!-- QUI EST PASRAU   --></li>
+<li>Tous salariés (TSSAL). <!-- QUI EST TSSAL   --></li>
+<li>Fidéli. <!-- QUI EST FIDELI   --> <!-- - Validation manuelle post-appariements des paires adresse non normalis&#xE9;e + idGa&#xEF;aAdresse.   --></li>
+</ul></li>
+</ul>
+</section>
+<section id="schéma-appariements-jeu-de-test" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Schéma appariements jeu de test</h2>
+
+<img data-src="img/jeu_test.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"><aside class="notes">
+<ul>
+<li>Adresses du PASRAU et Tous Salariés (TTSAL) avec le CSNS de l’individu connu pour chaque adresse.<br>
+</li>
+<li>Grâce aux CSNS des individus Fidéli 2022, obtention de l’identifiant Majic de ces adresses.</li>
+<li>Avec l’identifiant Majic des adresses, conservé dans le référentiel Gaïa, on retrouve l’idGaïaAdresse.<br>
+</li>
+<li>Les adresses (PASRAU, TSSAL) sont comparées aux adresses du référentiel, et seules les paires considérées comme identiques sont conservées.<br>
+</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="évaluation-de-lalgorithme-didentification" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Évaluation de l’algorithme d’identification</h2>
@@ -1261,18 +1320,40 @@ R2 = score Elastic de la 2ème voie la plus pertinente</p>
 <td>0,5%</td>
 </tr>
 <tr class="even">
-<td><strong>Accuracy</strong></td>
+<td><strong>Précision</strong></td>
 <td>0.94</td>
 <td>0.94</td>
 <td>x</td>
 </tr>
 </tbody>
 </table>
+<p>Appariement direct avec filtres entre adresses à retrouver et référentiel Gaïa : <span class="blue2"><strong>30% d’identification d’adresse</strong></span>.</p>
+<aside class="notes">
+<ul>
+<li><p>Précision = Vrais positifs/ positifs (vp + fp)</p></li>
+<li><p>A titre de comparaison, un appariement direct entre les adresses à retrouver et le référentiel Gaïa donnerait 30% d’identification à condition que les filtres présentés précédement soient appliqués.<br>
+</p></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="rapidité-de-lalgorithme" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Rapidité de l’algorithme</h2>
-<p><span class="blue2"><strong>2 secondes pour 500 adresses</strong></span></p>
-<p>Démonstration en utilisant <a href="https://api-interrogation-geo.insee.fr/swagger-ui/index.html">l’API Gaïa</a>.</p>
+<ul>
+<li><span class="blue2"><strong>500 adresses en 2 secondes</strong></span>.<br>
+</li>
+<li>Identification par gros paquets d’adresses : <span class="green2"><strong>500 000 adresses en x minutes</strong></span>.</li>
+<li>Démonstration en utilisant <a href="https://api-interrogation-geo.insee.fr/swagger-ui/index.html">l’API Gaïa</a>.</li>
+</ul>
 <!-- ## Utilisation du moteur au sein du projet Ga&#xEF;a
 
 M&#xE9;triques sur les mises &#xE0; jour du r&#xE9;f&#xE9;rentiel :
