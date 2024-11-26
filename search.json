@@ -370,14 +370,14 @@
     "href": "src/seminaire-dms/index.html#évaluation-de-lalgorithme-didentification",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Évaluation de l’algorithme d’identification",
-    "text": "Évaluation de l’algorithme d’identification\nSur 100 000 adresses sur tout le territoire français :\n\n\n\n\n\n\n\n\n\n\nAdresse trouvée\nVoie trouvée\nCommune trouvée/rien trouvé\n\n\n\n\nPourcentage\n86,0%\n99,5%\n0,5%\n\n\nPrécision\n0.94\n0.94\nx\n\n\n\nAppariement direct avec filtres entre adresses à retrouver et référentiel Gaïa : 30% d’identification d’adresse.\n\n\nPrécision = Vrais positifs/ positifs (vp + fp)\nA titre de comparaison, un appariement direct entre les adresses à retrouver et le référentiel Gaïa donnerait 30% d’identification à condition que les filtres présentés précédement soient appliqués."
+    "text": "Évaluation de l’algorithme d’identification\nSur 100 000 adresses sur tout le territoire français :\n\n\n\n\n\n\n\n\n\n\nAdresse trouvée\nVoie trouvée\nCommune trouvée/rien trouvé\n\n\n\n\nPourcentage\n86,0%\n99,5%\n0,5%\n\n\nPrécision\n0.94\n0.94\nx\n\n\n\nAppariement direct avec filtres entre adresses à retrouver et référentiel Gaïa : 30% d’identification d’adresse.\n\n\nPrécision = Vrais positifs/ positifs (vp + fp)\nA titre de comparaison, un appariement direct entre les adresses à retrouver et le référentiel Gaïa donnerait 30% d’identification à condition que les filtres présentés précédemment soient appliqués."
   },
   {
     "objectID": "src/seminaire-dms/index.html#rapidité-de-lalgorithme",
     "href": "src/seminaire-dms/index.html#rapidité-de-lalgorithme",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Rapidité de l’algorithme",
-    "text": "Rapidité de l’algorithme\n\n500 adresses en 2 secondes.\n\nIdentification par gros paquets d’adresses : 500 000 adresses en x minutes.\nDémonstration en utilisant l’API Gaïa."
+    "text": "Rapidité de l’algorithme\n\n500 adresses en 2 secondes.\n\nIdentification de gros paquets d’adresses : 1 million d’adresses en 50 minutes.\nDémonstration en utilisant l’API Gaïa."
   },
   {
     "objectID": "src/seminaire-dms/index.html#pistes-damélioration",
