@@ -23,7 +23,7 @@ Parler de l'origine du projet, quand ca a été mis en place, comment, pq...
 
 <br>
 
-<center><p>[**20 bis avenue de la marne**]{.red2} <span style="margin-left: 130px;">[**92049**]{.red2}</span></p></center>
+<center><p>[**20**]{.green2} [**bis**]{.blue2} [**avenue**]{.yellow2} [**de la marne**]{.red2} <span style="margin-left: 130px;">[**92049**]{.purple2}</span></p></center>
 
 <br>
 
@@ -33,13 +33,13 @@ Parler de l'origine du projet, quand ca a été mis en place, comment, pq...
 
 ## Géométrie de l'adresse
 
-*Exemple: 88 avenue verdier 92049 reliée à sa parcelle*
+*Exemple: "88 avenue verdier | 92049" reliée à sa parcelle*
 
 ![](img/adresse_parcelle.png){width=75% fig-align="center"}
 
 ## Le référentiel Gaïa
 
-![](img/voies_adresses.png){width=75% fig-align="center"}
+![](img/communes_voies_adresses.png){width=75% fig-align="center"}
 
 ::: {.notes}
 Autres données disponibles (aspect géométrique des objets) :  
@@ -71,9 +71,9 @@ Ceci permet la prise en charge des [**cissions et fusions de communes**]{.blue2}
 
 Sources fiables :
 
-- Majic : Mise à jour des informations cadastrales.  
-- BAN : Base Adresse Nationale.  
-- RCA : Référentiel Commun d'Adresses.  
+- [**Majic**]{.green2} : Mise à jour des informations cadastrales.  
+- [**BAN**]{.green2} : Base Adresse Nationale.  
+- [**RCA**]{.green2} : Référentiel Commun d'Adresses.  
 
 <!-- Est ce que c'est assez détaillé ? Peut etre mettre la source ? -->
 

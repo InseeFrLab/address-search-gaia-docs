@@ -4,29 +4,29 @@
 
 | **Adresse à retrouver** | **COG** | **Code Postal** | **Libellé commune** |
 |-------------------------|---------|-----------------|---------------------|
-| 131, rue du fbg Bannier |         | 45000           | Orléans             |
-| 0033 ave J. Jaurès    | 92040   |            |              |
+| 131, rue du fbg Bannier |   -     | 45000           | Orléans             |
+| 0033 ave J. Jaurès      | 92040   |  -              |  -                  |
 
 Adresses dans Gaïa :  
 
-| **Adresse** | **COG** |
-|-------------|---------|
-| 131 rue du faubourg bannier | 45234 |
-| 33 avenue jean jaures | 92040 |
+| **Adresse**                 | **COG** |
+|-----------------------------|---------|
+| 131 rue du faubourg bannier | 45234   |
+| 33 avenue jean jaures       | 92040   |
 
 C'est pourquoi il faut un moteur de recherche ⚙️.
 
 ## Un moteur de recherche ⚙️
 
-- Google : recherche par mot clé.  
+- **Google** : recherche par mot clé.  
 - Pour la recherche d'adresse :  
-  - Google Maps.
-  - Addok, moteur de recherche de la BAN.
+  - **Google Maps**.
+  - **Addok** : moteur de recherche de la BAN.
 
 ## ElasticSearch 
 
-- Créé en 2010 par Shay Bannon.  
-- Moteur ⚙️ utilisable en n'importe quel langage (requêtes HTTP).  
+- Créé en **2010** par Shay Bannon.  
+- Moteur ⚙️ utilisable en [**n'importe quel langage de programmation**]{.green2} (requêtes HTTP).  
 - Faire des recherches rapides sur tout type de données (textes, objets géométriques...).  
 
 
@@ -87,16 +87,17 @@ On peut commencer à créer notre moteur ⚙️. -->
 ## Filtres
 
 <!-- - Définis dans les *settings* 🛠️.   -->
-- Normalisent les données.  
-- Pour les données du référentiel et pour les adresses recherchées.
+- Normaliser le texte pour la comparaison.  
+- Pour les [**données du référentiel**]{.green2} ET pour les [**adresses recherchées**]{.blue2}.
 
 ## Filtres implémentés
 
 - Lowercase  
 - Asciifolding  
 - Ponctuation  
-- Séparation des nombres et lettres *(ex : 14bis → 14 bis)*  
+- Séparation des nombres et lettres *(ex : 1er → 1 er)*  
 - Suppression des espaces supplémentaires  
+- Suppression des "0" devant les nombres *(ex : 0033 → 33)*  
 - [**Prise en compte des synonymes**]{.red2}  *(ex : ave = avenue, st = saint)*  
 
 # Étape 2 : définir un score pour évaluer la pertinence.
@@ -126,11 +127,11 @@ On peut commencer à créer notre moteur ⚙️. -->
 
 [**Pour retourner la voie la plus pertinente**]{.blue2}, on construit un score pour chaque voie :
 $$
-score_{voie} = \sum_{\text{∀t} \in \text{T}} {nb\_occurrence}_t
+score_{voie} = \sum_{\text{∀m} \in \text{M}} {nb\_occurrence}_m
 $$
 
-t = token  
-T = ensemble des tokens de l'adresse recherchée  
+m = mot  
+M = ensemble des mots de l'adresse recherchée  
 
 ## Score avec tokenizer "mot"
 
@@ -244,12 +245,14 @@ T = ensemble des tokens de l'adresse recherchée
 [**Contourner les fautes d'orthographes**]{.blue2} : chaque mot est découpé en sous-chaînes de n caractères consécutifs.  
 
 *Exemple de découpage en 3-grams de caractères du texte "avenue verdier" :*  
-**ave, ven, enu, nue, ver, erd, rdi, die, ier**
+**ave, ven, enu, nue, ver, erd, rdi, die, ier**  
 
 <!-- | token    | 3-grams                 |
 |----------|-------------------------|
 | avenue   | ave, ven, enu, nue      |
 | verdier  | ver, erd, rdi, die, ier | -->
+
+Si un mot est inférieur à la taille n, il n'aura pas de découpage en n-grams → pas présent dans l'index inversé n-gram.  
 
 
 ## Index inversé 3-grams
@@ -299,7 +302,7 @@ T = ensemble des tokens de l'adresse recherchée
 </table>
 
 <!-- Ajoutez un espacement entre les deux tableaux -->
-<div style="margin-left: 130px;"></div>
+<div style="margin-left: 80px;"></div>
 
 <table>
   <thead>
@@ -362,14 +365,14 @@ $$
 
 Contourner les fautes d'orthographes d'une autre façon : [**fuzziness**]{.green2}.  
 
-<br>
-
-Pour matcher 🎯 deux mots avec une fuzziness de niveau 1 = corriger l'un des mots :
+Pour matcher 🎯 deux mots avec une fuzziness de niveau 1 = corriger l'un des mots :  
 
 - Ajout d'une lettre.  
 - Suppression d'une lettre.  
 - Remplacement d'une lettre.  
 - Échanger deux lettres de place.  
+
+Il est possible de comparer deux textes, deux ngrams ou n'importe quel autre groupe de caractères.  
 
 ## Score global 
 
@@ -387,12 +390,12 @@ Le score global va donc combiner la somme des matchs 🎯 au niveau :
 ## Retour sur le score global
 
 $$
-score_{voie} = \sum_{\text{∀n} \in \text{N}} \sum_{\text{∀sc} \in \text{n}} boost_{n}*{nb\_occurrence}_{sc}
+score_{voie} = \sum_{\text{∀n} \in \text{N}} \sum_{\text{∀t} \in \text{n}} boost_{n}*{nb\_occurrence}_{t}
 $$
 
 N = ensemble des niveaux *(niveau mot, niveau fuzzi...)*  
 n = niveau  
-sc = sous-chaîne *(un mot, un 3-grams...)*  
+t = token, sous-chaîne *(un mot, un 3-grams...)*  
 
 <!-- ## Configurer le moteur ⚙️
 
@@ -404,16 +407,14 @@ Le package elasticsearch permet d'indexer les données en fournissant :
 - Des [**settings**]{.blue2} 🛠️ où on définit nos différents **analyzers**, englobant les filtres et le motizer.  
 - Des [**mappings**]{.green2} 🏷️ où pour chaque **variable**, on fournit un analyzer.   -->
 
-## Faire des recherches
+## Faire des recherches 🔍
 
-Une recherche = une requête 🔍.  
+*Requête 🔍 pour retrouver la voie :*  
 
-*Requête pour retrouver la voie :*  
-
-- Match 🎯 nom de voie entier sans découpage avec fuzzi 1 → boost 200. *Ex : "3 rue du genral de gaulle" avec "du gen**e**ral de gaulle"*.  
-- Match 🎯 chaque mot du nom de voie avec fuzzi 1 → boost 15. *Ex : "3 rue du genral de gaule" avec "du", "gen**e**ral", "de", "gaul**l**e"*.  
-- Match 🎯 chaque mot du type de voie avec fuzzi 1 → boost 5. *Ex : "3 rue du general de gaule" avec "rue"*.  
-- Match 🎯 chaque 3 à 5-grams du nom de voie → boost 1.  
+- Match 🎯 nom de voie entier sans découpage avec fuzzi 1 → **boost 200**. *Ex : "3 rue du genral de gaulle" avec "du gen**e**ral de gaulle"*.  
+- Match 🎯 chaque mot du nom de voie avec fuzzi 1 → **boost 15**. *Ex : "3 rue du genral de gaule" avec "du", "gen**e**ral", "de", "gaul**l**e"*.  
+- Match 🎯 chaque mot du type de voie avec fuzzi 1 → **boost 5**. *Ex : "3 rue du general de gaule" avec "rue"*.  
+- Match 🎯 chaque 3 à 5-grams du nom de voie → **boost 1**.  
 
 À chaque fois qu'une sous-chaîne valide l'une de ces conditions, le score va ⇡ en fonction du boost associé.
 

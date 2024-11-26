@@ -1,6 +1,6 @@
 ## Constitution d'un jeu de test
 
-- **Idée : avoir des adresses avec des variations textuelles et leur idGaïaAdresse (vérité).**  
+- [**Idée : avoir des adresses avec des variations textuelles et leur idGaïaAdresse associé (vérité).**]{.red2}  
 - Le jeu de test est une suite d'appariements de sources de données :  
     - PASRAU.  <!-- QUI EST PASRAU   -->
     - Tous salariés (TSSAL).  <!-- QUI EST TSSAL   -->
@@ -20,11 +20,11 @@
 
 ## Évaluation de l'algorithme d'identification
 
-Sur 100 000 adresses sur tout le territoire français :  
+Pour 100 000 adresses issues du jeu de test sur tout le territoire français :  
 
 |             | **Adresse trouvée** | **Voie trouvée** | **Commune trouvée/rien trouvé** |
 |-------------|-----------------|--------------|-----------------------------|
-| **Pourcentage** | 86,0% | 99,5% | 0,5% |
+| **Pourcentage** | [**86,0%**]{.red2} | [**99,5%**]{.red2} | 0,5% |
 | **Précision**    | 0.94  | 0.94  | x    |
 
 Appariement direct avec filtres entre adresses à retrouver et référentiel Gaïa : [**30% d'identification d'adresse**]{.blue2}.
