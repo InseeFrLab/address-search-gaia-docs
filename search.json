@@ -174,7 +174,7 @@
     "href": "src/seminaire-dms/index.html#adresses-à-retrouver-dans-gaïa",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Adresses à retrouver dans Gaïa",
-    "text": "Adresses à retrouver dans Gaïa\nExemple d’adresses à retrouver :\n\n\n\n\n\n\n\n\n\nAdresse à retrouver\nCOG\nCode Postal\nLibellé commune\n\n\n\n\n131, rue du fbg Bannier\n-\n45000\nOrléans\n\n\n0033 ave J. Jaurès\n92040\n-\n-\n\n\n\nAdresses dans Gaïa :\n\n\n\nAdresse\nCOG\n\n\n\n\n131 rue du faubourg bannier\n45234\n\n\n33 avenue jean jaures\n92040\n\n\n\nC’est pourquoi il faut un moteur de recherche ⚙️."
+    "text": "Adresses à retrouver dans Gaïa\nExemple d’adresses à retrouver :\n\n\n\n\n\n\n\n\n\nAdresse à retrouver\nCOG\nCode Postal\nLibellé commune\n\n\n\n\n131, rue du fbg Bannier\n\n45000\nOrléans\n\n\n0033 ave J. Jaurès\n92040\n\n\n\n\n\nAdresses dans Gaïa :\n\n\n\nAdresse\nCOG\n\n\n\n\n131 rue du faubourg bannier\n45234\n\n\n33 avenue jean jaures\n92040\n\n\n\n\nC’est pourquoi il faut un moteur de recherche ⚙️."
   },
   {
     "objectID": "src/seminaire-dms/index.html#un-moteur-de-recherche",
@@ -237,7 +237,7 @@
     "href": "src/seminaire-dms/index.html#score-avec-tokenizer-mot",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Score avec tokenizer “mot”",
-    "text": "Score avec tokenizer “mot”\nTokenizer = façon de découper le texte recherché et ciblé.\n\nPour retourner la voie la plus pertinente, on construit un score pour chaque voie : \\[\nscore_{voie} = \\sum_{\\text{∀m} \\in \\text{M}} {nb\\_occurrence}_m\n\\]\nm = mot\nM = ensemble des mots de l’adresse recherchée"
+    "text": "Score avec tokenizer “mot”\nTokenizer = façon de découper le texte recherché et ciblé.\n\nPour retourner la voie la plus pertinente, on construit un score pour chaque voie : \\[\nscore_{voie} = \\sum_{\\text{∀m} \\in \\text{M}} {nb\\_occurrence}_m\n\\]\nm = mot.\nM = ensemble des mots de l’adresse recherchée."
   },
   {
     "objectID": "src/seminaire-dms/index.html#score-avec-tokenizer-mot-1",
@@ -258,7 +258,7 @@
     "href": "src/seminaire-dms/index.html#recherche-par-n-grams-de-caractères",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Recherche par n-grams de caractères",
-    "text": "Recherche par n-grams de caractères\nContourner les fautes d’orthographes : chaque mot est découpé en sous-chaînes de n caractères consécutifs.\nExemple de découpage en 3-grams de caractères du texte “avenue verdier” :\nave, ven, enu, nue, ver, erd, rdi, die, ier\n\nSi un mot est inférieur à la taille n, il n’aura pas de découpage en n-grams → pas présent dans l’index inversé n-gram."
+    "text": "Recherche par n-grams de caractères\nContourner les fautes d’orthographes : chaque mot est découpé en sous-chaînes de n caractères consécutifs.\n\nExemple de découpage en 3-grams de caractères du texte “avenue verdier” :\nave, ven, enu, nue, ver, erd, rdi, die, ier\n\nSi un mot est inférieur à la taille n, il n’aura pas de découpage en n-grams → pas présent dans l’index inversé n-gram."
   },
   {
     "objectID": "src/seminaire-dms/index.html#index-inversé-3-grams",
@@ -272,7 +272,7 @@
     "href": "src/seminaire-dms/index.html#score-avec-tokenizer-n-grams",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Score avec tokenizer “n-grams”",
-    "text": "Score avec tokenizer “n-grams”\nScore pour chaque voie : \\[\nscore_{voie} = \\sum_{\\text{∀ngram} \\in \\text{N}} {nb\\_occurrence}_{ngram}\n\\]\nN = ensemble des n-grams de l’adresse recherchée"
+    "text": "Score avec tokenizer “n-grams”\nScore pour chaque voie : \\[\nscore_{voie} = \\sum_{\\text{∀ngram} \\in \\text{N}} {nb\\_occurrence}_{ngram}\n\\]\nN = ensemble des n-grams de l’adresse recherchée."
   },
   {
     "objectID": "src/seminaire-dms/index.html#limites-des-n-grams",
@@ -307,14 +307,14 @@
     "href": "src/seminaire-dms/index.html#retour-sur-le-score-global",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Retour sur le score global",
-    "text": "Retour sur le score global\n\\[\nscore_{voie} = \\sum_{\\text{∀n} \\in \\text{N}} \\sum_{\\text{∀t} \\in \\text{n}} boost_{n}*{nb\\_occurrence}_{t}\n\\]\nN = ensemble des niveaux (niveau mot, niveau fuzzi…)\nn = niveau\nt = token, sous-chaîne (un mot, un 3-grams…)"
+    "text": "Retour sur le score global\n\\[\nscore_{voie} = \\sum_{\\text{∀n} \\in \\text{N}} \\sum_{\\text{∀t} \\in \\text{n}} boost_{n}*{nb\\_occurrence}_{t}\n\\]\nN = ensemble des niveaux (niveau mot, niveau fuzzi…).\nn = niveau.\nt = token, sous-chaîne (un mot, un 3-grams…)."
   },
   {
     "objectID": "src/seminaire-dms/index.html#faire-des-recherches",
     "href": "src/seminaire-dms/index.html#faire-des-recherches",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Faire des recherches 🔍",
-    "text": "Faire des recherches 🔍\nRequête 🔍 pour retrouver la voie :\n\nMatch 🎯 nom de voie entier sans découpage avec fuzzi 1 → boost 200. Ex : “3 rue du genral de gaulle” avec “du general de gaulle”.\n\nMatch 🎯 chaque mot du nom de voie avec fuzzi 1 → boost 15. Ex : “3 rue du genral de gaule” avec “du”, “general”, “de”, “gaulle”.\n\nMatch 🎯 chaque mot du type de voie avec fuzzi 1 → boost 5. Ex : “3 rue du general de gaule” avec “rue”.\n\nMatch 🎯 chaque 3 à 5-grams du nom de voie → boost 1.\n\nÀ chaque fois qu’une sous-chaîne valide l’une de ces conditions, le score va ⇡ en fonction du boost associé.\n\n\nOn match à chaque 3-grams, exemple avec verdier.\n\nLes ngrams c’est notre dernier recours, on va retourner comme voie plus pertinente les match sur nom de voie complet et sur token mais ngrams c’est notre roue de secours."
+    "text": "Faire des recherches 🔍\nRequête 🔍 pour retrouver la voie :\n\nMatch 🎯 nom de voie entier sans découpage avec fuzzi 1, boost 200. Ex : “3 rue du genral de gaulle” avec “du general de gaulle”.\n\nMatch 🎯 chaque mot du nom de voie avec fuzzi 1, boost 15.\n\nMatch 🎯 chaque mot du type de voie avec fuzzi 1, boost 5.\n\nMatch 🎯 chaque 3 à 5-grams du nom de voie, boost 1.\n\nÀ chaque fois qu’une sous-chaîne valide l’une de ces conditions, le score va ⇡ en fonction du boost associé.\n\n\nOn match à chaque 3-grams, exemple avec verdier.\n\nLes ngrams c’est notre dernier recours, on va retourner comme voie plus pertinente les match sur nom de voie complet et sur token mais ngrams c’est notre roue de secours."
   },
   {
     "objectID": "src/seminaire-dms/index.html#algorithme-didentification-dadresses-1",
@@ -328,7 +328,7 @@
     "href": "src/seminaire-dms/index.html#schéma-algorithme-didentification",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Schéma algorithme d’identification",
-    "text": "Schéma algorithme d’identification\n\n\n\nIdentification stricte : une recherche l’adresse comme un appariement direct avec notre référentiel Gaïa, mais on applique les filtres en amont.\n\nEn moyenne, sur une base de données d’adresses non normalisées, il y a 30% des adresses qui passent à la première étape de l’identification. Cette identification stricte permet donc d’accélerer le processus, car elle prend 6 fois moins de temps que les requêtes floues sur le nom de voie.\n\nComme les bases de données qui alimentent notre référentiel sont plutôt normalisées, cela accélère d’autant plus notre processus d’identification."
+    "text": "Schéma algorithme d’identification\n\n\n\nEntre chaque requête Elastic, il y a des étapes de validation du résultat ES.\n\nIdentification stricte : une recherche l’adresse comme un appariement direct avec notre référentiel Gaïa, mais on applique les filtres en amont.\n\nEn moyenne, sur une base de données d’adresses non normalisées, il y a 30% des adresses qui passent à la première étape de l’identification. Cette identification stricte permet donc d’accélerer le processus, car elle prend 6 fois moins de temps que les requêtes floues sur le nom de voie.\n\nComme les bases de données qui alimentent notre référentiel sont plutôt normalisées, cela accélère d’autant plus notre processus d’identification."
   },
   {
     "objectID": "src/seminaire-dms/index.html#indicatrice-qualité",
@@ -349,7 +349,7 @@
     "href": "src/seminaire-dms/index.html#distance-entre-la-1ère-et-la-2ème-voie-la-plus-pertinente",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Distance entre la 1ère et la 2ème voie la plus pertinente",
-    "text": "Distance entre la 1ère et la 2ème voie la plus pertinente\n\\[\n\\text{ratio} = 1 - \\frac{R_2}{R_1}\n\\]\nR1 = score Elastic de la 1ère voie la plus pertinente.\nR2 = score Elastic de la 2ème voie la plus pertinente.\nPlus le ratio est proche de 1, plus le résultat retourné est loin de la 2ème proposition."
+    "text": "Distance entre la 1ère et la 2ème voie la plus pertinente\n\\[\n\\text{ratio} = 1 - \\frac{R_2}{R_1}\n\\]\nR1 = score Elastic de la 1ère voie la plus pertinente (voie retournée).\nR2 = score Elastic de la 2ème voie la plus pertinente.\nRatio → 1 ⇔ le résultat retourné est loin de la 2ème proposition."
   },
   {
     "objectID": "src/seminaire-dms/index.html#constitution-dun-jeu-de-test",
@@ -380,11 +380,11 @@
     "text": "Rapidité de l’algorithme\n\n500 adresses en 2 secondes.\n\nIdentification de gros paquets d’adresses : 1 million d’adresses en 50 minutes.\nDémonstration en utilisant l’API Gaïa."
   },
   {
-    "objectID": "src/seminaire-dms/index.html#pistes-damélioration",
-    "href": "src/seminaire-dms/index.html#pistes-damélioration",
+    "objectID": "src/seminaire-dms/index.html#limites",
+    "href": "src/seminaire-dms/index.html#limites",
     "title": "Identification d’adresses avec ElasticSearch",
-    "section": "Pistes d’amélioration",
-    "text": "Pistes d’amélioration"
+    "section": "Limites",
+    "text": "Limites\n\nCompétences requises pour le développement et la maintenance du moteur ElasticSearch.\n\nMoteur créé par l’EPS en Python, réécrit en Java par l’EPI.\n\nLes travaux ont été effectués sur un référentiel contenant des erreurs/doublons → entrave les métriques qualité."
   },
   {
     "objectID": "src/seminaire-dms/index.html#merci-au-ssplab-julien-pramil-lino-galiana-olivier-meslin-marie-pierre-joubert-et-tom-seimandi",

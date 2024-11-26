@@ -190,7 +190,7 @@
 <p><br></p>
 <center>
 <p>
-<span class="green2"><strong>20</strong></span> <span class="blue2"><strong>bis</strong></span> <span class="yellow2"><strong>avenue</strong></span> <span class="red2"><strong>de la marne</strong></span> <span style="margin-left: 130px;"><span class="purple2"><strong>92049</strong></span></span>
+<span class="green2"><strong>20</strong></span> <span class="blue2"><strong>bis</strong></span> <span class="purple2"><strong>avenue</strong></span> <span class="red2"><strong>de la marne</strong></span> <span style="margin-left: 130px;"><strong>92049</strong></span>
 </p>
 </center>
 <p><br></p>
@@ -369,7 +369,7 @@ L’étape d’identification des adresses permet de ne pas écraser les identif
 </section>
 <section id="adresses-à-retrouver-dans-gaïa" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Adresses à retrouver dans Gaïa</h2>
-<p><em>Exemple d’adresses à retrouver :</em></p>
+<h6 data-background-image="background.svg" data-background-size="contain" id="exemple-dadresses-à-retrouver"><em>Exemple d’adresses à retrouver :</em></h6>
 <table class="caption-top">
 <colgroup>
 <col style="width: 34%">
@@ -388,19 +388,19 @@ L’étape d’identification des adresses permet de ne pas écraser les identif
 <tbody>
 <tr class="odd">
 <td>131, rue du fbg Bannier</td>
-<td>-</td>
+<td></td>
 <td>45000</td>
 <td>Orléans</td>
 </tr>
 <tr class="even">
 <td>0033 ave J. Jaurès</td>
 <td>92040</td>
-<td>-</td>
-<td>-</td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<p>Adresses dans Gaïa :</p>
+<h6 data-background-image="background.svg" data-background-size="contain" id="adresses-dans-gaïa"><em>Adresses dans Gaïa :</em></h6>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -419,7 +419,19 @@ L’étape d’identification des adresses permet de ne pas écraser les identif
 </tr>
 </tbody>
 </table>
+<aside class="notes">
 <p>C’est pourquoi il faut un moteur de recherche ⚙️.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="un-moteur-de-recherche" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Un moteur de recherche ⚙️</h2>
@@ -633,8 +645,8 @@ On peut commencer &#xE0; cr&#xE9;er notre moteur &#x2699;&#xFE0F;. -->
 <p><span class="blue2"><strong>Pour retourner la voie la plus pertinente</strong></span>, on construit un score pour chaque voie : <span class="math display">\[
 score_{voie} = \sum_{\text{∀m} \in \text{M}} {nb\_occurrence}_m
 \]</span></p>
-<p>m = mot<br>
-M = ensemble des mots de l’adresse recherchée</p>
+<p>m = mot.<br>
+M = ensemble des mots de l’adresse recherchée.</p>
 </section>
 <section id="score-avec-tokenizer-mot-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Score avec tokenizer “mot”</h2>
@@ -838,12 +850,10 @@ cours
 <section id="recherche-par-n-grams-de-caractères" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Recherche par n-grams de caractères</h2>
 <p><span class="blue2"><strong>Contourner les fautes d’orthographes</strong></span> : chaque mot est découpé en sous-chaînes de n caractères consécutifs.</p>
+<p><br></p>
 <p><em>Exemple de découpage en 3-grams de caractères du texte “avenue verdier” :</em><br>
 <strong>ave, ven, enu, nue, ver, erd, rdi, die, ier</strong></p>
-<!-- | token    | 3-grams                 |
-|----------|-------------------------|
-| avenue   | ave, ven, enu, nue      |
-| verdier  | ver, erd, rdi, die, ier | -->
+<p><br></p>
 <p>Si un mot est inférieur à la taille n, il n’aura pas de découpage en n-grams → pas présent dans l’index inversé n-gram.</p>
 </section>
 <section id="index-inversé-3-grams" class="slide level2" data-background-image="background.svg" data-background-size="contain">
@@ -911,7 +921,7 @@ des cours
 </tbody>
 </table>
 <!-- Ajoutez un espacement entre les deux tableaux -->
-<div style="margin-left: 80px;">
+<div style="margin-left: 40px;">
 
 </div>
 <table>
@@ -993,7 +1003,7 @@ oin
 <p>Score pour chaque voie : <span class="math display">\[
 score_{voie} = \sum_{\text{∀ngram} \in \text{N}} {nb\_occurrence}_{ngram}
 \]</span></p>
-<p>N = ensemble des n-grams de l’adresse recherchée</p>
+<p>N = ensemble des n-grams de l’adresse recherchée.</p>
 </section>
 <section id="limites-des-n-grams" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Limites des n-grams</h2>
@@ -1047,9 +1057,9 @@ score_{voie} = \sum_{\text{∀ngram} \in \text{N}} {nb\_occurrence}_{ngram}
 <p><span class="math display">\[
 score_{voie} = \sum_{\text{∀n} \in \text{N}} \sum_{\text{∀t} \in \text{n}} boost_{n}*{nb\_occurrence}_{t}
 \]</span></p>
-<p>N = ensemble des niveaux <em>(niveau mot, niveau fuzzi…)</em><br>
-n = niveau<br>
-t = token, sous-chaîne <em>(un mot, un 3-grams…)</em></p>
+<p>N = ensemble des niveaux <em>(niveau mot, niveau fuzzi…)</em>.<br>
+n = niveau.<br>
+t = token, sous-chaîne <em>(un mot, un 3-grams…)</em>.</p>
 <!-- ## Configurer le moteur &#x2699;&#xFE0F;
 
 Une fois qu'on a la th&#xE9;orie, il faut l'appliquer en pratique.  
@@ -1064,13 +1074,13 @@ Le package elasticsearch permet d'indexer les donn&#xE9;es en fournissant :
 <h2>Faire des recherches 🔍</h2>
 <p><em>Requête 🔍 pour retrouver la voie :</em></p>
 <ul>
-<li>Match 🎯 nom de voie entier sans découpage avec fuzzi 1 → <strong>boost 200</strong>. <em>Ex : “3 rue du genral de gaulle” avec “du gen<strong>e</strong>ral de gaulle”</em>.<br>
+<li>Match 🎯 nom de voie entier sans découpage avec fuzzi 1, <strong>boost 200</strong>. <em>Ex : “3 rue du genral de gaulle” avec “du gen<span class="red2"><strong>e</strong></span>ral de gaulle”</em>.<br>
 </li>
-<li>Match 🎯 chaque mot du nom de voie avec fuzzi 1 → <strong>boost 15</strong>. <em>Ex : “3 rue du genral de gaule” avec “du”, “gen<strong>e</strong>ral”, “de”, “gaul<strong>l</strong>e”</em>.<br>
+<li>Match 🎯 chaque mot du nom de voie avec fuzzi 1, <strong>boost 15</strong>.<br>
 </li>
-<li>Match 🎯 chaque mot du type de voie avec fuzzi 1 → <strong>boost 5</strong>. <em>Ex : “3 rue du general de gaule” avec “rue”</em>.<br>
+<li>Match 🎯 chaque mot du type de voie avec fuzzi 1, <strong>boost 5</strong>.<br>
 </li>
-<li>Match 🎯 chaque 3 à 5-grams du nom de voie → <strong>boost 1</strong>.</li>
+<li>Match 🎯 chaque 3 à 5-grams du nom de voie, <strong>boost 1</strong>.</li>
 </ul>
 <p>À chaque fois qu’une sous-chaîne valide l’une de ces conditions, le score va ⇡ en fonction du boost associé.</p>
 <aside class="notes">
@@ -1126,6 +1136,8 @@ Le package elasticsearch permet d'indexer les donn&#xE9;es en fournissant :
 
 <img data-src="img/schema_moteur_fr.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"><aside class="notes">
 <ul>
+<li>Entre chaque requête Elastic, il y a des étapes de validation du résultat ES.<br>
+</li>
 <li>Identification stricte : une recherche l’adresse comme un appariement direct avec notre référentiel Gaïa, mais on applique les filtres en amont.<br>
 </li>
 <li>En moyenne, sur une base de données d’adresses non normalisées, il y a 30% des adresses qui passent à la première étape de l’identification. Cette identification stricte permet donc d’accélerer le processus, car elle prend 6 fois moins de temps que les requêtes floues sur le nom de voie.<br>
@@ -1237,9 +1249,9 @@ Le package elasticsearch permet d'indexer les donn&#xE9;es en fournissant :
 <p><span class="math display">\[
 \text{ratio} = 1 - \frac{R_2}{R_1}
 \]</span></p>
-<p>R1 = score Elastic de la 1ère voie la plus pertinente.<br>
+<p>R1 = score Elastic de la 1ère voie la plus pertinente (voie retournée).<br>
 R2 = score Elastic de la 2ème voie la plus pertinente.</p>
-<p>Plus le ratio est proche de 1, plus le résultat retourné est loin de la 2ème proposition.</p>
+<p>Ratio → 1 ⇔ le résultat retourné est loin de la 2ème proposition.</p>
 </section></section>
 <section id="plan-de-la-présentation-4" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>
@@ -1374,8 +1386,15 @@ M&#xE9;triques sur les mises &#xE0; jour du r&#xE9;f&#xE9;rentiel :
 <h1>6️⃣ Discussion</h1>
 
 </section>
-<section id="pistes-damélioration" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Pistes d’amélioration</h2>
+<section id="limites" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Limites</h2>
+<ul>
+<li>Compétences requises pour le développement et la maintenance du moteur ElasticSearch.<br>
+</li>
+<li>Moteur créé par l’EPS en Python, réécrit en Java par l’EPI.<br>
+</li>
+<li>Les travaux ont été effectués sur un référentiel contenant des erreurs/doublons → entrave les métriques qualité.</li>
+</ul>
 </section>
 <section id="merci-au-ssplab-julien-pramil-lino-galiana-olivier-meslin-marie-pierre-joubert-et-tom-seimandi" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Merci au SSPlab : Julien Pramil, Lino Galiana, Olivier Meslin, Marie-Pierre Joubert et Tom Seimandi</h2>
