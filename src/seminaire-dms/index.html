@@ -1275,10 +1275,14 @@ R2 = score Elastic de la 2ème voie la plus pertinente.</p>
 </li>
 <li>Le jeu de test est une suite d’appariements de sources de données :
 <ul>
-<li>PASRAU. <!-- QUI EST PASRAU   --></li>
-<li>Tous salariés (TSSAL). <!-- QUI EST TSSAL   --></li>
-<li>Fidéli. <!-- QUI EST FIDELI   --> <!-- - Validation manuelle post-appariements des paires adresse non normalis&#xE9;e + idGa&#xEF;aAdresse.   --></li>
+<li><strong>PASRAU</strong> : Prélèvement À la Source sur les Revenus AUtres.<br>
+</li>
+<li><strong>TSSAL</strong> : Base tous salariés, issue de la déclaration sociale nominative.<br>
+</li>
+<li><strong>Fidéli</strong> : FIchiers DÉmographiques sur les Logements et les Individus.<br>
+</li>
 </ul></li>
+<li>Validation post-appariements des paires adresse non normalisée + idGaïaAdresse.</li>
 </ul>
 </section>
 <section id="schéma-appariements-jeu-de-test" class="slide level2" data-background-image="background.svg" data-background-size="contain">
@@ -1286,6 +1290,7 @@ R2 = score Elastic de la 2ème voie la plus pertinente.</p>
 
 <img data-src="img/jeu_test.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"><aside class="notes">
 <ul>
+<li>PASRAU : Ce sont des données administratives générées par le prélèvement à la source sur les retraites et d’autres revenus (mais pas les salaires).</li>
 <li>Adresses du PASRAU et Tous Salariés (TTSAL) avec le CSNS de l’individu connu pour chaque adresse.<br>
 </li>
 <li>Grâce aux CSNS des individus Fidéli 2022, obtention de l’identifiant Majic de ces adresses.</li>

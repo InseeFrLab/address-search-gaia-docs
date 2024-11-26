@@ -356,14 +356,14 @@
     "href": "src/seminaire-dms/index.html#constitution-dun-jeu-de-test",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Constitution d’un jeu de test",
-    "text": "Constitution d’un jeu de test\n\nIdée : avoir des adresses avec des variations textuelles et leur idGaïaAdresse associé (vérité).\n\nLe jeu de test est une suite d’appariements de sources de données :\n\nPASRAU. \nTous salariés (TSSAL). \nFidéli."
+    "text": "Constitution d’un jeu de test\n\nIdée : avoir des adresses avec des variations textuelles et leur idGaïaAdresse associé (vérité).\n\nLe jeu de test est une suite d’appariements de sources de données :\n\nPASRAU : Prélèvement À la Source sur les Revenus AUtres.\n\nTSSAL : Base tous salariés, issue de la déclaration sociale nominative.\n\nFidéli : FIchiers DÉmographiques sur les Logements et les Individus.\n\n\nValidation post-appariements des paires adresse non normalisée + idGaïaAdresse."
   },
   {
     "objectID": "src/seminaire-dms/index.html#schéma-appariements-jeu-de-test",
     "href": "src/seminaire-dms/index.html#schéma-appariements-jeu-de-test",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Schéma appariements jeu de test",
-    "text": "Schéma appariements jeu de test\n\n\n\nAdresses du PASRAU et Tous Salariés (TTSAL) avec le CSNS de l’individu connu pour chaque adresse.\n\nGrâce aux CSNS des individus Fidéli 2022, obtention de l’identifiant Majic de ces adresses.\nAvec l’identifiant Majic des adresses, conservé dans le référentiel Gaïa, on retrouve l’idGaïaAdresse.\n\nLes adresses (PASRAU, TSSAL) sont comparées aux adresses du référentiel, et seules les paires considérées comme identiques sont conservées."
+    "text": "Schéma appariements jeu de test\n\n\n\nPASRAU : Ce sont des données administratives générées par le prélèvement à la source sur les retraites et d’autres revenus (mais pas les salaires).\nAdresses du PASRAU et Tous Salariés (TTSAL) avec le CSNS de l’individu connu pour chaque adresse.\n\nGrâce aux CSNS des individus Fidéli 2022, obtention de l’identifiant Majic de ces adresses.\nAvec l’identifiant Majic des adresses, conservé dans le référentiel Gaïa, on retrouve l’idGaïaAdresse.\n\nLes adresses (PASRAU, TSSAL) sont comparées aux adresses du référentiel, et seules les paires considérées comme identiques sont conservées."
   },
   {
     "objectID": "src/seminaire-dms/index.html#évaluation-de-lalgorithme-didentification",
