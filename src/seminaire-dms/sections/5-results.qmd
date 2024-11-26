@@ -2,16 +2,17 @@
 
 - [**Idée : avoir des adresses avec des variations textuelles et leur idGaïaAdresse associé (vérité).**]{.red2}  
 - Le jeu de test est une suite d'appariements de sources de données :  
-    - PASRAU.  <!-- QUI EST PASRAU   -->
-    - Tous salariés (TSSAL).  <!-- QUI EST TSSAL   -->
-    - Fidéli.  <!-- QUI EST FIDELI   -->
-<!-- - Validation manuelle post-appariements des paires adresse non normalisée + idGaïaAdresse.   -->
+    - **PASRAU** : Prélèvement À la Source sur les Revenus AUtres.  
+    - **TSSAL** : Base tous salariés, issue de la déclaration sociale nominative.  
+    - **Fidéli** : FIchiers DÉmographiques sur les Logements et les Individus.  
+- Validation post-appariements des paires adresse non normalisée + idGaïaAdresse.  
 
 ## Schéma appariements jeu de test
 
 ![](img/jeu_test.png){width=75% fig-align="center"}
 
 ::: {.notes}
+- PASRAU : Ce sont des données administratives générées par le prélèvement à la source sur les retraites et d'autres revenus (mais pas les salaires).
 - Adresses du PASRAU et Tous Salariés (TTSAL) avec le CSNS de l'individu connu pour chaque adresse.  
 - Grâce aux CSNS des individus Fidéli 2022, obtention de l'identifiant Majic de ces adresses.
 - Avec l'identifiant Majic des adresses, conservé dans le référentiel Gaïa, on retrouve l'idGaïaAdresse.  
