@@ -33,13 +33,13 @@ Appariement direct avec filtres entre adresses à retrouver et référentiel Ga�
 
 - Précision = Vrais positifs/ positifs (vp + fp)  
 
-- A titre de comparaison, un appariement direct entre les adresses à retrouver et le référentiel Gaïa donnerait 30% d'identification à condition que les filtres présentés précédement soient appliqués.  
+- A titre de comparaison, un appariement direct entre les adresses à retrouver et le référentiel Gaïa donnerait 30% d'identification à condition que les filtres présentés précédemment soient appliqués.  
 :::
 
 ## Rapidité de l'algorithme
 
 - [**500 adresses en 2 secondes**]{.blue2}.  
-- Identification par gros paquets d'adresses : [**500 000 adresses en x minutes**]{.green2}.
+- Identification de gros paquets d'adresses : [**1 million d'adresses en 50 minutes**]{.green2}.
 - Démonstration en utilisant [l'API Gaïa](https://api-interrogation-geo.insee.fr/swagger-ui/index.html).  
 
 <!-- ## Utilisation du moteur au sein du projet Gaïa
