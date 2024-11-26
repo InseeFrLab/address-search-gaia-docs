@@ -1,1 +1,5 @@
-## Pistes d'amélioration
+## Limites
+
+- Compétences requises pour le développement et la maintenance du moteur ElasticSearch.  
+- Moteur créé par l'EPS en Python, réécrit en Java par l'EPI.  
+- Les travaux ont été effectués sur un référentiel contenant des erreurs/doublons → entrave les métriques qualité.  

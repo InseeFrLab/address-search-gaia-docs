@@ -23,7 +23,7 @@ Parler de l'origine du projet, quand ca a été mis en place, comment, pq...
 
 <br>
 
-<center><p>[**20**]{.green2} [**bis**]{.blue2} [**avenue**]{.yellow2} [**de la marne**]{.red2} <span style="margin-left: 130px;">[**92049**]{.purple2}</span></p></center>
+<center><p>[**20**]{.green2} [**bis**]{.blue2} [**avenue**]{.purple2} [**de la marne**]{.red2} <span style="margin-left: 130px;">**92049**</span></p></center>
 
 <br>
 
