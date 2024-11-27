@@ -28,7 +28,7 @@ Pour 100 000 adresses issues du jeu de test sur tout le territoire français :
 | **Pourcentage** | [**86,0%**]{.red2} | [**99,5%**]{.red2} | 0,5% |
 | **Précision**    | 0.94  | 0.94  | x    |
 
-Appariement direct avec filtres entre adresses à retrouver et référentiel Gaïa : [**30% d'identification d'adresse**]{.blue2}.
+Appariement direct avec filtres entre adresses à retrouver et référentiel Gaïa : [**30% d'identification à l'adresse**]{.blue2}.
 
 ::: {.notes}
 
@@ -41,7 +41,7 @@ Appariement direct avec filtres entre adresses à retrouver et référentiel Ga�
 
 - [**500 adresses en 2 secondes**]{.blue2}.  
 - Identification de gros paquets d'adresses : [**1 million d'adresses en 50 minutes**]{.green2}.
-- Démonstration en utilisant [l'API Gaïa](https://api-interrogation-geo.insee.fr/swagger-ui/index.html).  
+<!-- - Démonstration en utilisant [l'API Gaïa](https://api-interrogation-geo.insee.fr/swagger-ui/index.html).   -->
 
 <!-- ## Utilisation du moteur au sein du projet Gaïa
 

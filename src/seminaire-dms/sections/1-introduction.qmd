@@ -65,7 +65,7 @@ Trois niveaux :
 
 <br>
 
-Ceci permet la prise en charge des [**cissions et fusions de communes**]{.blue2}.
+Gestion des [**scissions et fusions de communes**]{.blue2}.  
 
 ## Construction du référentiel
 
@@ -91,10 +91,9 @@ L'étape d'identification des adresses permet de ne pas écraser les identifiant
 
 ## D'autres données
 
-- Polygones du bâti
-- Polygones Parcelles du cadastre
-- Liens code postaux - libellés commune - COG
-- Polygones QPV
+- Polygones du bâti.  
+- Polygones Parcelles du cadastre.  
+- Polygones QPV, zonages infra, iris.  
 
 Pas d'identifiant Gaïa, donc [**pas de suivi dans le temps de ces objets**]{.blue2}.
 

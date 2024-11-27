@@ -1,12 +1,14 @@
 ## Différents besoins au sein du SSP
 
-- [**Résil :**]{.red2} identifier le(s) adresse(s) des individus pour sélectionner la plus récente.  
+- [**Résil :**]{.red2}  
+    - Identification le(s) adresse(s) des individus.  
+    - Regroupement des adresses avec différents identifiants Gaïa mais qui représentent le même lieu.
 - **Géoloc :** identification du référentiel Géoloc et génération de leur nouveau référentiel.  
 - Autres utilisateurs possibles :  
     - Identification des adresses sur les certificats de décès.  
     - Identification des adresses de Sirus.  
 
-## Regroupements d'adresses
+<!-- ## Regroupements d'adresses
 
 Nouvel objet géographique :  [**le lieu géographique**]{.green2}.  
 
@@ -17,17 +19,17 @@ Nouvel objet géographique :  [**le lieu géographique**]{.green2}.
 
 ## Le lieu géographique
 
-[**Utilisation :**]{.blue2} Regrouper les adresses avec différents identifiants Gaïa mais qui représentent le même lieu. 
+[**Utilisation :**]{.blue2}  Regrouper les adresses avec différents identifiants Gaïa mais qui représentent le même lieu.
 
 <br>
 
-*Exemple : plusieurs adresses pour une même maison si elle a différentes entrées → même lieu géographique.*
+*Exemple : plusieurs adresses pour une même maison si elle a différentes entrées → même lieu géographique.* -->
 
 ## Besoin d'identification des adresses textuelles
 
 [**Trouver l'identifiant d'adresse à partir d'un libellé d'adresse plus ou moins correcte.**]{.green2}
 
-- Besoin récurrent au sein du SSP.
-- Indispensable pour construire et mettre à jour le référentiel.
+- Besoin visiblement récurrent au sein du SSP.  
+- Indispensable pour construire et mettre à jour le référentiel.  
 
 Il faut donc un [**moteur de recherche**]{.blue2} ⚙️.

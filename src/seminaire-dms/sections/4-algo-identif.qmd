@@ -4,7 +4,7 @@
 - Retourne :  
     - le(s) identifiant(s) Gaïa retrouvé(s).  
     - une indicatrice sur la qualité de l'identification (0 à 10).  
-    - un ratio qui mesure l'écart entre la 1ère et la 2ème possibilité retournées par Elastic (0 à 1).  
+    - un ratio qui mesure l'écart entre la 1ère et la 2ème voie la plus pertinente retournées par Elastic (0 à 1).  
 
 ## Schéma algorithme d'identification
 
