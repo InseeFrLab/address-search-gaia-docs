@@ -132,7 +132,7 @@
     "href": "src/seminaire-dms/index.html#exemples-de-géométries",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Exemples de géométries",
-    "text": "Exemples de géométries\nExemple de géométries d’adresses, parcelles et bâtis"
+    "text": "Exemples de géométries\nAdresses, parcelles et bâtis :"
   },
   {
     "objectID": "src/seminaire-dms/index.html#quelques-métriques-sur-le-référentiel",
@@ -167,7 +167,7 @@
     "href": "src/seminaire-dms/index.html#un-moteur-de-recherche",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Un moteur de recherche ⚙️",
-    "text": "Un moteur de recherche ⚙️\n\nGoogle : recherche par mot clé.\n\nPour la recherche d’adresse :\n\nGoogle Maps.\nAddok : moteur de recherche de la BAN."
+    "text": "Un moteur de recherche ⚙️\n\nGoogle : recherche par mot clé.\n\nPour la recherche d’adresse :\n\nGoogle Maps.\nAddok : moteur de recherche de la BAN.\n\n\n\n\nGoogle maps : api payant, pas la main sur les données.\n\nGoogle Maps utilise des technologies avancées mais on peut reproduire la logique avec ElasticSearch."
   },
   {
     "objectID": "src/seminaire-dms/index.html#elasticsearch",
@@ -209,14 +209,14 @@
     "href": "src/seminaire-dms/index.html#base-de-données-classique",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Base de données classique",
-    "text": "Base de données classique\nExemple\n\n\n\nidVoie\nnom de voie\n\n\n\n\nA\ndu general leclerc\n\n\nB\ndu general charles de gaulle\n\n\nC\ndu point du jour\n\n\nD\nverdier\n\n\nE\ndes cours"
+    "text": "Base de données classique\nExemple\n\n\n\nidVoie\nnom de voie\n\n\n\n\nA\ndu general leclerc\n\n\nB\ndu general charles de gaulle\n\n\nC\ndu point du jour\n\n\nD\nverdier\n\n\nE\ndes cours\n\n\n\n\nNous allons faire un focus sur uniquement le “nom de voie” pour simplifier la compréhension de la théorie du moteur."
   },
   {
     "objectID": "src/seminaire-dms/index.html#recherche-par-mot",
     "href": "src/seminaire-dms/index.html#recherche-par-mot",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Recherche par mot",
-    "text": "Recherche par mot\nPour chaque nom de voie du référentiel, compter le nombre de mots qui matchent 🎯 avec les mots de l’adresse recherchée.\n\nExemple : score avec tokenizer “mot” de “88 avenue du general charles de gaulle”\n\n\n\nidVoie\nnom de voie\nscore\n\n\n\n\nA\ndu general leclerc\n2\n\n\nB\ndu general charles de gaulle\n5\n\n\nC\ndu point du jour\n2\n\n\nD\nverdier\n0\n\n\nE\ndes cours\n0\n\n\n\n\n\nUn match c’est chercher si une sous chaine du nom de voie, ici un mot, est incluse dans l’adresse recherchée.\n\nRecherche par groupes de caractères également possible, abordée dans la suite."
+    "text": "Recherche par mot\nPour chaque nom de voie du référentiel, compter le nombre de mots qui matchent 🎯 avec les mots de l’adresse recherchée.\nExemple : score avec tokenizer “mot” de “88 avenue du general charles de gaulle”\n\n\n\nidVoie\nnom de voie\nscore\n\n\n\n\nA\ndu general leclerc\n2\n\n\nB\ndu general charles de gaulle\n5\n\n\nC\ndu point du jour\n2\n\n\nD\nverdier\n0\n\n\nE\ndes cours\n0\n\n\n\n\n\nUn match c’est chercher si une sous chaine du nom de voie, ici un mot, est incluse dans l’adresse recherchée.\n\nRecherche par groupes de caractères également possible, abordée dans la suite."
   },
   {
     "objectID": "src/seminaire-dms/index.html#score-avec-tokenizer-mot",
@@ -271,29 +271,29 @@
     "objectID": "src/seminaire-dms/index.html#boost",
     "href": "src/seminaire-dms/index.html#boost",
     "title": "Identification d’adresses avec ElasticSearch",
-    "section": "Boost",
-    "text": "Boost\n\nOn peut donner plus ou moins d’importance aux différents matchs 🎯.\n\nChaque occurrence est multipliée par un facteur, appelé boost, qui dépend du niveau de match 🎯."
+    "section": "Boost 🚀",
+    "text": "Boost 🚀\n\nOn peut donner plus ou moins d’importance aux différents matchs 🎯.\n\nChaque occurrence est multipliée par un facteur, appelé boost 🚀, qui dépend du niveau de match 🎯."
   },
   {
     "objectID": "src/seminaire-dms/index.html#score-global",
     "href": "src/seminaire-dms/index.html#score-global",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Score global",
-    "text": "Score global\nLe score global va donc combiner la somme des matchs 🎯 au niveau :\n\nmot.\n\nn-grams.\n\nfuzziness.\n\nEt booster en fonction de l’importance qu’on leur donne."
+    "text": "Score global\nLe score global va donc combiner la somme des matchs 🎯 au niveau :\n\nmot.\n\nn-grams.\n\nfuzziness.\n\nmais également texte entier sans découpage.\n\nEt booster 🚀 en fonction de l’importance qu’on leur donne."
   },
   {
     "objectID": "src/seminaire-dms/index.html#faire-des-recherches",
     "href": "src/seminaire-dms/index.html#faire-des-recherches",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Faire des recherches 🔍",
-    "text": "Faire des recherches 🔍\nRequête 🔍 pour retrouver la voie :\n\nMatch 🎯 nom de voie entier sans découpage avec fuzzi 1, boost 200. Ex : “3 rue du genral de gaulle” ⊃ “du general de gaulle”.\n\nMatch 🎯 chaque mot du nom de voie avec fuzzi 1, boost 15.\n\nMatch 🎯 chaque mot du type de voie avec fuzzi 1, boost 5.\n\nMatch 🎯 chaque 3 à 5-grams du nom de voie, boost 1.\n\nÀ chaque fois qu’une sous-chaîne valide l’une de ces conditions, le score va ⇡ en fonction du boost associé.\n\n\nOn match à chaque 3-grams, exemple avec verdier.\n\nLes ngrams c’est notre dernier recours, on va retourner comme voie plus pertinente les match sur nom de voie complet et sur token mais ngrams c’est notre roue de secours."
+    "text": "Faire des recherches 🔍\nRequête 🔍 pour retrouver la voie :\nÀ chaque match 🎯, le score va ⇡ en fonction du boost 🚀 associé.\n\n\n\nVariable\nTokenizer\nFuzzi 1\nBoost 🚀\n\n\n\n\nNom de voie\nSans découpage\n✅\n200\n\n\nNom de voie\nMot\n✅\n15\n\n\nType de voie\nMot\n✅\n5\n\n\nNom de voie\n3 à 5-grams\n❌\n1\n\n\n\nEx boost 200 : “3 rue du genral de gaulle” ⊃ “du general de gaulle”\n\n\nOn match à chaque 3-grams, exemple avec verdier.\n\nLes ngrams c’est notre dernier recours, on va retourner comme voie plus pertinente les match sur nom de voie complet et sur token mais ngrams c’est notre roue de secours."
   },
   {
     "objectID": "src/seminaire-dms/index.html#retour-sur-le-score-global",
     "href": "src/seminaire-dms/index.html#retour-sur-le-score-global",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Retour sur le score global",
-    "text": "Retour sur le score global\n\\[\nscore_{voie} = \\sum_{\\text{∀n} \\in \\text{N}} \\sum_{\\text{∀t} \\in \\text{n}} boost_{n}*{nb\\_occurrence}_{t}\n\\]\nN = ensemble des niveaux (niveau mot, niveau fuzzi…).\nn = niveau.\nt = token, sous-chaîne (un mot, un 3-grams…)."
+    "text": "Retour sur le score global\n\\[\nscore_{voie} = \\sum_{\\text{∀n} \\in \\text{N}} \\sum_{\\text{∀t} \\in \\text{n}} boost_{n}*{nb\\_occurrence}_{t}\n\\]\nN = ensemble des niveaux (niveau chaîne complète fuzzi, niveau mot fuzzi…).\nn = niveau.\nt = token, sous-chaîne (un mot, un 3-grams…)."
   },
   {
     "objectID": "src/seminaire-dms/index.html#algorithme-didentification-dadresses-1",
@@ -335,14 +335,14 @@
     "href": "src/seminaire-dms/index.html#constitution-dun-jeu-de-test",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Constitution d’un jeu de test",
-    "text": "Constitution d’un jeu de test\n\nIdée : avoir des adresses avec des variations textuelles et leur idGaïaAdresse associé (vérité).\n\nLe jeu de test est une suite d’appariements de sources de données :\n\nPASRAU : Prélèvement À la Source sur les Revenus AUtres.\n\nTSSAL : Base tous salariés, issue de la déclaration sociale nominative.\n\nFidéli : FIchiers DÉmographiques sur les Logements et les Individus.\n\n\nValidation post-appariements des paires adresse non normalisée + idGaïaAdresse."
+    "text": "Constitution d’un jeu de test\n\nIdée : avoir des adresses avec des variations textuelles et leur idGaïaAdresse associé (vérité).\n\nLe jeu de test est une suite d’appariements de sources de données :\n\nPASRAU : Prélèvement À la Source sur les Revenus AUtres.\n\nTSSAL : Base tous salariés, issue de la déclaration sociale nominative.\n\nFidéli : FIchiers DÉmographiques sur les Logements et les Individus."
   },
   {
     "objectID": "src/seminaire-dms/index.html#schéma-appariements-jeu-de-test",
     "href": "src/seminaire-dms/index.html#schéma-appariements-jeu-de-test",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Schéma appariements jeu de test",
-    "text": "Schéma appariements jeu de test\n\n\n\nPASRAU : Ce sont des données administratives générées par le prélèvement à la source sur les retraites et d’autres revenus (mais pas les salaires).\nAdresses du PASRAU et Tous Salariés (TTSAL) avec le CSNS de l’individu connu pour chaque adresse.\n\nGrâce aux CSNS des individus Fidéli 2022, obtention de l’identifiant Majic de ces adresses.\nAvec l’identifiant Majic des adresses, conservé dans le référentiel Gaïa, on retrouve l’idGaïaAdresse.\n\nLes adresses (PASRAU, TSSAL) sont comparées aux adresses du référentiel, et seules les paires considérées comme identiques sont conservées."
+    "text": "Schéma appariements jeu de test\n\n\n\nPASRAU : Ce sont des données administratives générées par le prélèvement à la source sur les retraites et d’autres revenus (mais pas les salaires).\nAdresses du PASRAU et Tous Salariés (TTSAL) avec le CSNS de l’individu connu pour chaque adresse.\n\nGrâce aux CSNS des individus Fidéli 2022, obtention de l’identifiant Majic de ces adresses.\nAvec l’identifiant Majic des adresses, conservé dans le référentiel Gaïa, on retrouve l’idGaïaAdresse.\n\nValidation post-appariements des paires adresse non normalisée (PASRAU, TSSAL)) + idGaïaAdresse."
   },
   {
     "objectID": "src/seminaire-dms/index.html#évaluation-de-lalgorithme-didentification",

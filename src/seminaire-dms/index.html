@@ -290,7 +290,7 @@ L’étape d’identification des adresses permet de ne pas écraser les identif
 </section>
 <section id="exemples-de-géométries" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Exemples de géométries</h2>
-<p><em>Exemple de géométries d’adresses, parcelles et bâtis</em></p>
+<p><em>Adresses, parcelles et bâtis :</em></p>
 
 <img data-src="img/adresses_parcelles_bati.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"></section>
 <section id="quelques-métriques-sur-le-référentiel" class="slide level2" data-background-image="background.svg" data-background-size="contain">
@@ -454,6 +454,24 @@ Nouvel objet g&#xE9;ographique :  [**le lieu g&#xE9;ographique**]{.green2}.
 <li><strong>Addok</strong> : moteur de recherche de la BAN.</li>
 </ul></li>
 </ul>
+<aside class="notes">
+<ul>
+<li>Google maps : api payant, pas la main sur les données.<br>
+</li>
+<li>Google Maps utilise des technologies avancées mais on peut reproduire la logique avec ElasticSearch.<br>
+</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="elasticsearch" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>ElasticSearch</h2>
@@ -652,11 +670,23 @@ On peut commencer &#xE0; cr&#xE9;er notre moteur &#x2699;&#xFE0F;. -->
 </tr>
 </tbody>
 </table>
+<aside class="notes">
+<p>Nous allons faire un focus sur uniquement le “nom de voie” pour simplifier la compréhension de la théorie du moteur.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="recherche-par-mot" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Recherche par mot</h2>
 <p><span class="blue2"><strong>Pour chaque nom de voie du référentiel</strong></span>, compter le nombre de mots qui matchent 🎯 avec les mots de l’adresse recherchée.</p>
-<p><br></p>
 <p><em>Exemple : score avec tokenizer “mot” de “88 avenue du general charles de gaulle”</em></p>
 <table class="caption-top">
 <thead>
@@ -1065,15 +1095,15 @@ score_{voie} = \sum_{\text{∀ngram} \in \text{N}} {nb\_occurrence}_{ngram}
 <ul>
 <li>Limitation à n∈{3,4,5} pour notre cas.<br>
 </li>
-<li>Tests effectués pour choisir ces valeurs, en fonction de <span class="blue2"><strong>la précision et la rapidité</strong></span> des requêtes.</li>
+<li>Tests effectués pour choisir ces valeurs, en fonction de <span class="green2"><strong>la précision et la rapidité</strong></span> des requêtes.</li>
 </ul>
 </section>
 <section id="boost" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Boost</h2>
+<h2>Boost 🚀</h2>
 <ul>
 <li>On peut donner plus ou moins d’importance aux différents matchs 🎯.<br>
 </li>
-<li>Chaque occurrence est multipliée par un facteur, appelé <span class="blue2"><strong>boost</strong></span>, qui dépend du niveau de match 🎯.</li>
+<li>Chaque occurrence est multipliée par un facteur, appelé <span class="blue2"><strong>boost</strong></span> 🚀, qui dépend du niveau de match 🎯.</li>
 </ul>
 </section>
 <section id="score-global" class="slide level2" data-background-image="background.svg" data-background-size="contain">
@@ -1084,9 +1114,11 @@ score_{voie} = \sum_{\text{∀ngram} \in \text{N}} {nb\_occurrence}_{ngram}
 </li>
 <li>n-grams.<br>
 </li>
-<li>fuzziness.</li>
+<li>fuzziness.<br>
+</li>
+<li>mais également texte entier sans découpage.</li>
 </ul>
-<p>Et <span class="green2"><strong>booster</strong></span> en fonction de l’importance qu’on leur donne.</p>
+<p>Et <span class="green2"><strong>booster</strong></span> 🚀 en fonction de l’importance qu’on leur donne.</p>
 <!-- ## Configurer le moteur &#x2699;&#xFE0F;
 
 Une fois qu'on a la th&#xE9;orie, il faut l'appliquer en pratique.  
@@ -1100,16 +1132,44 @@ Le package elasticsearch permet d'indexer les donn&#xE9;es en fournissant :
 <section id="faire-des-recherches" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Faire des recherches 🔍</h2>
 <p><em>Requête 🔍 pour retrouver la voie :</em></p>
-<ul>
-<li>Match 🎯 nom de voie entier sans découpage avec fuzzi 1, <strong>boost 200</strong>. <em>Ex : “3 rue du genral de gaulle” ⊃ “du gen<span class="red2"><strong>e</strong></span>ral de gaulle”</em>.<br>
-</li>
-<li>Match 🎯 chaque mot du nom de voie avec fuzzi 1, <strong>boost 15</strong>.<br>
-</li>
-<li>Match 🎯 chaque mot du type de voie avec fuzzi 1, <strong>boost 5</strong>.<br>
-</li>
-<li>Match 🎯 chaque 3 à 5-grams du nom de voie, <strong>boost 1</strong>.</li>
-</ul>
-<p>À chaque fois qu’une sous-chaîne valide l’une de ces conditions, le score va ⇡ en fonction du boost associé.</p>
+<p>À chaque match 🎯, le score va ⇡ en fonction du boost 🚀 associé.</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Tokenizer</th>
+<th>Fuzzi 1</th>
+<th>Boost 🚀</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Nom de voie</td>
+<td>Sans découpage</td>
+<td>✅</td>
+<td>200</td>
+</tr>
+<tr class="even">
+<td>Nom de voie</td>
+<td>Mot</td>
+<td>✅</td>
+<td>15</td>
+</tr>
+<tr class="odd">
+<td>Type de voie</td>
+<td>Mot</td>
+<td>✅</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>Nom de voie</td>
+<td>3 à 5-grams</td>
+<td>❌</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p><em>Ex boost 200 : “3 rue du genral de gaulle” ⊃ “du gen<span class="red2"><strong>e</strong></span>ral de gaulle”</em></p>
 <aside class="notes">
 <ul>
 <li>On match à chaque 3-grams, exemple avec verdier.<br>
@@ -1133,7 +1193,7 @@ Le package elasticsearch permet d'indexer les donn&#xE9;es en fournissant :
 <p><span class="math display">\[
 score_{voie} = \sum_{\text{∀n} \in \text{N}} \sum_{\text{∀t} \in \text{n}} boost_{n}*{nb\_occurrence}_{t}
 \]</span></p>
-<p>N = ensemble des niveaux <em>(niveau mot, niveau fuzzi…)</em>.<br>
+<p>N = ensemble des niveaux <em>(niveau chaîne complète fuzzi, niveau mot fuzzi…)</em>.<br>
 n = niveau.<br>
 t = token, sous-chaîne <em>(un mot, un 3-grams…)</em>.</p>
 </section></section>
@@ -1159,11 +1219,11 @@ t = token, sous-chaîne <em>(un mot, un 3-grams…)</em>.</p>
 </li>
 <li>Retourne :
 <ul>
-<li>le(s) identifiant(s) Gaïa retrouvé(s).<br>
+<li>le(s) <span class="red2"><strong>identifiant(s) Gaïa</strong></span> retrouvé(s).<br>
 </li>
-<li>une indicatrice sur la qualité de l’identification (0 à 10).<br>
+<li>une <span class="red2"><strong>indicatrice</strong></span> sur la qualité de l’identification (0 à 10).<br>
 </li>
-<li>un ratio qui mesure l’écart entre la 1ère et la 2ème voie la plus pertinente retournées par Elastic (0 à 1).</li>
+<li>un <span class="red2"><strong>ratio</strong></span> qui mesure l’écart entre la 1ère et la 2ème voie la plus pertinente retournées par Elastic (0 à 1).</li>
 </ul></li>
 </ul>
 </section>
@@ -1315,10 +1375,8 @@ R2 = score Elastic de la 2ème voie la plus pertinente.</p>
 </li>
 <li><strong>TSSAL</strong> : Base tous salariés, issue de la déclaration sociale nominative.<br>
 </li>
-<li><strong>Fidéli</strong> : FIchiers DÉmographiques sur les Logements et les Individus.<br>
-</li>
+<li><strong>Fidéli</strong> : FIchiers DÉmographiques sur les Logements et les Individus.</li>
 </ul></li>
-<li>Validation post-appariements des paires adresse non normalisée + idGaïaAdresse.</li>
 </ul>
 </section>
 <section id="schéma-appariements-jeu-de-test" class="slide level2" data-background-image="background.svg" data-background-size="contain">
@@ -1332,7 +1390,7 @@ R2 = score Elastic de la 2ème voie la plus pertinente.</p>
 <li>Grâce aux CSNS des individus Fidéli 2022, obtention de l’identifiant Majic de ces adresses.</li>
 <li>Avec l’identifiant Majic des adresses, conservé dans le référentiel Gaïa, on retrouve l’idGaïaAdresse.<br>
 </li>
-<li>Les adresses (PASRAU, TSSAL) sont comparées aux adresses du référentiel, et seules les paires considérées comme identiques sont conservées.<br>
+<li>Validation post-appariements des paires adresse non normalisée (PASRAU, TSSAL)) + idGaïaAdresse.<br>
 </li>
 </ul>
 <style type="text/css">
@@ -1439,9 +1497,9 @@ M&#xE9;triques sur les mises &#xE0; jour du r&#xE9;f&#xE9;rentiel :
 <section id="bibliographie" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Bibliographie</h1>
 <ol type="1">
-<li><p>Chaudhuri, S., et al.&nbsp;(2003). <em>Robust and efficient fuzzy match for online data cleaning</em>. <a href="https://courses.cs.washington.edu/courses/cse591d/03sp/chaudhuri.pdf">lien</a>.</p></li>
-<li><p>Kathare, N., et al.&nbsp;(2022). <em>A Comprehensive Study of Elastic Search</em>. <em>Journal of Research in Science and Engineering</em>, 4(11). <a href="https://doi.org/10.53469/jrse.2022.04(11).07">lien</a>.</p></li>
-<li><p>Wikipedia. (n.d.). <em>Elasticsearch</em>. <a href="https://fr.wikipedia.org/wiki/Elasticsearch">lien</a>.</p></li>
+<li><p>Chaudhuri, S., et al.&nbsp;(2003). <em>Robust and efficient fuzzy match for online data cleaning</em> : <a href="https://courses.cs.washington.edu/courses/cse591d/03sp/chaudhuri.pdf">lien</a>.</p></li>
+<li><p>Kathare, N., et al.&nbsp;(2022). <em>A Comprehensive Study of Elastic Search</em>. <em>Journal of Research in Science and Engineering</em>, 4(11) : <a href="https://doi.org/10.53469/jrse.2022.04(11).07">lien</a>.</p></li>
+<li><p>Wikipedia. (n.d.). <em>Elasticsearch</em> : <a href="https://fr.wikipedia.org/wiki/Elasticsearch">lien</a>.</p></li>
 </ol>
 </section>
 
