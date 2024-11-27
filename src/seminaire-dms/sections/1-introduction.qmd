@@ -77,7 +77,7 @@ Sources fiables :
 
 <!-- Est ce que c'est assez détaillé ? Peut etre mettre la source ? -->
 
-Au moins une mise à jour par mois (avec conservation des identifiants Gaïa).  
+Au moins une mise à jour par trimestre (avec conservation des identifiants Gaïa).
 
 ::: {.notes}
 Une mise à jour : 
