@@ -6,8 +6,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-b663525e4b92bb903b2199e2d401bf36.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.38">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.39">
 
   <title>Moteur de recherche d'adresse Gaïa – Identification d’adresses avec ElasticSearch</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -322,7 +322,7 @@ L’étape d’identification des adresses permet de ne pas écraser les identif
 <ul>
 <li><span class="red2"><strong>Résil :</strong></span>
 <ul>
-<li>Identification le(s) adresse(s) des individus.<br>
+<li>Identification de(s) adresse(s) des individus.<br>
 </li>
 <li>Regroupement des adresses avec différents identifiants Gaïa mais qui représentent le même lieu.</li>
 </ul></li>
@@ -1111,14 +1111,6 @@ score_{voie} = \sum_{\text{∀ngram} \in \text{N}} {nb\_occurrence}_{ngram}
 <li>Tests effectués pour choisir ces valeurs, en fonction de <span class="green2"><strong>la précision et la rapidité</strong></span> des requêtes.</li>
 </ul>
 </section>
-<section id="boost" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Boost 🚀</h2>
-<ul>
-<li>On peut donner plus ou moins d’importance aux différents matchs 🎯.<br>
-</li>
-<li>Chaque occurrence est multipliée par un facteur, appelé <span class="blue2"><strong>boost</strong></span> 🚀, qui dépend du niveau de match 🎯.</li>
-</ul>
-</section>
 <section id="score-global" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Score global</h2>
 <p>Le score global va donc combiner la somme des matchs 🎯 au niveau :</p>
@@ -1129,7 +1121,6 @@ score_{voie} = \sum_{\text{∀ngram} \in \text{N}} {nb\_occurrence}_{ngram}
 </li>
 <li>mais également texte entier sans découpage !</li>
 </ul>
-<p>Et <span class="green2"><strong>booster</strong></span> 🚀 en fonction de l’importance qu’on leur donne.</p>
 <!-- ## Configurer le moteur &#x2699;&#xFE0F;
 
 Une fois qu'on a la th&#xE9;orie, il faut l'appliquer en pratique.  
@@ -1139,6 +1130,14 @@ Le package elasticsearch permet d'indexer les donn&#xE9;es en fournissant :
 - Un dataframe &#x1F4CB; des donn&#xE9;es du r&#xE9;f&#xE9;rentiel Ga&#xEF;a.  
 - Des [**settings**]{.blue2} &#x1F6E0;&#xFE0F; o&#xF9; on d&#xE9;finit nos diff&#xE9;rents **analyzers**, englobant les filtres et le motizer.  
 - Des [**mappings**]{.green2} &#x1F3F7;&#xFE0F; o&#xF9; pour chaque **variable**, on fournit un analyzer.   -->
+</section>
+<section id="boost" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Boost 🚀</h2>
+<ul>
+<li>On peut donner plus ou moins d’importance aux différents matchs 🎯.<br>
+</li>
+<li>Chaque occurrence est multipliée par un facteur, appelé <span class="blue2"><strong>boost</strong></span> 🚀, qui dépend du niveau de match 🎯.</li>
+</ul>
 </section>
 <section id="faire-des-recherches" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Faire des recherches 🔍</h2>
@@ -1453,8 +1452,8 @@ R2 = score Elastic de la 2ème voie la plus pertinente.</p>
 <aside class="notes">
 <ul>
 <li><p>Précision = Vrais positifs/ positifs (vp + fp)</p></li>
-<li><p>A titre de comparaison, un appariement direct entre les adresses à retrouver et le référentiel Gaïa donnerait 30% d’identification à condition que les filtres présentés précédemment soient appliqués.<br>
-</p></li>
+<li><p>A titre de comparaison, un appariement direct entre les adresses à retrouver et le référentiel Gaïa donnerait 30% d’identification à condition que les filtres présentés précédemment soient appliqués.</p></li>
+<li><p>Donc ce qui justifie l’utilisation d’un moteur en terme de précision mais aussi en terme de performances temporelles, notamment grace à l’index inversé.</p></li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -1519,8 +1518,8 @@ M&#xE9;triques sur les mises &#xE0; jour du r&#xE9;f&#xE9;rentiel :
 
 </section>
 
-<section id="merci-à-heidi-koumarianos" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1>Merci à Heidi Koumarianos</h1>
+<section id="merci-à-heidi-koumarianos-et-à-manon-evain" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<h1>Merci à Heidi Koumarianos et à Manon Evain</h1>
 
 </section>
 

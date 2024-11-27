@@ -146,7 +146,7 @@
     "href": "src/seminaire-dms/index.html#différents-besoins-au-sein-du-ssp",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Différents besoins au sein du SSP",
-    "text": "Différents besoins au sein du SSP\n\nRésil :\n\nIdentification le(s) adresse(s) des individus.\n\nRegroupement des adresses avec différents identifiants Gaïa mais qui représentent le même lieu.\n\nGéoloc : identification du référentiel Géoloc et génération de leur nouveau référentiel.\n\nAutres utilisateurs possibles :\n\nIdentification des adresses sur les certificats de décès.\n\nIdentification des adresses de Sirus."
+    "text": "Différents besoins au sein du SSP\n\nRésil :\n\nIdentification de(s) adresse(s) des individus.\n\nRegroupement des adresses avec différents identifiants Gaïa mais qui représentent le même lieu.\n\nGéoloc : identification du référentiel Géoloc et génération de leur nouveau référentiel.\n\nAutres utilisateurs possibles :\n\nIdentification des adresses sur les certificats de décès.\n\nIdentification des adresses de Sirus."
   },
   {
     "objectID": "src/seminaire-dms/index.html#besoin-didentification-des-adresses-textuelles",
@@ -268,18 +268,18 @@
     "text": "Limites des n-grams\n\\[\n\\downarrow \\text{taille n-grams}\n\\Rightarrow \\text{taille index inversé} \\uparrow\n\\Rightarrow \\text{temps de recherche} \\uparrow\n\\]\n\nLimitation à n∈{3,4,5} pour notre cas.\n\nTests effectués pour choisir ces valeurs, en fonction de la précision et la rapidité des requêtes."
   },
   {
+    "objectID": "src/seminaire-dms/index.html#score-global",
+    "href": "src/seminaire-dms/index.html#score-global",
+    "title": "Identification d’adresses avec ElasticSearch",
+    "section": "Score global",
+    "text": "Score global\nLe score global va donc combiner la somme des matchs 🎯 au niveau :\n\nmot avec fuzziness.\n\nn-grams.\n\nmais également texte entier sans découpage !"
+  },
+  {
     "objectID": "src/seminaire-dms/index.html#boost",
     "href": "src/seminaire-dms/index.html#boost",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Boost 🚀",
     "text": "Boost 🚀\n\nOn peut donner plus ou moins d’importance aux différents matchs 🎯.\n\nChaque occurrence est multipliée par un facteur, appelé boost 🚀, qui dépend du niveau de match 🎯."
-  },
-  {
-    "objectID": "src/seminaire-dms/index.html#score-global",
-    "href": "src/seminaire-dms/index.html#score-global",
-    "title": "Identification d’adresses avec ElasticSearch",
-    "section": "Score global",
-    "text": "Score global\nLe score global va donc combiner la somme des matchs 🎯 au niveau :\n\nmot avec fuzziness.\n\nn-grams.\n\nmais également texte entier sans découpage !\n\nEt booster 🚀 en fonction de l’importance qu’on leur donne."
   },
   {
     "objectID": "src/seminaire-dms/index.html#faire-des-recherches",
@@ -349,7 +349,7 @@
     "href": "src/seminaire-dms/index.html#évaluation-de-lalgorithme-didentification",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Évaluation de l’algorithme d’identification",
-    "text": "Évaluation de l’algorithme d’identification\nPour 100 000 adresses issues du jeu de test sur tout le territoire français :\n\n\n\n\n\n\n\n\n\n\nAdresse trouvée\nVoie trouvée\nCommune trouvée/rien trouvé\n\n\n\n\nPourcentage\n86,0%\n99,5%\n0,5%\n\n\nPrécision\n0.94\n0.94\nx\n\n\n\nAppariement direct avec filtres entre adresses à retrouver et référentiel Gaïa : 30% d’identification à l’adresse.\n\n\nPrécision = Vrais positifs/ positifs (vp + fp)\nA titre de comparaison, un appariement direct entre les adresses à retrouver et le référentiel Gaïa donnerait 30% d’identification à condition que les filtres présentés précédemment soient appliqués."
+    "text": "Évaluation de l’algorithme d’identification\nPour 100 000 adresses issues du jeu de test sur tout le territoire français :\n\n\n\n\n\n\n\n\n\n\nAdresse trouvée\nVoie trouvée\nCommune trouvée/rien trouvé\n\n\n\n\nPourcentage\n86,0%\n99,5%\n0,5%\n\n\nPrécision\n0.94\n0.94\nx\n\n\n\nAppariement direct avec filtres entre adresses à retrouver et référentiel Gaïa : 30% d’identification à l’adresse.\n\n\nPrécision = Vrais positifs/ positifs (vp + fp)\nA titre de comparaison, un appariement direct entre les adresses à retrouver et le référentiel Gaïa donnerait 30% d’identification à condition que les filtres présentés précédemment soient appliqués.\nDonc ce qui justifie l’utilisation d’un moteur en terme de précision mais aussi en terme de performances temporelles, notamment grace à l’index inversé."
   },
   {
     "objectID": "src/seminaire-dms/index.html#rapidité-de-lalgorithme",
