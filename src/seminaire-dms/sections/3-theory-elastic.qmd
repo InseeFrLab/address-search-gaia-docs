@@ -393,11 +393,6 @@ $$
 - Limitation à n∈{3,4,5} pour notre cas.  
 - Tests effectués pour choisir ces valeurs, en fonction de [**la précision et la rapidité**]{.green2} des requêtes.  
 
-## Boost 🚀
-
-- On peut donner plus ou moins d'importance aux différents matchs 🎯.  
-- Chaque occurrence est multipliée par un facteur, appelé [**boost**]{.blue2} 🚀, qui dépend du niveau de match 🎯.  
-
 ## Score global 
 
 Le score global va donc combiner la somme des matchs 🎯 au niveau :
@@ -405,8 +400,6 @@ Le score global va donc combiner la somme des matchs 🎯 au niveau :
 - mot avec fuzziness.  
 - n-grams.  
 - mais également texte entier sans découpage !  
-
-Et [**booster**]{.green2} 🚀 en fonction de l'importance qu'on leur donne.  
 
 <!-- ## Configurer le moteur ⚙️
 
@@ -417,6 +410,11 @@ Le package elasticsearch permet d'indexer les données en fournissant :
 - Un dataframe 📋 des données du référentiel Gaïa.  
 - Des [**settings**]{.blue2} 🛠️ où on définit nos différents **analyzers**, englobant les filtres et le motizer.  
 - Des [**mappings**]{.green2} 🏷️ où pour chaque **variable**, on fournit un analyzer.   -->
+
+## Boost 🚀
+
+- On peut donner plus ou moins d'importance aux différents matchs 🎯.  
+- Chaque occurrence est multipliée par un facteur, appelé [**boost**]{.blue2} 🚀, qui dépend du niveau de match 🎯.  
 
 ## Faire des recherches 🔍
 

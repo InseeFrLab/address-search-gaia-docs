@@ -1,7 +1,7 @@
 ## Différents besoins au sein du SSP
 
 - [**Résil :**]{.red2}  
-    - Identification le(s) adresse(s) des individus.  
+    - Identification de(s) adresse(s) des individus.  
     - Regroupement des adresses avec différents identifiants Gaïa mais qui représentent le même lieu.
 - **Géoloc :** identification du référentiel Géoloc et génération de leur nouveau référentiel.  
 - Autres utilisateurs possibles :  

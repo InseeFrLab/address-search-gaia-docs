@@ -140,5 +140,5 @@ ascii: true
 3. Wikipedia. (n.d.). *Elasticsearch* : [lien](https://fr.wikipedia.org/wiki/Elasticsearch).  
 
 # Merci au SSPlab : Julien Pramil, Lino Galiana, Olivier Meslin, Marie-Pierre Joubert et Tom Seimandi
-# Merci à Heidi Koumarianos
+# Merci à Heidi Koumarianos et à Manon Evain  
 # Et enfin, merci pour votre attention !

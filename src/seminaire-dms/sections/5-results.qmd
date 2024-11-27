@@ -33,7 +33,9 @@ Appariement direct avec filtres entre adresses à retrouver et référentiel Ga�
 
 - Précision = Vrais positifs/ positifs (vp + fp)  
 
-- A titre de comparaison, un appariement direct entre les adresses à retrouver et le référentiel Gaïa donnerait 30% d'identification à condition que les filtres présentés précédemment soient appliqués.  
+- A titre de comparaison, un appariement direct entre les adresses à retrouver et le référentiel Gaïa donnerait 30% d'identification à condition que les filtres présentés précédemment soient appliqués. 
+
+- Donc ce qui justifie l'utilisation d'un moteur en terme de précision mais aussi en terme de performances temporelles, notamment grace à l'index inversé.
 :::
 
 ## Rapidité de l'algorithme
