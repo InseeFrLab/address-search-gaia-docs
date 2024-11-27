@@ -237,14 +237,14 @@
     "href": "src/seminaire-dms/index.html#fuzziness",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Fuzziness",
-    "text": "Fuzziness\nContourner les petites fautes d’orthographes : fuzziness.\nPour matcher 🎯 deux mots avec une fuzziness de niveau 1 = corriger l’un des mots :\n\nAjout d’une lettre. Ex: “verdiier”\n\nSuppression d’une lettre. Ex: “verdie”\n\nRemplacement d’une lettre. Ex: “verfier”\n\nÉchanger deux lettres de place. Ex: “evrdier”\n\nIl est possible de comparer deux textes, deux n-grams ou n’importe quel autre groupe de caractères."
+    "text": "Fuzziness\nContourner les petites fautes d’orthographes : fuzziness.\nPour matcher 🎯 deux mots avec une fuzziness de niveau 1 = corriger l’un des mots :\n\nAjout d’une lettre. Ex: “verdiier”\n\nSuppression d’une lettre. Ex: “verdie”\n\nRemplacement d’une lettre. Ex: “verfier”\n\nÉchanger deux lettres de place. Ex: “evrdier”\n\nIl est possible de comparer deux textes, deux n-grams ou n’importe quel autre groupe de caractères.\n\nLa fuzziness n’est pas un tokenizer, une facon de decouper, c’est plutot une option qu’on rajoute pour matcher des sous chaine, peu importe le decoupage."
   },
   {
-    "objectID": "src/seminaire-dms/index.html#recherche-par-n-grams-de-caractères",
-    "href": "src/seminaire-dms/index.html#recherche-par-n-grams-de-caractères",
+    "objectID": "src/seminaire-dms/index.html#une-autre-façon-de-découper-les-n-grams",
+    "href": "src/seminaire-dms/index.html#une-autre-façon-de-découper-les-n-grams",
     "title": "Identification d’adresses avec ElasticSearch",
-    "section": "Recherche par n-grams de caractères",
-    "text": "Recherche par n-grams de caractères\nPrendre en compte les correspondances partielles : chaque mot est découpé en sous-chaînes de n caractères consécutifs.\n\nExemple de découpage en 3-grams de caractères du texte “avenue verdier” :\nave, ven, enu, nue, ver, erd, rdi, die, ier\n\nSi un mot est inférieur à la taille n, il n’aura pas de découpage en n-grams → pas présent dans l’index inversé n-gram."
+    "section": "Une autre façon de découper : les n-grams",
+    "text": "Une autre façon de découper : les n-grams\nPrendre en compte les correspondances partielles : chaque mot est découpé en sous-chaînes de n caractères consécutifs.\n\nExemple de découpage en 3-grams de caractères du texte “avenue verdier” :\nave, ven, enu, nue, ver, erd, rdi, die, ier\n\nSi un mot est inférieur à la taille n, il n’aura pas de découpage en n-grams → pas présent dans l’index inversé n-gram."
   },
   {
     "objectID": "src/seminaire-dms/index.html#index-inversé-3-grams",
@@ -279,7 +279,7 @@
     "href": "src/seminaire-dms/index.html#score-global",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Score global",
-    "text": "Score global\nLe score global va donc combiner la somme des matchs 🎯 au niveau :\n\nmot.\n\nn-grams.\n\nfuzziness.\n\nmais également texte entier sans découpage.\n\nEt booster 🚀 en fonction de l’importance qu’on leur donne."
+    "text": "Score global\nLe score global va donc combiner la somme des matchs 🎯 au niveau :\n\nmot avec fuzziness.\n\nn-grams.\n\nmais également texte entier sans découpage !\n\nEt booster 🚀 en fonction de l’importance qu’on leur donne."
   },
   {
     "objectID": "src/seminaire-dms/index.html#faire-des-recherches",

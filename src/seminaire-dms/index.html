@@ -6,8 +6,8 @@
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-29e2c20b02301cfff04dc8050bf30c7e.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.37">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-b663525e4b92bb903b2199e2d401bf36.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.38">
 
   <title>Moteur de recherche d'adresse Gaïa – Identification d’adresses avec ElasticSearch</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -926,9 +926,22 @@ cours
 <li>Échanger deux lettres de place. <em>Ex: “evrdier”</em></li>
 </ul>
 <p>Il est possible de comparer deux textes, deux n-grams ou n’importe quel autre groupe de caractères.</p>
+<aside class="notes">
+<p>La fuzziness n’est pas un tokenizer, une facon de decouper, c’est plutot une option qu’on rajoute pour matcher des sous chaine, peu importe le decoupage.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
-<section id="recherche-par-n-grams-de-caractères" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Recherche par n-grams de caractères</h2>
+<section id="une-autre-façon-de-découper-les-n-grams" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Une autre façon de découper : les n-grams</h2>
 <p><span class="blue2"><strong>Prendre en compte les correspondances partielles</strong></span> : chaque mot est découpé en sous-chaînes de n caractères consécutifs.</p>
 <p><br></p>
 <p><em>Exemple de découpage en 3-grams de caractères du texte “avenue verdier” :</em><br>
@@ -1110,13 +1123,11 @@ score_{voie} = \sum_{\text{∀ngram} \in \text{N}} {nb\_occurrence}_{ngram}
 <h2>Score global</h2>
 <p>Le score global va donc combiner la somme des matchs 🎯 au niveau :</p>
 <ul>
-<li>mot.<br>
+<li>mot avec fuzziness.<br>
 </li>
 <li>n-grams.<br>
 </li>
-<li>fuzziness.<br>
-</li>
-<li>mais également texte entier sans découpage.</li>
+<li>mais également texte entier sans découpage !</li>
 </ul>
 <p>Et <span class="green2"><strong>booster</strong></span> 🚀 en fonction de l’importance qu’on leur donne.</p>
 <!-- ## Configurer le moteur &#x2699;&#xFE0F;
