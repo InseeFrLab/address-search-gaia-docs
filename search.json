@@ -356,7 +356,7 @@
     "href": "src/seminaire-dms/index.html#rapidité-de-lalgorithme",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Rapidité de l’algorithme",
-    "text": "Rapidité de l’algorithme\n\n500 adresses en 2 secondes.\n\nIdentification de gros paquets d’adresses : 1 million d’adresses en 50 minutes.\nDémonstration du moteur Python d’identification d’adresses –&gt;"
+    "text": "Rapidité de l’algorithme\n\n500 adresses en 2 secondes.\n\nIdentification de gros paquets d’adresses : 1 million d’adresses en 50 minutes.\nDémonstration du moteur ⚙️ ElasticSearch developpé en Python."
   },
   {
     "objectID": "src/seminaire-dms/index.html#limites",
