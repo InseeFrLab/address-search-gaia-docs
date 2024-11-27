@@ -269,7 +269,11 @@ Pour matcher 🎯 deux mots avec une fuzziness de niveau 1 = corriger l'un des m
 
 Il est possible de comparer deux textes, deux n-grams ou n'importe quel autre groupe de caractères.  
 
-## Recherche par n-grams de caractères
+::: {.notes}
+La fuzziness n'est pas un tokenizer, une facon de decouper, c'est plutot une option qu'on rajoute pour matcher des sous chaine, peu importe le decoupage.
+:::
+
+## Une autre façon de découper : les n-grams
 
 [**Prendre en compte les correspondances partielles**]{.blue2} : chaque mot est découpé en sous-chaînes de n caractères consécutifs.  
 
@@ -398,10 +402,9 @@ $$
 
 Le score global va donc combiner la somme des matchs 🎯 au niveau :
 
-- mot.  
+- mot avec fuzziness.  
 - n-grams.  
-- fuzziness.  
-- mais également texte entier sans découpage.  
+- mais également texte entier sans découpage !  
 
 Et [**booster**]{.green2} 🚀 en fonction de l'importance qu'on leur donne.  
 
