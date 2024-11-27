@@ -236,7 +236,7 @@
 <li>Identifiant commune</li>
 </ul>
 <p><br></p>
-<p>Ceci permet la prise en charge des <span class="blue2"><strong>cissions et fusions de communes</strong></span>.</p>
+<p>Gestion des <span class="blue2"><strong>scissions et fusions de communes</strong></span>.</p>
 </section>
 <section id="construction-du-référentiel" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Construction du référentiel</h2>
@@ -280,10 +280,11 @@ L’étape d’identification des adresses permet de ne pas écraser les identif
 <section id="dautres-données" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>D’autres données</h2>
 <ul>
-<li>Polygones du bâti</li>
-<li>Polygones Parcelles du cadastre</li>
-<li>Liens code postaux - libellés commune - COG</li>
-<li>Polygones QPV</li>
+<li>Polygones du bâti.<br>
+</li>
+<li>Polygones Parcelles du cadastre.<br>
+</li>
+<li>Polygones QPV, zonages infra, iris.</li>
 </ul>
 <p>Pas d’identifiant Gaïa, donc <span class="blue2"><strong>pas de suivi dans le temps de ces objets</strong></span>.</p>
 </section>
@@ -319,8 +320,12 @@ L’étape d’identification des adresses permet de ne pas écraser les identif
 <section id="différents-besoins-au-sein-du-ssp" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Différents besoins au sein du SSP</h2>
 <ul>
-<li><span class="red2"><strong>Résil :</strong></span> identifier le(s) adresse(s) des individus pour sélectionner la plus récente.<br>
+<li><span class="red2"><strong>Résil :</strong></span>
+<ul>
+<li>Identification le(s) adresse(s) des individus.<br>
 </li>
+<li>Regroupement des adresses avec différents identifiants Gaïa mais qui représentent le même lieu.</li>
+</ul></li>
 <li><strong>Géoloc :</strong> identification du référentiel Géoloc et génération de leur nouveau référentiel.<br>
 </li>
 <li>Autres utilisateurs possibles :
@@ -330,24 +335,29 @@ L’étape d’identification des adresses permet de ne pas écraser les identif
 <li>Identification des adresses de Sirus.</li>
 </ul></li>
 </ul>
-</section>
-<section id="regroupements-dadresses" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Regroupements d’adresses</h2>
-<p>Nouvel objet géographique : <span class="green2"><strong>le lieu géographique</strong></span>.</p>
-<p><br></p>
+<!-- ## Regroupements d'adresses
 
-<img data-src="img/adresses_parcelles_bati.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"></section>
-<section id="le-lieu-géographique" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Le lieu géographique</h2>
-<p><span class="blue2"><strong>Utilisation :</strong></span> Regrouper les adresses avec différents identifiants Gaïa mais qui représentent le même lieu.</p>
-<p><br></p>
-<p><em>Exemple : plusieurs adresses pour une même maison si elle a différentes entrées → même lieu géographique.</em></p>
+Nouvel objet g&#xE9;ographique :  [**le lieu g&#xE9;ographique**]{.green2}.  
+
+<br>
+
+![](img/adresses_parcelles_bati.png){width=75% fig-align="center"}
+
+
+## Le lieu g&#xE9;ographique
+
+[**Utilisation :**]{.blue2}  Regrouper les adresses avec diff&#xE9;rents identifiants Ga&#xEF;a mais qui repr&#xE9;sentent le m&#xEA;me lieu.
+
+<br>
+
+*Exemple : plusieurs adresses pour une m&#xEA;me maison si elle a diff&#xE9;rentes entr&#xE9;es &#x2192; m&#xEA;me lieu g&#xE9;ographique.* -->
 </section>
 <section id="besoin-didentification-des-adresses-textuelles" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Besoin d’identification des adresses textuelles</h2>
 <p><span class="green2"><strong>Trouver l’identifiant d’adresse à partir d’un libellé d’adresse plus ou moins correcte.</strong></span></p>
 <ul>
-<li>Besoin récurrent au sein du SSP.</li>
+<li>Besoin visiblement récurrent au sein du SSP.<br>
+</li>
 <li>Indispensable pour construire et mettre à jour le référentiel.</li>
 </ul>
 <p>Il faut donc un <span class="blue2"><strong>moteur de recherche</strong></span> ⚙️.</p>
@@ -454,6 +464,19 @@ L’étape d’identification des adresses permet de ne pas écraser les identif
 </li>
 <li>Faire des recherches rapides sur tout type de données (textes, objets géométriques…).</li>
 </ul>
+<aside class="notes">
+<p>Pour trier et chercher les recettes de cuisine de sa femme psq il trouvait pas de moteur de recherche adapté.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="cest-quoi-concrètement-elasticsearch" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>C’est quoi concrètement ElasticSearch ?</h2>
@@ -632,24 +655,8 @@ On peut commencer &#xE0; cr&#xE9;er notre moteur &#x2699;&#xFE0F;. -->
 </section>
 <section id="recherche-par-mot" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Recherche par mot</h2>
-<ul>
-<li><span class="blue2"><strong>Pour chaque nom de voie du référentiel</strong></span>, compter le nombre de mots qui matchent 🎯 avec les mots de l’adresse recherchée.<br>
-</li>
-<li>Recherche par groupes de caractères également possible, abordée dans la suite.</li>
-</ul>
-</section>
-<section id="score-avec-tokenizer-mot" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Score avec tokenizer “mot”</h2>
-<p><span class="green2"><strong>Tokenizer</strong></span> = façon de découper le texte recherché et ciblé.</p>
+<p><span class="blue2"><strong>Pour chaque nom de voie du référentiel</strong></span>, compter le nombre de mots qui matchent 🎯 avec les mots de l’adresse recherchée.</p>
 <p><br></p>
-<p><span class="blue2"><strong>Pour retourner la voie la plus pertinente</strong></span>, on construit un score pour chaque voie : <span class="math display">\[
-score_{voie} = \sum_{\text{∀m} \in \text{M}} {nb\_occurrence}_m
-\]</span></p>
-<p>m = mot.<br>
-M = ensemble des mots de l’adresse recherchée.</p>
-</section>
-<section id="score-avec-tokenizer-mot-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Score avec tokenizer “mot”</h2>
 <p><em>Exemple : score avec tokenizer “mot” de “88 avenue du general charles de gaulle”</em></p>
 <table class="caption-top">
 <thead>
@@ -687,6 +694,34 @@ M = ensemble des mots de l’adresse recherchée.</p>
 </tr>
 </tbody>
 </table>
+<aside class="notes">
+<ul>
+<li>Un match c’est chercher si une sous chaine du nom de voie, ici un mot, est incluse dans l’adresse recherchée.<br>
+</li>
+<li>Recherche par groupes de caractères également possible, abordée dans la suite.<br>
+</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="score-avec-tokenizer-mot" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Score avec tokenizer “mot”</h2>
+<p><span class="green2"><strong>Tokenizer</strong></span> = façon de découper le texte recherché et ciblé.</p>
+<p><br></p>
+<p><span class="blue2"><strong>Pour retourner la voie la plus pertinente</strong></span>, on construit un score pour chaque voie : <span class="math display">\[
+score_{voie} = \sum_{\text{∀m} \in \text{M}} {nb\_occurrence}_m
+\]</span></p>
+<p>m = mot.<br>
+M = ensemble des mots de l’adresse recherchée.</p>
 <p><span class="red2"><strong>Dans une grande base de données, c’est extrêmement long.</strong></span></p>
 </section></section>
 <section>
@@ -847,9 +882,24 @@ cours
 <h1>Étape 4 : prendre en compte les variations textuelles.</h1>
 
 </section>
+<section id="fuzziness" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Fuzziness</h2>
+<p><span class="blue2"><strong>Contourner les petites fautes d’orthographes</strong></span> : <span class="green2"><strong>fuzziness</strong></span>.</p>
+<p>Pour matcher 🎯 deux mots avec une fuzziness de niveau 1 = corriger l’un des mots :</p>
+<ul>
+<li>Ajout d’une lettre. <em>Ex: “verdiier”</em><br>
+</li>
+<li>Suppression d’une lettre. <em>Ex: “verdie”</em><br>
+</li>
+<li>Remplacement d’une lettre. <em>Ex: “verfier”</em><br>
+</li>
+<li>Échanger deux lettres de place. <em>Ex: “evrdier”</em></li>
+</ul>
+<p>Il est possible de comparer deux textes, deux n-grams ou n’importe quel autre groupe de caractères.</p>
+</section>
 <section id="recherche-par-n-grams-de-caractères" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Recherche par n-grams de caractères</h2>
-<p><span class="blue2"><strong>Contourner les fautes d’orthographes</strong></span> : chaque mot est découpé en sous-chaînes de n caractères consécutifs.</p>
+<p><span class="blue2"><strong>Prendre en compte les correspondances partielles</strong></span> : chaque mot est découpé en sous-chaînes de n caractères consécutifs.</p>
 <p><br></p>
 <p><em>Exemple de découpage en 3-grams de caractères du texte “avenue verdier” :</em><br>
 <strong>ave, ven, enu, nue, ver, erd, rdi, die, ier</strong></p>
@@ -862,7 +912,7 @@ cours
 <!-- | 3-grams | occurrences           |
 |---------|-----------------------|
 | gen     | {"A": 1, "B": 1}      |
-| char    | {"B": 1}              |
+| cha     | {"B": 1}              |
 | our     | {"C": 1, "E": 1}      |
 | ...     | ...                   | -->
 <div style="display: flex; justify-content: space-between;">
@@ -946,7 +996,7 @@ gen
 </tr>
 <tr>
 <td>
-char
+cha
 </td>
 <td>
 {“B”: 1}
@@ -1018,20 +1068,13 @@ score_{voie} = \sum_{\text{∀ngram} \in \text{N}} {nb\_occurrence}_{ngram}
 <li>Tests effectués pour choisir ces valeurs, en fonction de <span class="blue2"><strong>la précision et la rapidité</strong></span> des requêtes.</li>
 </ul>
 </section>
-<section id="fuzziness" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Fuzziness</h2>
-<p>Contourner les fautes d’orthographes d’une autre façon : <span class="green2"><strong>fuzziness</strong></span>.</p>
-<p>Pour matcher 🎯 deux mots avec une fuzziness de niveau 1 = corriger l’un des mots :</p>
+<section id="boost" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Boost</h2>
 <ul>
-<li>Ajout d’une lettre.<br>
+<li>On peut donner plus ou moins d’importance aux différents matchs 🎯.<br>
 </li>
-<li>Suppression d’une lettre.<br>
-</li>
-<li>Remplacement d’une lettre.<br>
-</li>
-<li>Échanger deux lettres de place.</li>
+<li>Chaque occurrence est multipliée par un facteur, appelé <span class="blue2"><strong>boost</strong></span>, qui dépend du niveau de match 🎯.</li>
 </ul>
-<p>Il est possible de comparer deux textes, deux ngrams ou n’importe quel autre groupe de caractères.</p>
 </section>
 <section id="score-global" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Score global</h2>
@@ -1043,23 +1086,7 @@ score_{voie} = \sum_{\text{∀ngram} \in \text{N}} {nb\_occurrence}_{ngram}
 </li>
 <li>fuzziness.</li>
 </ul>
-</section>
-<section id="boost" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Boost</h2>
-<ul>
-<li>On peut donner plus ou moins d’importance aux différents matchs 🎯.<br>
-</li>
-<li>Chaque occurrence est multipliée par un facteur, appelé <span class="blue2"><strong>boost</strong></span>, qui dépend du niveau de match 🎯.</li>
-</ul>
-</section>
-<section id="retour-sur-le-score-global" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Retour sur le score global</h2>
-<p><span class="math display">\[
-score_{voie} = \sum_{\text{∀n} \in \text{N}} \sum_{\text{∀t} \in \text{n}} boost_{n}*{nb\_occurrence}_{t}
-\]</span></p>
-<p>N = ensemble des niveaux <em>(niveau mot, niveau fuzzi…)</em>.<br>
-n = niveau.<br>
-t = token, sous-chaîne <em>(un mot, un 3-grams…)</em>.</p>
+<p>Et <span class="green2"><strong>booster</strong></span> en fonction de l’importance qu’on leur donne.</p>
 <!-- ## Configurer le moteur &#x2699;&#xFE0F;
 
 Une fois qu'on a la th&#xE9;orie, il faut l'appliquer en pratique.  
@@ -1074,7 +1101,7 @@ Le package elasticsearch permet d'indexer les donn&#xE9;es en fournissant :
 <h2>Faire des recherches 🔍</h2>
 <p><em>Requête 🔍 pour retrouver la voie :</em></p>
 <ul>
-<li>Match 🎯 nom de voie entier sans découpage avec fuzzi 1, <strong>boost 200</strong>. <em>Ex : “3 rue du genral de gaulle” avec “du gen<span class="red2"><strong>e</strong></span>ral de gaulle”</em>.<br>
+<li>Match 🎯 nom de voie entier sans découpage avec fuzzi 1, <strong>boost 200</strong>. <em>Ex : “3 rue du genral de gaulle” ⊃ “du gen<span class="red2"><strong>e</strong></span>ral de gaulle”</em>.<br>
 </li>
 <li>Match 🎯 chaque mot du nom de voie avec fuzzi 1, <strong>boost 15</strong>.<br>
 </li>
@@ -1100,6 +1127,15 @@ Le package elasticsearch permet d'indexer les donn&#xE9;es en fournissant :
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
+</section>
+<section id="retour-sur-le-score-global" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Retour sur le score global</h2>
+<p><span class="math display">\[
+score_{voie} = \sum_{\text{∀n} \in \text{N}} \sum_{\text{∀t} \in \text{n}} boost_{n}*{nb\_occurrence}_{t}
+\]</span></p>
+<p>N = ensemble des niveaux <em>(niveau mot, niveau fuzzi…)</em>.<br>
+n = niveau.<br>
+t = token, sous-chaîne <em>(un mot, un 3-grams…)</em>.</p>
 </section></section>
 <section id="plan-de-la-présentation-3" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>
@@ -1127,7 +1163,7 @@ Le package elasticsearch permet d'indexer les donn&#xE9;es en fournissant :
 </li>
 <li>une indicatrice sur la qualité de l’identification (0 à 10).<br>
 </li>
-<li>un ratio qui mesure l’écart entre la 1ère et la 2ème possibilité retournées par Elastic (0 à 1).</li>
+<li>un ratio qui mesure l’écart entre la 1ère et la 2ème voie la plus pertinente retournées par Elastic (0 à 1).</li>
 </ul></li>
 </ul>
 </section>
@@ -1344,7 +1380,7 @@ R2 = score Elastic de la 2ème voie la plus pertinente.</p>
 </tr>
 </tbody>
 </table>
-<p>Appariement direct avec filtres entre adresses à retrouver et référentiel Gaïa : <span class="blue2"><strong>30% d’identification d’adresse</strong></span>.</p>
+<p>Appariement direct avec filtres entre adresses à retrouver et référentiel Gaïa : <span class="blue2"><strong>30% d’identification à l’adresse</strong></span>.</p>
 <aside class="notes">
 <ul>
 <li><p>Précision = Vrais positifs/ positifs (vp + fp)</p></li>
@@ -1368,8 +1404,7 @@ R2 = score Elastic de la 2ème voie la plus pertinente.</p>
 <ul>
 <li><span class="blue2"><strong>500 adresses en 2 secondes</strong></span>.<br>
 </li>
-<li>Identification de gros paquets d’adresses : <span class="green2"><strong>1 million d’adresses en 50 minutes</strong></span>.</li>
-<li>Démonstration en utilisant <a href="https://api-interrogation-geo.insee.fr/swagger-ui/index.html">l’API Gaïa</a>.</li>
+<li>Identification de gros paquets d’adresses : <span class="green2"><strong>1 million d’adresses en 50 minutes</strong></span>. <!-- - D&#xE9;monstration en utilisant [l'API Ga&#xEF;a](https://api-interrogation-geo.insee.fr/swagger-ui/index.html).   --></li>
 </ul>
 <!-- ## Utilisation du moteur au sein du projet Ga&#xEF;a
 
@@ -1400,18 +1435,31 @@ M&#xE9;triques sur les mises &#xE0; jour du r&#xE9;f&#xE9;rentiel :
 </li>
 <li>Les travaux ont été effectués sur un référentiel contenant des erreurs/doublons → entrave les métriques qualité.</li>
 </ul>
-</section>
-<section id="merci-au-ssplab-julien-pramil-lino-galiana-olivier-meslin-marie-pierre-joubert-et-tom-seimandi" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Merci au SSPlab : Julien Pramil, Lino Galiana, Olivier Meslin, Marie-Pierre Joubert et Tom Seimandi</h2>
-</section>
-<section id="merci-à-heidi-koumarianos" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Merci à Heidi Koumarianos</h2>
-</section>
-<section id="et-enfin-merci-pour-votre-attention" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Et enfin, merci pour votre attention !</h2>
-
-
 </section></section>
+<section id="bibliographie" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<h1>Bibliographie</h1>
+<ol type="1">
+<li><p>Chaudhuri, S., et al.&nbsp;(2003). <em>Robust and efficient fuzzy match for online data cleaning</em>. <a href="https://courses.cs.washington.edu/courses/cse591d/03sp/chaudhuri.pdf">lien</a>.</p></li>
+<li><p>Kathare, N., et al.&nbsp;(2022). <em>A Comprehensive Study of Elastic Search</em>. <em>Journal of Research in Science and Engineering</em>, 4(11). <a href="https://doi.org/10.53469/jrse.2022.04(11).07">lien</a>.</p></li>
+<li><p>Wikipedia. (n.d.). <em>Elasticsearch</em>. <a href="https://fr.wikipedia.org/wiki/Elasticsearch">lien</a>.</p></li>
+</ol>
+</section>
+
+<section id="merci-au-ssplab-julien-pramil-lino-galiana-olivier-meslin-marie-pierre-joubert-et-tom-seimandi" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<h1>Merci au SSPlab : Julien Pramil, Lino Galiana, Olivier Meslin, Marie-Pierre Joubert et Tom Seimandi</h1>
+
+</section>
+
+<section id="merci-à-heidi-koumarianos" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<h1>Merci à Heidi Koumarianos</h1>
+
+</section>
+
+<section id="et-enfin-merci-pour-votre-attention" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<h1>Et enfin, merci pour votre attention !</h1>
+
+
+</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
