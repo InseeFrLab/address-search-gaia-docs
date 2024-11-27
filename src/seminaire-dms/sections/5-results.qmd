@@ -42,8 +42,16 @@ Appariement direct avec filtres entre adresses à retrouver et référentiel Ga�
 
 - [**500 adresses en 2 secondes**]{.blue2}.  
 - Identification de gros paquets d'adresses : [**1 million d'adresses en 50 minutes**]{.green2}.
-- Démonstration du moteur ⚙️ ElasticSearch developpé en [**Python**]{.red2}.
+- Démonstration en direct du moteur ⚙️ ElasticSearch développé en [**Python**]{.red2}.
 
+::: {.notes}
+{
+  "adresseComplete": "48 rue fontaine",
+  "depcom": "",
+  "codePostal": "14530",
+  "libelleCommune": "luc s/mer"
+}
+:::
 <!-- ## Utilisation du moteur au sein du projet Gaïa
 
 Métriques sur les mises à jour du référentiel :
