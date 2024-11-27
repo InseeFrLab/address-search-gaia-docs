@@ -42,7 +42,7 @@ Appariement direct avec filtres entre adresses à retrouver et référentiel Ga�
 
 - [**500 adresses en 2 secondes**]{.blue2}.  
 - Identification de gros paquets d'adresses : [**1 million d'adresses en 50 minutes**]{.green2}.
-- Démonstration du moteur [**Python**]{.red2} d'identification d'adresses   -->
+- Démonstration du moteur ⚙️ ElasticSearch developpé en [**Python**]{.red2}.
 
 <!-- ## Utilisation du moteur au sein du projet Gaïa
 
