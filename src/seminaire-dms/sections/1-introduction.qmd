@@ -99,7 +99,7 @@ Pas d'identifiant Gaïa, donc [**pas de suivi dans le temps de ces objets**]{.bl
 
 ## Exemples de géométries
 
-*Exemple de géométries d'adresses, parcelles et bâtis*
+*Adresses, parcelles et bâtis :*
 
 ![](img/adresses_parcelles_bati.png){width=75% fig-align="center"}
 

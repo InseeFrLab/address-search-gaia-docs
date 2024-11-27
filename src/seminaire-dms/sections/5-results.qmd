@@ -5,7 +5,6 @@
     - **PASRAU** : Prélèvement À la Source sur les Revenus AUtres.  
     - **TSSAL** : Base tous salariés, issue de la déclaration sociale nominative.  
     - **Fidéli** : FIchiers DÉmographiques sur les Logements et les Individus.  
-- Validation post-appariements des paires adresse non normalisée + idGaïaAdresse.  
 
 ## Schéma appariements jeu de test
 
@@ -16,7 +15,7 @@
 - Adresses du PASRAU et Tous Salariés (TTSAL) avec le CSNS de l'individu connu pour chaque adresse.  
 - Grâce aux CSNS des individus Fidéli 2022, obtention de l'identifiant Majic de ces adresses.
 - Avec l'identifiant Majic des adresses, conservé dans le référentiel Gaïa, on retrouve l'idGaïaAdresse.  
-- Les adresses (PASRAU, TSSAL) sont comparées aux adresses du référentiel, et seules les paires considérées comme identiques sont conservées.  
+- Validation post-appariements des paires adresse non normalisée (PASRAU, TSSAL)) + idGaïaAdresse.  
 :::
 
 ## Évaluation de l'algorithme d'identification

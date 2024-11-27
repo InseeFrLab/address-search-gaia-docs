@@ -2,9 +2,9 @@
 
 - Prends en entrée un [**libellé d'adresse**]{.green2} et un [**COG**]{.blue2}, ou à défaut, [**un code postal + libellé commune**]{.blue2}.  
 - Retourne :  
-    - le(s) identifiant(s) Gaïa retrouvé(s).  
-    - une indicatrice sur la qualité de l'identification (0 à 10).  
-    - un ratio qui mesure l'écart entre la 1ère et la 2ème voie la plus pertinente retournées par Elastic (0 à 1).  
+    - le(s) [**identifiant(s) Gaïa**]{.red2} retrouvé(s).  
+    - une [**indicatrice**]{.red2} sur la qualité de l'identification (0 à 10).  
+    - un [**ratio**]{.red2} qui mesure l'écart entre la 1ère et la 2ème voie la plus pertinente retournées par Elastic (0 à 1).  
 
 ## Schéma algorithme d'identification
 

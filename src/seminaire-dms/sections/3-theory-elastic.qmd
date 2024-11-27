@@ -25,6 +25,11 @@ C'est pourquoi il faut un moteur de recherche ⚙️.
   - **Google Maps**.
   - **Addok** : moteur de recherche de la BAN.
 
+::: {.notes}
+- Google maps : api payant, pas la main sur les données.  
+- Google Maps utilise des technologies avancées mais on peut reproduire la logique avec ElasticSearch.  
+::: 
+
 ## ElasticSearch 
 
 - Créé en **2010** par Shay Bannon.  
@@ -119,11 +124,13 @@ On peut commencer à créer notre moteur ⚙️. -->
 | D | verdier                      |
 | E | des cours                    |
 
+::: {.notes}
+Nous allons faire un focus sur uniquement le "nom de voie" pour simplifier la compréhension de la théorie du moteur.  
+:::
+
 ## Recherche par mot
 
 [**Pour chaque nom de voie du référentiel**]{.blue2}, compter le nombre de mots qui matchent 🎯 avec les mots de l'adresse recherchée.  
-
-<br>
 
 *Exemple : score avec tokenizer "mot" de "88 avenue du general charles de gaulle"*
 
@@ -380,12 +387,12 @@ $$
 $$
 
 - Limitation à n∈{3,4,5} pour notre cas.  
-- Tests effectués pour choisir ces valeurs, en fonction de [**la précision et la rapidité**]{.blue2} des requêtes.  
+- Tests effectués pour choisir ces valeurs, en fonction de [**la précision et la rapidité**]{.green2} des requêtes.  
 
-## Boost
+## Boost 🚀
 
 - On peut donner plus ou moins d'importance aux différents matchs 🎯.  
-- Chaque occurrence est multipliée par un facteur, appelé [**boost**]{.blue2}, qui dépend du niveau de match 🎯.  
+- Chaque occurrence est multipliée par un facteur, appelé [**boost**]{.blue2} 🚀, qui dépend du niveau de match 🎯.  
 
 ## Score global 
 
@@ -394,8 +401,9 @@ Le score global va donc combiner la somme des matchs 🎯 au niveau :
 - mot.  
 - n-grams.  
 - fuzziness.  
+- mais également texte entier sans découpage.  
 
-Et [**booster**]{.green2} en fonction de l'importance qu'on leur donne.  
+Et [**booster**]{.green2} 🚀 en fonction de l'importance qu'on leur donne.  
 
 <!-- ## Configurer le moteur ⚙️
 
@@ -409,14 +417,18 @@ Le package elasticsearch permet d'indexer les données en fournissant :
 
 ## Faire des recherches 🔍
 
-*Requête 🔍 pour retrouver la voie :*  
+*Requête 🔍 pour retrouver la voie :* 
 
-- Match 🎯 nom de voie entier sans découpage avec fuzzi 1, **boost 200**. *Ex : "3 rue du genral de gaulle" ⊃ "du gen[**e**]{.red2}ral de gaulle"*.  
-- Match 🎯 chaque mot du nom de voie avec fuzzi 1, **boost 15**.  
-- Match 🎯 chaque mot du type de voie avec fuzzi 1, **boost 5**.  
-- Match 🎯 chaque 3 à 5-grams du nom de voie, **boost 1**.  
+À chaque match 🎯, le score va ⇡ en fonction du boost 🚀 associé.
 
-À chaque fois qu'une sous-chaîne valide l'une de ces conditions, le score va ⇡ en fonction du boost associé.
+| Variable | Tokenizer | Fuzzi 1 | Boost 🚀 |
+|----------|-----------|---------|-----------|
+| Nom de voie | Sans découpage | ✅ | 200 |
+| Nom de voie | Mot | ✅ | 15 |
+| Type de voie | Mot | ✅ | 5 |
+| Nom de voie | 3 à 5-grams | ❌ | 1 |
+
+*Ex boost 200 : "3 rue du genral de gaulle" ⊃ "du gen[**e**]{.red2}ral de gaulle"*
 
 ::: {.notes}
 - On match à chaque 3-grams, exemple avec verdier.  
@@ -429,6 +441,6 @@ $$
 score_{voie} = \sum_{\text{∀n} \in \text{N}} \sum_{\text{∀t} \in \text{n}} boost_{n}*{nb\_occurrence}_{t}
 $$
 
-N = ensemble des niveaux *(niveau mot, niveau fuzzi...)*.  
+N = ensemble des niveaux *(niveau chaîne complète fuzzi, niveau mot fuzzi...)*.  
 n = niveau.  
 t = token, sous-chaîne *(un mot, un 3-grams...)*.  

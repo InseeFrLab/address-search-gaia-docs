@@ -133,11 +133,11 @@ ascii: true
 
 # Bibliographie
 
-1. Chaudhuri, S., et al. (2003). *Robust and efficient fuzzy match for online data cleaning*. [lien](https://courses.cs.washington.edu/courses/cse591d/03sp/chaudhuri.pdf).  
+1. Chaudhuri, S., et al. (2003). *Robust and efficient fuzzy match for online data cleaning* : [lien](https://courses.cs.washington.edu/courses/cse591d/03sp/chaudhuri.pdf).  
    
-2. Kathare, N., et al. (2022). *A Comprehensive Study of Elastic Search*. *Journal of Research in Science and Engineering*, 4(11). [lien](https://doi.org/10.53469/jrse.2022.04(11).07).  
+2. Kathare, N., et al. (2022). *A Comprehensive Study of Elastic Search*. *Journal of Research in Science and Engineering*, 4(11) : [lien](https://doi.org/10.53469/jrse.2022.04(11).07).  
 
-3. Wikipedia. (n.d.). *Elasticsearch*. [lien](https://fr.wikipedia.org/wiki/Elasticsearch).  
+3. Wikipedia. (n.d.). *Elasticsearch* : [lien](https://fr.wikipedia.org/wiki/Elasticsearch).  
 
 # Merci au SSPlab : Julien Pramil, Lino Galiana, Olivier Meslin, Marie-Pierre Joubert et Tom Seimandi
 # Merci à Heidi Koumarianos
