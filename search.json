@@ -188,7 +188,7 @@
     "href": "src/seminaire-dms/index.html#pourquoi-elasticsearch-pour-la-recherche-textuelle",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Pourquoi ElasticSearch pour la recherche textuelle ?",
-    "text": "Pourquoi ElasticSearch pour la recherche textuelle ?\n\n\n\n\n\n\n\n\n\nCritères\nElasticSearch\nSQL\nAddok\n\n\n\n\nRecherche de texte avancée\n✅\n❌\n✅\n\n\nPersonnalisation des recherches\n✅\n❌\n❌\n\n\nRapidité\n✅\n✅\n✅\n\n\nPrécision\n✅\n❌\n⚠️\n\n\nFacilité d’implémentation\n❌\n✅\n✅\n\n\nMaintenance\n⚠️\n✅\n❌\n\n\n\n\nAddok (DINUM) : code python pour indexer des données d’adresses avec point gps et recherche les adresses avec des requêtes fixées."
+    "text": "Pourquoi ElasticSearch pour la recherche textuelle ?\n\n\n\n\n\n\n\n\n\nCritères\nElasticSearch\nSQL\nAddok\n\n\n\n\nRecherche de texte avancée\n✅\n❌\n✅\n\n\nPersonnalisation des recherches\n✅\n❌\n⚠️\n\n\nRapidité\n✅\n✅\n✅\n\n\nPrécision\n✅\n❌\n⚠️\n\n\nFacilité d’implémentation\n❌\n✅\n✅\n\n\nMaintenance\n⚠️\n✅\n❌\n\n\n\n\n\nAddok (DINUM) : code python pour indexer des données d’adresses avec point gps et recherche les adresses avec des requêtes fixées.\n\nAddok est un moteur de recherche open source conçu pour effectuer des tâches de géocodage. Il n’utilise pas Elasticsearch."
   },
   {
     "objectID": "src/seminaire-dms/index.html#filtres",
