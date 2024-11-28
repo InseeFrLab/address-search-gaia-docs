@@ -174,7 +174,7 @@
     "href": "src/seminaire-dms/index.html#elasticsearch",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "ElasticSearch",
-    "text": "ElasticSearch\nHistoire :\n\nCréé en 2010 par Shay Bannon.\n\nMoteur ⚙️ utilisable en n’importe quel langage de programmation (requêtes HTTP).\n\nFaire des recherches rapides sur tout type de données (textes, objets géométriques…).\n\nElasticSearch au sein de l’Insee :\n\n\n\nPour trier et chercher les recettes de cuisine de sa femme psq il trouvait pas de moteur de recherche adapté.\n1er moteur Elasticsearch de l’insee : Code statistique Non Signifiant, identifier les individus à partir de ses données d’état civil.\nRésil : prolongement du moteur CSNS, améliorer la qualité du moteur CSNS, en utilisant les informations identifiantes supplémentaires disponibles dans Résil, notamment l’adresse de résidence et les cohabitants."
+    "text": "ElasticSearch\n\nCréé en 2010 par Shay Bannon.\n\nMoteur ⚙️ utilisable en n’importe quel langage de programmation (requêtes HTTP).\n\nFaire des recherches rapides sur tout type de données.\n\nElasticSearch au sein de l’Insee :\n\n\n\nPour trier et chercher les recettes de cuisine de sa femme psq il trouvait pas de moteur de recherche adapté.\n1er moteur Elasticsearch de l’insee : Code statistique Non Signifiant, identifier les individus à partir de ses données d’état civil.\nRésil : prolongement du moteur CSNS, améliorer la qualité du moteur CSNS, en utilisant les informations identifiantes supplémentaires disponibles dans Résil, notamment l’adresse de résidence et les cohabitants."
   },
   {
     "objectID": "src/seminaire-dms/index.html#cest-quoi-concrètement-elasticsearch",
