@@ -15,3 +15,5 @@ toc: false
 
 ::: {#presentations}
 :::
+
+## [Lien vers la vidéo du séminaire interne](https://inseefrlab.github.io/address-search-gaia-docs/src/seminaire-dms-video/)

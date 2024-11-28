@@ -10,7 +10,7 @@ sidebar: false
 
 <!-- {{< video https://minio.lab.sspcloud.fr/projet-gaia/video1679628953.mp4 >}} -->
 
-<video controls>
+<video controls style="width: 100%; height: auto;">
   <source src="https://minio.lab.sspcloud.fr/projet-gaia/video1679628953.mp4" type="video/mp4">
   Votre navigateur ne supporte pas la balise vidéo.
 </video>
