@@ -73,14 +73,15 @@ ElasticSearch au sein de l'Insee :
 | **Critères**                         | **ElasticSearch** | **SQL** | **Addok**|
 |:-------------------------------------|:-----------------:|:-------:|:-------:|
 | Recherche de texte avancée           | ✅ | ❌ | ✅ |
-| Personnalisation des recherches      | ✅ | ❌ | ❌ |
+| Personnalisation des recherches      | ✅ | ❌ | ⚠️ |
 | Rapidité                             | ✅ | ✅ | ✅ |
 | Précision                            | ✅ | ❌ | ⚠️ |
 | Facilité d'implémentation            | ❌ | ✅ | ✅ |
 | Maintenance                          | ⚠️ | ✅ | ❌ |
 
 ::: {.notes}
-Addok (DINUM) : code python pour indexer des données d'adresses avec point gps et recherche les adresses avec des requêtes fixées.  
+- Addok (DINUM) : code python pour indexer des données d'adresses avec point gps et recherche les adresses avec des requêtes fixées.  
+- Addok est un moteur de recherche open source conçu pour effectuer des tâches de géocodage. Il n'utilise pas Elasticsearch.  
 ::: 
 
 <!-- a refaire car je ne connais pas addok, j'ai pas compris -->
