@@ -45,11 +45,9 @@ C'est pourquoi il faut un moteur de recherche ⚙️.
 
 ## ElasticSearch 
 
-Histoire :  
-
 - Créé en **2010** par Shay Bannon.  
 - Moteur ⚙️ utilisable en [**n'importe quel langage de programmation**]{.green2} (requêtes HTTP).  
-- Faire des recherches rapides sur tout type de données (textes, objets géométriques...).  
+- Faire des recherches rapides sur tout type de données.  
 
 ElasticSearch au sein de l'Insee :  
 
