@@ -32,6 +32,9 @@ C'est pourquoi il faut un moteur de recherche ⚙️.
 - Quand on pense à moteur de recherche, on pense tout de suite à Google.  
 
 - Un moteur de recherche est un outil qui permet de retrouver des informations en effectuant des requêtes dans une base de données. On peut rechercher avec des mots-clés ou des textes similaires à ceux présents dans la base, grâce à des techniques de recherche approximative.  
+
+- Il y a des moteurs de recherche partout, par exemple intranet de l'insee, windows pour chercher des applications, l'explorateur de fichiers sur votre ordinateur en local...   
+
 - Un moteur ne sert pas qu'à chercher sur internet, c'est tout simplement de la recherche dans une base de données. Mais internet a permis des avancées majeures sur les moteurs, car la recherche sur le web devenait un sujet de plus en plus important. Avec le démultiplication de l'information, difficile de chercher dans une grande bdd et trouver le résultat le plus pertinent.  
 
 - Pour avoir le maximum de résultats pertients, il faut non seulement avoir un moteur performant, il faut aussi avoir les bonnes données. C'est en recrutant un étudiant du MIT qui a développé une méthode révolutionnaire pour recenser automatiquement les sites sur le web (auparavant fait manuellement), que google va se démarquer des autres moteurs.  
@@ -40,14 +43,15 @@ C'est pourquoi il faut un moteur de recherche ⚙️.
 
 - Google maps : api payant, pas la main sur les données.  
 - Google Maps utilise des technologies avancées mais on peut reproduire la logique avec ElasticSearch.  
-- Addock : DINUM
+- Addok : DINUM.  
+- On va regarder les avantages et les inconvients de d'elastic et d'addok dans la suite.  
 ::: 
 
 ## ElasticSearch 
 
 - Créé en **2010** par Shay Bannon.  
-- Moteur ⚙️ utilisable en [**n'importe quel langage de programmation**]{.green2} (requêtes HTTP).  
 - Faire des recherches rapides sur tout type de données.  
+- Moteur ⚙️ utilisable en [**n'importe quel langage de programmation**]{.green2} (requêtes HTTP).  
 
 ElasticSearch au sein de l'Insee :  
 
