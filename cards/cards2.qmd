@@ -2,12 +2,12 @@
 ---
 title: Séminaire interne DMS
 image: img/seminaire.jpeg
-date: last-modified
+date: "2024-11-28"
 description: |
   <b>Description :</b> Ce séminaire a pour but de présenter le moteur de recherche d'adresse Gaïa et de diffuser les connaissances sur ElasticSearch au sein de l'Insee.
-author: Raya Berova
+author: Raya Berova & Benoît Hurpeau
 slides:
-  text: pdf
+  text: Slides
   url: src/seminaire-dms/index.html
 order: 2
 lang: fr-FR

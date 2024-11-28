@@ -1,0 +1,11 @@
+---
+format:
+  html:
+    header-includes: |
+        <link rel="icon" type="image/png" sizes="32x32" href="../_extensions/InseeFrLab/onyxia/favicon-32x32.png">
+sidebar: false
+---
+
+# Vidéo du séminaire interne DMS du 28 novembre 2024
+
+{{< video https://minio.lab.sspcloud.fr/projet-gaia/video1679628953.mp4 >}}

@@ -6,7 +6,7 @@ description: |
   <b>Description :</b> Ici est rassemblée toute la documentation technique sur le moteur de recherche d'adresse textuel Gaïa
 author: Raya Berova
 slides:
-  text: doc
+  text: Doc
   url: src/documentation/index.html
 order: 1
 lang: fr-FR
