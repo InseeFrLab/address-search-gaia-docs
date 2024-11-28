@@ -40,7 +40,7 @@
     "href": "index.html",
     "title": "Moteur de recherche d’adresses Gaïa",
     "section": "",
-    "text": "Moteur de recherche d’adresses Gaïa\n\n\n\n\n  \n     \n      \n        \n          \n            \n          \n         \n        \n          \n            Documentation\n            \n\n            \n              Description : Ici est rassemblée toute la documentation technique sur le moteur de recherche d'adresse textuel Gaïa\n\n            \n\n            \n            \n              \n                Raya Berova\n                Nov 27, 2024\n              \n            \n            \n            \n              \n                \n                  \n                    \n                      \n                        doc\n                      \n                    \n                  \n                \n              \n            \n          \n        \n\n        \n\n      \n     \n  \n\n  \n     \n      \n        \n          \n            \n          \n         \n        \n          \n            Séminaire interne DMS\n            \n\n            \n              Description : Ce séminaire a pour but de présenter le moteur de recherche d'adresse Gaïa et de diffuser les connaissances sur ElasticSearch au sein de l'Insee.\n\n            \n\n            \n            \n              \n                Raya Berova\n                Nov 27, 2024\n              \n            \n            \n            \n              \n                \n                  \n                    \n                      \n                        pdf\n                      \n                    \n                  \n                \n              \n            \n          \n        \n\n        \n\n      \n     \n  \n\n  \n     \n      \n        \n          \n            \n          \n         \n        \n          \n            Abstract NTTS 2025 (Eurostat)\n            \n\n            \n              Description : Abstract en anglais soumis à NTTS 2025.\n\n            \n\n            \n            \n              \n                Raya Berova\n                Nov 27, 2024\n              \n            \n            \n            \n              \n                \n                  \n                    \n                      \n                        pdf\n                      \n                    \n                  \n                \n              \n            \n          \n        \n\n        \n\n      \n     \n  \n\n\n\n\nNo matching items"
+    "text": "Moteur de recherche d’adresses Gaïa\n\n\n\n\n  \n     \n      \n        \n          \n            \n          \n         \n        \n          \n            Documentation\n            \n\n            \n              Description : Ici est rassemblée toute la documentation technique sur le moteur de recherche d'adresse textuel Gaïa\n\n            \n\n            \n            \n              \n                Raya Berova\n                Nov 28, 2024\n              \n            \n            \n            \n              \n                \n                  \n                    \n                      \n                        doc\n                      \n                    \n                  \n                \n              \n            \n          \n        \n\n        \n\n      \n     \n  \n\n  \n     \n      \n        \n          \n            \n          \n         \n        \n          \n            Séminaire interne DMS\n            \n\n            \n              Description : Ce séminaire a pour but de présenter le moteur de recherche d'adresse Gaïa et de diffuser les connaissances sur ElasticSearch au sein de l'Insee.\n\n            \n\n            \n            \n              \n                Raya Berova\n                Nov 28, 2024\n              \n            \n            \n            \n              \n                \n                  \n                    \n                      \n                        pdf\n                      \n                    \n                  \n                \n              \n            \n          \n        \n\n        \n\n      \n     \n  \n\n  \n     \n      \n        \n          \n            \n          \n         \n        \n          \n            Abstract NTTS 2025 (Eurostat)\n            \n\n            \n              Description : Abstract en anglais soumis à NTTS 2025.\n\n            \n\n            \n            \n              \n                Raya Berova\n                Nov 28, 2024\n              \n            \n            \n            \n              \n                \n                  \n                    \n                      \n                        pdf\n                      \n                    \n                  \n                \n              \n            \n          \n        \n\n        \n\n      \n     \n  \n\n\n\n\nNo matching items"
   },
   {
     "objectID": "src/documentation/index.html",
@@ -167,14 +167,14 @@
     "href": "src/seminaire-dms/index.html#un-moteur-de-recherche",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Un moteur de recherche ⚙️",
-    "text": "Un moteur de recherche ⚙️\n\nGoogle : recherche par mot clé.\n\nPour la recherche d’adresse :\n\nGoogle Maps.\nAddok : moteur de recherche de la BAN.\n\n\n\n\nGoogle maps : api payant, pas la main sur les données.\n\nGoogle Maps utilise des technologies avancées mais on peut reproduire la logique avec ElasticSearch."
+    "text": "Un moteur de recherche ⚙️\n\nGoogle : recherche par mot clé sur internet.\n\nMoteur de recherche de l’intranet de l’Insee.\n\nPour la recherche d’adresse :\n\nGoogle Maps.\nAddok : moteur de recherche de la BAN.\n\n\n\n\n\nQuand on pense à moteur de recherche, on pense tout de suite à Google.\nUn moteur de recherche est un outil qui permet de retrouver des informations en effectuant des requêtes dans une base de données. On peut rechercher avec des mots-clés ou des textes similaires à ceux présents dans la base, grâce à des techniques de recherche approximative.\n\nUn moteur ne sert pas qu’à chercher sur internet, c’est tout simplement de la recherche dans une base de données. Mais internet a permis des avancées majeures sur les moteurs, car la recherche sur le web devenait un sujet de plus en plus important. Avec le démultiplication de l’information, difficile de chercher dans une grande bdd et trouver le résultat le plus pertinent.\nPour avoir le maximum de résultats pertients, il faut non seulement avoir un moteur performant, il faut aussi avoir les bonnes données. C’est en recrutant un étudiant du MIT qui a développé une méthode révolutionnaire pour recenser automatiquement les sites sur le web (auparavant fait manuellement), que google va se démarquer des autres moteurs.\n1er moteur de recherche Archie 1990. Yahoo 1994, Google 1998, google maps 2004.\nGoogle maps : api payant, pas la main sur les données.\n\nGoogle Maps utilise des technologies avancées mais on peut reproduire la logique avec ElasticSearch.\n\nAddock : DINUM"
   },
   {
     "objectID": "src/seminaire-dms/index.html#elasticsearch",
     "href": "src/seminaire-dms/index.html#elasticsearch",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "ElasticSearch",
-    "text": "ElasticSearch\n\nCréé en 2010 par Shay Bannon.\n\nMoteur ⚙️ utilisable en n’importe quel langage de programmation (requêtes HTTP).\n\nFaire des recherches rapides sur tout type de données (textes, objets géométriques…).\n\n\nPour trier et chercher les recettes de cuisine de sa femme psq il trouvait pas de moteur de recherche adapté."
+    "text": "ElasticSearch\nHistoire :\n\nCréé en 2010 par Shay Bannon.\n\nMoteur ⚙️ utilisable en n’importe quel langage de programmation (requêtes HTTP).\n\nFaire des recherches rapides sur tout type de données (textes, objets géométriques…).\n\nElasticSearch au sein de l’Insee :\n\n\n\nPour trier et chercher les recettes de cuisine de sa femme psq il trouvait pas de moteur de recherche adapté.\n1er moteur Elasticsearch de l’insee : Code statistique Non Signifiant, identifier les individus à partir de ses données d’état civil.\nRésil : prolongement du moteur CSNS, améliorer la qualité du moteur CSNS, en utilisant les informations identifiantes supplémentaires disponibles dans Résil, notamment l’adresse de résidence et les cohabitants."
   },
   {
     "objectID": "src/seminaire-dms/index.html#cest-quoi-concrètement-elasticsearch",
@@ -188,7 +188,7 @@
     "href": "src/seminaire-dms/index.html#pourquoi-elasticsearch-pour-la-recherche-textuelle",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Pourquoi ElasticSearch pour la recherche textuelle ?",
-    "text": "Pourquoi ElasticSearch pour la recherche textuelle ?\n\n\n\n\n\n\n\n\n\nCritères\nElasticSearch\nSQL\nAddok\n\n\n\n\nRecherche de texte avancée\n✅\n❌\n✅\n\n\nPersonnalisation des recherches\n✅\n❌\n❌\n\n\nRapidité\n✅\n✅\n✅\n\n\nPrécision\n✅\n❌\n⚠️\n\n\nFacilité d’implémentation\n❌\n✅\n✅\n\n\nMaintenance\n⚠️\n✅\n❌\n\n\n\n\nDonner explication addok"
+    "text": "Pourquoi ElasticSearch pour la recherche textuelle ?\n\n\n\n\n\n\n\n\n\nCritères\nElasticSearch\nSQL\nAddok\n\n\n\n\nRecherche de texte avancée\n✅\n❌\n✅\n\n\nPersonnalisation des recherches\n✅\n❌\n❌\n\n\nRapidité\n✅\n✅\n✅\n\n\nPrécision\n✅\n❌\n⚠️\n\n\nFacilité d’implémentation\n❌\n✅\n✅\n\n\nMaintenance\n⚠️\n✅\n❌\n\n\n\n\nAddok (DINUM) : code python pour indexer des données d’adresses avec point gps et recherche les adresses avec des requêtes fixées."
   },
   {
     "objectID": "src/seminaire-dms/index.html#filtres",
@@ -202,7 +202,7 @@
     "href": "src/seminaire-dms/index.html#filtres-implémentés",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Filtres implémentés",
-    "text": "Filtres implémentés\n\nLowercase\n\nAsciifolding\n\nPonctuation\n\nSéparation des nombres et lettres (ex : 1er → 1 er)\n\nSuppression des espaces supplémentaires\n\nSuppression des “0” devant les nombres (ex : 0033 → 33)\n\nPrise en compte des synonymes (ex : ave = avenue, st = saint)"
+    "text": "Filtres implémentés\n\nLowercase\n\nAsciifolding\n\nPonctuation\n\nSéparation des nombres et lettres (ex : 1er → 1 er)\n\nSuppression des “0” devant les nombres (ex : 0033 → 33)\n\nPrise en compte des synonymes (ex : ave = avenue, st = saint)"
   },
   {
     "objectID": "src/seminaire-dms/index.html#base-de-données-classique",
@@ -216,21 +216,21 @@
     "href": "src/seminaire-dms/index.html#recherche-par-mot",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Recherche par mot",
-    "text": "Recherche par mot\nPour chaque nom de voie du référentiel, compter le nombre de mots qui matchent 🎯 avec les mots de l’adresse recherchée.\nExemple : score avec tokenizer “mot” de “88 avenue du general charles de gaulle”\n\n\n\nidVoie\nnom de voie\nscore\n\n\n\n\nA\ndu general leclerc\n2\n\n\nB\ndu general charles de gaulle\n5\n\n\nC\ndu point du jour\n2\n\n\nD\nverdier\n0\n\n\nE\ndes cours\n0\n\n\n\n\n\nUn match c’est chercher si une sous chaine du nom de voie, ici un mot, est incluse dans l’adresse recherchée.\n\nRecherche par groupes de caractères également possible, abordée dans la suite."
+    "text": "Recherche par mot\nPour chaque nom de voie du référentiel, compter le nombre de mots qui sont retrouvés dans l’adresse recherchée : les matchs 🎯.\nExemple : score avec tokenizer “mot” de “45 avenue du general charles de gaulle”\n\n\n\nidVoie\nnom de voie\nscore\n\n\n\n\nA\ndu general leclerc\n2\n\n\nB\ndu general charles de gaulle\n5\n\n\nC\ndu point du jour\n2\n\n\nD\nverdier\n0\n\n\nE\ndes cours\n0\n\n\n\n\n\nUn match c’est chercher si une sous chaine du nom de voie, ici un mot, est incluse dans l’adresse recherchée.\n\nRecherche par groupes de caractères également possible, abordée dans la suite."
   },
   {
     "objectID": "src/seminaire-dms/index.html#score-avec-tokenizer-mot",
     "href": "src/seminaire-dms/index.html#score-avec-tokenizer-mot",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Score avec tokenizer “mot”",
-    "text": "Score avec tokenizer “mot”\nTokenizer = façon de découper le texte recherché et ciblé.\n\nPour retourner la voie la plus pertinente, on construit un score pour chaque voie : \\[\nscore_{voie} = \\sum_{\\text{∀m} \\in \\text{M}} {nb\\_occurrence}_m\n\\]\nm = mot.\nM = ensemble des mots de l’adresse recherchée.\nDans une grande base de données, c’est extrêmement long."
+    "text": "Score avec tokenizer “mot”\nTokenizer = façon de découper le texte recherché et ciblé.\n\nPour retourner la voie la plus pertinente, on construit un score pour chaque voie : \\[\nscore_{voie} = \\sum_{\\text{∀m} \\in \\text{M}} {nb\\_occurrence}_m\n\\]\nm = mot.\nM = ensemble des mots de l’adresse recherchée.\nDans une grande base de données, c’est extrêmement long.\n\nPour palier à ces temps de traitement qui explosent, on peut utiliser un nouvel outil qui permet de réorganiser nos bases de données : l’index inversé."
   },
   {
     "objectID": "src/seminaire-dms/index.html#index-inversé-mot",
     "href": "src/seminaire-dms/index.html#index-inversé-mot",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Index inversé mot",
-    "text": "Index inversé mot\nExemple\n\n\n\n\n\n\nidVoie\n\n\nnom de voie\n\n\n\n\n\n\nA\n\n\ndu general leclerc\n\n\n\n\nB\n\n\ndu general charles de gaulle\n\n\n\n\nC\n\n\ndu point du jour\n\n\n\n\nD\n\n\nverdier\n\n\n\n\nE\n\n\ndes cours\n\n\n\n\n\n\n\n\n\n\n\n\nmot\n\n\noccurrences\n\n\n\n\n\n\ngeneral\n\n\n{“A”: 1, “B”: 1}\n\n\n\n\njour\n\n\n{“C”: 1}\n\n\n\n\ndu\n\n\n{“A”: 1, “B”: 1, “C”: 2}\n\n\n\n\ncours\n\n\n{“E”: 1}\n\n\n\n\n…\n\n\n…\n\n\n\n\n\nComptage direct ⚡ des occurrences de chaque mot de la base par idVoie.\n\n\nFaire un index inversé par mot, c’est récupérer tous les mots des noms de voie dans le référentiel et on les aplati dans une colonne.\n\nIl y a autant de lignes qu’il y a de mots différents dans les noms de voie du référentiel. Les mots les plus fréquents seront ceux qui ont le plus d’occurences.\n\nNous obtenons directement le comptage de chaque mot par idVoie, pour tous les mots présents dans les noms de voie du référentiel.\n\nL’index inversé est fait en amont des requetes."
+    "text": "Index inversé mot\nExemple\n\n\n\n\n\n\nidVoie\n\n\nnom de voie\n\n\n\n\n\n\nA\n\n\ndu general leclerc\n\n\n\n\nB\n\n\ndu general charles de gaulle\n\n\n\n\nC\n\n\ndu point du jour\n\n\n\n\nD\n\n\nverdier\n\n\n\n\nE\n\n\ndes cours\n\n\n\n\n\n\n\n\n\n\n\n\nmot\n\n\noccurrences\n\n\n\n\n\n\ngeneral\n\n\n{“A”: 1, “B”: 1}\n\n\n\n\njour\n\n\n{“C”: 1}\n\n\n\n\ndu\n\n\n{“A”: 1, “B”: 1, “C”: 2}\n\n\n\n\ncours\n\n\n{“E”: 1}\n\n\n\n\n…\n\n\n…\n\n\n\n\n\nComptage direct ⚡ des occurrences de chaque mot de la base par idVoie.\n\n\nFaire un index inversé par mot, c’est récupérer tous les mots des noms de voie dans le référentiel et on les aplati dans une colonne.\n\nIl y a autant de lignes qu’il y a de mots différents dans les noms de voie du référentiel. Les mots les plus fréquents seront ceux qui ont le plus d’occurences.\n\nNous obtenons directement le comptage de chaque mot par idVoie.\n\nL’index inversé est fait en amont des recherches."
   },
   {
     "objectID": "src/seminaire-dms/index.html#fuzziness",
@@ -265,35 +265,35 @@
     "href": "src/seminaire-dms/index.html#limites-des-n-grams",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Limites des n-grams",
-    "text": "Limites des n-grams\n\\[\n\\downarrow \\text{taille n-grams}\n\\Rightarrow \\text{taille index inversé} \\uparrow\n\\Rightarrow \\text{temps de recherche} \\uparrow\n\\]\n\nLimitation à n∈{3,4,5} pour notre cas.\n\nTests effectués pour choisir ces valeurs, en fonction de la précision et la rapidité des requêtes."
+    "text": "Limites des n-grams\n\\[\n\\downarrow \\text{taille n-grams}\n\\Rightarrow \\text{taille index inversé} \\uparrow\n\\Rightarrow \\text{temps de recherche} \\uparrow\n\\]\n\nLimitation à n∈{3,4,5} pour notre cas.\n\nTests effectués pour choisir ces valeurs, en fonction de la précision et la rapidité des requêtes.\n\n\nDonc avec tous ces éléments, on peut commencer à construire un score de plus en plus efficient pour trouver la voie la plus pertiente."
   },
   {
     "objectID": "src/seminaire-dms/index.html#score-global",
     "href": "src/seminaire-dms/index.html#score-global",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Score global",
-    "text": "Score global\nLe score global va donc combiner la somme des matchs 🎯 au niveau :\n\nmot avec fuzziness.\n\nn-grams.\n\nmais également texte entier sans découpage !"
+    "text": "Score global\nLe score global va donc combiner la somme des matchs 🎯 au niveau :\n\nmot avec fuzziness.\n\nn-grams.\n\nmais également texte entier sans découpage !\n\n\nIl est possible de donner plus ou moins d’importance à ces différents niveaux de matchs 🎯.\n\n\nOn va chercher le nom de voie tel quel, sans découpage, au sein de l’adresse recherchée.\nC’est pourquoi on va introduire la notion de boost."
   },
   {
     "objectID": "src/seminaire-dms/index.html#boost",
     "href": "src/seminaire-dms/index.html#boost",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Boost 🚀",
-    "text": "Boost 🚀\n\nOn peut donner plus ou moins d’importance aux différents matchs 🎯.\n\nChaque occurrence est multipliée par un facteur, appelé boost 🚀, qui dépend du niveau de match 🎯."
+    "text": "Boost 🚀\n\nChaque occurrence est multipliée par un facteur, appelé boost 🚀, qui dépend du niveau de match 🎯.\n\nPersonnalisation des boosts 🚀 pour être adapté aux données recherchées.\n\n\nAvec tous ces outils la, on peut faire une recherche !"
   },
   {
     "objectID": "src/seminaire-dms/index.html#faire-des-recherches",
     "href": "src/seminaire-dms/index.html#faire-des-recherches",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Faire des recherches 🔍",
-    "text": "Faire des recherches 🔍\nRequête 🔍 pour retrouver la voie :\nÀ chaque match 🎯, le score va ⇡ en fonction du boost 🚀 associé.\n\n\n\nVariable\nTokenizer\nFuzzi 1\nBoost 🚀\n\n\n\n\nNom de voie\nSans découpage\n✅\n200\n\n\nNom de voie\nMot\n✅\n15\n\n\nType de voie\nMot\n✅\n5\n\n\nNom de voie\n3 à 5-grams\n❌\n1\n\n\n\nEx boost 200 : “3 rue du genral de gaulle” ⊃ “du general de gaulle”\n\n\nOn match à chaque 3-grams, exemple avec verdier.\n\nLes ngrams c’est notre dernier recours, on va retourner comme voie plus pertinente les match sur nom de voie complet et sur token mais ngrams c’est notre roue de secours."
+    "text": "Faire des recherches 🔍\nRequête 🔍 pour retrouver la voie :\nÀ chaque match 🎯, le score va ⇡ en fonction du boost 🚀 associé.\n\n\n\nVariable\nTokenizer\nFuzzi 1\nBoost 🚀\n\n\n\n\nNom de voie\nSans découpage\n✅\n200\n\n\nNom de voie\nMot\n✅\n15\n\n\nType de voie\nMot\n✅\n5\n\n\nNom de voie\n3 à 5-grams\n❌\n1\n\n\n\nEx boost 200 : “3 rue du genral de gaulle” ⊃ “du general de gaulle”\n\n\nRequete gaia pour retrouver la voie.\n\nIci, on introduit le type de voie qui n’a pas été vu précédement, pour ne pas compliquer la compréhension de la théorie du moteur, mais la logique reste la meme que pour le nom de voie.\n\nAttention, pas de fuzzi sur les ngrams car on juge que les sous chaines sont déjà assez petites, c’est contre productif pour la rapidité et la précision des recherches d’ajouter de la fuzzi.\n\nIl faut noter qu’on match à chaque sous-chaine, par exemple à chaque 3-grams de verdier dans 88 avenue verdier.\n\nLes ngrams c’est notre dernier recours, on va retourner comme voie plus pertinente les match sur nom de voie complet et sur token mais ngrams c’est notre roue de secours."
   },
   {
     "objectID": "src/seminaire-dms/index.html#retour-sur-le-score-global",
     "href": "src/seminaire-dms/index.html#retour-sur-le-score-global",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Retour sur le score global",
-    "text": "Retour sur le score global\n\\[\nscore_{voie} = \\sum_{\\text{∀n} \\in \\text{N}} \\sum_{\\text{∀t} \\in \\text{n}} boost_{n}*{nb\\_occurrence}_{t}\n\\]\nN = ensemble des niveaux (niveau chaîne complète fuzzi, niveau mot fuzzi…).\nn = niveau.\nt = token, sous-chaîne (un mot, un 3-grams…)."
+    "text": "Retour sur le score global\n\\[\nscore_{voie} = \\sum_{\\text{∀n} \\in \\text{N}} \\sum_{\\text{∀t} \\in \\text{n}} boost_{n}*{nb\\_occurrence}_{t}\n\\]\nN = ensemble des niveaux (niveau chaîne complète fuzzi, niveau mot fuzzi…).\nn = niveau.\nt = token, sous-chaîne (un mot, un 3-grams…).\n\n\nFormule mathématique du score pour retrouver la voie la plus pertiente dans Gaïa.\nMaintenant, on est capable de retrouver la voie la plus pertinente, mais qu’est ce qu’il en est de l’adresse ? Regardons l’algorithme d’identification d’adresse de Gaïa."
   },
   {
     "objectID": "src/seminaire-dms/index.html#algorithme-didentification-dadresses-1",
@@ -307,7 +307,7 @@
     "href": "src/seminaire-dms/index.html#schéma-algorithme-didentification",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Schéma algorithme d’identification",
-    "text": "Schéma algorithme d’identification\n\n\n\nEntre chaque requête Elastic, il y a des étapes de validation du résultat ES.\n\nIdentification stricte : une recherche l’adresse comme un appariement direct avec notre référentiel Gaïa, mais on applique les filtres en amont.\n\nEn moyenne, sur une base de données d’adresses non normalisées, il y a 30% des adresses qui passent à la première étape de l’identification. Cette identification stricte permet donc d’accélerer le processus, car elle prend 6 fois moins de temps que les requêtes floues sur le nom de voie.\n\nComme les bases de données qui alimentent notre référentiel sont plutôt normalisées, cela accélère d’autant plus notre processus d’identification."
+    "text": "Schéma algorithme d’identification\n\n\n\nEntre chaque requête Elastic, il y a des étapes de validation du résultat ES qui sont font en aval.\n\nIdentification adresse stricte : une recherche l’adresse comme un appariement direct avec notre référentiel Gaïa, tout en passant via le moteur ElasticSearch pour avoir les filtres et les synonymes montrés précédemment.\n\nEn moyenne, sur une base de données d’adresses non normalisées, il y a 30% des adresses qui passent à la première étape de l’identification. Cette identification stricte permet donc d’accélerer le processus, car ca prend 6 fois moins de temps de faire une recherche stricte plutot qu’une recherhce floue.\n\nComme les bases de données qui alimentent notre référentiel sont plutôt normalisées, cela accélère d’autant plus notre processus d’identification.\n\nensuite voie floue puis simplement numéro et indice de répétition, pas besoin de faire autant d’ingénieurie que pour retrouver la voie ici.\n\nLa validation de la voie retrouvée va être présentée juste après, et d’ailleurs l’indicatrice qualité va dépendre de la validation de la voie."
   },
   {
     "objectID": "src/seminaire-dms/index.html#indicatrice-qualité",
@@ -328,7 +328,7 @@
     "href": "src/seminaire-dms/index.html#distance-entre-la-1ère-et-la-2ème-voie-la-plus-pertinente",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Distance entre la 1ère et la 2ème voie la plus pertinente",
-    "text": "Distance entre la 1ère et la 2ème voie la plus pertinente\n\\[\n\\text{ratio} = 1 - \\frac{R_2}{R_1}\n\\]\nR1 = score Elastic de la 1ère voie la plus pertinente (voie retournée).\nR2 = score Elastic de la 2ème voie la plus pertinente.\nRatio → 1 ⇔ le résultat retourné est loin de la 2ème proposition."
+    "text": "Distance entre la 1ère et la 2ème voie la plus pertinente\n\\[\n\\text{ratio} = 1 - \\frac{R_2}{R_1}\n\\]\nR1 = score Elastic de la 1ère voie la plus pertinente (voie retournée).\nR2 = score Elastic de la 2ème voie la plus pertinente.\nRatio → 1 ⇔ le résultat retourné est loin de la 2ème proposition.\n\nMaintenant qu’on a en tete l’algorithme d’identification d’adresse de Gaia, quelles sont ses performances concrètement ?"
   },
   {
     "objectID": "src/seminaire-dms/index.html#constitution-dun-jeu-de-test",
@@ -342,14 +342,14 @@
     "href": "src/seminaire-dms/index.html#schéma-appariements-jeu-de-test",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Schéma appariements jeu de test",
-    "text": "Schéma appariements jeu de test\n\n\n\nPASRAU : Ce sont des données administratives générées par le prélèvement à la source sur les retraites et d’autres revenus (mais pas les salaires).\nAdresses du PASRAU et Tous Salariés (TTSAL) avec le CSNS de l’individu connu pour chaque adresse.\n\nGrâce aux CSNS des individus Fidéli 2022, obtention de l’identifiant Majic de ces adresses.\nAvec l’identifiant Majic des adresses, conservé dans le référentiel Gaïa, on retrouve l’idGaïaAdresse.\n\nValidation post-appariements des paires adresse non normalisée (PASRAU, TSSAL)) + idGaïaAdresse."
+    "text": "Schéma appariements jeu de test\n\n\n\nPASRAU : Ce sont des données administratives générées par le prélèvement à la source sur les retraites et d’autres revenus (mais pas les salaires).\nAdresses du PASRAU et Tous Salariés (TTSAL) avec le CSNS de l’individu connu pour chaque adresse.\n\nGrâce aux CSNS des individus Fidéli 2022, obtention de l’identifiant Majic de ces adresses.\nAvec l’identifiant Majic des adresses, conservé dans le référentiel Gaïa, on retrouve l’idGaïaAdresse.\n\nValidation post-appariements des paires adresse non normalisée (PASRAU, TSSAL)) + idGaïaAdresse.\n\n\n\n\nMaintenant qu’on a le jeu de test, on peut evaluer l’algo."
   },
   {
     "objectID": "src/seminaire-dms/index.html#évaluation-de-lalgorithme-didentification",
     "href": "src/seminaire-dms/index.html#évaluation-de-lalgorithme-didentification",
     "title": "Identification d’adresses avec ElasticSearch",
     "section": "Évaluation de l’algorithme d’identification",
-    "text": "Évaluation de l’algorithme d’identification\nPour 100 000 adresses issues du jeu de test sur tout le territoire français :\n\n\n\n\n\n\n\n\n\n\nAdresse trouvée\nVoie trouvée\nCommune trouvée/rien trouvé\n\n\n\n\nPourcentage\n86,0%\n99,5%\n0,5%\n\n\nPrécision\n0.94\n0.94\nx\n\n\n\nAppariement direct avec filtres entre adresses à retrouver et référentiel Gaïa : 30% d’identification à l’adresse.\n\n\nPrécision = Vrais positifs/ positifs (vp + fp)\nA titre de comparaison, un appariement direct entre les adresses à retrouver et le référentiel Gaïa donnerait 30% d’identification à condition que les filtres présentés précédemment soient appliqués.\nDonc ce qui justifie l’utilisation d’un moteur en terme de précision mais aussi en terme de performances temporelles, notamment grace à l’index inversé."
+    "text": "Évaluation de l’algorithme d’identification\nPour 100 000 adresses issues du jeu de test sur tout le territoire français :\n\n\n\n\n\n\n\n\n\n\nAdresse trouvée\nVoie trouvée\nCommune trouvée/rien trouvé\n\n\n\n\nPourcentage\n86,0%\n99,5%\n0,5%\n\n\nPrécision\n0.94\n0.94\nx\n\n\n\nAppariement direct avec filtres entre adresses à retrouver et référentiel Gaïa : 30% d’identification à l’adresse.\n\n\nPrécision = Vrais positifs/ positifs (vp + fp)\nA titre de comparaison, un appariement direct entre les adresses à retrouver et le référentiel Gaïa donnerait 30% d’identification à condition que les filtres présentés précédemment soient appliqués.\nLe reste des adresses doivent être retrouvées avec du flou, ce qui est très long dans une bdd standard.\nDonc ce qui justifie l’utilisation d’un moteur en terme de précision mais aussi en terme de performances temporelles, notamment grace à l’index inversé."
   },
   {
     "objectID": "src/seminaire-dms/index.html#rapidité-de-lalgorithme",

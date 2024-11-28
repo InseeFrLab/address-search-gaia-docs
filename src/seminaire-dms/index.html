@@ -446,7 +446,9 @@ Nouvel objet g&#xE9;ographique :  [**le lieu g&#xE9;ographique**]{.green2}.
 <section id="un-moteur-de-recherche" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Un moteur de recherche ⚙️</h2>
 <ul>
-<li><strong>Google</strong> : recherche par mot clé.<br>
+<li><strong>Google</strong> : recherche par mot clé sur internet.<br>
+</li>
+<li>Moteur de recherche de l’intranet de l’Insee.<br>
 </li>
 <li>Pour la recherche d’adresse :
 <ul>
@@ -454,12 +456,20 @@ Nouvel objet g&#xE9;ographique :  [**le lieu g&#xE9;ographique**]{.green2}.
 <li><strong>Addok</strong> : moteur de recherche de la BAN.</li>
 </ul></li>
 </ul>
-<aside class="notes">
+
+<img data-src="img/frise_moteur.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"><aside class="notes">
 <ul>
-<li>Google maps : api payant, pas la main sur les données.<br>
-</li>
-<li>Google Maps utilise des technologies avancées mais on peut reproduire la logique avec ElasticSearch.<br>
-</li>
+<li><p>Quand on pense à moteur de recherche, on pense tout de suite à Google.</p></li>
+<li><p>Un moteur de recherche est un outil qui permet de retrouver des informations en effectuant des requêtes dans une base de données. On peut rechercher avec des mots-clés ou des textes similaires à ceux présents dans la base, grâce à des techniques de recherche approximative.<br>
+</p></li>
+<li><p>Un moteur ne sert pas qu’à chercher sur internet, c’est tout simplement de la recherche dans une base de données. Mais internet a permis des avancées majeures sur les moteurs, car la recherche sur le web devenait un sujet de plus en plus important. Avec le démultiplication de l’information, difficile de chercher dans une grande bdd et trouver le résultat le plus pertinent.</p></li>
+<li><p>Pour avoir le maximum de résultats pertients, il faut non seulement avoir un moteur performant, il faut aussi avoir les bonnes données. C’est en recrutant un étudiant du MIT qui a développé une méthode révolutionnaire pour recenser automatiquement les sites sur le web (auparavant fait manuellement), que google va se démarquer des autres moteurs.</p></li>
+<li><p>1er moteur de recherche Archie 1990. Yahoo 1994, Google 1998, google maps 2004.</p></li>
+<li><p>Google maps : api payant, pas la main sur les données.<br>
+</p></li>
+<li><p>Google Maps utilise des technologies avancées mais on peut reproduire la logique avec ElasticSearch.<br>
+</p></li>
+<li><p>Addock : DINUM</p></li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -475,6 +485,7 @@ Nouvel objet g&#xE9;ographique :  [**le lieu g&#xE9;ographique**]{.green2}.
 </section>
 <section id="elasticsearch" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>ElasticSearch</h2>
+<p>Histoire :</p>
 <ul>
 <li>Créé en <strong>2010</strong> par Shay Bannon.<br>
 </li>
@@ -482,8 +493,15 @@ Nouvel objet g&#xE9;ographique :  [**le lieu g&#xE9;ographique**]{.green2}.
 </li>
 <li>Faire des recherches rapides sur tout type de données (textes, objets géométriques…).</li>
 </ul>
-<aside class="notes">
-<p>Pour trier et chercher les recettes de cuisine de sa femme psq il trouvait pas de moteur de recherche adapté.</p>
+<p>ElasticSearch au sein de l’Insee :</p>
+
+<img data-src="img/frise_es.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"><aside class="notes">
+<ul>
+<li><p>Pour trier et chercher les recettes de cuisine de sa femme psq il trouvait pas de moteur de recherche adapté.</p></li>
+<li><p>1er moteur Elasticsearch de l’insee : Code statistique Non Signifiant, identifier les individus à partir de ses données d’état civil.</p></li>
+<li><p>Résil : prolongement du moteur CSNS, améliorer la qualité du moteur CSNS, en utilisant les informations identifiantes supplémentaires disponibles dans Résil, notamment l’adresse de résidence et les cohabitants.<br>
+</p></li>
+</ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -560,7 +578,7 @@ Nouvel objet g&#xE9;ographique :  [**le lieu g&#xE9;ographique**]{.green2}.
 </tbody>
 </table>
 <aside class="notes">
-<p>Donner explication addok</p>
+<p>Addok (DINUM) : code python pour indexer des données d’adresses avec point gps et recherche les adresses avec des requêtes fixées.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -625,8 +643,6 @@ On peut commencer &#xE0; cr&#xE9;er notre moteur &#x2699;&#xFE0F;. -->
 </li>
 <li>Séparation des nombres et lettres <em>(ex : 1er → 1 er)</em><br>
 </li>
-<li>Suppression des espaces supplémentaires<br>
-</li>
 <li>Suppression des “0” devant les nombres <em>(ex : 0033 → 33)</em><br>
 </li>
 <li><span class="red2"><strong>Prise en compte des synonymes</strong></span> <em>(ex : ave = avenue, st = saint)</em></li>
@@ -686,8 +702,8 @@ On peut commencer &#xE0; cr&#xE9;er notre moteur &#x2699;&#xFE0F;. -->
 </section>
 <section id="recherche-par-mot" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Recherche par mot</h2>
-<p><span class="blue2"><strong>Pour chaque nom de voie du référentiel</strong></span>, compter le nombre de mots qui matchent 🎯 avec les mots de l’adresse recherchée.</p>
-<p><em>Exemple : score avec tokenizer “mot” de “88 avenue du general charles de gaulle”</em></p>
+<p><span class="blue2"><strong>Pour chaque nom de voie du référentiel</strong></span>, compter le nombre de mots qui sont retrouvés dans l’adresse recherchée : les <strong>matchs</strong> 🎯.</p>
+<p><em>Exemple : score avec tokenizer “mot” de “45 avenue du general charles de gaulle”</em></p>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -753,6 +769,19 @@ score_{voie} = \sum_{\text{∀m} \in \text{M}} {nb\_occurrence}_m
 <p>m = mot.<br>
 M = ensemble des mots de l’adresse recherchée.</p>
 <p><span class="red2"><strong>Dans une grande base de données, c’est extrêmement long.</strong></span></p>
+<aside class="notes">
+<p>Pour palier à ces temps de traitement qui explosent, on peut utiliser un nouvel outil qui permet de réorganiser nos bases de données : l’index inversé.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section></section>
 <section>
 <section id="étape-3-utiliser-un-index-inversé.-mais-quest-ce-donc" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
@@ -890,9 +919,9 @@ cours
 </li>
 <li>Il y a autant de lignes qu’il y a de mots différents dans les noms de voie du référentiel. Les mots les plus fréquents seront ceux qui ont le plus d’occurences.<br>
 </li>
-<li>Nous obtenons directement le comptage de chaque mot par idVoie, pour tous les mots présents dans les noms de voie du référentiel.<br>
+<li>Nous obtenons directement le comptage de chaque mot par idVoie.<br>
 </li>
-<li>L’index inversé est fait en amont des requetes.<br>
+<li>L’index inversé est fait en amont des recherches.<br>
 </li>
 </ul>
 <style type="text/css">
@@ -1110,6 +1139,19 @@ score_{voie} = \sum_{\text{∀ngram} \in \text{N}} {nb\_occurrence}_{ngram}
 </li>
 <li>Tests effectués pour choisir ces valeurs, en fonction de <span class="green2"><strong>la précision et la rapidité</strong></span> des requêtes.</li>
 </ul>
+<aside class="notes">
+<p>Donc avec tous ces éléments, on peut commencer à construire un score de plus en plus efficient pour trouver la voie la plus pertiente.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="score-global" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Score global</h2>
@@ -1121,6 +1163,25 @@ score_{voie} = \sum_{\text{∀ngram} \in \text{N}} {nb\_occurrence}_{ngram}
 </li>
 <li>mais également texte entier sans découpage !</li>
 </ul>
+<p><br></p>
+<p>Il est possible de donner plus ou moins d’importance à ces différents niveaux de matchs 🎯.</p>
+<aside class="notes">
+<ul>
+<li><p>On va chercher le nom de voie tel quel, sans découpage, au sein de l’adresse recherchée.</p></li>
+<li><p>C’est pourquoi on va introduire la notion de boost.<br>
+</p></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 <!-- ## Configurer le moteur &#x2699;&#xFE0F;
 
 Une fois qu'on a la th&#xE9;orie, il faut l'appliquer en pratique.  
@@ -1134,10 +1195,23 @@ Le package elasticsearch permet d'indexer les donn&#xE9;es en fournissant :
 <section id="boost" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Boost 🚀</h2>
 <ul>
-<li>On peut donner plus ou moins d’importance aux différents matchs 🎯.<br>
+<li>Chaque occurrence est multipliée par un facteur, appelé <span class="blue2"><strong>boost</strong></span> 🚀, qui dépend du niveau de match 🎯.<br>
 </li>
-<li>Chaque occurrence est multipliée par un facteur, appelé <span class="blue2"><strong>boost</strong></span> 🚀, qui dépend du niveau de match 🎯.</li>
+<li>Personnalisation des <strong>boosts</strong> 🚀 pour être adapté aux données recherchées.</li>
 </ul>
+<aside class="notes">
+<p>Avec tous ces outils la, on peut faire une recherche !</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="faire-des-recherches" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Faire des recherches 🔍</h2>
@@ -1182,9 +1256,16 @@ Le package elasticsearch permet d'indexer les donn&#xE9;es en fournissant :
 <p><em>Ex boost 200 : “3 rue du genral de gaulle” ⊃ “du gen<span class="red2"><strong>e</strong></span>ral de gaulle”</em></p>
 <aside class="notes">
 <ul>
-<li>On match à chaque 3-grams, exemple avec verdier.<br>
+<li>Requete gaia pour retrouver la voie.<br>
 </li>
-<li>Les ngrams c’est notre dernier recours, on va retourner comme voie plus pertinente les match sur nom de voie complet et sur token mais ngrams c’est notre roue de secours.</li>
+<li>Ici, on introduit le type de voie qui n’a pas été vu précédement, pour ne pas compliquer la compréhension de la théorie du moteur, mais la logique reste la meme que pour le nom de voie.<br>
+</li>
+<li>Attention, pas de fuzzi sur les ngrams car on juge que les sous chaines sont déjà assez petites, c’est contre productif pour la rapidité et la précision des recherches d’ajouter de la fuzzi.<br>
+</li>
+<li>Il faut noter qu’on match à chaque sous-chaine, par exemple à chaque 3-grams de verdier dans 88 avenue verdier.<br>
+</li>
+<li>Les ngrams c’est notre dernier recours, on va retourner comme voie plus pertinente les match sur nom de voie complet et sur token mais ngrams c’est notre roue de secours.<br>
+</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -1206,6 +1287,23 @@ score_{voie} = \sum_{\text{∀n} \in \text{N}} \sum_{\text{∀t} \in \text{n}} b
 <p>N = ensemble des niveaux <em>(niveau chaîne complète fuzzi, niveau mot fuzzi…)</em>.<br>
 n = niveau.<br>
 t = token, sous-chaîne <em>(un mot, un 3-grams…)</em>.</p>
+<aside class="notes">
+<ul>
+<li><p>Formule mathématique du score pour retrouver la voie la plus pertiente dans Gaïa.</p></li>
+<li><p>Maintenant, on est capable de retrouver la voie la plus pertinente, mais qu’est ce qu’il en est de l’adresse ? Regardons l’algorithme d’identification d’adresse de Gaïa.<br>
+</p></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section></section>
 <section id="plan-de-la-présentation-3" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>
@@ -1242,13 +1340,17 @@ t = token, sous-chaîne <em>(un mot, un 3-grams…)</em>.</p>
 
 <img data-src="img/schema_moteur_fr.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"><aside class="notes">
 <ul>
-<li>Entre chaque requête Elastic, il y a des étapes de validation du résultat ES.<br>
+<li>Entre chaque requête Elastic, il y a des étapes de validation du résultat ES qui sont font en aval.<br>
 </li>
-<li>Identification stricte : une recherche l’adresse comme un appariement direct avec notre référentiel Gaïa, mais on applique les filtres en amont.<br>
+<li>Identification adresse stricte : une recherche l’adresse comme un appariement direct avec notre référentiel Gaïa, tout en passant via le moteur ElasticSearch pour avoir les filtres et les synonymes montrés précédemment.<br>
 </li>
-<li>En moyenne, sur une base de données d’adresses non normalisées, il y a 30% des adresses qui passent à la première étape de l’identification. Cette identification stricte permet donc d’accélerer le processus, car elle prend 6 fois moins de temps que les requêtes floues sur le nom de voie.<br>
+<li>En moyenne, sur une base de données d’adresses non normalisées, il y a 30% des adresses qui passent à la première étape de l’identification. Cette identification stricte permet donc d’accélerer le processus, car ca prend 6 fois moins de temps de faire une recherche stricte plutot qu’une recherhce floue.<br>
 </li>
 <li>Comme les bases de données qui alimentent notre référentiel sont plutôt normalisées, cela accélère d’autant plus notre processus d’identification.<br>
+</li>
+<li>ensuite voie floue puis simplement numéro et indice de répétition, pas besoin de faire autant d’ingénieurie que pour retrouver la voie ici.<br>
+</li>
+<li>La validation de la voie retrouvée va être présentée juste après, et d’ailleurs l’indicatrice qualité va dépendre de la validation de la voie.<br>
 </li>
 </ul>
 <style type="text/css">
@@ -1358,6 +1460,19 @@ t = token, sous-chaîne <em>(un mot, un 3-grams…)</em>.</p>
 <p>R1 = score Elastic de la 1ère voie la plus pertinente (voie retournée).<br>
 R2 = score Elastic de la 2ème voie la plus pertinente.</p>
 <p>Ratio → 1 ⇔ le résultat retourné est loin de la 2ème proposition.</p>
+<aside class="notes">
+<p>Maintenant qu’on a en tete l’algorithme d’identification d’adresse de Gaia, quelles sont ses performances concrètement ?</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section></section>
 <section id="plan-de-la-présentation-4" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>
@@ -1414,6 +1529,19 @@ R2 = score Elastic de la 2ème voie la plus pertinente.</p>
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
+<aside class="notes">
+<p>Maintenant qu’on a le jeu de test, on peut evaluer l’algo.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </section>
 <section id="évaluation-de-lalgorithme-didentification" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Évaluation de l’algorithme d’identification</h2>
@@ -1453,6 +1581,7 @@ R2 = score Elastic de la 2ème voie la plus pertinente.</p>
 <ul>
 <li><p>Précision = Vrais positifs/ positifs (vp + fp)</p></li>
 <li><p>A titre de comparaison, un appariement direct entre les adresses à retrouver et le référentiel Gaïa donnerait 30% d’identification à condition que les filtres présentés précédemment soient appliqués.</p></li>
+<li><p>Le reste des adresses doivent être retrouvées avec du flou, ce qui est très long dans une bdd standard.</p></li>
 <li><p>Donc ce qui justifie l’utilisation d’un moteur en terme de précision mais aussi en terme de performances temporelles, notamment grace à l’index inversé.</p></li>
 </ul>
 <style type="text/css">
