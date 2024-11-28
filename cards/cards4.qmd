@@ -1,4 +1,3 @@
-
 ---
 title: Abstract NTTS 2025 (Eurostat)
 image: img/ntts.jpeg

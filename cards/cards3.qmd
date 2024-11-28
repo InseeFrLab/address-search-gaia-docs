@@ -1,4 +1,3 @@
-
 ---
 title: Vidéo du séminaire interne DMS
 image: img/video_seminaire_dms.jpeg
