@@ -1,6 +1,6 @@
 ---
 title: Vidéo du séminaire interne DMS
-image: img/video_seminaire_dms.jpeg
+image: img/video_seminaire_dms.png
 date: "2024-11-28"
 description: |
   <b>Description :</b> Ce séminaire a pour but de présenter le moteur de recherche d'adresse Gaïa et de diffuser les connaissances sur ElasticSearch au sein de l'Insee.
