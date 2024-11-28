@@ -8,6 +8,9 @@ author: Raya Berova & Benoît Hurpeau
 slides:
   text: Slides
   url: src/seminaire-dms/index.html
+video:
+  text: Vidéo
+  url: src/seminaire-dms-video/index.html
 order: 2
 lang: fr-FR
 ---
