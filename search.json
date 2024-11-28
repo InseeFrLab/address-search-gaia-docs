@@ -54,7 +54,7 @@
     "href": "src/documentation/index.html",
     "title": "Accueil de la documentation",
     "section": "",
-    "text": "Informations de connexion via Filezilla en protocole FTP (connexion FTP simple)\n\n\n\n\n\n\n\n\nPlateforme\nURL\nVM\n\n\n\n\nDV\nhttps://api-interrogation-geo.developpement.insee.fr/swagger-ui/index.html\ndvgaialm001\n\n\nDV2\nhttps://api-interrogation-geo.developpement2.insee.fr/swagger-ui/index.html\ndvgaialm002\n\n\nPREPROD\nhttps://api-interrogation-geo.preprod.insee.fr/swagger-ui/index.html\npdgaialm001/2/3\n\n\nPROD\nhttps://api-interrogation-geo.insee.fr/swagger-ui/index.html\npdgaialm001/2/3\n\n\n\nPour requêter le service d’identification, il faut que l’utilisateur soit authentifié en ayant récupéré un jeton Keycloak au préalable et qu’il bénéficie du rôle IDENTIFICATION_GAIA. Si ce n’est pas le cas, contactez l’équipe Gaïa sur Tchap ou mail.\n\n\n\nPour lancer une identification avec le moteur ElasticSearch développé en python, il faut aller sur le dépôt git et lire le README. Il est possible d’accéder au dépôt en cliquant ici Moteur de recherche Gaïa. Puis aller sur LS3 pour cloner le projet.\n⚠️ Attention : il faut avoir les droits pour accéder au dépôt et être dans le projet LS3. Si ce n’est pas le cas, contactez l’équipe Gaïa sur Tchap ou mail.",
+    "text": "Informations de connexion via Filezilla en protocole FTP (connexion FTP simple) disponibles ici.\nPour requêter le service d’identification, il faut que l’utilisateur soit authentifié en ayant récupéré un jeton Keycloak au préalable et qu’il bénéficie du rôle IDENTIFICATION_GAIA. Si ce n’est pas le cas, contactez l’équipe Gaïa sur Tchap ou mail.\n\n\n\nPour lancer une identification avec le moteur ElasticSearch développé en python, il faut aller sur le dépôt git et lire le README. Il est possible d’accéder au dépôt en cliquant ici Moteur de recherche Gaïa. Puis aller sur LS3 pour cloner le projet.\n⚠️ Attention : il faut avoir les droits pour accéder au dépôt et être dans le projet LS3. Si ce n’est pas le cas, contactez l’équipe Gaïa sur Tchap ou mail.",
     "crumbs": [
       "Accueil",
       "Navigation",
@@ -66,7 +66,7 @@
     "href": "src/documentation/index.html#recherche-simple-les-swaggers",
     "title": "Accueil de la documentation",
     "section": "",
-    "text": "Informations de connexion via Filezilla en protocole FTP (connexion FTP simple)\n\n\n\n\n\n\n\n\nPlateforme\nURL\nVM\n\n\n\n\nDV\nhttps://api-interrogation-geo.developpement.insee.fr/swagger-ui/index.html\ndvgaialm001\n\n\nDV2\nhttps://api-interrogation-geo.developpement2.insee.fr/swagger-ui/index.html\ndvgaialm002\n\n\nPREPROD\nhttps://api-interrogation-geo.preprod.insee.fr/swagger-ui/index.html\npdgaialm001/2/3\n\n\nPROD\nhttps://api-interrogation-geo.insee.fr/swagger-ui/index.html\npdgaialm001/2/3\n\n\n\nPour requêter le service d’identification, il faut que l’utilisateur soit authentifié en ayant récupéré un jeton Keycloak au préalable et qu’il bénéficie du rôle IDENTIFICATION_GAIA. Si ce n’est pas le cas, contactez l’équipe Gaïa sur Tchap ou mail.",
+    "text": "Informations de connexion via Filezilla en protocole FTP (connexion FTP simple) disponibles ici.\nPour requêter le service d’identification, il faut que l’utilisateur soit authentifié en ayant récupéré un jeton Keycloak au préalable et qu’il bénéficie du rôle IDENTIFICATION_GAIA. Si ce n’est pas le cas, contactez l’équipe Gaïa sur Tchap ou mail.",
     "crumbs": [
       "Accueil",
       "Navigation",
