@@ -8,15 +8,7 @@ format:
 # Accueil de la documentation
 ## Recherche simple : les swaggers
 
-Informations de connexion via Filezilla en protocole FTP (connexion FTP simple)
-
-| Plateforme | URL                                                                         | VM              |
-| ---------- | --------------------------------------------------------------------------- | --------------- |
-| DV         | https://api-interrogation-geo.developpement.insee.fr/swagger-ui/index.html  | dvgaialm001     |
-| DV2        | https://api-interrogation-geo.developpement2.insee.fr/swagger-ui/index.html | dvgaialm002     |
-| PREPROD    | https://api-interrogation-geo.preprod.insee.fr/swagger-ui/index.html        | pdgaialm001/2/3 |
-| PROD       | https://api-interrogation-geo.insee.fr/swagger-ui/index.html                | pdgaialm001/2/3 |
-
+Informations de connexion via Filezilla en protocole FTP (connexion FTP simple) disponibles [ici](https://geographie.gitlab-pages.insee.fr/gaia/gaia-backlog/plateformes/serveurs/).
 
 Pour requêter le service d'identification, il faut que l'utilisateur soit authentifié en ayant récupéré un jeton Keycloak au préalable et qu'il bénéficie du rôle IDENTIFICATION_GAIA. Si ce n'est pas le cas, contactez l'équipe Gaïa sur Tchap ou mail.
 
