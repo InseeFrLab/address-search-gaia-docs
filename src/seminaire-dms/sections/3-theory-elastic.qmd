@@ -20,24 +20,47 @@ C'est pourquoi il faut un moteur de recherche ⚙️.
 
 ## Un moteur de recherche ⚙️
 
-- **Google** : recherche par mot clé.  
+- **Google** : recherche par mot clé sur internet.  
+- Moteur de recherche de l'intranet de l'Insee.    
 - Pour la recherche d'adresse :  
   - **Google Maps**.
-  - **Addok** : moteur de recherche de la BAN.
+  - **Addok** : moteur de recherche de la BAN.  
+
+![](img/frise_moteur.png){width=75% fig-align="center"}
 
 ::: {.notes}
+- Quand on pense à moteur de recherche, on pense tout de suite à Google.  
+
+- Un moteur de recherche est un outil qui permet de retrouver des informations en effectuant des requêtes dans une base de données. On peut rechercher avec des mots-clés ou des textes similaires à ceux présents dans la base, grâce à des techniques de recherche approximative.  
+- Un moteur ne sert pas qu'à chercher sur internet, c'est tout simplement de la recherche dans une base de données. Mais internet a permis des avancées majeures sur les moteurs, car la recherche sur le web devenait un sujet de plus en plus important. Avec le démultiplication de l'information, difficile de chercher dans une grande bdd et trouver le résultat le plus pertinent.  
+
+- Pour avoir le maximum de résultats pertients, il faut non seulement avoir un moteur performant, il faut aussi avoir les bonnes données. C'est en recrutant un étudiant du MIT qui a développé une méthode révolutionnaire pour recenser automatiquement les sites sur le web (auparavant fait manuellement), que google va se démarquer des autres moteurs.  
+
+- 1er moteur de recherche Archie 1990. Yahoo 1994, Google 1998, google maps 2004.  
+
 - Google maps : api payant, pas la main sur les données.  
 - Google Maps utilise des technologies avancées mais on peut reproduire la logique avec ElasticSearch.  
+- Addock : DINUM
 ::: 
 
 ## ElasticSearch 
+
+Histoire :  
 
 - Créé en **2010** par Shay Bannon.  
 - Moteur ⚙️ utilisable en [**n'importe quel langage de programmation**]{.green2} (requêtes HTTP).  
 - Faire des recherches rapides sur tout type de données (textes, objets géométriques...).  
 
+ElasticSearch au sein de l'Insee :  
+
+![](img/frise_es.png){width=75% fig-align="center"}
+
 ::: {.notes}
-Pour trier et chercher les recettes de cuisine de sa femme psq il trouvait pas de moteur de recherche adapté.
+- Pour trier et chercher les recettes de cuisine de sa femme psq il trouvait pas de moteur de recherche adapté.  
+
+- 1er moteur Elasticsearch de l'insee : Code statistique Non Signifiant, identifier les individus à partir de ses données d’état civil.  
+
+- Résil : prolongement du moteur CSNS, améliorer la qualité du moteur CSNS, en utilisant les informations identifiantes supplémentaires disponibles dans Résil, notamment l’adresse de résidence et les cohabitants.  
 :::
 
 ## C'est quoi concrètement ElasticSearch ?
@@ -59,7 +82,7 @@ Pour trier et chercher les recettes de cuisine de sa femme psq il trouvait pas d
 | Maintenance                          | ⚠️ | ✅ | ❌ |
 
 ::: {.notes}
-Donner explication addok
+Addok (DINUM) : code python pour indexer des données d'adresses avec point gps et recherche les adresses avec des requêtes fixées.  
 ::: 
 
 <!-- a refaire car je ne connais pas addok, j'ai pas compris -->
@@ -106,7 +129,6 @@ On peut commencer à créer notre moteur ⚙️. -->
 - Asciifolding  
 - Ponctuation  
 - Séparation des nombres et lettres *(ex : 1er → 1 er)*  
-- Suppression des espaces supplémentaires  
 - Suppression des "0" devant les nombres *(ex : 0033 → 33)*  
 - [**Prise en compte des synonymes**]{.red2}  *(ex : ave = avenue, st = saint)*  
 
@@ -130,9 +152,9 @@ Nous allons faire un focus sur uniquement le "nom de voie" pour simplifier la co
 
 ## Recherche par mot
 
-[**Pour chaque nom de voie du référentiel**]{.blue2}, compter le nombre de mots qui matchent 🎯 avec les mots de l'adresse recherchée.  
+[**Pour chaque nom de voie du référentiel**]{.blue2}, compter le nombre de mots qui sont retrouvés dans l'adresse recherchée : les **matchs** 🎯.  
 
-*Exemple : score avec tokenizer "mot" de "88 avenue du general charles de gaulle"*
+*Exemple : score avec tokenizer "mot" de "45 avenue du general charles de gaulle"*
 
 | idVoie | nom de voie             | score |
 |---|:-----------------------------|-------|
@@ -162,6 +184,10 @@ m = mot.
 M = ensemble des mots de l'adresse recherchée.  
 
 [**Dans une grande base de données, c'est extrêmement long.**]{.red2}
+
+::: {.notes}
+Pour palier à ces temps de traitement qui explosent, on peut utiliser un nouvel outil qui permet de réorganiser nos bases de données : l'index inversé.  
+:::
 
 # Étape 3 : utiliser un index inversé. Mais qu'est ce donc ?
 
@@ -250,8 +276,8 @@ M = ensemble des mots de l'adresse recherchée.
 ::: {.notes}
 - Faire un index inversé par mot, c'est récupérer tous les mots des noms de voie dans le référentiel et on les aplati dans une colonne.  
 - Il y a autant de lignes qu'il y a de mots différents dans les noms de voie du référentiel. Les mots les plus fréquents seront ceux qui ont le plus d'occurences.  
-- Nous obtenons directement le comptage de chaque mot par idVoie, pour tous les mots présents dans les noms de voie du référentiel.  
-- L'index inversé est fait en amont des requetes.  
+- Nous obtenons directement le comptage de chaque mot par idVoie.  
+- L'index inversé est fait en amont des recherches.  
 ::: 
 
 # Étape 4 : prendre en compte les variations textuelles.
@@ -393,6 +419,10 @@ $$
 - Limitation à n∈{3,4,5} pour notre cas.  
 - Tests effectués pour choisir ces valeurs, en fonction de [**la précision et la rapidité**]{.green2} des requêtes.  
 
+::: {.notes}
+Donc avec tous ces éléments, on peut commencer à construire un score de plus en plus efficient pour trouver la voie la plus pertiente.
+:::
+
 ## Score global 
 
 Le score global va donc combiner la somme des matchs 🎯 au niveau :
@@ -400,6 +430,16 @@ Le score global va donc combiner la somme des matchs 🎯 au niveau :
 - mot avec fuzziness.  
 - n-grams.  
 - mais également texte entier sans découpage !  
+
+<br>
+
+Il est possible de donner plus ou moins d'importance à ces différents niveaux de matchs 🎯.  
+
+::: {.notes}
+- On va chercher le nom de voie tel quel, sans découpage, au sein de l'adresse recherchée.  
+
+- C'est pourquoi on va introduire la notion de boost.  
+:::
 
 <!-- ## Configurer le moteur ⚙️
 
@@ -413,8 +453,12 @@ Le package elasticsearch permet d'indexer les données en fournissant :
 
 ## Boost 🚀
 
-- On peut donner plus ou moins d'importance aux différents matchs 🎯.  
 - Chaque occurrence est multipliée par un facteur, appelé [**boost**]{.blue2} 🚀, qui dépend du niveau de match 🎯.  
+- Personnalisation des **boosts** 🚀 pour être adapté aux données recherchées.  
+
+::: {.notes}
+Avec tous ces outils la, on peut faire une recherche !
+:::
 
 ## Faire des recherches 🔍
 
@@ -432,8 +476,11 @@ Le package elasticsearch permet d'indexer les données en fournissant :
 *Ex boost 200 : "3 rue du genral de gaulle" ⊃ "du gen[**e**]{.red2}ral de gaulle"*
 
 ::: {.notes}
-- On match à chaque 3-grams, exemple avec verdier.  
-- Les ngrams c'est notre dernier recours, on va retourner comme voie plus pertinente les match sur nom de voie complet et sur token mais ngrams c'est notre roue de secours.
+- Requete gaia pour retrouver la voie.  
+- Ici, on introduit le type de voie qui n'a pas été vu précédement, pour ne pas compliquer la compréhension de la théorie du moteur, mais la logique reste la meme que pour le nom de voie.  
+- Attention,  pas de fuzzi sur les ngrams car on juge que les sous chaines sont déjà assez petites, c'est contre productif pour la rapidité et la précision des recherches d'ajouter de la fuzzi.  
+- Il faut noter qu'on match à chaque sous-chaine, par exemple à chaque 3-grams de verdier dans 88 avenue verdier.  
+- Les ngrams c'est notre dernier recours, on va retourner comme voie plus pertinente les match sur nom de voie complet et sur token mais ngrams c'est notre roue de secours.  
 :::
 
 ## Retour sur le score global
@@ -445,3 +492,9 @@ $$
 N = ensemble des niveaux *(niveau chaîne complète fuzzi, niveau mot fuzzi...)*.  
 n = niveau.  
 t = token, sous-chaîne *(un mot, un 3-grams...)*.  
+
+::: {.notes}
+- Formule mathématique du score pour retrouver la voie la plus pertiente dans Gaïa.  
+
+- Maintenant, on est capable de retrouver la voie la plus pertinente, mais qu'est ce qu'il en est de l'adresse ? Regardons l'algorithme d'identification d'adresse de Gaïa.  
+:::

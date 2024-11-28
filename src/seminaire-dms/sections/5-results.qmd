@@ -18,6 +18,10 @@
 - Validation post-appariements des paires adresse non normalisée (PASRAU, TSSAL)) + idGaïaAdresse.  
 :::
 
+::: {.notes}
+Maintenant qu'on a le jeu de test, on peut evaluer l'algo.
+:::
+
 ## Évaluation de l'algorithme d'identification
 
 Pour 100 000 adresses issues du jeu de test sur tout le territoire français :  
@@ -33,7 +37,9 @@ Appariement direct avec filtres entre adresses à retrouver et référentiel Ga�
 
 - Précision = Vrais positifs/ positifs (vp + fp)  
 
-- A titre de comparaison, un appariement direct entre les adresses à retrouver et le référentiel Gaïa donnerait 30% d'identification à condition que les filtres présentés précédemment soient appliqués. 
+- A titre de comparaison, un appariement direct entre les adresses à retrouver et le référentiel Gaïa donnerait 30% d'identification à condition que les filtres présentés précédemment soient appliqués.  
+
+- Le reste des adresses doivent être retrouvées avec du flou, ce qui est très long dans une bdd standard.  
 
 - Donc ce qui justifie l'utilisation d'un moteur en terme de précision mais aussi en terme de performances temporelles, notamment grace à l'index inversé.
 :::

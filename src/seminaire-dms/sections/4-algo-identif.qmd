@@ -11,10 +11,12 @@
 ![](img/schema_moteur_fr.png){width=75% fig-align="center"}
 
 ::: {.notes}
-- Entre chaque requête Elastic, il y a des étapes de validation du résultat ES.  
-- Identification stricte : une recherche l'adresse comme un appariement direct avec notre référentiel Gaïa, mais on applique les filtres en amont.  
-- En moyenne, sur une base de données d'adresses non normalisées, il y a 30% des adresses qui passent à la première étape de l'identification. Cette identification stricte permet donc d'accélerer le processus, car elle prend 6 fois moins de temps que les requêtes floues sur le nom de voie.  
+- Entre chaque requête Elastic, il y a des étapes de validation du résultat ES qui sont font en aval.  
+- Identification adresse stricte : une recherche l'adresse comme un appariement direct avec notre référentiel Gaïa, tout en passant via le moteur ElasticSearch pour avoir les filtres et les synonymes montrés précédemment.  
+- En moyenne, sur une base de données d'adresses non normalisées, il y a 30% des adresses qui passent à la première étape de l'identification. Cette identification stricte permet donc d'accélerer le processus, car ca prend 6 fois moins de temps de faire une recherche stricte plutot qu'une recherhce floue.  
 - Comme les bases de données qui alimentent notre référentiel sont plutôt normalisées, cela accélère d'autant plus notre processus d'identification.  
+- ensuite voie floue puis simplement numéro et indice de répétition, pas besoin de faire autant d'ingénieurie que pour retrouver la voie ici.  
+- La validation de la voie retrouvée va être présentée juste après, et d'ailleurs l'indicatrice qualité va dépendre de la validation de la voie.  
 :::
 
 ## Indicatrice qualité
@@ -61,3 +63,7 @@ R1 = score Elastic de la 1ère voie la plus pertinente (voie retournée).
 R2 = score Elastic de la 2ème voie la plus pertinente.
 
 Ratio → 1 ⇔ le résultat retourné est loin de la 2ème proposition.
+
+::: {.notes}
+Maintenant qu'on a en tete l'algorithme d'identification d'adresse de Gaia, quelles sont ses performances concrètement ?
+:::
