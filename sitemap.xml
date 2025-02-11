@@ -1,35 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://inseefrlab.github.io/address-search-gaia-docs/src/documentation/elasticsearch.html</loc>
-    <lastmod>2024-12-05T09:43:15.434Z</lastmod>
-  </url>
-  <url>
-    <loc>https://inseefrlab.github.io/address-search-gaia-docs/cards/cards2.html</loc>
-    <lastmod>2024-12-05T09:43:15.426Z</lastmod>
-  </url>
-  <url>
-    <loc>https://inseefrlab.github.io/address-search-gaia-docs/index.html</loc>
-    <lastmod>2024-12-05T09:43:15.430Z</lastmod>
-  </url>
-  <url>
-    <loc>https://inseefrlab.github.io/address-search-gaia-docs/src/seminaire-dms-video/index.html</loc>
-    <lastmod>2024-12-05T09:43:15.434Z</lastmod>
-  </url>
-  <url>
-    <loc>https://inseefrlab.github.io/address-search-gaia-docs/src/documentation/index.html</loc>
-    <lastmod>2024-12-05T09:43:15.434Z</lastmod>
-  </url>
-  <url>
-    <loc>https://inseefrlab.github.io/address-search-gaia-docs/src/seminaire-dms/index.html</loc>
-    <lastmod>2024-12-05T09:43:15.442Z</lastmod>
+    <loc>https://inseefrlab.github.io/address-search-gaia-docs/cards/cards3.html</loc>
+    <lastmod>2025-02-11T14:01:54.330Z</lastmod>
   </url>
   <url>
     <loc>https://inseefrlab.github.io/address-search-gaia-docs/cards/cards1.html</loc>
-    <lastmod>2024-12-05T09:43:15.426Z</lastmod>
+    <lastmod>2025-02-11T14:01:54.329Z</lastmod>
   </url>
   <url>
-    <loc>https://inseefrlab.github.io/address-search-gaia-docs/cards/cards3.html</loc>
-    <lastmod>2024-12-05T09:43:15.426Z</lastmod>
+    <loc>https://inseefrlab.github.io/address-search-gaia-docs/src/seminaire-dms/index.html</loc>
+    <lastmod>2025-02-11T14:01:54.344Z</lastmod>
+  </url>
+  <url>
+    <loc>https://inseefrlab.github.io/address-search-gaia-docs/src/documentation/index.html</loc>
+    <lastmod>2025-02-11T14:01:54.339Z</lastmod>
+  </url>
+  <url>
+    <loc>https://inseefrlab.github.io/address-search-gaia-docs/src/seminaire-dms-video/index.html</loc>
+    <lastmod>2025-02-11T14:01:54.339Z</lastmod>
+  </url>
+  <url>
+    <loc>https://inseefrlab.github.io/address-search-gaia-docs/index.html</loc>
+    <lastmod>2025-02-11T14:01:54.336Z</lastmod>
+  </url>
+  <url>
+    <loc>https://inseefrlab.github.io/address-search-gaia-docs/cards/cards2.html</loc>
+    <lastmod>2025-02-11T14:01:54.330Z</lastmod>
   </url>
 </urlset>
