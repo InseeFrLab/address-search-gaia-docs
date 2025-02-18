@@ -10,7 +10,7 @@ website:
   page-navigation: true
   title: "Moteur de recherche d'adresse Gaïa"
   site-url: "https://inseefrlab.github.io/address-search-gaia-docs"
-  repo-url: "https://github.com/InseeFrLab/address-search-gaia-docs"
+  repo-url: "https://github.com/InseeFrLab/address-search-engine-gaia.git"
   open-graph: true
   page-footer:
     left: "This page is built with ❤️ and [Quarto](https://quarto.org/)."
@@ -24,7 +24,7 @@ website:
     collapse-below: lg
     right:
       - icon: github
-        href: "https://github.com/InseeFrLab/address-search-gaia-docs"
+        href: "https://github.com/InseeFrLab/address-search-engine-gaia.git"
         aria-label: GitHub
     left:
       - href: index.qmd
