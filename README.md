@@ -13,6 +13,7 @@ Le site contient:
 Pour build le site de documentation, il faut installer une pre-release de Quarto:
 
 ```sh
+cd address-search-gaia-docs/
 wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.5.37/quarto-1.5.37-linux-amd64.deb -O quarto.deb
 sudo dpkg -i quarto.deb
 quarto check install

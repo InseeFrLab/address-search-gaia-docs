@@ -2,20 +2,20 @@
 format:
   html:
     header-includes: |
-        <link rel="icon" type="image/png" sizes="32x32" href="../_extensions/InseeFrLab/onyxia/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../../_extensions/InseeFrLab/onyxia/favicon-32x32.png">
 ---
 # Identification d'adresse
 
 L'objectif est de founir un service qui prend une adresse en entrée (couple string adresse/string code insee), et renvoie un identifiant Gaïa le plus précis possible et des informations sur la qualité de l'identification. Il y a 3 niveaux d'identifiants Gaïa :  
-- IdGaïaAdresse (le plus précis)  
-- IdGaïaVoie (lorsque le numéro n'est pas retrouvé, mais que la voie si)  
-- idGaïaCommune (lorsque ni l'adresse, ni la voie ne sont identifiées)  
+  - IdGaïaAdresse (le plus précis)  
+  - IdGaïaVoie (lorsque le numéro n'est pas retrouvé, mais que la voie si)  
+  - idGaïaCommune (lorsque ni l'adresse, ni la voie ne sont identifiées)  
 
 *Exemple : {"adresseComplete": "131 rue du faubourg bannier", "depcom": "45324"}.*  
 Le depcom est le Code Officiel Géographique de la commune.  
 
 
-![Schéma algorithme d'identification d'adresse avec ElasticSearch](documentation/img/schema_moteur_fr.png){fig-align="center" width=75%}
+![Schéma algorithme d'identification d'adresse avec ElasticSearch](../../img/schema_moteur_fr.png){fig-align="center" width=75%}
 
 
 ## Fonctionnement de l’identification
@@ -34,14 +34,14 @@ La qualité globale de l’appariement est appréciée au travers de deux indica
 
 L’information principale est fournie par un code retour, qui vise à indiquer les éléments qui ont été identifiés dans le processus d’appariement.  
 
-L’algorithme recherche d’abord la commune indiquée (pour l'instant cette étape n'est pas faite avec ElasticSearch), puis la voie au sein de la commune et enfin l’adresse dans la voie, c’est-à-dire l’existence du numéro et de l’indice de répétition dans les adresses de la voie.  
+L’algorithme recherche d’abord la commune indiquée, puis la voie au sein de la commune et enfin l’adresse dans la voie, c’est-à-dire l’existence du numéro et de l’indice de répétition dans les adresses de la voie.  
 
 La voie retrouvée est typée selon quatre catégories, en fonction du nombre de trigrammes retrouvés :  
 
-- voie sûre : l’adresse contient plus de 90 % des trigrammes de la voie du référentiel*  
+- voie sûre : l’adresse match avec une fuzziness de 1 celle du client ou elle contient plus de 90 % des trigrammes de la voie du référentiel*  
 - voie peu douteuse : l’adresse contient entre 64 % et 90 % des trigrammes de la voie du référentiel*  
 - voie douteuse : l’adresse contient entre 48 % et 64 % des trigrammes de la voie du référentiel*  
-- voie non retrouvée : pas d’écho ou l’adresse contient moins de 48 % des trigrammes de la voie du référentiel*
+- voie non retrouvée : pas d’écho ou l’adresse contient moins de 48 % des trigrammes de la voie du référentiel*  
 
 *voie du référentiel = les champs type de voie + nom de voie du référentiel.  
 
@@ -98,7 +98,46 @@ Les données du client et dans l'index sont traitées de la même façon pour ma
 
 ### 0 - Identification de la commune
 
-L'identification à la commune se fait à travers un dictionnaire, pour récupérer l'idGaïaCommune et passer à l'étape suivante.  
+Si le client fournit un depcom, alors l'identification à la commune se fait rapidement car il existe une table de passage directe *depcom* -> *idGaïaCommune*. Cette table de passage permet aux "anciens" depcom de retrouver un idGaïaCommune valide : lors de sa construction, les anciens depcom renvoient sur le nouveau depcom qui lui renvoie vers le bon idGaïaCommune.
+
+Cependant, si le client ne fournit aucun depcom, il faut alors avoir le code postal et le nom de la commune pour retrouver l'idGaïaCommune.
+La requête commune se fait en 3 étapes :
+
+#### Etape 1
+
+- Filtre sur le code postal pour ne chercher que dans ces communes.  
+Au moins l'un des deux **should** doit être vérifié pour que la commune soit renvoyée :  
+- Le nom de commune dans l'index non tokenisé est matché avec une fuzziness de 1 avec un minimum should match 100%  
+- Le complément de la commune dans l'index non tokenisé est matché avec une fuzziness de 1 avec un minimum should match 100%  
+
+Pour valider la commune retrouvée, il faut enlever avec une regex tout ce qui est "CEDEX" + numéro et que l'une de ces deux conditions soit respectée :
+- nom_commune_client ⊂ nom_commune_index + complement_commune_index avec une fuzziness de 1 
+- nom_commune_client ⊂ nom_commune_index + complement_commune_index donne une proportion de tri-grams supérieure à 90 %  
+
+Si la commune n'est pas validée, on passe à l'étape suivante.
+
+#### Etape 2
+
+- Filtre sur le code postal pour ne chercher que dans ces communes.  
+Succession de **should** où au moins l'un d'entre eux doit être vérifié pour que la commune soit renvoyée :  
+- Le nom de commune du référentiel est inclus dans le nom de commune client avec une fuzziness de 1 (boost : 15)  
+- Au moins un ngram du nom de commune de l'index, de taille 3 à 5, correspond (boost par ngram : 1)  
+- Le complément de commune du référentiel est inclus dans le nom de commune client avec une fuzziness de 1 (boost : 15)  
+- Au moins un ngram du complément de commune de l'index, de taille 3 à 5, correspond (boost par ngram : 1)  
+
+Pour valider la commune retrouvée, on applique la même vérification que l'étape 1.
+
+Si la commune n'est pas validée, on passe à l'étape suivante.
+
+#### Etape 3
+
+Exactement la même chose que l'étape 2 mais cette fois ci on fait cette recherche de commune sur le département (et non sur le code postal). Le département est récupéré via les deux premiers caractères du code postal sur 5 positions fourni (s'il n'est pas sur 5 positions, il sera complété de "0" devant). Si les premiers caractères sont "97", alors on prend les 3 premiers caractères pour avoir le code département DROM.
+
+Pour valider la commune retrouvée, on applique la même vérification que l'étape 1, mais cette fois-ci on descend le seuil des tri-grams à 40 %.
+
+
+S'il n'y a pas de retour ElasticSearch ou si la commune est jugée comme non retrouvée d'après les règles, un code retour 0 sera affiché.  
+
 
 ### 1 - Identification adresse exacte
 
@@ -111,7 +150,8 @@ En présence d'un résultat à cette requête, le premier echo est conservé ave
 
 La requête pour identifier à la voie est plus complexe car elle inclut la possibilité d'avoir du flou dans l'adresse à rechercher.  
 Pour faciliter la recherche, un filtre est appliqué pour ne requêter que les voies dans la commune identifiée à l'étape 0.  
-C'est une succession de **should** où au moins l'un d'entre eux doit être validé pour que la voie soit renvoyée :  
+
+C'est une succession de **should** où au moins l'un d'entre eux doit être vérifié pour que la voie soit renvoyée :  
 - Le nom de voie dans l'index non tokenisé est matché avec une fuzziness de 1 (boost : 200)  
 - Le type de voie et/ou le nom de voie du référentiel sont inclus dans l'adresse client avec une fuzziness de 1 (boosts respectifs : 5 et 15)  
 - Au moins un ngram du nom de voie de l'index, de taille 3 à 5, correspond (boost par ngram : 1)  
