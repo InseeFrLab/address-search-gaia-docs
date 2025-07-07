@@ -38,9 +38,9 @@ website:
           - text: "Accueil"
             href: "src/documentation/index.qmd"
           - text: "Identification d'adresse avec ElasticSearch"
-            href: "src/documentation/sections/elasticsearch.qmd"
+            href: "src/documentation/elasticsearch.qmd"
           - text: "Tests en Java"
-            href: "src/documentation/sections/tests_java.qmd"
+            href: "src/documentation/tests_java.qmd"
 
 format:
   html:
