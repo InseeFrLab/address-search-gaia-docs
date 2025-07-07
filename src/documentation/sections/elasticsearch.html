@@ -80,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
 
 <meta property="og:title" content="Moteur de recherche d’adresse Gaïa">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://inseefrlab.github.io/address-search-gaia-docs/src/documentation/sections/img/schema_moteur_fr.png">
+<meta property="og:image" content="https://inseefrlab.github.io/address-search-gaia-docs/src/documentation/sections/documentation/img/schema_moteur_fr.png">
 <meta property="og:site_name" content="Moteur de recherche d'adresse Gaïa">
 </head>
 
@@ -373,7 +373,7 @@ ul.task-list li input[type="checkbox"] {
 Le depcom est le Code Officiel Géographique de la commune.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="img/schema_moteur_fr.png" class="img-fluid figure-img" style="width:75.0%"></p>
+<p><img src="documentation/img/schema_moteur_fr.png" class="img-fluid figure-img" style="width:75.0%"></p>
 <figcaption>Schéma algorithme d’identification d’adresse avec ElasticSearch</figcaption>
 </figure>
 </div>
@@ -392,14 +392,15 @@ Si aucun IdGaïaAdresse ne ressort à l’issue de l’étape 1, alors :<br>
 <p>L’algorithme recherche d’abord la commune indiquée (pour l’instant cette étape n’est pas faite avec ElasticSearch), puis la voie au sein de la commune et enfin l’adresse dans la voie, c’est-à-dire l’existence du numéro et de l’indice de répétition dans les adresses de la voie.</p>
 <p>La voie retrouvée est typée selon quatre catégories, en fonction du nombre de trigrammes retrouvés :</p>
 <ul>
-<li>voie sûre : l’adresse contient plus de 65 % des trigrammes de la voie du référentiel<br>
+<li>voie sûre : l’adresse contient plus de 90 % des trigrammes de la voie du référentiel*<br>
 </li>
-<li>voie peu douteuse : l’adresse contient entre 35 % et 65 % des trigrammes de la voie du référentiel<br>
+<li>voie peu douteuse : l’adresse contient entre 64 % et 90 % des trigrammes de la voie du référentiel*<br>
 </li>
-<li>voie douteuse : l’adresse contient entre 10 % et 35 % des trigrammes de la voie du référentiel<br>
+<li>voie douteuse : l’adresse contient entre 48 % et 64 % des trigrammes de la voie du référentiel*<br>
 </li>
-<li>voie non retrouvée : pas d’écho ou l’adresse contient moins de 10 % des trigrammes de la voie du référentiel</li>
+<li>voie non retrouvée : pas d’écho ou l’adresse contient moins de 48 % des trigrammes de la voie du référentiel*</li>
 </ul>
+<p>*voie du référentiel = les champs type de voie + nom de voie du référentiel.</p>
 <p>En ce qui concerne les adresses, les contrôles portent sur le numéro et l’indice de répétition :</p>
 <ul>
 <li>Si l’adresse demandée ne contient pas d’indice de répétition et que le numéro est trouvé, alors l’adresse est sûre.<br>
