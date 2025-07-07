@@ -15,7 +15,7 @@ L'objectif est de founir un service qui prend une adresse en entrée (couple str
 Le depcom est le Code Officiel Géographique de la commune.  
 
 
-![Schéma algorithme d'identification d'adresse avec ElasticSearch](img/schema_moteur_fr.png){fig-align="center" width=75%}
+![Schéma algorithme d'identification d'adresse avec ElasticSearch](documentation/img/schema_moteur_fr.png){fig-align="center" width=75%}
 
 
 ## Fonctionnement de l’identification
@@ -38,10 +38,12 @@ L’algorithme recherche d’abord la commune indiquée (pour l'instant cette é
 
 La voie retrouvée est typée selon quatre catégories, en fonction du nombre de trigrammes retrouvés :  
 
-- voie sûre : l’adresse contient plus de 65 % des trigrammes de la voie du référentiel  
-- voie peu douteuse : l’adresse contient entre 35 % et 65 % des trigrammes de la voie du référentiel  
-- voie douteuse : l’adresse contient entre 10 % et 35 % des trigrammes de la voie du référentiel  
-- voie non retrouvée : pas d’écho ou l’adresse contient moins de 10 % des trigrammes de la voie du référentiel  
+- voie sûre : l’adresse contient plus de 90 % des trigrammes de la voie du référentiel*  
+- voie peu douteuse : l’adresse contient entre 64 % et 90 % des trigrammes de la voie du référentiel*  
+- voie douteuse : l’adresse contient entre 48 % et 64 % des trigrammes de la voie du référentiel*  
+- voie non retrouvée : pas d’écho ou l’adresse contient moins de 48 % des trigrammes de la voie du référentiel*
+
+*voie du référentiel = les champs type de voie + nom de voie du référentiel.  
 
 En ce qui concerne les adresses, les contrôles portent sur le numéro et l’indice de répétition :  
 
