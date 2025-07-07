@@ -1,31 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://inseefrlab.github.io/address-search-gaia-docs/src/documentation/sections/tests_java.html</loc>
+    <lastmod>2025-07-07T12:55:12.849Z</lastmod>
+  </url>
+  <url>
     <loc>https://inseefrlab.github.io/address-search-gaia-docs/cards/cards3.html</loc>
-    <lastmod>2025-07-07T12:54:17.351Z</lastmod>
+    <lastmod>2025-07-07T12:55:12.839Z</lastmod>
   </url>
   <url>
     <loc>https://inseefrlab.github.io/address-search-gaia-docs/cards/cards1.html</loc>
-    <lastmod>2025-07-07T12:54:17.350Z</lastmod>
+    <lastmod>2025-07-07T12:55:12.839Z</lastmod>
   </url>
   <url>
     <loc>https://inseefrlab.github.io/address-search-gaia-docs/src/seminaire-dms/index.html</loc>
-    <lastmod>2025-07-07T12:54:17.366Z</lastmod>
+    <lastmod>2025-07-07T12:55:12.853Z</lastmod>
   </url>
   <url>
     <loc>https://inseefrlab.github.io/address-search-gaia-docs/src/documentation/index.html</loc>
-    <lastmod>2025-07-07T12:54:17.361Z</lastmod>
+    <lastmod>2025-07-07T12:55:12.848Z</lastmod>
   </url>
   <url>
     <loc>https://inseefrlab.github.io/address-search-gaia-docs/src/seminaire-dms-video/index.html</loc>
-    <lastmod>2025-07-07T12:54:17.361Z</lastmod>
+    <lastmod>2025-07-07T12:55:12.849Z</lastmod>
   </url>
   <url>
     <loc>https://inseefrlab.github.io/address-search-gaia-docs/index.html</loc>
-    <lastmod>2025-07-07T12:54:17.357Z</lastmod>
+    <lastmod>2025-07-07T12:55:12.845Z</lastmod>
   </url>
   <url>
     <loc>https://inseefrlab.github.io/address-search-gaia-docs/cards/cards2.html</loc>
-    <lastmod>2025-07-07T12:54:17.351Z</lastmod>
+    <lastmod>2025-07-07T12:55:12.839Z</lastmod>
+  </url>
+  <url>
+    <loc>https://inseefrlab.github.io/address-search-gaia-docs/src/documentation/sections/elasticsearch.html</loc>
+    <lastmod>2025-07-07T12:55:12.849Z</lastmod>
   </url>
 </urlset>
