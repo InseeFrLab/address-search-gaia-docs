@@ -18,7 +18,7 @@ website:
     - text: "License"
       href: LICENSE
   navbar:
-    logo: https://upload.wikimedia.org/wikipedia/fr/thumb/1/10/Logo_Insee.svg/1200px-Logo_Insee.svg.png
+    logo: https://upload.wikimedia.org/wikipedia/fr/a/a4/Logo_Insee_2025.svg
     align: center
     title: false
     collapse-below: lg
