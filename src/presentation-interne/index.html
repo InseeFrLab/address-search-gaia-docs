@@ -9,7 +9,7 @@
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.8.26">
 
-  <title>Moteur de recherche d'adresse Gaïa – Identification d’adresses avec ElasticSearch</title>
+  <title>Moteur de recherche d'adresse Gaïa – Moteur de recherche ElasticSearch Gaïa</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -125,8 +125,8 @@
     }
   </style>
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<meta property="og:title" content="Identification d’adresses avec ElasticSearch – Moteur de recherche d’adresse Gaïa">
-<meta property="og:description" content="Raya Berova &amp; Benoît Hurpeau (DMRG)">
+<meta property="og:title" content="Moteur de recherche ElasticSearch Gaïa – Moteur de recherche d’adresse Gaïa">
+<meta property="og:description" content="Raya Berova">
 <meta property="og:site_name" content="Moteur de recherche d'adresse Gaïa">
 </head>
 <body class="quarto-light">
@@ -134,22 +134,19 @@
     <div class="slides">
 
 <section id="title-slide" data-background-image="../_extensions/InseeFrLab/onyxia/background.svg" data-background-size="contain" class="quarto-title-block center">
-  <h1 class="title">Identification d’adresses avec ElasticSearch</h1>
-  <p class="subtitle"></p><p><strong><span class="blue2">Raya Berova &amp; Benoît Hurpeau (DMRG)</span></strong></p><p></p>
+  <h1 class="title">Moteur de recherche ElasticSearch Gaïa</h1>
+  <p class="subtitle"></p><p><strong><span class="blue2">Raya Berova</span></strong></p><p></p>
 
 <div class="quarto-title-authors">
 </div>
 
-  <p class="date">28 novembre 2024</p>
+  <p class="date">6 janvier 2026</p>
 </section>
 <section id="plan-de-la-présentation" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>
 <p>1️⃣ Contexte</p>
-<p>2️⃣ Utilisation du référentiel Gaïa</p>
-<p>3️⃣ Moteur de recherche ElasticSearch</p>
-<p>4️⃣ Algorithme d’identification d’adresses</p>
-<p>5️⃣ Performances de l’algorithme d’identification</p>
-<p>6️⃣ Discussion</p>
+<p>2️⃣ Moteur de recherche - Théorie</p>
+<p>3️⃣ Moteur de recherche ElasticSearch - Pratique</p>
 </section>
 
 <section>
@@ -157,474 +154,32 @@
 <h1>1️⃣ Introduction</h1>
 
 </section>
-<section id="origine-du-projet" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Origine du projet</h2>
-<ul>
-<li>Besoin d’un référentiel complet, stable, fiable, mis à jour.</li>
-<li>Faciliter la <span class="blue2"><strong>gestion des adresses</strong></span> au sein du SSP.</li>
-<li>Clients : Résil, Géoloc, DMTR…</li>
-</ul>
-<p><span class="green2"><strong>Gaïa</strong></span> : Référentiel Géographique d’Adresses avec Informations Géolocalisantes.</p>
-<aside class="notes">
-<p>Parler de l’origine du projet, quand ca a été mis en place, comment, pq…</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-<!-- Est ce que la d&#xE9;finition est bonne ? -->
-<!-- Est ce que la liste des clients est ok ? -->
-<!-- Preciser que ce ne sont pas que des adresses -->
-</section>
-<section id="une-adresse" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Une adresse</h2>
-<!-- 
-<center><p>[**num&#xE9;ro**]{.green2} <span style="margin-left: 150px;">[**type de voie**]{.blue2}</span> <span style="margin-left: 150px;">**COG**</span></p></center> -->
-<p><br></p>
-<p><br></p>
-<center>
-<p>
-<span class="green2"><strong>20</strong></span> <span class="blue2"><strong>bis</strong></span> <span class="purple2"><strong>avenue</strong></span> <span class="red2"><strong>de la marne</strong></span> <span style="margin-left: 130px;"><strong>92049</strong></span>
-</p>
-</center>
-<p><br></p>
-<p><br></p>
-<!-- <center><p>[**indice de r&#xE9;p&#xE9;tition**]{.green2} <span style="margin-left: 190px;">[**nom de voie**]{.blue2}</span></p></center> -->
-</section>
-<section id="géométrie-de-ladresse" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Géométrie de l’adresse</h2>
-<p><em>Exemple: “88 avenue verdier | 92049” reliée à sa parcelle</em></p>
-
-<img data-src="img/adresse_parcelle.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"></section>
-<section id="le-référentiel-gaïa" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Le référentiel Gaïa</h2>
-
-<img data-src="img/communes_voies_adresses.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"><aside class="notes">
-<p>Autres données disponibles (aspect géométrique des objets) :</p>
-<ul>
-<li>Pour chaque adresse Gaïa : point gps, lien parcelle.<br>
-</li>
-<li>Pour chaque commune Gaïa : polygone.</li>
-</ul>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-<!-- A verifier -->
-</section>
-<section id="identifiants-gaïa" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Identifiants Gaïa</h2>
-<p><span class="green2"><strong>Identifiant unique et stable</strong></span> pour assurer le suivi des objets dans le temps.</p>
-<p><br></p>
-<p>Trois niveaux :</p>
-<ul>
-<li>Identifiant adresse</li>
-<li>Identifiant voie</li>
-<li>Identifiant commune</li>
-</ul>
-<p><br></p>
-<p>Gestion des <span class="blue2"><strong>scissions et fusions de communes</strong></span>.</p>
-</section>
-<section id="construction-du-référentiel" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Construction du référentiel</h2>
-<p>Sources fiables :</p>
-<ul>
-<li><span class="green2"><strong>Majic</strong></span> : Mise à jour des informations cadastrales.<br>
-</li>
-<li><span class="green2"><strong>BAN</strong></span> : Base Adresse Nationale.<br>
-</li>
-<li><span class="green2"><strong>RCA</strong></span> : Référentiel Commun d’Adresses.</li>
-</ul>
-<!-- Est ce que c'est assez d&#xE9;taill&#xE9; ? Peut etre mettre la source ? -->
-<p>Au moins une mise à jour par trimestre (avec conservation des identifiants Gaïa).</p>
-<aside class="notes">
-<p>Une mise à jour :</p>
-<ol type="1">
-<li>Récupérer la nouvelle base d’une source données.<br>
-</li>
-<li>Identifier les adresses textuellement :<br>
-</li>
-</ol>
-<ul>
-<li>Les adresses qui sont retrouvées sont alors modifiées si des nouveautés apparaissent.<br>
-</li>
-<li>Les adresses non retrouvées entraînent la création de nouveaux objets Gaïa.<br>
-L’étape d’identification des adresses permet de ne pas écraser les identifiants Gaïa.<br>
-</li>
-</ul>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="dautres-données" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>D’autres données</h2>
-<ul>
-<li>Polygones du bâti.<br>
-</li>
-<li>Polygones Parcelles du cadastre.<br>
-</li>
-<li>Polygones QPV, zonages infra, iris.</li>
-</ul>
-<p>Pas d’identifiant Gaïa, donc <span class="blue2"><strong>pas de suivi dans le temps de ces objets</strong></span>.</p>
-</section>
-<section id="exemples-de-géométries" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Exemples de géométries</h2>
-<p><em>Adresses, parcelles et bâtis :</em></p>
-
-<img data-src="img/adresses_parcelles_bati.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"></section>
-<section id="quelques-métriques-sur-le-référentiel" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Quelques métriques sur le référentiel</h2>
-<ul>
-<li>Nombre d’adresses ≃ 27 millions.<br>
-</li>
-<li>Nombre de voies ≃ 3 millions.</li>
-</ul>
-<!-- Est ce que les m&#xE9;triques sont correctes ? -->
-</section></section>
-<section id="plan-de-la-présentation-1" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1>Plan de la présentation</h1>
-<p>1️⃣ Contexte</p>
-<p><strong>2️⃣ Utilisation du référentiel Gaïa</strong></p>
-<p>3️⃣ Moteur de recherche ElasticSearch</p>
-<p>4️⃣ Algorithme d’identification d’adresses</p>
-<p>5️⃣ Performances de l’algorithme d’identification</p>
-<p>6️⃣ Discussion</p>
-</section>
-
-<section>
-<section id="utilisation-du-référentiel-gaïa" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1>2️⃣ Utilisation du référentiel Gaïa</h1>
-
-</section>
-<section id="différents-besoins-au-sein-du-ssp" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Différents besoins au sein du SSP</h2>
-<ul>
-<li><span class="red2"><strong>Résil :</strong></span>
-<ul>
-<li>Identification de(s) adresse(s) des individus.<br>
-</li>
-<li>Regroupement des adresses avec différents identifiants Gaïa mais qui représentent le même lieu.</li>
-</ul></li>
-<li><strong>Géoloc :</strong> identification du référentiel Géoloc et génération de leur nouveau référentiel.<br>
-</li>
-<li>Autres utilisateurs possibles :
-<ul>
-<li>Identification des adresses sur les certificats de décès.<br>
-</li>
-<li>Identification des adresses de Sirus.</li>
-</ul></li>
-</ul>
-<!-- ## Regroupements d'adresses
-
-Nouvel objet g&#xE9;ographique :  [**le lieu g&#xE9;ographique**]{.green2}.  
-
-<br>
-
-![](img/adresses_parcelles_bati.png){width=75% fig-align="center"}
-
-
-## Le lieu g&#xE9;ographique
-
-[**Utilisation :**]{.blue2}  Regrouper les adresses avec diff&#xE9;rents identifiants Ga&#xEF;a mais qui repr&#xE9;sentent le m&#xEA;me lieu.
-
-<br>
-
-*Exemple : plusieurs adresses pour une m&#xEA;me maison si elle a diff&#xE9;rentes entr&#xE9;es &#x2192; m&#xEA;me lieu g&#xE9;ographique.* -->
-</section>
-<section id="besoin-didentification-des-adresses-textuelles" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Besoin d’identification des adresses textuelles</h2>
-<p><span class="green2"><strong>Trouver l’identifiant d’adresse à partir d’un libellé d’adresse plus ou moins correcte.</strong></span></p>
-<ul>
-<li>Besoin visiblement récurrent au sein du SSP.<br>
-</li>
-<li>Indispensable pour construire et mettre à jour le référentiel.</li>
-</ul>
-<p>Il faut donc un <span class="blue2"><strong>moteur de recherche</strong></span> ⚙️.</p>
-</section></section>
-<section id="plan-de-la-présentation-2" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1>Plan de la présentation</h1>
-<p>1️⃣ Contexte</p>
-<p>2️⃣ Utilisation du référentiel Gaïa</p>
-<p><strong>3️⃣ Moteur de recherche ElasticSearch</strong></p>
-<p>4️⃣ Algorithme d’identification d’adresses</p>
-<p>5️⃣ Performances de l’algorithme d’identification</p>
-<p>6️⃣ Discussion</p>
-</section>
-
-<section>
-<section id="moteur-de-recherche-elasticsearch" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1>3️⃣ Moteur de recherche ElasticSearch</h1>
-
-</section>
-<section id="adresses-à-retrouver-dans-gaïa" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Adresses à retrouver dans Gaïa</h2>
-<h6 data-background-image="background.svg" data-background-size="contain" id="exemple-dadresses-à-retrouver"><em>Exemple d’adresses à retrouver :</em></h6>
-<table class="caption-top">
-<colgroup>
-<col style="width: 34%">
-<col style="width: 12%">
-<col style="width: 23%">
-<col style="width: 29%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>Adresse à retrouver</strong></th>
-<th><strong>COG</strong></th>
-<th><strong>Code Postal</strong></th>
-<th><strong>Libellé commune</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>131, rue du fbg Bannier</td>
-<td></td>
-<td>45000</td>
-<td>Orléans</td>
-</tr>
-<tr class="even">
-<td>0033 ave J. Jaurès</td>
-<td>92040</td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h6 data-background-image="background.svg" data-background-size="contain" id="adresses-dans-gaïa"><em>Adresses dans Gaïa :</em></h6>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th><strong>Adresse</strong></th>
-<th><strong>COG</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>131 rue du faubourg bannier</td>
-<td>45234</td>
-</tr>
-<tr class="even">
-<td>33 avenue jean jaures</td>
-<td>92040</td>
-</tr>
-</tbody>
-</table>
-<aside class="notes">
-<p>C’est pourquoi il faut un moteur de recherche ⚙️.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="un-moteur-de-recherche" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Un moteur de recherche ⚙️</h2>
-<ul>
-<li><strong>Google</strong> : recherche par mot clé sur internet.<br>
-</li>
-<li>Moteur de recherche de l’intranet de l’Insee.<br>
-</li>
-<li>Pour la recherche d’adresse :
-<ul>
-<li><strong>Google Maps</strong>.</li>
-<li><strong>Addok</strong> : moteur de recherche de la BAN.</li>
-</ul></li>
-</ul>
-
-<img data-src="img/frise_moteur.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"><aside class="notes">
-<ul>
-<li><p>Quand on pense à moteur de recherche, on pense tout de suite à Google.</p></li>
-<li><p>Un moteur de recherche est un outil qui permet de retrouver des informations en effectuant des requêtes dans une base de données. On peut rechercher avec des mots-clés ou des textes similaires à ceux présents dans la base, grâce à des techniques de recherche approximative.</p></li>
-<li><p>Il y a des moteurs de recherche partout, par exemple intranet de l’insee, windows pour chercher des applications, l’explorateur de fichiers sur votre ordinateur en local…</p></li>
-<li><p>Un moteur ne sert pas qu’à chercher sur internet, c’est tout simplement de la recherche dans une base de données. Mais internet a permis des avancées majeures sur les moteurs, car la recherche sur le web devenait un sujet de plus en plus important. Avec le démultiplication de l’information, difficile de chercher dans une grande bdd et trouver le résultat le plus pertinent.</p></li>
-<li><p>Pour avoir le maximum de résultats pertients, il faut non seulement avoir un moteur performant, il faut aussi avoir les bonnes données. C’est en recrutant un étudiant du MIT qui a développé une méthode révolutionnaire pour recenser automatiquement les sites sur le web (auparavant fait manuellement), que google va se démarquer des autres moteurs.</p></li>
-<li><p>1er moteur de recherche Archie 1990. Yahoo 1994, Google 1998, google maps 2004.</p></li>
-<li><p>Google maps : api payant, pas la main sur les données.<br>
-</p></li>
-<li><p>Google Maps utilise des technologies avancées mais on peut reproduire la logique avec ElasticSearch.<br>
-</p></li>
-<li><p>Addok : DINUM.<br>
-</p></li>
-<li><p>On va regarder les avantages et les inconvients de d’elastic et d’addok dans la suite.<br>
-</p></li>
-</ul>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="elasticsearch" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>ElasticSearch</h2>
-<ul>
-<li>Créé en <strong>2010</strong> par Shay Bannon.<br>
-</li>
-<li>Faire des recherches rapides sur tout type de données.<br>
-</li>
-<li>Moteur ⚙️ utilisable en <span class="green2"><strong>n’importe quel langage de programmation</strong></span> (requêtes HTTP).</li>
-</ul>
-<p>ElasticSearch au sein de l’Insee :</p>
-
-<img data-src="img/frise_es.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"><aside class="notes">
-<ul>
-<li><p>Pour trier et chercher les recettes de cuisine de sa femme psq il trouvait pas de moteur de recherche adapté.</p></li>
-<li><p>1er moteur Elasticsearch de l’insee : Code statistique Non Signifiant, identifier les individus à partir de ses données d’état civil.</p></li>
-<li><p>Résil : prolongement du moteur CSNS, améliorer la qualité du moteur CSNS, en utilisant les informations identifiantes supplémentaires disponibles dans Résil, notamment l’adresse de résidence et les cohabitants.<br>
-</p></li>
-</ul>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+<section id="objectif" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Objectif</h2>
+<p>Ensemble de données avec des champs textes → Besoin de recherches textuelles rapides et efficaces</p>
+<p>Solution : un moteur de recherche basé sur des index</p>
 </section>
 <section id="cest-quoi-concrètement-elasticsearch" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>C’est quoi concrètement ElasticSearch ?</h2>
 <ul>
 <li><p><span class="blue2"><strong>ElasticSearch</strong></span> : logiciel pour l’indexation et la recherche de données.</p></li>
+<li><p>Fait pour chercher des mots-clés dans des textes.</p></li>
 <li><p>Utilisation en pratique avec <span class="green2"><strong>Python</strong></span> : packages <em>elasticsearch</em> et <em>elasticsearch-dsl</em>.</p></li>
+<li><p>Mais également utilisable avec Java.</p></li>
 </ul>
-</section>
-<section id="pourquoi-elasticsearch-pour-la-recherche-textuelle" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Pourquoi ElasticSearch pour la recherche textuelle ?</h2>
-<table class="caption-top">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 25%">
-<col style="width: 12%">
-<col style="width: 12%">
-</colgroup>
-<thead>
-<tr class="header">
-<th style="text-align: left;"><strong>Critères</strong></th>
-<th style="text-align: center;"><strong>ElasticSearch</strong></th>
-<th style="text-align: center;"><strong>SQL</strong></th>
-<th style="text-align: center;"><strong>Addok</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Recherche de texte avancée</td>
-<td style="text-align: center;">✅</td>
-<td style="text-align: center;">❌</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Personnalisation des recherches</td>
-<td style="text-align: center;">✅</td>
-<td style="text-align: center;">❌</td>
-<td style="text-align: center;">⚠️</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Rapidité</td>
-<td style="text-align: center;">✅</td>
-<td style="text-align: center;">✅</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Précision</td>
-<td style="text-align: center;">✅</td>
-<td style="text-align: center;">❌</td>
-<td style="text-align: center;">⚠️</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Facilité d’implémentation</td>
-<td style="text-align: center;">❌</td>
-<td style="text-align: center;">✅</td>
-<td style="text-align: center;">✅</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Maintenance</td>
-<td style="text-align: center;">⚠️</td>
-<td style="text-align: center;">✅</td>
-<td style="text-align: center;">❌</td>
-</tr>
-</tbody>
-</table>
-<aside class="notes">
-<ul>
-<li>Addok (DINUM) : code python pour indexer des données d’adresses avec point gps et recherche les adresses avec des requêtes fixées.<br>
-</li>
-<li>Addok est un moteur de recherche open source conçu pour effectuer des tâches de géocodage. Il n’utilise pas Elasticsearch.<br>
-</li>
-</ul>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-<!-- a refaire car je ne connais pas addok, j'ai pas compris -->
-<!-- | **Crit&#xE8;res**                     | **Elasticsearch (Avantages)**                                                                                             | **SQL (Inconv&#xE9;nients)**                                                                                       |
-|----------------------------------|----------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------|
-| **Recherche de texte avanc&#xE9;e**   | Con&#xE7;u pour la recherche full-text avec tol&#xE9;rance aux fautes d'orthographe (fuzzy search, correspondance partielle)         | Requ&#xEA;tes full-text limit&#xE9;es et moins adapt&#xE9;es aux variations d'orthographe                                    |
-| **Performances**                 | Optimis&#xE9; pour les recherches intensives sur de gros volumes de texte                                                       | Moins performant pour des recherches complexes ou de grandes quantit&#xE9;s de donn&#xE9;es textuelles                  |
-| **Personnalisation des scores**  | Permet de pond&#xE9;rer et personnaliser les scores des r&#xE9;sultats pour une meilleure pertinence                                | Les options de personnalisation des scores sont limit&#xE9;es                                                      |
-| **Scalabilit&#xE9;**                  | Distribution facile sur plusieurs n&#x153;uds pour g&#xE9;rer de grands ensembles de donn&#xE9;es                                         | Scalabilit&#xE9; plus complexe et generalement moins performante pour des recherches intensives                    |
-| **Flexibilit&#xE9; des requ&#xEA;tes**     | Recherches avanc&#xE9;es comme les synonymes, phon&#xE9;tique, et suggestions automatiques                                          | Requ&#xEA;tes avanc&#xE9;es limit&#xE9;es, difficile &#xE0; impl&#xE9;menter en SQL                                                    |
-| **Complexit&#xE9; d'impl&#xE9;mentation**  | Peut &#xEA;tre complexe &#xE0; mettre en &#x153;uvre pour des &#xE9;quipes non famili&#xE8;res avec l'outil                                         | Plus simple et souvent mieux ma&#xEE;tris&#xE9; par les &#xE9;quipes                                                        |
-| **Consommation des ressources**  | Consomme plus de m&#xE9;moire et de CPU, en particulier pour l'indexation initiale                                             | Consommation de ressources generalement inf&#xE9;rieure pour des requ&#xEA;tes simples                                  |
-| **Co&#xFB;t de stockage**             | Peut impliquer une duplication des donn&#xE9;es (co&#xFB;t suppl&#xE9;mentaire de stockage)                                              | Pas de duplication n&#xE9;cessaire                                                                                 | -->
-<!-- ## Outils pour moteur ElasticSearch
-
-- [**Mappings**]{.blue2} &#x1F3F7;&#xFE0F; : sp&#xE9;cifier les traitements &#xE0; appliquer pour chaque variable de nos donn&#xE9;es.  
-  - *Variable_a &#x2192; Analyzer_for_numbers*  
-  - *Variable_b &#x2192; Analyzer_for_address_text*  
-  - *Variable_c &#x2192; Analyzer_for_address_text*  
-- [**Settings**]{.blue2} &#x1F6E0;&#xFE0F; : d&#xE9;finir les diff&#xE9;rents traitements.  
-  - *Analyzer_for_numbers &#x2192; Filtre_&#x3B1;, Filtre_&#x3B2; + Tokenizer_1*  
-  - *Analyzer_for_address_text &#x2192; Filtre_&#x3B3;, Filtre_&#x3B4;, Filtre_&#x3B5; + Tokenizer_2*  
-- [**Requ&#xEA;tes**]{.blue2} &#x1F50D; : recherche sur les variables d&#xE9;finies dans les mappings.  
-
-::: {.notes}
-Et &#xE9;ventuellement, savoir coder en Python/Java...
-::: 
-
-On peut commencer &#xE0; cr&#xE9;er notre moteur &#x2699;&#xFE0F;. -->
 </section></section>
+<section id="plan-de-la-présentation-1" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<h1>Plan de la présentation</h1>
+<p>1️⃣ Contexte</p>
+<p><strong>2️⃣ Moteur de recherche - Théorie</strong></p>
+<p>3️⃣ Moteur de recherche ElasticSearch - Pratique</p>
+</section>
+
+<section id="moteur-de-recherche---théorie" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<h1>2️⃣ Moteur de recherche - Théorie</h1>
+
+</section>
+
 <section>
 <section id="étape-1-pouvoir-comparer-ladresse-recherchée-avec-les-données-gaïa." class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Étape 1 : pouvoir comparer l’adresse recherchée avec les données Gaïa.</h1>
@@ -1290,9 +845,8 @@ n = niveau.<br>
 t = token, sous-chaîne <em>(un mot, un 3-grams…)</em>.</p>
 <aside class="notes">
 <ul>
-<li><p>Formule mathématique du score pour retrouver la voie la plus pertiente dans Gaïa.</p></li>
-<li><p>Maintenant, on est capable de retrouver la voie la plus pertinente, mais qu’est ce qu’il en est de l’adresse ? Regardons l’algorithme d’identification d’adresse de Gaïa.<br>
-</p></li>
+<li>Formule mathématique du score pour retrouver la voie la plus pertiente dans Gaïa.<br>
+</li>
 </ul>
 <style type="text/css">
         span.MJX_Assistive_MathML {
@@ -1306,372 +860,57 @@ t = token, sous-chaîne <em>(un mot, un 3-grams…)</em>.</p>
           display:block!important;
       }</style></aside>
 </section></section>
-<section id="plan-de-la-présentation-3" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<section id="plan-de-la-présentation-2" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>
 <p>1️⃣ Contexte</p>
-<p>2️⃣ Utilisation du référentiel Gaïa</p>
-<p>3️⃣ Moteur de recherche ElasticSearch</p>
-<p><strong>4️⃣ Algorithme d’identification d’adresses</strong></p>
-<p>5️⃣ Performances de l’algorithme d’identification</p>
-<p>6️⃣ Discussion</p>
+<p>2️⃣ Moteur de recherche - Théorie</p>
+<p><strong>3️⃣ Moteur de recherche ElasticSearch - Pratique</strong></p>
 </section>
 
 <section>
-<section id="algorithme-didentification-dadresses" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1>4️⃣ Algorithme d’identification d’adresses</h1>
+<section id="moteur-de-recherche-elasticsearch---pratique" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<h1>3️⃣ Moteur de recherche ElasticSearch - Pratique</h1>
 
 </section>
-<section id="algorithme-didentification-dadresses-1" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Algorithme d’identification d’adresses</h2>
+<section id="créer-des-index-elasticsearch" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Créer des index ElasticSearch</h2>
+<p>Trois éléments clés d’un index Elasticsearch :</p>
 <ul>
-<li>Prends en entrée un <span class="green2"><strong>libellé d’adresse</strong></span> et un <span class="blue2"><strong>COG</strong></span>, ou à défaut, <span class="blue2"><strong>un code postal + libellé commune</strong></span>.<br>
-</li>
-<li>Retourne :
-<ul>
-<li>le(s) <span class="red2"><strong>identifiant(s) Gaïa</strong></span> retrouvé(s).<br>
-</li>
-<li>une <span class="red2"><strong>indicatrice</strong></span> sur la qualité de l’identification (0 à 10).<br>
-</li>
-<li>un <span class="red2"><strong>ratio</strong></span> qui mesure l’écart entre la 1ère et la 2ème voie la plus pertinente retournées par Elastic (0 à 1).</li>
-</ul></li>
+<li><p>Données à indexer</p></li>
+<li><p>Settings → décrivent comment les données sont traitées</p></li>
+<li><p>Mappings → décrivent ce que contiennent les données</p></li>
 </ul>
+<p>Les mappings et les settings sont définis dans des fichiers json.</p>
 </section>
-<section id="schéma-algorithme-didentification" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Schéma algorithme d’identification</h2>
+<section id="les-mappings" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Les mappings</h2>
+<ul>
+<li>la liste des variables</li>
+<li>le type de chaque variable : texte, nombre, date, etc…</li>
+<li>les traitements à appliquer par variable</li>
+</ul>
+<p>Il est possible d’appliquer plusieurs traitements différents par variable et de différentier les traitements appliqués aux données recherchées et aux données indexées.</p>
+<p>Exemple : …</p>
+</section>
+<section id="les-settings" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Les settings</h2>
+<p>Les settings définissent :</p>
+<p>comment les textes sont :</p>
+<p>nettoyés</p>
+<p>transformés</p>
+<p>découpés</p>
+<p>exemples de traitements :</p>
+<p>suppression des accents</p>
+<p>passage en minuscules</p>
+<p>découpage en mots (tokenisation)</p>
+</section>
+<section id="effectuer-une-recherche-la-requête" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Effectuer une recherche : la requête</h2>
+<p>Le requetes appellent les differentes variables, appliquent un boost et la fuzzi</p>
+<p>c’est ce qui “diffère” entre le moteur Python et le moteur Java car les settings/mappings sont dans le code Java et permettent de créer les index à chaque déversement ES. Par contre, les requêtes sont écrites en Java et en Python et se basent sur ces mêmes index.</p>
 
-<img data-src="img/schema_moteur_fr.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"><aside class="notes">
-<ul>
-<li>Entre chaque requête Elastic, il y a des étapes de validation du résultat ES qui sont font en aval.<br>
-</li>
-<li>Identification adresse stricte : une recherche l’adresse comme un appariement direct avec notre référentiel Gaïa, tout en passant via le moteur ElasticSearch pour avoir les filtres et les synonymes montrés précédemment.<br>
-</li>
-<li>En moyenne, sur une base de données d’adresses non normalisées, il y a 30% des adresses qui passent à la première étape de l’identification. Cette identification stricte permet donc d’accélerer le processus, car ca prend 6 fois moins de temps de faire une recherche stricte plutot qu’une recherhce floue.<br>
-</li>
-<li>Comme les bases de données qui alimentent notre référentiel sont plutôt normalisées, cela accélère d’autant plus notre processus d’identification.<br>
-</li>
-<li>ensuite voie floue puis simplement numéro et indice de répétition, pas besoin de faire autant d’ingénieurie que pour retrouver la voie ici.<br>
-</li>
-<li>La validation de la voie retrouvée va être présentée juste après, et d’ailleurs l’indicatrice qualité va dépendre de la validation de la voie.<br>
-</li>
-</ul>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="indicatrice-qualité" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Indicatrice qualité</h2>
-<ul>
-<li>Dépend du pourcentage de 3-grams de la <span class="blue2"><strong>voie du référentiel</strong></span> ⊂ <span class="green2"><strong>l’adresse recherchée</strong></span>.</li>
-<li>Calcul non réalisable avec Elastic, donc effectué post requête.</li>
-</ul>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Voie qualifiée de</th>
-<th>Pourcentage de 3-grams</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>sûre</td>
-<td>≥ 65%</td>
-</tr>
-<tr class="even">
-<td>peu douteuse</td>
-<td>35% ≤ x &lt; 65%</td>
-</tr>
-<tr class="odd">
-<td>douteuse</td>
-<td>10% ≤ x &lt; 35%</td>
-</tr>
-<tr class="even">
-<td>non retrouvée</td>
-<td>&lt; 10%</td>
-</tr>
-</tbody>
-</table>
-<p><em>Exemple : 80% des 3-grams de “verdier” dans “88 avenue verdie”.</em></p>
-<aside class="notes">
-<ul>
-<li><p>Le trigram “ier” n’est jamais matché<br>
-</p></li>
-<li><p>verdier : 5 trigrams<br>
-</p></li>
-<li><p>4 trigrams retrouvés dans 88 avenue verdier<br>
-</p></li>
-<li><p>4*100/5 = 80</p></li>
-<li><p>Ces valeurs n’ont pas été choisies aux hasard, elles ont été calculées grâce au jeu de test que nous allons vous présenter ensuite. Et nous avons regardé la courbe Précision-Rappel.</p></li>
-<li><p>Précision = Vrais positifs/ positifs (vp + fp)</p></li>
-<li><p>Rappel = Vrais positifs / Bons prédits (vp + vn)</p></li>
-</ul>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="valeurs-de-lindicatrice-qualité" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Valeurs de l’indicatrice qualité</h2>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Valeur</th>
-<th>idGaïa maximum retrouvé</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>6 à 10</td>
-<td>idAdresse</td>
-</tr>
-<tr class="even">
-<td>3 à 5</td>
-<td>idVoie</td>
-</tr>
-<tr class="odd">
-<td>2</td>
-<td>idCommune</td>
-</tr>
-<tr class="even">
-<td>0 à 1</td>
-<td>Aucun</td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="distance-entre-la-1ère-et-la-2ème-voie-la-plus-pertinente" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Distance entre la 1ère et la 2ème voie la plus pertinente</h2>
-<p><span class="math display">\[
-\text{ratio} = 1 - \frac{R_2}{R_1}
-\]</span></p>
-<p>R1 = score Elastic de la 1ère voie la plus pertinente (voie retournée).<br>
-R2 = score Elastic de la 2ème voie la plus pertinente.</p>
-<p>Ratio → 1 ⇔ le résultat retourné est loin de la 2ème proposition.</p>
-<aside class="notes">
-<p>Maintenant qu’on a en tete l’algorithme d’identification d’adresse de Gaia, quelles sont ses performances concrètement ?</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section></section>
-<section id="plan-de-la-présentation-4" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1>Plan de la présentation</h1>
-<p>1️⃣ Contexte</p>
-<p>2️⃣ Utilisation du référentiel Gaïa</p>
-<p>3️⃣ Moteur de recherche ElasticSearch</p>
-<p>4️⃣ Algorithme d’identification d’adresses</p>
-<p><strong>5️⃣ Performances de l’algorithme d’identification</strong></p>
-<p>6️⃣ Discussion</p>
-</section>
-
-<section>
-<section id="performances-de-lalgorithme-didentification" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1>5️⃣ Performances de l’algorithme d’identification</h1>
-
-</section>
-<section id="constitution-dun-jeu-de-test" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Constitution d’un jeu de test</h2>
-<ul>
-<li><span class="red2"><strong>Idée : avoir des adresses avec des variations textuelles et leur idGaïaAdresse associé (vérité).</strong></span><br>
-</li>
-<li>Le jeu de test est une suite d’appariements de sources de données :
-<ul>
-<li><strong>PASRAU</strong> : Prélèvement À la Source sur les Revenus AUtres.<br>
-</li>
-<li><strong>TSSAL</strong> : Base tous salariés, issue de la déclaration sociale nominative.<br>
-</li>
-<li><strong>Fidéli</strong> : FIchiers DÉmographiques sur les Logements et les Individus.</li>
-</ul></li>
-</ul>
-</section>
-<section id="schéma-appariements-jeu-de-test" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Schéma appariements jeu de test</h2>
-
-<img data-src="img/jeu_test.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"><aside class="notes">
-<ul>
-<li>PASRAU : Ce sont des données administratives générées par le prélèvement à la source sur les retraites et d’autres revenus (mais pas les salaires).</li>
-<li>Adresses du PASRAU et Tous Salariés (TTSAL) avec le CSNS de l’individu connu pour chaque adresse.<br>
-</li>
-<li>Grâce aux CSNS des individus Fidéli 2022, obtention de l’identifiant Majic de ces adresses.</li>
-<li>Avec l’identifiant Majic des adresses, conservé dans le référentiel Gaïa, on retrouve l’idGaïaAdresse.<br>
-</li>
-<li>Validation post-appariements des paires adresse non normalisée (PASRAU, TSSAL)) + idGaïaAdresse.<br>
-</li>
-</ul>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-<aside class="notes">
-<p>Maintenant qu’on a le jeu de test, on peut evaluer l’algo.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="évaluation-de-lalgorithme-didentification" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Évaluation de l’algorithme d’identification</h2>
-<p>Pour 100 000 adresses issues du jeu de test sur tout le territoire français :</p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 17%">
-<col style="width: 23%">
-<col style="width: 19%">
-<col style="width: 39%">
-</colgroup>
-<thead>
-<tr class="header">
-<th></th>
-<th><strong>Adresse trouvée</strong></th>
-<th><strong>Voie trouvée</strong></th>
-<th><strong>Commune trouvée/rien trouvé</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Pourcentage</strong></td>
-<td><span class="red2"><strong>86,0%</strong></span></td>
-<td><span class="red2"><strong>99,5%</strong></span></td>
-<td>0,5%</td>
-</tr>
-<tr class="even">
-<td><strong>Précision</strong></td>
-<td>0.94</td>
-<td>0.94</td>
-<td>x</td>
-</tr>
-</tbody>
-</table>
-<p>Appariement direct avec filtres entre adresses à retrouver et référentiel Gaïa : <span class="blue2"><strong>30% d’identification à l’adresse</strong></span>.</p>
-<aside class="notes">
-<ul>
-<li><p>Précision = Vrais positifs/ positifs (vp + fp)</p></li>
-<li><p>A titre de comparaison, un appariement direct entre les adresses à retrouver et le référentiel Gaïa donnerait 30% d’identification à condition que les filtres présentés précédemment soient appliqués.</p></li>
-<li><p>Le reste des adresses doivent être retrouvées avec du flou, ce qui est très long dans une bdd standard.</p></li>
-<li><p>Donc ce qui justifie l’utilisation d’un moteur en terme de précision mais aussi en terme de performances temporelles, notamment grace à l’index inversé.</p></li>
-</ul>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-</section>
-<section id="rapidité-de-lalgorithme" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Rapidité de l’algorithme</h2>
-<ul>
-<li><span class="blue2"><strong>500 adresses en 2 secondes</strong></span>.<br>
-</li>
-<li>Identification de gros paquets d’adresses : <span class="green2"><strong>1 million d’adresses en 50 minutes</strong></span>.</li>
-<li>Démonstration en direct du moteur ⚙️ ElasticSearch développé en <span class="red2"><strong>Python</strong></span>.</li>
-</ul>
-<aside class="notes">
-<p>{ “adresseComplete”: “48 rue fontaine”, “depcom”: ““,”codePostal”: “14530”, “libelleCommune”: “luc s/mer” }</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
-<!-- ## Utilisation du moteur au sein du projet Ga&#xEF;a
-
-M&#xE9;triques sur les mises &#xE0; jour du r&#xE9;f&#xE9;rentiel :
-- .... -->
-</section></section>
-<section id="plan-de-la-présentation-5" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1>Plan de la présentation</h1>
-<p>1️⃣ Contexte</p>
-<p>2️⃣ Utilisation du référentiel Gaïa</p>
-<p>3️⃣ Moteur de recherche ElasticSearch</p>
-<p>4️⃣ Algorithme d’identification d’adresses</p>
-<p>5️⃣ Performances de l’algorithme d’identification</p>
-<p><strong>6️⃣ Discussion</strong></p>
-</section>
-
-<section>
-<section id="discussion" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1>6️⃣ Discussion</h1>
-
-</section>
-<section id="limites" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Limites</h2>
-<ul>
-<li>Compétences requises pour le développement et la maintenance du moteur ElasticSearch.<br>
-</li>
-<li>Moteur créé par l’EPS en Python, réécrit en Java par l’EPI.<br>
-</li>
-<li>Les travaux ont été effectués sur un référentiel contenant des erreurs/doublons → entrave les métriques qualité.</li>
-</ul>
-</section></section>
-<section id="bibliographie" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1>Bibliographie</h1>
-<ol type="1">
-<li><p>Chaudhuri, S., et al.&nbsp;(2003). <em>Robust and efficient fuzzy match for online data cleaning</em> : <a href="https://courses.cs.washington.edu/courses/cse591d/03sp/chaudhuri.pdf">lien</a>.</p></li>
-<li><p>Kathare, N., et al.&nbsp;(2022). <em>A Comprehensive Study of Elastic Search</em>. <em>Journal of Research in Science and Engineering</em>, 4(11) : <a href="https://doi.org/10.53469/jrse.2022.04(11).07">lien</a>.</p></li>
-<li><p>Wikipedia. (n.d.). <em>Elasticsearch</em> : <a href="https://fr.wikipedia.org/wiki/Elasticsearch">lien</a>.</p></li>
-</ol>
-</section>
-
-<section id="merci-au-ssplab-julien-pramil-lino-galiana-olivier-meslin-marie-pierre-joubert-et-tom-seimandi" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1>Merci au SSPlab : Julien Pramil, Lino Galiana, Olivier Meslin, Marie-Pierre Joubert et Tom Seimandi</h1>
-
-</section>
-
-<section id="merci-à-heidi-koumarianos-et-à-manon-evain" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1>Merci à Heidi Koumarianos et à Manon Evain</h1>
-
-</section>
-
-<section id="et-enfin-merci-pour-votre-attention" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1>Et enfin, merci pour votre attention !</h1>
-
-
-</section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
