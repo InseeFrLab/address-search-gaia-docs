@@ -181,7 +181,7 @@
     "href": "src/presentation-interne/index.html#score-global",
     "title": "Moteur de recherche ElasticSearch Gaïa",
     "section": "Score global",
-    "text": "Score global\nLe score global va donc combiner la somme des matchs 🎯 au niveau :\n\nmot avec fuzziness.\n\nn-grams.\n\nmais également texte entier sans découpage !\n\n\nIl est possible de donner plus ou moins d’importance à ces différents niveaux de matchs 🎯.\n\n\nOn va chercher le nom de voie tel quel, sans découpage, au sein de l’adresse recherchée.\nC’est pourquoi on va introduire la notion de boost."
+    "text": "Score global\nLe score global va donc combiner la somme des matchs 🎯 au niveau :\n\nmot avec fuzziness.\n\nn-grams.\n\n\nIl est possible de donner plus ou moins d’importance à ces différents niveaux de matchs 🎯.\n\n\nOn va chercher le nom de voie tel quel, sans découpage, au sein de l’adresse recherchée.\nC’est pourquoi on va introduire la notion de boost."
   },
   {
     "objectID": "src/presentation-interne/index.html#boost",
@@ -237,7 +237,7 @@
     "href": "src/presentation-interne/index.html#effectuer-une-recherche-la-requête",
     "title": "Moteur de recherche ElasticSearch Gaïa",
     "section": "Effectuer une recherche : la requête",
-    "text": "Effectuer une recherche : la requête\n\nLes requêtes appellent différentes variables et leurs différentes versions\nÀ chaque version de variable appelée, on peut appliquer :\n\nun boost\nune fuzziness\n\nPour chaque correspondance, le score est augmenté selon la valeur du boost"
+    "text": "Effectuer une recherche : la requête\n\nLes requêtes appellent différentes variables et leurs différentes versions\nÀ chaque version de variable appelée, on peut appliquer :\n\nun boost\nune fuzziness"
   },
   {
     "objectID": "src/presentation-interne/index.html#différences-entre-moteur-java-et-python",

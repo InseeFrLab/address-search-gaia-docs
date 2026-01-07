@@ -165,7 +165,7 @@
 <li><p><span class="blue2"><strong>ElasticSearch</strong></span> : logiciel pour l’indexation et la recherche de données.</p></li>
 <li><p>Fait pour chercher des mots-clés dans des textes.</p></li>
 <li><p>Utilisation en pratique avec <span class="green2"><strong>Python</strong></span> : packages <em>elasticsearch</em> et <em>elasticsearch-dsl</em>.</p></li>
-<li><p>Mais également utilisable avec Java.</p></li>
+<li><p>Mais également utilisable avec <span class="green2"><strong>Java</strong></span>.</p></li>
 </ul>
 </section></section>
 <section id="plan-de-la-présentation-1" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
@@ -721,9 +721,7 @@ score_{voie} = \sum_{\text{∀ngram} \in \text{N}} {nb\_occurrence}_{ngram}
 <ul>
 <li>mot avec fuzziness.<br>
 </li>
-<li>n-grams.<br>
-</li>
-<li>mais également texte entier sans découpage !</li>
+<li>n-grams.</li>
 </ul>
 <p><br></p>
 <p>Il est possible de donner plus ou moins d’importance à ces différents niveaux de matchs 🎯.</p>
@@ -878,9 +876,9 @@ t = token, sous-chaîne <em>(un mot, un 3-grams…)</em>.</p>
 <ul>
 <li>Données à indexer<br>
 </li>
-<li>Settings → décrivent comment les données sont traitées<br>
+<li><span class="green2"><strong>Settings</strong></span> → décrivent comment les données sont traitées<br>
 </li>
-<li>Mappings → décrivent ce que contiennent les données</li>
+<li><span class="blue2"><strong>Mappings</strong></span> → décrivent ce que contiennent les données</li>
 </ul>
 <p>Les mappings et les settings sont définis dans des fichiers JSON.</p>
 </section>
@@ -951,13 +949,12 @@ t = token, sous-chaîne <em>(un mot, un 3-grams…)</em>.</p>
 <section id="effectuer-une-recherche-la-requête" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Effectuer une recherche : la requête</h2>
 <ul>
-<li>Les requêtes appellent différentes variables et leurs différentes versions</li>
+<li>Les <span class="blue2"><strong>requêtes</strong></span> appellent différentes variables et leurs différentes versions</li>
 <li>À chaque version de variable appelée, on peut appliquer :
 <ul>
 <li>un <strong>boost</strong></li>
 <li>une <strong>fuzziness</strong></li>
 </ul></li>
-<li>Pour chaque correspondance, le score est augmenté selon la valeur du boost</li>
 </ul>
 </section>
 <section id="différences-entre-moteur-java-et-python" class="slide level2" data-background-image="background.svg" data-background-size="contain">
