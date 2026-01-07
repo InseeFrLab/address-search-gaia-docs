@@ -873,41 +873,107 @@ t = token, sous-chaîne <em>(un mot, un 3-grams…)</em>.</p>
 
 </section>
 <section id="créer-des-index-elasticsearch" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Créer des index ElasticSearch</h2>
+<h2>Créer des index Elasticsearch</h2>
 <p>Trois éléments clés d’un index Elasticsearch :</p>
 <ul>
-<li><p>Données à indexer</p></li>
-<li><p>Settings → décrivent comment les données sont traitées</p></li>
-<li><p>Mappings → décrivent ce que contiennent les données</p></li>
+<li>Données à indexer<br>
+</li>
+<li>Settings → décrivent comment les données sont traitées<br>
+</li>
+<li>Mappings → décrivent ce que contiennent les données</li>
 </ul>
-<p>Les mappings et les settings sont définis dans des fichiers json.</p>
+<p>Les mappings et les settings sont définis dans des fichiers JSON.</p>
 </section>
 <section id="les-mappings" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Les mappings</h2>
+<p>Les mappings décrivent :</p>
 <ul>
 <li>la liste des variables</li>
-<li>le type de chaque variable : texte, nombre, date, etc…</li>
-<li>les traitements à appliquer par variable</li>
+<li>le type de chaque variable : texte, nombre, date, etc.</li>
+<li>les traitements à appliquer à chaque variable</li>
 </ul>
-<p>Il est possible d’appliquer plusieurs traitements différents par variable et de différentier les traitements appliqués aux données recherchées et aux données indexées.</p>
-<p>Exemple : …</p>
+<p>Il est possible d’appliquer plusieurs traitements à une même variable et de différencier les traitements appliqués :</p>
+<ul>
+<li>aux données recherchées</li>
+<li>aux données indexées</li>
+</ul>
+</section>
+<section id="exemple-de-mappings" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Exemple de mappings</h2>
+<p>Variable : <strong>nom de voie</strong></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 34%">
+<col style="width: 13%">
+<col style="width: 27%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Traitement de la variable</th>
+<th>Tokenizer</th>
+<th>Données recherchées</th>
+<th>Données indexées</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Entier</td>
+<td>non</td>
+<td>analyze_entier_input</td>
+<td>analyze_entier_output</td>
+</tr>
+<tr class="even">
+<td>Mot</td>
+<td>mot</td>
+<td>analyze_mot_input</td>
+<td>analyze_mot_output</td>
+</tr>
+<tr class="odd">
+<td>3-gram</td>
+<td>3-gram</td>
+<td>analyze_3_gram_input</td>
+<td>analyze_3_gram_output</td>
+</tr>
+</tbody>
+</table>
+<p>👉 Pour chaque type de traitement, un index spécifique est créé.</p>
 </section>
 <section id="les-settings" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Les settings</h2>
-<p>Les settings définissent :</p>
-<p>comment les textes sont :</p>
-<p>nettoyés</p>
-<p>transformés</p>
-<p>découpés</p>
-<p>exemples de traitements :</p>
-<p>suppression des accents</p>
-<p>passage en minuscules</p>
-<p>découpage en mots (tokenisation)</p>
+<p>Les settings définissent la manière dont les textes sont :</p>
+<ul>
+<li>nettoyés et transformés → <strong>analyzers</strong><br>
+</li>
+<li>découpés en unités de recherche → <strong>tokenizers</strong></li>
+</ul>
 </section>
 <section id="effectuer-une-recherche-la-requête" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Effectuer une recherche : la requête</h2>
-<p>Le requetes appellent les differentes variables, appliquent un boost et la fuzzi</p>
-<p>c’est ce qui “diffère” entre le moteur Python et le moteur Java car les settings/mappings sont dans le code Java et permettent de créer les index à chaque déversement ES. Par contre, les requêtes sont écrites en Java et en Python et se basent sur ces mêmes index.</p>
+<ul>
+<li>Les requêtes appellent différentes variables et leurs différentes versions</li>
+<li>À chaque version de variable appelée, on peut appliquer :
+<ul>
+<li>un <strong>boost</strong></li>
+<li>une <strong>fuzziness</strong></li>
+</ul></li>
+<li>Pour chaque correspondance, le score est augmenté selon la valeur du boost</li>
+</ul>
+</section>
+<section id="différences-entre-moteur-java-et-python" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Différences entre moteur Java et Python</h2>
+<ul>
+<li>Les settings et mappings sont implémentés dans le code Java et servent à créer les index lors des déversements dans Elasticsearch</li>
+<li>Une fois créés, les index sont interrogés via l’instance Elasticsearch de Gaïa</li>
+<li>Les requêtes sont écrites :
+<ul>
+<li>en Java d’un côté</li>
+<li>en Python de l’autre<br>
+et reposent sur les mêmes index</li>
+</ul></li>
+<li>La différence provient donc de l’écriture des requêtes :<br>
+choix des versions de variables, valeurs de boost, niveau de fuzziness, ordre des clauses, etc.</li>
+</ul>
 
 
 </section></section>

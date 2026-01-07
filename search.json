@@ -208,29 +208,43 @@
     "objectID": "src/presentation-interne/index.html#créer-des-index-elasticsearch",
     "href": "src/presentation-interne/index.html#créer-des-index-elasticsearch",
     "title": "Moteur de recherche ElasticSearch Gaïa",
-    "section": "Créer des index ElasticSearch",
-    "text": "Créer des index ElasticSearch\nTrois éléments clés d’un index Elasticsearch :\n\nDonnées à indexer\nSettings → décrivent comment les données sont traitées\nMappings → décrivent ce que contiennent les données\n\nLes mappings et les settings sont définis dans des fichiers json."
+    "section": "Créer des index Elasticsearch",
+    "text": "Créer des index Elasticsearch\nTrois éléments clés d’un index Elasticsearch :\n\nDonnées à indexer\n\nSettings → décrivent comment les données sont traitées\n\nMappings → décrivent ce que contiennent les données\n\nLes mappings et les settings sont définis dans des fichiers JSON."
   },
   {
     "objectID": "src/presentation-interne/index.html#les-mappings",
     "href": "src/presentation-interne/index.html#les-mappings",
     "title": "Moteur de recherche ElasticSearch Gaïa",
     "section": "Les mappings",
-    "text": "Les mappings\n\nla liste des variables\nle type de chaque variable : texte, nombre, date, etc…\nles traitements à appliquer par variable\n\nIl est possible d’appliquer plusieurs traitements différents par variable et de différentier les traitements appliqués aux données recherchées et aux données indexées.\nExemple : …"
+    "text": "Les mappings\nLes mappings décrivent :\n\nla liste des variables\nle type de chaque variable : texte, nombre, date, etc.\nles traitements à appliquer à chaque variable\n\nIl est possible d’appliquer plusieurs traitements à une même variable et de différencier les traitements appliqués :\n\naux données recherchées\naux données indexées"
+  },
+  {
+    "objectID": "src/presentation-interne/index.html#exemple-de-mappings",
+    "href": "src/presentation-interne/index.html#exemple-de-mappings",
+    "title": "Moteur de recherche ElasticSearch Gaïa",
+    "section": "Exemple de mappings",
+    "text": "Exemple de mappings\nVariable : nom de voie\n\n\n\n\n\n\n\n\n\nTraitement de la variable\nTokenizer\nDonnées recherchées\nDonnées indexées\n\n\n\n\nEntier\nnon\nanalyze_entier_input\nanalyze_entier_output\n\n\nMot\nmot\nanalyze_mot_input\nanalyze_mot_output\n\n\n3-gram\n3-gram\nanalyze_3_gram_input\nanalyze_3_gram_output\n\n\n\n👉 Pour chaque type de traitement, un index spécifique est créé."
   },
   {
     "objectID": "src/presentation-interne/index.html#les-settings",
     "href": "src/presentation-interne/index.html#les-settings",
     "title": "Moteur de recherche ElasticSearch Gaïa",
     "section": "Les settings",
-    "text": "Les settings\nLes settings définissent :\ncomment les textes sont :\nnettoyés\ntransformés\ndécoupés\nexemples de traitements :\nsuppression des accents\npassage en minuscules\ndécoupage en mots (tokenisation)"
+    "text": "Les settings\nLes settings définissent la manière dont les textes sont :\n\nnettoyés et transformés → analyzers\n\ndécoupés en unités de recherche → tokenizers"
   },
   {
     "objectID": "src/presentation-interne/index.html#effectuer-une-recherche-la-requête",
     "href": "src/presentation-interne/index.html#effectuer-une-recherche-la-requête",
     "title": "Moteur de recherche ElasticSearch Gaïa",
     "section": "Effectuer une recherche : la requête",
-    "text": "Effectuer une recherche : la requête\nLe requetes appellent les differentes variables, appliquent un boost et la fuzzi\nc’est ce qui “diffère” entre le moteur Python et le moteur Java car les settings/mappings sont dans le code Java et permettent de créer les index à chaque déversement ES. Par contre, les requêtes sont écrites en Java et en Python et se basent sur ces mêmes index."
+    "text": "Effectuer une recherche : la requête\n\nLes requêtes appellent différentes variables et leurs différentes versions\nÀ chaque version de variable appelée, on peut appliquer :\n\nun boost\nune fuzziness\n\nPour chaque correspondance, le score est augmenté selon la valeur du boost"
+  },
+  {
+    "objectID": "src/presentation-interne/index.html#différences-entre-moteur-java-et-python",
+    "href": "src/presentation-interne/index.html#différences-entre-moteur-java-et-python",
+    "title": "Moteur de recherche ElasticSearch Gaïa",
+    "section": "Différences entre moteur Java et Python",
+    "text": "Différences entre moteur Java et Python\n\nLes settings et mappings sont implémentés dans le code Java et servent à créer les index lors des déversements dans Elasticsearch\nUne fois créés, les index sont interrogés via l’instance Elasticsearch de Gaïa\nLes requêtes sont écrites :\n\nen Java d’un côté\nen Python de l’autre\net reposent sur les mêmes index\n\nLa différence provient donc de l’écriture des requêtes :\nchoix des versions de variables, valeurs de boost, niveau de fuzziness, ordre des clauses, etc."
   },
   {
     "objectID": "src/seminaire-dms/index.html#origine-du-projet",
