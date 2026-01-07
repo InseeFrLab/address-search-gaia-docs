@@ -1,47 +1,70 @@
-## Créer des index ElasticSearch
+## Créer des index Elasticsearch
 
 Trois éléments clés d’un index Elasticsearch :  
 
-- Données à indexer
+- Données à indexer  
+- Settings → décrivent comment les données sont traitées  
+- Mappings → décrivent ce que contiennent les données  
 
-- Settings → décrivent comment les données sont traitées
+Les mappings et les settings sont définis dans des fichiers JSON.
 
-- Mappings → décrivent ce que contiennent les données
-
-Les mappings et les settings sont définis dans des fichiers json.
+---
 
 ## Les mappings
 
+Les mappings décrivent :
+
 - la liste des variables
-- le type de chaque variable : texte, nombre, date, etc...
-- les traitements à appliquer par variable
+- le type de chaque variable : texte, nombre, date, etc.
+- les traitements à appliquer à chaque variable
 
-Il est possible d'appliquer plusieurs traitements différents par variable et de différentier les traitements appliqués aux données recherchées et aux données indexées.
+Il est possible d’appliquer plusieurs traitements à une même variable et de différencier les traitements appliqués :
 
-Exemple : ...
+- aux données recherchées
+- aux données indexées
+
+---
+
+## Exemple de mappings
+
+Variable : **nom de voie**
+
+| Traitement de la variable | Tokenizer | Données recherchées | Données indexées |
+|---------------------------|-----------|----------------------|-------------------|
+| Entier                    | non       | analyze_entier_input | analyze_entier_output |
+| Mot                       | mot       | analyze_mot_input    | analyze_mot_output |
+| 3-gram                    | 3-gram    | analyze_3_gram_input | analyze_3_gram_output |
+
+👉 Pour chaque type de traitement, un index spécifique est créé.
+
+---
 
 ## Les settings
 
-Les settings définissent :
+Les settings définissent la manière dont les textes sont :
 
-comment les textes sont :
+- nettoyés et transformés → **analyzers**  
+- découpés en unités de recherche → **tokenizers**
 
-nettoyés
-
-transformés
-
-découpés
-
-exemples de traitements :
-
-suppression des accents
-
-passage en minuscules
-
-découpage en mots (tokenisation)
+---
 
 ## Effectuer une recherche : la requête
 
-Le requetes appellent les differentes variables, appliquent un boost et la fuzzi
+- Les requêtes appellent différentes variables et leurs différentes versions
+- À chaque version de variable appelée, on peut appliquer :
+  - un **boost**
+  - une **fuzziness**
+- Pour chaque correspondance, le score est augmenté selon la valeur du boost
 
-c'est ce qui "diffère" entre le moteur Python et le moteur Java car les settings/mappings sont dans le code Java et permettent de créer les index à chaque déversement ES. Par contre, les requêtes sont écrites en Java et en Python et se basent sur ces mêmes index.
+---
+
+## Différences entre moteur Java et Python
+
+- Les settings et mappings sont implémentés dans le code Java et servent à créer les index lors des déversements dans Elasticsearch
+- Une fois créés, les index sont interrogés via l’instance Elasticsearch de Gaïa
+- Les requêtes sont écrites :
+  - en Java d’un côté
+  - en Python de l’autre  
+  et reposent sur les mêmes index
+- La différence provient donc de l’écriture des requêtes :  
+  choix des versions de variables, valeurs de boost, niveau de fuzziness, ordre des clauses, etc.
