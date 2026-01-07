@@ -1,0 +1,16 @@
+## Objectif
+
+Ensemble de données avec des champs textes
+→ Besoin de recherches textuelles rapides et efficaces
+
+Solution : un moteur de recherche basé sur des index
+
+## C'est quoi concrètement ElasticSearch ?
+
+- [**ElasticSearch**]{.blue2} : logiciel pour l'indexation et la recherche de données.
+
+- Fait pour chercher des mots-clés dans des textes.
+
+- Utilisation en pratique avec [**Python**]{.green2} : packages *elasticsearch* et *elasticsearch-dsl*.
+
+- Mais également utilisable avec Java.

@@ -1,0 +1,13 @@
+---
+title: Présentation interne
+image: img/seminaire.jpeg
+date: "2026-01-06"
+description: |
+  <b>Description :</b> Qu'est ce qu'un moteur de recherche ElasticSearch ?
+author: Raya Berova
+slides:
+  text: Slides
+  url: src/presentation-interne/index.html
+order: 4
+lang: fr-FR
+---

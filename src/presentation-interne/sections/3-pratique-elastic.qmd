@@ -1,0 +1,47 @@
+## Créer des index ElasticSearch
+
+Trois éléments clés d’un index Elasticsearch :  
+
+- Données à indexer
+
+- Settings → décrivent comment les données sont traitées
+
+- Mappings → décrivent ce que contiennent les données
+
+Les mappings et les settings sont définis dans des fichiers json.
+
+## Les mappings
+
+- la liste des variables
+- le type de chaque variable : texte, nombre, date, etc...
+- les traitements à appliquer par variable
+
+Il est possible d'appliquer plusieurs traitements différents par variable et de différentier les traitements appliqués aux données recherchées et aux données indexées.
+
+Exemple : ...
+
+## Les settings
+
+Les settings définissent :
+
+comment les textes sont :
+
+nettoyés
+
+transformés
+
+découpés
+
+exemples de traitements :
+
+suppression des accents
+
+passage en minuscules
+
+découpage en mots (tokenisation)
+
+## Effectuer une recherche : la requête
+
+Le requetes appellent les differentes variables, appliquent un boost et la fuzzi
+
+c'est ce qui "diffère" entre le moteur Python et le moteur Java car les settings/mappings sont dans le code Java et permettent de créer les index à chaque déversement ES. Par contre, les requêtes sont écrites en Java et en Python et se basent sur ces mêmes index.

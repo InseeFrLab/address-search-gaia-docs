@@ -1,0 +1,64 @@
+---
+title: "Moteur de recherche ElasticSearch Gaïa"
+subtitle: |
+  **[Raya Berova]{.blue2}**
+date: "01/06/2026"
+date-format: "D MMMM YYYY"
+slide-number: true
+# uncomment for French presentations:
+lang: fr-FR
+# for blind readers:
+slide-tone: false
+chalkboard: # press the B key to toggle chalkboard
+  theme: whiteboard
+# uncomment to use the multiplex mode:
+# multiplex: true
+format:
+  onyxia-revealjs:
+    output-file: index.html
+controls: true
+css: ../custom.css
+ascii: true
+---
+
+
+# Plan de la présentation
+
+1️⃣ Contexte
+
+2️⃣ Moteur de recherche - Théorie
+
+3️⃣ Moteur de recherche ElasticSearch - Pratique
+
+
+# 1️⃣ Introduction
+
+{{< include sections/1-introduction.qmd >}}
+
+
+# Plan de la présentation
+
+1️⃣ Contexte
+
+**2️⃣ Moteur de recherche - Théorie**
+
+3️⃣ Moteur de recherche ElasticSearch - Pratique
+
+
+# 2️⃣ Moteur de recherche - Théorie
+
+{{< include sections/2-theory-elastic.qmd >}}
+
+
+# Plan de la présentation
+
+1️⃣ Contexte
+
+2️⃣ Moteur de recherche - Théorie
+
+**3️⃣ Moteur de recherche ElasticSearch - Pratique**
+
+
+# 3️⃣ Moteur de recherche ElasticSearch - Pratique
+
+{{< include sections/3-pratique-elastic.qmd >}}
