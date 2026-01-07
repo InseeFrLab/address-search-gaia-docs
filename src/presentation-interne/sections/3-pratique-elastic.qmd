@@ -3,8 +3,8 @@
 Trois éléments clés d’un index Elasticsearch :  
 
 - Données à indexer  
-- Settings → décrivent comment les données sont traitées  
-- Mappings → décrivent ce que contiennent les données  
+- [**Settings**]{.green2} → décrivent comment les données sont traitées  
+- [**Mappings**]{.blue2} → décrivent ce que contiennent les données  
 
 Les mappings et les settings sont définis dans des fichiers JSON.
 
@@ -50,11 +50,10 @@ Les settings définissent la manière dont les textes sont :
 
 ## Effectuer une recherche : la requête
 
-- Les requêtes appellent différentes variables et leurs différentes versions
+- Les [**requêtes**]{.blue2} appellent différentes variables et leurs différentes versions
 - À chaque version de variable appelée, on peut appliquer :
   - un **boost**
   - une **fuzziness**
-- Pour chaque correspondance, le score est augmenté selon la valeur du boost
 
 ---
 

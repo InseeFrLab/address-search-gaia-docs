@@ -312,7 +312,6 @@ Le score global va donc combiner la somme des matchs 🎯 au niveau :
 
 - mot avec fuzziness.  
 - n-grams.  
-- mais également texte entier sans découpage !  
 
 <br>
 

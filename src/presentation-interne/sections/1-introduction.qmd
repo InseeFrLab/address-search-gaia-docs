@@ -13,4 +13,4 @@ Solution : un moteur de recherche basé sur des index
 
 - Utilisation en pratique avec [**Python**]{.green2} : packages *elasticsearch* et *elasticsearch-dsl*.
 
-- Mais également utilisable avec Java.
+- Mais également utilisable avec [**Java**]{.green2}.
