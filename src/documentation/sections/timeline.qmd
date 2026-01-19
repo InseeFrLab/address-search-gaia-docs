@@ -1,0 +1,30 @@
+::: {.timeline-container}
+
+<div class="timeline">
+  <p class="timeline-date">
+    2022/2023
+  </p>
+  <p class="timeline-item">
+    Mise en place d'un moteur de recherche ElasticSearch (ES) avec un prestataire extérieur. Ce moteur est basé sur une recherche champ à champ, c'est à dire qu'on va chercher à matcher le champ "numéro" de l'adresse recherchée avec le champ "numéro" de l'ensemble des adresses du référentiel, et ainsi de suite avec les champs "indice de répétition", "type de voie" et "nom de voie". Les utilisateurs de Gaïa, ne disposant pas de découpage champ à champ pour les adresses qu'ils cherchent à identifier, il a fallu trouver une solution : le package <b>libpostal</b> répondait à cette problématique. Les adresses étaient d'abord recherchées dans l'index d'adresses, puis dans l'index de voies si aucune adresse ne correspondait. <br>
+    Cependant, le moteur n'était pas configuré de sorte à prendre en compte les spécificités des données d'adresses Gaïa. Les requêtes n'étaient pas fonctionnelles. De plus, <b>libpostal</b> induisait des erreurs de découpage et normalisait les libellés de façon non contrôlée. En parallèle, ce package était aussi utilisé afin de normalisé les libellés de voie du référentiel. Et des règles d'extraction du type de voie au sein du nom de voie des adresses Majic et BAN, sources mères de Gaïa, provoquaient des incohérences. <br>
+    L'ensemble de ces dysfonctionnements empêche un taux élevé d'identification, avoisinant les 60%, sans compter les faux positifs. Les appariements de mauvaise qualité impactent fortement les mises à jour du référentiel.
+  </p>
+  <p class="timeline-date">
+    FIN 2023
+  </p>
+  <p class="timeline-item">
+    Afin de remplacer l'extraction du type de voie et la normalisation libpostal des noms de voie du référentiel, le programme de découpage en Python est développé. Celui-ci permet donc d'extraire le type de voie du nom de voie complet mais aussi de mettre de côté un potentiel complément d'adresse. Une normalisation y est également incluse de sorte à traiter les synonymes ("r" = "rue", "st" = "saint"...) et appliquer des filtres (ponctuation, accents...). Cet algorithme est appliqué sur les adresses des sources mères de Gaïa, sur le champ nom de voie Majic et BAN, et sur les champs type de voie et nom de voie concaténés du RCA afin d'avoir le même découpage, peu importe la source.
+  </p>
+  <p class="timeline-date">
+    DEBUT 2024
+  </p>
+  <p class="timeline-item">
+    Il faut refaire le moteur ES. L'équipe repart alors de zéro. Il faut se former à ES. Le SSPLab s'est mobilisé pour faire un sprint, en mobilisant toutes les connaissances de l'Insee à ce sujet pour créer un nouveau moteur dans des délais courts. Des arbitrages ont dûs être faits pour réussir à respecter les deadlines. <br>
+    Tout d'abord, le découpage champ à champ libpostal est retiré. Soit un autre outil le remplace, soit le découpage champ à champ en amont de la recherche ES est abandonné. Il a été envisagé de repartir de l'algorithme de découpage type de voie/nom de voie Python et l'améliorer pour pouvoir faire du découpage complet : numéro, indice de répétition, type de voie, nom de voie. Mais pour des raisons de temps limité, il a été décidé de faire des recherches ES sans découpage préalable, avec la chaîne adresse complète. <br>
+    Pour les adresses Gaïa, le découpage champ à champ existe déjà, ça serait donc dommage de concaténer ces champs pour effectuer une recherche et perdre l'information initiale. Alors, l'idée de faire deux moteurs est apparue. Un moteur pour les utilisateurs avec un moteur <b>chaîne adresse complète</b>, car ceux-ci ne disposent pas de découpage d'adresse. Et un moteur interne à Gaïa pour les mises à jour du référentiel, prenant en compte le <b>découpage champ à champ</b>. En raison du manque de temps, cette idée est écartée : il est beaucoup moins complexe de développer un moteur. <br>
+    Ainsi, le nouvel unique moteur Gaïa avec recherche sur la chaîne complète de l'adresse est né.  <br>
+    Pour trouver les paramétrages optimaux du moteur, des jeux de tests sont constitués, avec des couples chaînes d'adresses contenant des variations textuelles et depcom, et leur idGaiaAdresse attendu. Mais ces données de test comportent des erreurs car ils ont été créés via des appariements de bases de façon automatique sans contrôle manuel. Cela empêche une bonne évaluation du processus mais reste suffisant pour atteindre l'objectif durant le sprint.
+  </p>
+</div>
+
+:::

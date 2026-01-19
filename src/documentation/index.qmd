@@ -5,17 +5,10 @@ format:
         <link rel="icon" type="image/png" sizes="32x32" href="../_extensions/InseeFrLab/onyxia/favicon-32x32.png">
 ---
 
-# Accueil de la documentation
-## Recherche simple : les swaggers
+# Le référentiel Gaïa et l'utilité d'un moteur de recherche
 
-Informations de connexion via Filezilla en protocole FTP (connexion FTP simple) disponibles [ici](https://geographie.gitlab-pages.insee.fr/gaia/gaia-backlog/plateformes/serveurs/).
+Intro
 
-Pour requêter le service d'identification, il faut que l'utilisateur soit authentifié en ayant récupéré un jeton Keycloak au préalable et qu'il bénéficie du rôle IDENTIFICATION_GAIA. Si ce n'est pas le cas, contactez l'équipe Gaïa sur Tchap ou mail.
+# 🧭 Timeline du moteur de recherche ElasticSearch dans le projet Gaïa
 
-
-## Recherche avancée : code Python
-
-Pour lancer une identification avec le moteur ElasticSearch développé en python, il faut aller sur le dépôt git et lire le README. Il est possible d'accéder au dépôt en cliquant ici [Moteur de recherche Gaïa](https://gitlab.insee.fr/sprint-gaia/moteur_es). Puis aller sur LS3 pour cloner le projet.
-
-⚠️ Attention : il faut avoir les droits pour accéder au dépôt et être dans le projet LS3. Si ce n'est pas le cas, contactez l'équipe Gaïa sur Tchap ou mail.
-
+{{< include sections/timeline.qmd >}}
