@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -38,9 +38,9 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b758ccaa5987ceb1b75504551e579abf.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-4d9afe2b8d18ee9fa5d0d57b5ed4214d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../site_libs/bootstrap/bootstrap-ea634ea44d01ccd8ac982232f787a2e7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
@@ -79,6 +79,7 @@ ul.task-list li input[type="checkbox"] {
 
 
 <meta property="og:title" content="Moteur de recherche d’adresse Gaïa">
+<meta property="og:description" content="">
 <meta property="og:site_name" content="Moteur de recherche d'adresse Gaïa">
 </head>
 
@@ -336,11 +337,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#accueil-de-la-documentation" id="toc-accueil-de-la-documentation" class="nav-link active" data-scroll-target="#accueil-de-la-documentation">Accueil de la documentation</a>
-  <ul class="collapse">
-  <li><a href="#recherche-simple-les-swaggers" id="toc-recherche-simple-les-swaggers" class="nav-link" data-scroll-target="#recherche-simple-les-swaggers">Recherche simple : les swaggers</a></li>
-  <li><a href="#recherche-avancée-code-python" id="toc-recherche-avancée-code-python" class="nav-link" data-scroll-target="#recherche-avancée-code-python">Recherche avancée : code Python</a></li>
-  </ul></li>
+  <li><a href="#le-référentiel-gaïa-et-lutilité-dun-moteur-de-recherche" id="toc-le-référentiel-gaïa-et-lutilité-dun-moteur-de-recherche" class="nav-link active" data-scroll-target="#le-référentiel-gaïa-et-lutilité-dun-moteur-de-recherche">Le référentiel Gaïa et l’utilité d’un moteur de recherche</a></li>
+  <li><a href="#timeline-du-moteur-de-recherche-elasticsearch-dans-le-projet-gaïa" id="toc-timeline-du-moteur-de-recherche-elasticsearch-dans-le-projet-gaïa" class="nav-link" data-scroll-target="#timeline-du-moteur-de-recherche-elasticsearch-dans-le-projet-gaïa">🧭 Timeline du moteur de recherche ElasticSearch dans le projet Gaïa</a></li>
   </ul>
 </nav>
     </div>
@@ -351,20 +349,36 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="accueil-de-la-documentation" class="level1">
-<h1>Accueil de la documentation</h1>
-<section id="recherche-simple-les-swaggers" class="level2">
-<h2 class="anchored" data-anchor-id="recherche-simple-les-swaggers">Recherche simple : les swaggers</h2>
-<p>Informations de connexion via Filezilla en protocole FTP (connexion FTP simple) disponibles <a href="https://geographie.gitlab-pages.insee.fr/gaia/gaia-backlog/plateformes/serveurs/">ici</a>.</p>
-<p>Pour requêter le service d’identification, il faut que l’utilisateur soit authentifié en ayant récupéré un jeton Keycloak au préalable et qu’il bénéficie du rôle IDENTIFICATION_GAIA. Si ce n’est pas le cas, contactez l’équipe Gaïa sur Tchap ou mail.</p>
+<section id="le-référentiel-gaïa-et-lutilité-dun-moteur-de-recherche" class="level1">
+<h1>Le référentiel Gaïa et l’utilité d’un moteur de recherche</h1>
+<p>Intro</p>
 </section>
-<section id="recherche-avancée-code-python" class="level2">
-<h2 class="anchored" data-anchor-id="recherche-avancée-code-python">Recherche avancée : code Python</h2>
-<p>Pour lancer une identification avec le moteur ElasticSearch développé en python, il faut aller sur le dépôt git et lire le README. Il est possible d’accéder au dépôt en cliquant ici <a href="https://gitlab.insee.fr/sprint-gaia/moteur_es">Moteur de recherche Gaïa</a>. Puis aller sur LS3 pour cloner le projet.</p>
-<p>⚠️ Attention : il faut avoir les droits pour accéder au dépôt et être dans le projet LS3. Si ce n’est pas le cas, contactez l’équipe Gaïa sur Tchap ou mail.</p>
+<section id="timeline-du-moteur-de-recherche-elasticsearch-dans-le-projet-gaïa" class="level1">
+<h1>🧭 Timeline du moteur de recherche ElasticSearch dans le projet Gaïa</h1>
+<div class="timeline-container">
+<div class="timeline">
+<p class="timeline-date">
+2022/2023
+</p>
+<p class="timeline-item">
+Mise en place d’un moteur de recherche ElasticSearch (ES) avec un prestataire extérieur. Ce moteur est basé sur une recherche champ à champ, c’est à dire qu’on va chercher à matcher le champ “numéro” de l’adresse recherchée avec le champ “numéro” de l’ensemble des adresses du référentiel, et ainsi de suite avec les champs “indice de répétition”, “type de voie” et “nom de voie”. Les utilisateurs de Gaïa, ne disposant pas de découpage champ à champ pour les adresses qu’ils cherchent à identifier, il a fallu trouver une solution : le package <b>libpostal</b> répondait à cette problématique. Les adresses étaient d’abord recherchées dans l’index d’adresses, puis dans l’index de voies si aucune adresse ne correspondait. <br> Cependant, le moteur n’était pas configuré de sorte à prendre en compte les spécificités des données d’adresses Gaïa. Les requêtes n’étaient pas fonctionnelles. De plus, <b>libpostal</b> induisait des erreurs de découpage et normalisait les libellés de façon non contrôlée. En parallèle, ce package était aussi utilisé afin de normalisé les libellés de voie du référentiel. Et des règles d’extraction du type de voie au sein du nom de voie des adresses Majic et BAN, sources mères de Gaïa, provoquaient des incohérences. <br> L’ensemble de ces dysfonctionnements empêche un taux élevé d’identification, avoisinant les 60%, sans compter les faux positifs. Les appariements de mauvaise qualité impactent fortement les mises à jour du référentiel.
+</p>
+<p class="timeline-date">
+FIN 2023
+</p>
+<p class="timeline-item">
+Afin de remplacer l’extraction du type de voie et la normalisation libpostal des noms de voie du référentiel, le programme de découpage en Python est développé. Celui-ci permet donc d’extraire le type de voie du nom de voie complet mais aussi de mettre de côté un potentiel complément d’adresse. Une normalisation y est également incluse de sorte à traiter les synonymes (“r” = “rue”, “st” = “saint”…) et appliquer des filtres (ponctuation, accents…). Cet algorithme est appliqué sur les adresses des sources mères de Gaïa, sur le champ nom de voie Majic et BAN, et sur les champs type de voie et nom de voie concaténés du RCA afin d’avoir le même découpage, peu importe la source.
+</p>
+<p class="timeline-date">
+DEBUT 2024
+</p>
+<p class="timeline-item">
+Il faut refaire le moteur ES. L’équipe repart alors de zéro. Il faut se former à ES. Le SSPLab s’est mobilisé pour faire un sprint, en mobilisant toutes les connaissances de l’Insee à ce sujet pour créer un nouveau moteur dans des délais courts. Des arbitrages ont dûs être faits pour réussir à respecter les deadlines. <br> Tout d’abord, le découpage champ à champ libpostal est retiré. Soit un autre outil le remplace, soit le découpage champ à champ en amont de la recherche ES est abandonné. Il a été envisagé de repartir de l’algorithme de découpage type de voie/nom de voie Python et l’améliorer pour pouvoir faire du découpage complet : numéro, indice de répétition, type de voie, nom de voie. Mais pour des raisons de temps limité, il a été décidé de faire des recherches ES sans découpage préalable, avec la chaîne adresse complète. <br> Pour les adresses Gaïa, le découpage champ à champ existe déjà, ça serait donc dommage de concaténer ces champs pour effectuer une recherche et perdre l’information initiale. Alors, l’idée de faire deux moteurs est apparue. Un moteur pour les utilisateurs avec un moteur <b>chaîne adresse complète</b>, car ceux-ci ne disposent pas de découpage d’adresse. Et un moteur interne à Gaïa pour les mises à jour du référentiel, prenant en compte le <b>découpage champ à champ</b>. En raison du manque de temps, cette idée est écartée : il est beaucoup moins complexe de développer un moteur. <br> Ainsi, le nouvel unique moteur Gaïa avec recherche sur la chaîne complète de l’adresse est né. <br> Pour trouver les paramétrages optimaux du moteur, des jeux de tests sont constitués, avec des couples chaînes d’adresses contenant des variations textuelles et depcom, et leur idGaiaAdresse attendu. Mais ces données de test comportent des erreurs car ils ont été créés via des appariements de bases de façon automatique sans contrôle manuel. Cela empêche une bonne évaluation du processus mais reste suffisant pour atteindre l’objectif durant le sprint.
+</p>
+</div>
+</div>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
