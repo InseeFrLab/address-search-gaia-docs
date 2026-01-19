@@ -3,6 +3,8 @@ format:
   html:
     header-includes: |
         <link rel="icon" type="image/png" sizes="32x32" href="../_extensions/InseeFrLab/onyxia/favicon-32x32.png">
+page-layout: full
+css: ../custom.css
 ---
 
 # Le référentiel Gaïa et l'utilité d'un moteur de recherche
