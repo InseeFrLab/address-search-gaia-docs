@@ -1,9 +1,8 @@
 ## Objectif
 
-Ensemble de données avec des champs textes
-→ Besoin de recherches textuelles rapides et efficaces
+Ensemble de données *texte* contenant des variations → Besoin de recherches textuelles [**rapides**]{.blue2} et [**efficaces**]{.green2}
 
-Solution : un moteur de recherche basé sur des index
+Solution : [**un moteur de recherche basé sur des index**]{.red2}
 
 ## C'est quoi concrètement ElasticSearch ?
 
@@ -13,4 +12,4 @@ Solution : un moteur de recherche basé sur des index
 
 - Utilisation en pratique avec [**Python**]{.green2} : packages *elasticsearch* et *elasticsearch-dsl*.
 
-- Mais également utilisable avec [**Java**]{.green2}.
+- Mais également utilisable avec [**Java**]{.blue2}.

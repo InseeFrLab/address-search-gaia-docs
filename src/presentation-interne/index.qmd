@@ -28,7 +28,7 @@ ascii: true
 
 2️⃣ Moteur de recherche - Théorie
 
-3️⃣ Moteur de recherche ElasticSearch - Pratique
+3️⃣ Moteur de recherche - Pratique
 
 
 # 1️⃣ Introduction
@@ -42,7 +42,7 @@ ascii: true
 
 **2️⃣ Moteur de recherche - Théorie**
 
-3️⃣ Moteur de recherche ElasticSearch - Pratique
+3️⃣ Moteur de recherche - Pratique
 
 
 # 2️⃣ Moteur de recherche - Théorie
@@ -56,9 +56,9 @@ ascii: true
 
 2️⃣ Moteur de recherche - Théorie
 
-**3️⃣ Moteur de recherche ElasticSearch - Pratique**
+**3️⃣ Moteur de recherche - Pratique**
 
 
-# 3️⃣ Moteur de recherche ElasticSearch - Pratique
+# 3️⃣ Moteur de recherche - Pratique
 
 {{< include sections/3-pratique-elastic.qmd >}}

@@ -354,7 +354,6 @@ Avec tous ces outils la, on peut faire une recherche !
 | Type de voie | Mot | ✅ | 5 |
 | Nom de voie | 3 à 5-grams | ❌ | 1 |
 
-*Ex boost 200 : "3 rue du genral de gaulle" ⊃ "du gen[**e**]{.red2}ral de gaulle"*
 
 ::: {.notes}
 - Requete gaia pour retrouver la voie.  
@@ -377,3 +376,11 @@ t = token, sous-chaîne *(un mot, un 3-grams...)*.
 ::: {.notes}
 - Formule mathématique du score pour retrouver la voie la plus pertiente dans Gaïa.  
 :::
+
+## Le tri
+
+Méthode de tri robuste afin de retourner le meilleur écho :  
+
+  1. Tri décroissant en fonction du [**score ES**]{.green2}
+  2. À score ES égal, privilégier la [**voie la plus courte textuellement**]{.blue2}
+  3. À longueur égale, privilégier la voie avec l'[**idGaiaVoie**]{.green2} le plus élevé

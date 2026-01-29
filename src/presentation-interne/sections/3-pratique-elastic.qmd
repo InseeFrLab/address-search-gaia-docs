@@ -6,7 +6,15 @@ Trois éléments clés d’un index Elasticsearch :
 - [**Settings**]{.green2} → décrivent comment les données sont traitées  
 - [**Mappings**]{.blue2} → décrivent ce que contiennent les données  
 
-Les mappings et les settings sont définis dans des fichiers JSON.
+Les mappings et les settings sont définis dans des **fichiers JSON**.
+
+---
+
+## Les settings
+
+- Les settings définissent la manière dont les textes sont : nettoyés et transformés → [**analyzers**]{.blue2}  
+
+- Dans les analyzers, il faut aussi décrire comment les textes sont : découpés en unités de recherche → [**tokenizers**]{.green2}
 
 ---
 
@@ -14,20 +22,20 @@ Les mappings et les settings sont définis dans des fichiers JSON.
 
 Les mappings décrivent :
 
-- la liste des variables
-- le type de chaque variable : texte, nombre, date, etc.
-- les traitements à appliquer à chaque variable
+- la liste des [**variables**]{.blue2}
+- le [**type**]{.green2} de chaque variable : texte, nombre, date, etc.
+- les [**traitements**]{.blue2} à appliquer à chaque variable
 
 Il est possible d’appliquer plusieurs traitements à une même variable et de différencier les traitements appliqués :
 
-- aux données recherchées
-- aux données indexées
+- aux données [**recherchées**]{.green2}
+- aux données [**indexées**]{.blue2}
 
 ---
 
 ## Exemple de mappings
 
-Variable : **nom de voie**
+Variable : [**nom de voie**]{.green2}
 
 | Traitement de la variable | Tokenizer | Données recherchées | Données indexées |
 |---------------------------|-----------|----------------------|-------------------|
@@ -39,12 +47,19 @@ Variable : **nom de voie**
 
 ---
 
-## Les settings
+## Les settings "voie" dans Gaïa
 
-Les settings définissent la manière dont les textes sont :
+```json
+{{< include data/settings-voie.json >}}
+```
 
-- nettoyés et transformés → **analyzers**  
-- découpés en unités de recherche → **tokenizers**
+---
+
+## Les mappings "voie" dans Gaïa
+
+```json
+{{< include data/mapping-voie.json >}}
+```
 
 ---
 
@@ -57,13 +72,87 @@ Les settings définissent la manière dont les textes sont :
 
 ---
 
-## Différences entre moteur Java et Python
+## La requête voie en pratique dans Gaïa
 
-- Les settings et mappings sont implémentés dans le code Java et servent à créer les index lors des déversements dans Elasticsearch
-- Une fois créés, les index sont interrogés via l’instance Elasticsearch de Gaïa
+```python
+adresse = "40 CD N18"
+cog = ["13032"]
+
+body = {
+    "query": {
+        "bool": {
+            "filter": [
+                {"terms": {"codeInsee": cog}}
+            ],
+            "should": [
+                {
+                    "multi_match": {
+                        "query": adresse,
+                        "fields": ['idTypeVoie^5', 'nomVoieNorm^15'],
+                        "type": "most_fields",
+                        "fuzziness": 1,
+                        "minimum_should_match": 1
+                    }
+                },
+                {
+                    "multi_match": {
+                        "query": adresse,
+                        "fields": ['nomVoieNorm.ngrams^1'],
+                        "type": "most_fields",
+                        "minimum_should_match": 1
+                    }
+                }
+            ],
+            "minimum_should_match": 1
+        }
+    },
+    "sort": [
+        {"_score": {"order": "desc"}},
+        {
+            "_script": {
+                "type": "number",
+                "script": {
+                    "source": "int length_nomVoie = (doc.containsKey('nomVoieNorm.keyword') && doc['nomVoieNorm.keyword'].size() > 0) ? doc['nomVoieNorm.keyword'].value.length() : 0; int length_idTypeVoie = (doc.containsKey('idTypeVoie.keyword') && doc['idTypeVoie.keyword'].size() > 0) ? doc['idTypeVoie.keyword'].value.length() : 0; return length_nomVoie + length_idTypeVoie;",
+                    "lang": "painless"
+                    },
+                "order": "asc"
+            }
+        },
+        {
+            "_script": {
+                "type": "string",
+                "script": {
+                    "source": "doc['idGaia'].value",
+                    "lang": "painless"
+                    },
+                "order": "asc"
+            }
+        }
+    ]
+}
+```
+
+À noter : Le tri est défini dans la requête.
+
+## Éléments communs entre moteur Java et Python
+
+- Les [**settings et mappings**]{.blue2} sont implémentés dans le code Java → servent à créer les index lors des déversements dans Elasticsearch
+- Donc les [**index**]{.green2} sont interrogeables avec Python et avec Java.
+- Via la même [**instance Elasticsearch**]{.blue2} de Gaïa
+
+## Différences entre moteur Java et Python - Les requêtes
+
 - Les requêtes sont écrites :
   - en Java d’un côté
   - en Python de l’autre  
-  et reposent sur les mêmes index
-- La différence provient donc de l’écriture des requêtes :  
-  choix des versions de variables, valeurs de boost, niveau de fuzziness, ordre des clauses, etc.
+et reposent sur les mêmes index
+
+👉 La différence provient donc de [**l’écriture des requêtes**]{.green2} :  
+choix des versions de variables, valeurs de boost, niveau de fuzziness, ordre des clauses, le package etc...
+
+## Différences entre moteur Java et Python - L'algorithme
+
+L'enchaînement des requêtes ES entre les deux moteurs :
+
+![](img/python_vs_java.png){width=75% fig-align="center"}
+

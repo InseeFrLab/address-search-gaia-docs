@@ -1,0 +1,74 @@
+{
+  "properties": {
+    "_class": {
+      "type": "keyword",
+      "index": "false",
+      "doc_values": "false"
+    },
+    "codeInsee": {
+      "type": "keyword",
+      "null_value": "00000"
+    },
+    "id": {
+      "type": "keyword"
+    },
+    "idGaia": {
+      "type": "keyword"
+    },
+    "idGaiaCommune": {
+      "type": "keyword"
+    },
+    "idRcaVoie": {
+      "type": "keyword"
+    },
+    "idSource": {
+      "type": "keyword"
+    },
+    "idTypeVoie": {
+      "type": "text",
+      "fields": {
+        "keyword": {
+          "type": "keyword",
+          "normalizer": "str_normalizer"
+        }
+      },
+      "analyzer": "custom_analyzer",
+      "search_analyzer": "custom_search_analyzer"
+    },
+    "nomCommune": {
+      "type": "text",
+      "analyzer": "custom_analyzer"
+    },
+    "nomVoie": {
+      "type": "text",
+      "fields": {
+        "keyword": {
+          "type": "keyword",
+          "normalizer": "str_normalizer"
+        }
+      },
+      "analyzer": "custom_analyzer",
+      "search_analyzer": "custom_search_analyzer"
+    },
+    "nomVoieNorm": {
+      "type": "text",
+      "fields": {
+        "keyword": {
+          "type": "keyword",
+          "normalizer": "str_normalizer"
+        },
+        "ngrams": {
+          "type": "text",
+          "analyzer": "ngrams_analyzer"
+        },
+        "notokenize": {
+          "type": "text",
+          "analyzer": "custom_analyzer_no_tokenize",
+          "search_analyzer": "custom_search_analyzer_no_tokenize"
+        }
+      },
+      "analyzer": "custom_analyzer",
+      "search_analyzer": "custom_search_analyzer"
+    }
+  }
+}
