@@ -27,6 +27,72 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="../../site_libs/revealjs/dist/theme/quarto-ea8535d309a38c52e88d69daf30b07d0.css">
   <link rel="stylesheet" href="../_extensions/InseeFrLab/onyxia/logo.css">
@@ -146,7 +212,7 @@
 <h1>Plan de la présentation</h1>
 <p>1️⃣ Contexte</p>
 <p>2️⃣ Moteur de recherche - Théorie</p>
-<p>3️⃣ Moteur de recherche ElasticSearch - Pratique</p>
+<p>3️⃣ Moteur de recherche - Pratique</p>
 </section>
 
 <section>
@@ -156,8 +222,8 @@
 </section>
 <section id="objectif" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Objectif</h2>
-<p>Ensemble de données avec des champs textes → Besoin de recherches textuelles rapides et efficaces</p>
-<p>Solution : un moteur de recherche basé sur des index</p>
+<p>Ensemble de données <em>texte</em> contenant des variations → Besoin de recherches textuelles <span class="blue2"><strong>rapides</strong></span> et <span class="green2"><strong>efficaces</strong></span></p>
+<p>Solution : <span class="red2"><strong>un moteur de recherche basé sur des index</strong></span></p>
 </section>
 <section id="cest-quoi-concrètement-elasticsearch" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>C’est quoi concrètement ElasticSearch ?</h2>
@@ -165,14 +231,14 @@
 <li><p><span class="blue2"><strong>ElasticSearch</strong></span> : logiciel pour l’indexation et la recherche de données.</p></li>
 <li><p>Fait pour chercher des mots-clés dans des textes.</p></li>
 <li><p>Utilisation en pratique avec <span class="green2"><strong>Python</strong></span> : packages <em>elasticsearch</em> et <em>elasticsearch-dsl</em>.</p></li>
-<li><p>Mais également utilisable avec <span class="green2"><strong>Java</strong></span>.</p></li>
+<li><p>Mais également utilisable avec <span class="blue2"><strong>Java</strong></span>.</p></li>
 </ul>
 </section></section>
 <section id="plan-de-la-présentation-1" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>
 <p>1️⃣ Contexte</p>
 <p><strong>2️⃣ Moteur de recherche - Théorie</strong></p>
-<p>3️⃣ Moteur de recherche ElasticSearch - Pratique</p>
+<p>3️⃣ Moteur de recherche - Pratique</p>
 </section>
 
 <section id="moteur-de-recherche---théorie" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
@@ -807,7 +873,6 @@ Le package elasticsearch permet d'indexer les donn&#xE9;es en fournissant :
 </tr>
 </tbody>
 </table>
-<p><em>Ex boost 200 : “3 rue du genral de gaulle” ⊃ “du gen<span class="red2"><strong>e</strong></span>ral de gaulle”</em></p>
 <aside class="notes">
 <ul>
 <li>Requete gaia pour retrouver la voie.<br>
@@ -857,17 +922,26 @@ t = token, sous-chaîne <em>(un mot, un 3-grams…)</em>.</p>
           overflow: hidden!important;
           display:block!important;
       }</style></aside>
+</section>
+<section id="le-tri" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Le tri</h2>
+<p>Méthode de tri robuste afin de retourner le meilleur écho :</p>
+<ol type="1">
+<li>Tri décroissant en fonction du <span class="green2"><strong>score ES</strong></span></li>
+<li>À score ES égal, privilégier la <span class="blue2"><strong>voie la plus courte textuellement</strong></span></li>
+<li>À longueur égale, privilégier la voie avec l’<span class="green2"><strong>idGaiaVoie</strong></span> le plus élevé</li>
+</ol>
 </section></section>
 <section id="plan-de-la-présentation-2" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
 <h1>Plan de la présentation</h1>
 <p>1️⃣ Contexte</p>
 <p>2️⃣ Moteur de recherche - Théorie</p>
-<p><strong>3️⃣ Moteur de recherche ElasticSearch - Pratique</strong></p>
+<p><strong>3️⃣ Moteur de recherche - Pratique</strong></p>
 </section>
 
 <section>
-<section id="moteur-de-recherche-elasticsearch---pratique" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
-<h1>3️⃣ Moteur de recherche ElasticSearch - Pratique</h1>
+<section id="moteur-de-recherche---pratique" class="title-slide slide level1 center" data-background-image="background.svg" data-background-size="contain">
+<h1>3️⃣ Moteur de recherche - Pratique</h1>
 
 </section>
 <section id="créer-des-index-elasticsearch" class="slide level2" data-background-image="background.svg" data-background-size="contain">
@@ -880,25 +954,32 @@ t = token, sous-chaîne <em>(un mot, un 3-grams…)</em>.</p>
 </li>
 <li><span class="blue2"><strong>Mappings</strong></span> → décrivent ce que contiennent les données</li>
 </ul>
-<p>Les mappings et les settings sont définis dans des fichiers JSON.</p>
+<p>Les mappings et les settings sont définis dans des <strong>fichiers JSON</strong>.</p>
+</section>
+<section id="les-settings" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Les settings</h2>
+<ul>
+<li><p>Les settings définissent la manière dont les textes sont : nettoyés et transformés → <span class="blue2"><strong>analyzers</strong></span></p></li>
+<li><p>Dans les analyzers, il faut aussi décrire comment les textes sont : découpés en unités de recherche → <span class="green2"><strong>tokenizers</strong></span></p></li>
+</ul>
 </section>
 <section id="les-mappings" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Les mappings</h2>
 <p>Les mappings décrivent :</p>
 <ul>
-<li>la liste des variables</li>
-<li>le type de chaque variable : texte, nombre, date, etc.</li>
-<li>les traitements à appliquer à chaque variable</li>
+<li>la liste des <span class="blue2"><strong>variables</strong></span></li>
+<li>le <span class="green2"><strong>type</strong></span> de chaque variable : texte, nombre, date, etc.</li>
+<li>les <span class="blue2"><strong>traitements</strong></span> à appliquer à chaque variable</li>
 </ul>
 <p>Il est possible d’appliquer plusieurs traitements à une même variable et de différencier les traitements appliqués :</p>
 <ul>
-<li>aux données recherchées</li>
-<li>aux données indexées</li>
+<li>aux données <span class="green2"><strong>recherchées</strong></span></li>
+<li>aux données <span class="blue2"><strong>indexées</strong></span></li>
 </ul>
 </section>
 <section id="exemple-de-mappings" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Exemple de mappings</h2>
-<p>Variable : <strong>nom de voie</strong></p>
+<p>Variable : <span class="green2"><strong>nom de voie</strong></span></p>
 <table class="caption-top">
 <colgroup>
 <col style="width: 34%">
@@ -937,14 +1018,874 @@ t = token, sous-chaîne <em>(un mot, un 3-grams…)</em>.</p>
 </table>
 <p>👉 Pour chaque type de traitement, un index spécifique est créé.</p>
 </section>
-<section id="les-settings" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Les settings</h2>
-<p>Les settings définissent la manière dont les textes sont :</p>
-<ul>
-<li>nettoyés et transformés → <strong>analyzers</strong><br>
-</li>
-<li>découpés en unités de recherche → <strong>tokenizers</strong></li>
-</ul>
+<section id="les-settings-voie-dans-gaïa" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Les settings “voie” dans Gaïa</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a></a><span class="fu">{</span></span>
+<span id="cb1-2"><a></a>  <span class="dt">"index"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-3"><a></a>    <span class="dt">"max_ngram_diff"</span><span class="fu">:</span> <span class="dv">3</span><span class="fu">,</span></span>
+<span id="cb1-4"><a></a>    <span class="dt">"routing"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-5"><a></a>      <span class="dt">"allocation"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-6"><a></a>        <span class="dt">"include"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-7"><a></a>          <span class="dt">"_tier_preference"</span><span class="fu">:</span> <span class="st">"data_content"</span></span>
+<span id="cb1-8"><a></a>        <span class="fu">}</span></span>
+<span id="cb1-9"><a></a>      <span class="fu">}</span></span>
+<span id="cb1-10"><a></a>    <span class="fu">},</span></span>
+<span id="cb1-11"><a></a>    <span class="dt">"number_of_shards"</span><span class="fu">:</span> <span class="st">"1"</span><span class="fu">,</span></span>
+<span id="cb1-12"><a></a>    <span class="dt">"similarity"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-13"><a></a>      <span class="dt">"default"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-14"><a></a>        <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"boolean"</span></span>
+<span id="cb1-15"><a></a>      <span class="fu">}</span></span>
+<span id="cb1-16"><a></a>    <span class="fu">},</span></span>
+<span id="cb1-17"><a></a>    <span class="dt">"analysis"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-18"><a></a>      <span class="dt">"filter"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-19"><a></a>        <span class="dt">"remove_extra_spaces_begin_end"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-20"><a></a>          <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"pattern_replace"</span><span class="fu">,</span></span>
+<span id="cb1-21"><a></a>          <span class="dt">"pattern"</span><span class="fu">:</span> <span class="st">"^</span><span class="ch">\\</span><span class="st">s+|</span><span class="ch">\\</span><span class="st">s+$"</span><span class="fu">,</span></span>
+<span id="cb1-22"><a></a>          <span class="dt">"replacement"</span><span class="fu">:</span> <span class="st">""</span></span>
+<span id="cb1-23"><a></a>        <span class="fu">},</span></span>
+<span id="cb1-24"><a></a>        <span class="dt">"remove_extra_spaces"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-25"><a></a>          <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"pattern_replace"</span><span class="fu">,</span></span>
+<span id="cb1-26"><a></a>          <span class="dt">"pattern"</span><span class="fu">:</span> <span class="st">"</span><span class="ch">\\</span><span class="st">s+"</span><span class="fu">,</span></span>
+<span id="cb1-27"><a></a>          <span class="dt">"replacement"</span><span class="fu">:</span> <span class="st">" "</span></span>
+<span id="cb1-28"><a></a>        <span class="fu">},</span></span>
+<span id="cb1-29"><a></a>        <span class="dt">"synonyms_type_voie"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-30"><a></a>          <span class="dt">"expand"</span><span class="fu">:</span> <span class="st">"true"</span><span class="fu">,</span></span>
+<span id="cb1-31"><a></a>          <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"synonym_graph"</span><span class="fu">,</span></span>
+<span id="cb1-32"><a></a>          <span class="dt">"lenient"</span><span class="fu">:</span> <span class="st">"true"</span><span class="fu">,</span></span>
+<span id="cb1-33"><a></a>          <span class="dt">"synonyms"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-34"><a></a>            <span class="st">"abbaye,abe"</span><span class="ot">,</span></span>
+<span id="cb1-35"><a></a>            <span class="st">"aerodrome,aer"</span><span class="ot">,</span></span>
+<span id="cb1-36"><a></a>            <span class="st">"aerogare,aerg"</span><span class="ot">,</span></span>
+<span id="cb1-37"><a></a>            <span class="st">"aeroport,aerp"</span><span class="ot">,</span></span>
+<span id="cb1-38"><a></a>            <span class="st">"agglomeration,agl"</span><span class="ot">,</span></span>
+<span id="cb1-39"><a></a>            <span class="st">"allee,all"</span><span class="ot">,</span></span>
+<span id="cb1-40"><a></a>            <span class="st">"ancien chemin,anc chem"</span><span class="ot">,</span></span>
+<span id="cb1-41"><a></a>            <span class="st">"ancien chemin,ach"</span><span class="ot">,</span></span>
+<span id="cb1-42"><a></a>            <span class="st">"ancien chemin,ancien chem"</span><span class="ot">,</span></span>
+<span id="cb1-43"><a></a>            <span class="st">"ancien chemin,anc chemin"</span><span class="ot">,</span></span>
+<span id="cb1-44"><a></a>            <span class="st">"ancienne place,apl"</span><span class="ot">,</span></span>
+<span id="cb1-45"><a></a>            <span class="st">"ancienne place,anc pl"</span><span class="ot">,</span></span>
+<span id="cb1-46"><a></a>            <span class="st">"ancienne route,anc rte"</span><span class="ot">,</span></span>
+<span id="cb1-47"><a></a>            <span class="st">"ancienne route,anc route"</span><span class="ot">,</span></span>
+<span id="cb1-48"><a></a>            <span class="st">"ancienne route,ancienne rte"</span><span class="ot">,</span></span>
+<span id="cb1-49"><a></a>            <span class="st">"ancienne route,art"</span><span class="ot">,</span></span>
+<span id="cb1-50"><a></a>            <span class="st">"ancienne rue,ar"</span><span class="ot">,</span></span>
+<span id="cb1-51"><a></a>            <span class="st">"ancienne voie,anv"</span><span class="ot">,</span></span>
+<span id="cb1-52"><a></a>            <span class="st">"ancienne voie,anc voie"</span><span class="ot">,</span></span>
+<span id="cb1-53"><a></a>            <span class="st">"angle,angl"</span><span class="ot">,</span></span>
+<span id="cb1-54"><a></a>            <span class="st">"autoroute,aut"</span><span class="ot">,</span></span>
+<span id="cb1-55"><a></a>            <span class="st">"avenue,ave"</span><span class="ot">,</span></span>
+<span id="cb1-56"><a></a>            <span class="st">"avenue,av"</span><span class="ot">,</span></span>
+<span id="cb1-57"><a></a>            <span class="st">"balcon,bal"</span><span class="ot">,</span></span>
+<span id="cb1-58"><a></a>            <span class="st">"barriere,bre"</span><span class="ot">,</span></span>
+<span id="cb1-59"><a></a>            <span class="st">"bas chemin,bch"</span><span class="ot">,</span></span>
+<span id="cb1-60"><a></a>            <span class="st">"bassin,bsn"</span><span class="ot">,</span></span>
+<span id="cb1-61"><a></a>            <span class="st">"bastide,bstd"</span><span class="ot">,</span></span>
+<span id="cb1-62"><a></a>            <span class="st">"berge,ber"</span><span class="ot">,</span></span>
+<span id="cb1-63"><a></a>            <span class="st">"boucle,bcle"</span><span class="ot">,</span></span>
+<span id="cb1-64"><a></a>            <span class="st">"boulevard,bd"</span><span class="ot">,</span></span>
+<span id="cb1-65"><a></a>            <span class="st">"bourg,brg"</span><span class="ot">,</span></span>
+<span id="cb1-66"><a></a>            <span class="st">"breche,brc"</span><span class="ot">,</span></span>
+<span id="cb1-67"><a></a>            <span class="st">"bretelle,brtl"</span><span class="ot">,</span></span>
+<span id="cb1-68"><a></a>            <span class="st">"calle,call"</span><span class="ot">,</span></span>
+<span id="cb1-69"><a></a>            <span class="st">"calle,callada"</span><span class="ot">,</span></span>
+<span id="cb1-70"><a></a>            <span class="st">"camin,cami"</span><span class="ot">,</span></span>
+<span id="cb1-71"><a></a>            <span class="st">"campagne,cgne"</span><span class="ot">,</span></span>
+<span id="cb1-72"><a></a>            <span class="st">"camping,cpg"</span><span class="ot">,</span></span>
+<span id="cb1-73"><a></a>            <span class="st">"canal,can"</span><span class="ot">,</span></span>
+<span id="cb1-74"><a></a>            <span class="st">"carre,carr"</span><span class="ot">,</span></span>
+<span id="cb1-75"><a></a>            <span class="st">"carreau,cau"</span><span class="ot">,</span></span>
+<span id="cb1-76"><a></a>            <span class="st">"carrefour,car"</span><span class="ot">,</span></span>
+<span id="cb1-77"><a></a>            <span class="st">"carriera,cae"</span><span class="ot">,</span></span>
+<span id="cb1-78"><a></a>            <span class="st">"carriere,care"</span><span class="ot">,</span></span>
+<span id="cb1-79"><a></a>            <span class="st">"caserne,casr"</span><span class="ot">,</span></span>
+<span id="cb1-80"><a></a>            <span class="st">"castel,cst"</span><span class="ot">,</span></span>
+<span id="cb1-81"><a></a>            <span class="st">"ceinture,cein"</span><span class="ot">,</span></span>
+<span id="cb1-82"><a></a>            <span class="st">"centre,ctre"</span><span class="ot">,</span></span>
+<span id="cb1-83"><a></a>            <span class="st">"centre commercial,ccal"</span><span class="ot">,</span></span>
+<span id="cb1-84"><a></a>            <span class="st">"centre commercial,ccial"</span><span class="ot">,</span></span>
+<span id="cb1-85"><a></a>            <span class="st">"chalet,chl"</span><span class="ot">,</span></span>
+<span id="cb1-86"><a></a>            <span class="st">"champ,chp"</span><span class="ot">,</span></span>
+<span id="cb1-87"><a></a>            <span class="st">"champ,champs"</span><span class="ot">,</span></span>
+<span id="cb1-88"><a></a>            <span class="st">"champ,chps"</span><span class="ot">,</span></span>
+<span id="cb1-89"><a></a>            <span class="st">"chapelle,chap"</span><span class="ot">,</span></span>
+<span id="cb1-90"><a></a>            <span class="st">"charmille,chi"</span><span class="ot">,</span></span>
+<span id="cb1-91"><a></a>            <span class="st">"chasse,cha"</span><span class="ot">,</span></span>
+<span id="cb1-92"><a></a>            <span class="st">"chateau,cht"</span><span class="ot">,</span></span>
+<span id="cb1-93"><a></a>            <span class="st">"chaussee,chs"</span><span class="ot">,</span></span>
+<span id="cb1-94"><a></a>            <span class="st">"chemin,che"</span><span class="ot">,</span></span>
+<span id="cb1-95"><a></a>            <span class="st">"chemin,cheminement"</span><span class="ot">,</span></span>
+<span id="cb1-96"><a></a>            <span class="st">"chemin communal,cc"</span><span class="ot">,</span></span>
+<span id="cb1-97"><a></a>            <span class="st">"chemin departemental,cd"</span><span class="ot">,</span></span>
+<span id="cb1-98"><a></a>            <span class="st">"chemin forestier,cf"</span><span class="ot">,</span></span>
+<span id="cb1-99"><a></a>            <span class="st">"chemin rural,cr"</span><span class="ot">,</span></span>
+<span id="cb1-100"><a></a>            <span class="st">"chemin rural,c r"</span><span class="ot">,</span></span>
+<span id="cb1-101"><a></a>            <span class="st">"chemin vicinal,chv"</span><span class="ot">,</span></span>
+<span id="cb1-102"><a></a>            <span class="st">"chemin,chem"</span><span class="ot">,</span></span>
+<span id="cb1-103"><a></a>            <span class="st">"clos,cls"</span><span class="ot">,</span></span>
+<span id="cb1-104"><a></a>            <span class="st">"contour,ctr"</span><span class="ot">,</span></span>
+<span id="cb1-105"><a></a>            <span class="st">"corniche,cor"</span><span class="ot">,</span></span>
+<span id="cb1-106"><a></a>            <span class="st">"coron,coro"</span><span class="ot">,</span></span>
+<span id="cb1-107"><a></a>            <span class="st">"cottage,cott"</span><span class="ot">,</span></span>
+<span id="cb1-108"><a></a>            <span class="st">"couloir,clr"</span><span class="ot">,</span></span>
+<span id="cb1-109"><a></a>            <span class="st">"cours,crs"</span><span class="ot">,</span></span>
+<span id="cb1-110"><a></a>            <span class="st">"coursive,cive"</span><span class="ot">,</span></span>
+<span id="cb1-111"><a></a>            <span class="st">"croix,crx"</span><span class="ot">,</span></span>
+<span id="cb1-112"><a></a>            <span class="st">"darse,darce"</span><span class="ot">,</span></span>
+<span id="cb1-113"><a></a>            <span class="st">"darse,dars"</span><span class="ot">,</span></span>
+<span id="cb1-114"><a></a>            <span class="st">"degre,deg"</span><span class="ot">,</span></span>
+<span id="cb1-115"><a></a>            <span class="st">"descente,dsc"</span><span class="ot">,</span></span>
+<span id="cb1-116"><a></a>            <span class="st">"deviation,devi"</span><span class="ot">,</span></span>
+<span id="cb1-117"><a></a>            <span class="st">"digue,dig"</span><span class="ot">,</span></span>
+<span id="cb1-118"><a></a>            <span class="st">"domaine,dom"</span><span class="ot">,</span></span>
+<span id="cb1-119"><a></a>            <span class="st">"draille,dra"</span><span class="ot">,</span></span>
+<span id="cb1-120"><a></a>            <span class="st">"ecart,eca"</span><span class="ot">,</span></span>
+<span id="cb1-121"><a></a>            <span class="st">"ecluse,ecl"</span><span class="ot">,</span></span>
+<span id="cb1-122"><a></a>            <span class="st">"eglise,egl"</span><span class="ot">,</span></span>
+<span id="cb1-123"><a></a>            <span class="st">"embranchement,embr"</span><span class="ot">,</span></span>
+<span id="cb1-124"><a></a>            <span class="st">"emplacement,emp"</span><span class="ot">,</span></span>
+<span id="cb1-125"><a></a>            <span class="st">"enclave,env"</span><span class="ot">,</span></span>
+<span id="cb1-126"><a></a>            <span class="st">"enclos,enc"</span><span class="ot">,</span></span>
+<span id="cb1-127"><a></a>            <span class="st">"escalier,esc"</span><span class="ot">,</span></span>
+<span id="cb1-128"><a></a>            <span class="st">"espace,espa"</span><span class="ot">,</span></span>
+<span id="cb1-129"><a></a>            <span class="st">"esplanade,esp"</span><span class="ot">,</span></span>
+<span id="cb1-130"><a></a>            <span class="st">"etang,etng"</span><span class="ot">,</span></span>
+<span id="cb1-131"><a></a>            <span class="st">"faubourg,fdg"</span><span class="ot">,</span></span>
+<span id="cb1-132"><a></a>            <span class="st">"faubourg,fg"</span><span class="ot">,</span></span>
+<span id="cb1-133"><a></a>            <span class="st">"ferme,frm"</span><span class="ot">,</span></span>
+<span id="cb1-134"><a></a>            <span class="st">"fond,fd"</span><span class="ot">,</span></span>
+<span id="cb1-135"><a></a>            <span class="st">"fontaine,fon"</span><span class="ot">,</span></span>
+<span id="cb1-136"><a></a>            <span class="st">"foret,for"</span><span class="ot">,</span></span>
+<span id="cb1-137"><a></a>            <span class="st">"forum,form"</span><span class="ot">,</span></span>
+<span id="cb1-138"><a></a>            <span class="st">"fosse,fos"</span><span class="ot">,</span></span>
+<span id="cb1-139"><a></a>            <span class="st">"galerie,gal"</span><span class="ot">,</span></span>
+<span id="cb1-140"><a></a>            <span class="st">"grand boulevard,gbd"</span><span class="ot">,</span></span>
+<span id="cb1-141"><a></a>            <span class="st">"grand clos,grc"</span><span class="ot">,</span></span>
+<span id="cb1-142"><a></a>            <span class="st">"grand place,gde pce"</span><span class="ot">,</span></span>
+<span id="cb1-143"><a></a>            <span class="st">"grand place,gpl"</span><span class="ot">,</span></span>
+<span id="cb1-144"><a></a>            <span class="st">"grand place,grande place"</span><span class="ot">,</span></span>
+<span id="cb1-145"><a></a>            <span class="st">"grande allee,gde allee"</span><span class="ot">,</span></span>
+<span id="cb1-146"><a></a>            <span class="st">"grande allee,gra"</span><span class="ot">,</span></span>
+<span id="cb1-147"><a></a>            <span class="st">"grande avenue,gav"</span><span class="ot">,</span></span>
+<span id="cb1-148"><a></a>            <span class="st">"grande avenue,gde av"</span><span class="ot">,</span></span>
+<span id="cb1-149"><a></a>            <span class="st">"grande rue,grand rue"</span><span class="ot">,</span></span>
+<span id="cb1-150"><a></a>            <span class="st">"grande rue,gr"</span><span class="ot">,</span></span>
+<span id="cb1-151"><a></a>            <span class="st">"grande rue,gde rue"</span><span class="ot">,</span></span>
+<span id="cb1-152"><a></a>            <span class="st">"grande rue,gr rue"</span><span class="ot">,</span></span>
+<span id="cb1-153"><a></a>            <span class="st">"greve,grev"</span><span class="ot">,</span></span>
+<span id="cb1-154"><a></a>            <span class="st">"grille,gri"</span><span class="ot">,</span></span>
+<span id="cb1-155"><a></a>            <span class="st">"groupe,gpe"</span><span class="ot">,</span></span>
+<span id="cb1-156"><a></a>            <span class="st">"groupement,gpt"</span><span class="ot">,</span></span>
+<span id="cb1-157"><a></a>            <span class="st">"habitation,hab"</span><span class="ot">,</span></span>
+<span id="cb1-158"><a></a>            <span class="st">"halage,hlg"</span><span class="ot">,</span></span>
+<span id="cb1-159"><a></a>            <span class="st">"halle,hle"</span><span class="ot">,</span></span>
+<span id="cb1-160"><a></a>            <span class="st">"hameau,ham"</span><span class="ot">,</span></span>
+<span id="cb1-161"><a></a>            <span class="st">"haut chemin,hch"</span><span class="ot">,</span></span>
+<span id="cb1-162"><a></a>            <span class="st">"hauteur,htr"</span><span class="ot">,</span></span>
+<span id="cb1-163"><a></a>            <span class="st">"hippodrome,hip"</span><span class="ot">,</span></span>
+<span id="cb1-164"><a></a>            <span class="st">"hlm,habitation a loyer modere"</span><span class="ot">,</span></span>
+<span id="cb1-165"><a></a>            <span class="st">"hotel,hot"</span><span class="ot">,</span></span>
+<span id="cb1-166"><a></a>            <span class="st">"ilot,ilo"</span><span class="ot">,</span></span>
+<span id="cb1-167"><a></a>            <span class="st">"impasse,imp"</span><span class="ot">,</span></span>
+<span id="cb1-168"><a></a>            <span class="st">"jardin,jard"</span><span class="ot">,</span></span>
+<span id="cb1-169"><a></a>            <span class="st">"jetee,jte"</span><span class="ot">,</span></span>
+<span id="cb1-170"><a></a>            <span class="st">"levee,leve"</span><span class="ot">,</span></span>
+<span id="cb1-171"><a></a>            <span class="st">"lices,lice"</span><span class="ot">,</span></span>
+<span id="cb1-172"><a></a>            <span class="st">"lieu dit,lieudit"</span><span class="ot">,</span></span>
+<span id="cb1-173"><a></a>            <span class="st">"lieu dit,ldt"</span><span class="ot">,</span></span>
+<span id="cb1-174"><a></a>            <span class="st">"lieu dit,ld"</span><span class="ot">,</span></span>
+<span id="cb1-175"><a></a>            <span class="st">"ligne,lign"</span><span class="ot">,</span></span>
+<span id="cb1-176"><a></a>            <span class="st">"lotissement,lot"</span><span class="ot">,</span></span>
+<span id="cb1-177"><a></a>            <span class="st">"maison,mais"</span><span class="ot">,</span></span>
+<span id="cb1-178"><a></a>            <span class="st">"marche,mar"</span><span class="ot">,</span></span>
+<span id="cb1-179"><a></a>            <span class="st">"marina,mrn"</span><span class="ot">,</span></span>
+<span id="cb1-180"><a></a>            <span class="st">"montee,mte"</span><span class="ot">,</span></span>
+<span id="cb1-181"><a></a>            <span class="st">"morne,mne"</span><span class="ot">,</span></span>
+<span id="cb1-182"><a></a>            <span class="st">"moulin,mln"</span><span class="ot">,</span></span>
+<span id="cb1-183"><a></a>            <span class="st">"moulin,moul"</span><span class="ot">,</span></span>
+<span id="cb1-184"><a></a>            <span class="st">"musee,mus"</span><span class="ot">,</span></span>
+<span id="cb1-185"><a></a>            <span class="st">"nouvelle route,nte"</span><span class="ot">,</span></span>
+<span id="cb1-186"><a></a>            <span class="st">"palais,pal"</span><span class="ot">,</span></span>
+<span id="cb1-187"><a></a>            <span class="st">"parc d activites economiques,paec"</span><span class="ot">,</span></span>
+<span id="cb1-188"><a></a>            <span class="st">"parking,pkg"</span><span class="ot">,</span></span>
+<span id="cb1-189"><a></a>            <span class="st">"parvis,prv"</span><span class="ot">,</span></span>
+<span id="cb1-190"><a></a>            <span class="st">"passage,pas"</span><span class="ot">,</span></span>
+<span id="cb1-191"><a></a>            <span class="st">"passage a niveau,pn"</span><span class="ot">,</span></span>
+<span id="cb1-192"><a></a>            <span class="st">"passe,pass"</span><span class="ot">,</span></span>
+<span id="cb1-193"><a></a>            <span class="st">"passerelle,ple"</span><span class="ot">,</span></span>
+<span id="cb1-194"><a></a>            <span class="st">"patio,pat"</span><span class="ot">,</span></span>
+<span id="cb1-195"><a></a>            <span class="st">"petit chemin,pch"</span><span class="ot">,</span></span>
+<span id="cb1-196"><a></a>            <span class="st">"petit chemin,pt chem"</span><span class="ot">,</span></span>
+<span id="cb1-197"><a></a>            <span class="st">"petit sentier,pts"</span><span class="ot">,</span></span>
+<span id="cb1-198"><a></a>            <span class="st">"petite allee,pta"</span><span class="ot">,</span></span>
+<span id="cb1-199"><a></a>            <span class="st">"petite avenue,pae"</span><span class="ot">,</span></span>
+<span id="cb1-200"><a></a>            <span class="st">"petite impasse,pim"</span><span class="ot">,</span></span>
+<span id="cb1-201"><a></a>            <span class="st">"petite route,prt"</span><span class="ot">,</span></span>
+<span id="cb1-202"><a></a>            <span class="st">"petite rue,ptr"</span><span class="ot">,</span></span>
+<span id="cb1-203"><a></a>            <span class="st">"petite rue,pte rue"</span><span class="ot">,</span></span>
+<span id="cb1-204"><a></a>            <span class="st">"petite rue,pr"</span><span class="ot">,</span></span>
+<span id="cb1-205"><a></a>            <span class="st">"phare,phar"</span><span class="ot">,</span></span>
+<span id="cb1-206"><a></a>            <span class="st">"piste,pist"</span><span class="ot">,</span></span>
+<span id="cb1-207"><a></a>            <span class="st">"placa,pla"</span><span class="ot">,</span></span>
+<span id="cb1-208"><a></a>            <span class="st">"place,pl"</span><span class="ot">,</span></span>
+<span id="cb1-209"><a></a>            <span class="st">"placette,ptte"</span><span class="ot">,</span></span>
+<span id="cb1-210"><a></a>            <span class="st">"placis,plci"</span><span class="ot">,</span></span>
+<span id="cb1-211"><a></a>            <span class="st">"plage,plag"</span><span class="ot">,</span></span>
+<span id="cb1-212"><a></a>            <span class="st">"plaine,pln"</span><span class="ot">,</span></span>
+<span id="cb1-213"><a></a>            <span class="st">"plateau,plt"</span><span class="ot">,</span></span>
+<span id="cb1-214"><a></a>            <span class="st">"pointe,pnt"</span><span class="ot">,</span></span>
+<span id="cb1-215"><a></a>            <span class="st">"porche,pche"</span><span class="ot">,</span></span>
+<span id="cb1-216"><a></a>            <span class="st">"porte,pte"</span><span class="ot">,</span></span>
+<span id="cb1-217"><a></a>            <span class="st">"portique,porq"</span><span class="ot">,</span></span>
+<span id="cb1-218"><a></a>            <span class="st">"poste,post"</span><span class="ot">,</span></span>
+<span id="cb1-219"><a></a>            <span class="st">"poterne,pot"</span><span class="ot">,</span></span>
+<span id="cb1-220"><a></a>            <span class="st">"presqu ile,prq"</span><span class="ot">,</span></span>
+<span id="cb1-221"><a></a>            <span class="st">"promenade,prom"</span><span class="ot">,</span></span>
+<span id="cb1-222"><a></a>            <span class="st">"quai,qu"</span><span class="ot">,</span></span>
+<span id="cb1-223"><a></a>            <span class="st">"quartier,qua"</span><span class="ot">,</span></span>
+<span id="cb1-224"><a></a>            <span class="st">"quartier,qrt"</span><span class="ot">,</span></span>
+<span id="cb1-225"><a></a>            <span class="st">"raccourci,rac"</span><span class="ot">,</span></span>
+<span id="cb1-226"><a></a>            <span class="st">"raidillon,raid"</span><span class="ot">,</span></span>
+<span id="cb1-227"><a></a>            <span class="st">"rampe,rpe"</span><span class="ot">,</span></span>
+<span id="cb1-228"><a></a>            <span class="st">"rangee,rng"</span><span class="ot">,</span></span>
+<span id="cb1-229"><a></a>            <span class="st">"ravine,rve"</span><span class="ot">,</span></span>
+<span id="cb1-230"><a></a>            <span class="st">"rempart,rem"</span><span class="ot">,</span></span>
+<span id="cb1-231"><a></a>            <span class="st">"residence,res"</span><span class="ot">,</span></span>
+<span id="cb1-232"><a></a>            <span class="st">"rocade,roc"</span><span class="ot">,</span></span>
+<span id="cb1-233"><a></a>            <span class="st">"rond point,rpt"</span><span class="ot">,</span></span>
+<span id="cb1-234"><a></a>            <span class="st">"ronde,rde"</span><span class="ot">,</span></span>
+<span id="cb1-235"><a></a>            <span class="st">"rotonde,rtd"</span><span class="ot">,</span></span>
+<span id="cb1-236"><a></a>            <span class="st">"route,rte"</span><span class="ot">,</span></span>
+<span id="cb1-237"><a></a>            <span class="st">"route departementale,rte departementale"</span><span class="ot">,</span></span>
+<span id="cb1-238"><a></a>            <span class="st">"route departementale,rd"</span><span class="ot">,</span></span>
+<span id="cb1-239"><a></a>            <span class="st">"route nationale,rn"</span><span class="ot">,</span></span>
+<span id="cb1-240"><a></a>            <span class="st">"route nationale,rte nationale"</span><span class="ot">,</span></span>
+<span id="cb1-241"><a></a>            <span class="st">"rue,r"</span><span class="ot">,</span></span>
+<span id="cb1-242"><a></a>            <span class="st">"ruelle,rle"</span><span class="ot">,</span></span>
+<span id="cb1-243"><a></a>            <span class="st">"ruellette,rult"</span><span class="ot">,</span></span>
+<span id="cb1-244"><a></a>            <span class="st">"ruette,ruet"</span><span class="ot">,</span></span>
+<span id="cb1-245"><a></a>            <span class="st">"ruisseau,ruis"</span><span class="ot">,</span></span>
+<span id="cb1-246"><a></a>            <span class="st">"sentier,sente"</span><span class="ot">,</span></span>
+<span id="cb1-247"><a></a>            <span class="st">"sentier,sen"</span><span class="ot">,</span></span>
+<span id="cb1-248"><a></a>            <span class="st">"square,sq"</span><span class="ot">,</span></span>
+<span id="cb1-249"><a></a>            <span class="st">"stade,stde"</span><span class="ot">,</span></span>
+<span id="cb1-250"><a></a>            <span class="st">"station,sta"</span><span class="ot">,</span></span>
+<span id="cb1-251"><a></a>            <span class="st">"terrain,trn"</span><span class="ot">,</span></span>
+<span id="cb1-252"><a></a>            <span class="st">"terrasse,tsse"</span><span class="ot">,</span></span>
+<span id="cb1-253"><a></a>            <span class="st">"terre,ter"</span><span class="ot">,</span></span>
+<span id="cb1-254"><a></a>            <span class="st">"terre plein,tpl"</span><span class="ot">,</span></span>
+<span id="cb1-255"><a></a>            <span class="st">"tertre,trt"</span><span class="ot">,</span></span>
+<span id="cb1-256"><a></a>            <span class="st">"traboule,trab"</span><span class="ot">,</span></span>
+<span id="cb1-257"><a></a>            <span class="st">"traverse,tra"</span><span class="ot">,</span></span>
+<span id="cb1-258"><a></a>            <span class="st">"tunnel,tun"</span><span class="ot">,</span></span>
+<span id="cb1-259"><a></a>            <span class="st">"vallee,vallon"</span><span class="ot">,</span></span>
+<span id="cb1-260"><a></a>            <span class="st">"vallee,vall"</span><span class="ot">,</span></span>
+<span id="cb1-261"><a></a>            <span class="st">"vallee,val"</span><span class="ot">,</span></span>
+<span id="cb1-262"><a></a>            <span class="st">"venelle,ven"</span><span class="ot">,</span></span>
+<span id="cb1-263"><a></a>            <span class="st">"viaduc,viad"</span><span class="ot">,</span></span>
+<span id="cb1-264"><a></a>            <span class="st">"vieille route,vte"</span><span class="ot">,</span></span>
+<span id="cb1-265"><a></a>            <span class="st">"vieille rue,vr"</span><span class="ot">,</span></span>
+<span id="cb1-266"><a></a>            <span class="st">"vieux chemin,vx chemin"</span><span class="ot">,</span></span>
+<span id="cb1-267"><a></a>            <span class="st">"vieux chemin,vche"</span><span class="ot">,</span></span>
+<span id="cb1-268"><a></a>            <span class="st">"vieux chemin,vx chem"</span><span class="ot">,</span></span>
+<span id="cb1-269"><a></a>            <span class="st">"vieux chemin,vx che"</span><span class="ot">,</span></span>
+<span id="cb1-270"><a></a>            <span class="st">"villa,vla"</span><span class="ot">,</span></span>
+<span id="cb1-271"><a></a>            <span class="st">"village,vlg"</span><span class="ot">,</span></span>
+<span id="cb1-272"><a></a>            <span class="st">"village,vlge"</span><span class="ot">,</span></span>
+<span id="cb1-273"><a></a>            <span class="st">"village,villag"</span><span class="ot">,</span></span>
+<span id="cb1-274"><a></a>            <span class="st">"village,vge"</span><span class="ot">,</span></span>
+<span id="cb1-275"><a></a>            <span class="st">"ville,vil"</span><span class="ot">,</span></span>
+<span id="cb1-276"><a></a>            <span class="st">"voie,voi"</span><span class="ot">,</span></span>
+<span id="cb1-277"><a></a>            <span class="st">"voie communale,vc"</span><span class="ot">,</span></span>
+<span id="cb1-278"><a></a>            <span class="st">"voirie,voir"</span><span class="ot">,</span></span>
+<span id="cb1-279"><a></a>            <span class="st">"voute,vout"</span><span class="ot">,</span></span>
+<span id="cb1-280"><a></a>            <span class="st">"voyeul,voy"</span><span class="ot">,</span></span>
+<span id="cb1-281"><a></a>            <span class="st">"zone a urbaniser en priorite,zup"</span><span class="ot">,</span></span>
+<span id="cb1-282"><a></a>            <span class="st">"zone artisanale,zar"</span><span class="ot">,</span></span>
+<span id="cb1-283"><a></a>            <span class="st">"zone d activites,zone activites"</span><span class="ot">,</span></span>
+<span id="cb1-284"><a></a>            <span class="st">"zone d activites,parc d activites"</span><span class="ot">,</span></span>
+<span id="cb1-285"><a></a>            <span class="st">"zone d activites,za"</span><span class="ot">,</span></span>
+<span id="cb1-286"><a></a>            <span class="st">"zone d activites economiques,zae"</span><span class="ot">,</span></span>
+<span id="cb1-287"><a></a>            <span class="st">"zone d amenagement concerte,zac"</span><span class="ot">,</span></span>
+<span id="cb1-288"><a></a>            <span class="st">"zone d amenagement concerte,zone amenagement concerte"</span><span class="ot">,</span></span>
+<span id="cb1-289"><a></a>            <span class="st">"zone d amenagement concerte,zone damenagement concrete"</span><span class="ot">,</span></span>
+<span id="cb1-290"><a></a>            <span class="st">"zone d amenagement differe,zone damenagement differe"</span><span class="ot">,</span></span>
+<span id="cb1-291"><a></a>            <span class="st">"zone d amenagement differe,zone amenagement differe"</span><span class="ot">,</span></span>
+<span id="cb1-292"><a></a>            <span class="st">"zone d amenagement differe,zad"</span><span class="ot">,</span></span>
+<span id="cb1-293"><a></a>            <span class="st">"zone industrielle,zi"</span></span>
+<span id="cb1-294"><a></a>          <span class="ot">]</span></span>
+<span id="cb1-295"><a></a>        <span class="fu">},</span></span>
+<span id="cb1-296"><a></a>        <span class="dt">"synonyms_type_voie_no_expand"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-297"><a></a>          <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"synonym"</span><span class="fu">,</span></span>
+<span id="cb1-298"><a></a>          <span class="dt">"synonyms"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-299"><a></a>            <span class="st">"abe =&gt; abbaye"</span><span class="ot">,</span></span>
+<span id="cb1-300"><a></a>            <span class="st">"aer =&gt; aerodrome"</span><span class="ot">,</span></span>
+<span id="cb1-301"><a></a>            <span class="st">"aerg =&gt; aerogare"</span><span class="ot">,</span></span>
+<span id="cb1-302"><a></a>            <span class="st">"aerp =&gt; aeroport"</span><span class="ot">,</span></span>
+<span id="cb1-303"><a></a>            <span class="st">"agl =&gt; agglomeration"</span><span class="ot">,</span></span>
+<span id="cb1-304"><a></a>            <span class="st">"all =&gt; allee"</span><span class="ot">,</span></span>
+<span id="cb1-305"><a></a>            <span class="st">"anc chem =&gt; ancien chemin"</span><span class="ot">,</span></span>
+<span id="cb1-306"><a></a>            <span class="st">"ach =&gt; ancien chemin"</span><span class="ot">,</span></span>
+<span id="cb1-307"><a></a>            <span class="st">"ancien chem =&gt; ancien chemin"</span><span class="ot">,</span></span>
+<span id="cb1-308"><a></a>            <span class="st">"anc chemin =&gt; ancien chemin"</span><span class="ot">,</span></span>
+<span id="cb1-309"><a></a>            <span class="st">"apl =&gt; ancienne place"</span><span class="ot">,</span></span>
+<span id="cb1-310"><a></a>            <span class="st">"anc pl =&gt; ancienne place"</span><span class="ot">,</span></span>
+<span id="cb1-311"><a></a>            <span class="st">"anc rte =&gt; ancienne route"</span><span class="ot">,</span></span>
+<span id="cb1-312"><a></a>            <span class="st">"anc route =&gt; ancienne route"</span><span class="ot">,</span></span>
+<span id="cb1-313"><a></a>            <span class="st">"ancienne rte =&gt; ancienne route"</span><span class="ot">,</span></span>
+<span id="cb1-314"><a></a>            <span class="st">"art =&gt; ancienne route"</span><span class="ot">,</span></span>
+<span id="cb1-315"><a></a>            <span class="st">"ar =&gt; ancienne rue"</span><span class="ot">,</span></span>
+<span id="cb1-316"><a></a>            <span class="st">"anv =&gt; ancienne voie"</span><span class="ot">,</span></span>
+<span id="cb1-317"><a></a>            <span class="st">"anc voie =&gt; ancienne voie"</span><span class="ot">,</span></span>
+<span id="cb1-318"><a></a>            <span class="st">"angl =&gt; angle"</span><span class="ot">,</span></span>
+<span id="cb1-319"><a></a>            <span class="st">"aut =&gt; autoroute"</span><span class="ot">,</span></span>
+<span id="cb1-320"><a></a>            <span class="st">"ave =&gt; avenue"</span><span class="ot">,</span></span>
+<span id="cb1-321"><a></a>            <span class="st">"av =&gt; avenue"</span><span class="ot">,</span></span>
+<span id="cb1-322"><a></a>            <span class="st">"bal =&gt; balcon"</span><span class="ot">,</span></span>
+<span id="cb1-323"><a></a>            <span class="st">"bre =&gt; barriere"</span><span class="ot">,</span></span>
+<span id="cb1-324"><a></a>            <span class="st">"bch =&gt; bas chemin"</span><span class="ot">,</span></span>
+<span id="cb1-325"><a></a>            <span class="st">"bsn =&gt; bassin"</span><span class="ot">,</span></span>
+<span id="cb1-326"><a></a>            <span class="st">"bstd =&gt; bastide"</span><span class="ot">,</span></span>
+<span id="cb1-327"><a></a>            <span class="st">"ber =&gt; berge"</span><span class="ot">,</span></span>
+<span id="cb1-328"><a></a>            <span class="st">"bcle =&gt; boucle"</span><span class="ot">,</span></span>
+<span id="cb1-329"><a></a>            <span class="st">"bd =&gt; boulevard"</span><span class="ot">,</span></span>
+<span id="cb1-330"><a></a>            <span class="st">"brg =&gt; bourg"</span><span class="ot">,</span></span>
+<span id="cb1-331"><a></a>            <span class="st">"brc =&gt; breche"</span><span class="ot">,</span></span>
+<span id="cb1-332"><a></a>            <span class="st">"brtl =&gt; bretelle"</span><span class="ot">,</span></span>
+<span id="cb1-333"><a></a>            <span class="st">"call =&gt; calle"</span><span class="ot">,</span></span>
+<span id="cb1-334"><a></a>            <span class="st">"callada =&gt; calle"</span><span class="ot">,</span></span>
+<span id="cb1-335"><a></a>            <span class="st">"cami =&gt; camin"</span><span class="ot">,</span></span>
+<span id="cb1-336"><a></a>            <span class="st">"cgne =&gt; campagne"</span><span class="ot">,</span></span>
+<span id="cb1-337"><a></a>            <span class="st">"cpg =&gt; camping"</span><span class="ot">,</span></span>
+<span id="cb1-338"><a></a>            <span class="st">"can =&gt; canal"</span><span class="ot">,</span></span>
+<span id="cb1-339"><a></a>            <span class="st">"carr =&gt; carre"</span><span class="ot">,</span></span>
+<span id="cb1-340"><a></a>            <span class="st">"cau =&gt; carreau"</span><span class="ot">,</span></span>
+<span id="cb1-341"><a></a>            <span class="st">"car =&gt; carrefour"</span><span class="ot">,</span></span>
+<span id="cb1-342"><a></a>            <span class="st">"cae =&gt; carriera"</span><span class="ot">,</span></span>
+<span id="cb1-343"><a></a>            <span class="st">"care =&gt; carriere"</span><span class="ot">,</span></span>
+<span id="cb1-344"><a></a>            <span class="st">"casr =&gt; caserne"</span><span class="ot">,</span></span>
+<span id="cb1-345"><a></a>            <span class="st">"cst =&gt; castel"</span><span class="ot">,</span></span>
+<span id="cb1-346"><a></a>            <span class="st">"cein =&gt; ceinture"</span><span class="ot">,</span></span>
+<span id="cb1-347"><a></a>            <span class="st">"ctre =&gt; centre"</span><span class="ot">,</span></span>
+<span id="cb1-348"><a></a>            <span class="st">"ccal =&gt; centre commercial"</span><span class="ot">,</span></span>
+<span id="cb1-349"><a></a>            <span class="st">"ccial =&gt; centre commercial"</span><span class="ot">,</span></span>
+<span id="cb1-350"><a></a>            <span class="st">"chl =&gt; chalet"</span><span class="ot">,</span></span>
+<span id="cb1-351"><a></a>            <span class="st">"chp =&gt; champ"</span><span class="ot">,</span></span>
+<span id="cb1-352"><a></a>            <span class="st">"champs =&gt; champ"</span><span class="ot">,</span></span>
+<span id="cb1-353"><a></a>            <span class="st">"chps =&gt; champ"</span><span class="ot">,</span></span>
+<span id="cb1-354"><a></a>            <span class="st">"chap =&gt; chapelle"</span><span class="ot">,</span></span>
+<span id="cb1-355"><a></a>            <span class="st">"chi =&gt; charmille"</span><span class="ot">,</span></span>
+<span id="cb1-356"><a></a>            <span class="st">"cha =&gt; chasse"</span><span class="ot">,</span></span>
+<span id="cb1-357"><a></a>            <span class="st">"cht =&gt; chateau"</span><span class="ot">,</span></span>
+<span id="cb1-358"><a></a>            <span class="st">"chs =&gt; chaussee"</span><span class="ot">,</span></span>
+<span id="cb1-359"><a></a>            <span class="st">"che =&gt; chemin"</span><span class="ot">,</span></span>
+<span id="cb1-360"><a></a>            <span class="st">"cheminement =&gt; chemin"</span><span class="ot">,</span></span>
+<span id="cb1-361"><a></a>            <span class="st">"cc =&gt; chemin communal"</span><span class="ot">,</span></span>
+<span id="cb1-362"><a></a>            <span class="st">"cd =&gt; chemin departemental"</span><span class="ot">,</span></span>
+<span id="cb1-363"><a></a>            <span class="st">"cf =&gt; chemin forestier"</span><span class="ot">,</span></span>
+<span id="cb1-364"><a></a>            <span class="st">"cr =&gt; chemin rural"</span><span class="ot">,</span></span>
+<span id="cb1-365"><a></a>            <span class="st">"c r =&gt; chemin rural"</span><span class="ot">,</span></span>
+<span id="cb1-366"><a></a>            <span class="st">"chv =&gt; chemin vicinal"</span><span class="ot">,</span></span>
+<span id="cb1-367"><a></a>            <span class="st">"chem =&gt; chemin"</span><span class="ot">,</span></span>
+<span id="cb1-368"><a></a>            <span class="st">"cls =&gt; clos"</span><span class="ot">,</span></span>
+<span id="cb1-369"><a></a>            <span class="st">"ctr =&gt; contour"</span><span class="ot">,</span></span>
+<span id="cb1-370"><a></a>            <span class="st">"cor =&gt; corniche"</span><span class="ot">,</span></span>
+<span id="cb1-371"><a></a>            <span class="st">"coro =&gt; coron"</span><span class="ot">,</span></span>
+<span id="cb1-372"><a></a>            <span class="st">"cott =&gt; cottage"</span><span class="ot">,</span></span>
+<span id="cb1-373"><a></a>            <span class="st">"clr =&gt; couloir"</span><span class="ot">,</span></span>
+<span id="cb1-374"><a></a>            <span class="st">"crs =&gt; cours"</span><span class="ot">,</span></span>
+<span id="cb1-375"><a></a>            <span class="st">"cive =&gt; coursive"</span><span class="ot">,</span></span>
+<span id="cb1-376"><a></a>            <span class="st">"crx =&gt; croix"</span><span class="ot">,</span></span>
+<span id="cb1-377"><a></a>            <span class="st">"darce =&gt; darse"</span><span class="ot">,</span></span>
+<span id="cb1-378"><a></a>            <span class="st">"dars =&gt; darse"</span><span class="ot">,</span></span>
+<span id="cb1-379"><a></a>            <span class="st">"deg =&gt; degre"</span><span class="ot">,</span></span>
+<span id="cb1-380"><a></a>            <span class="st">"dsc =&gt; descente"</span><span class="ot">,</span></span>
+<span id="cb1-381"><a></a>            <span class="st">"devi =&gt; deviation"</span><span class="ot">,</span></span>
+<span id="cb1-382"><a></a>            <span class="st">"dig =&gt; digue"</span><span class="ot">,</span></span>
+<span id="cb1-383"><a></a>            <span class="st">"dom =&gt; domaine"</span><span class="ot">,</span></span>
+<span id="cb1-384"><a></a>            <span class="st">"dra =&gt; draille"</span><span class="ot">,</span></span>
+<span id="cb1-385"><a></a>            <span class="st">"eca =&gt; ecart"</span><span class="ot">,</span></span>
+<span id="cb1-386"><a></a>            <span class="st">"ecl =&gt; ecluse"</span><span class="ot">,</span></span>
+<span id="cb1-387"><a></a>            <span class="st">"egl =&gt; eglise"</span><span class="ot">,</span></span>
+<span id="cb1-388"><a></a>            <span class="st">"embr =&gt; embranchement"</span><span class="ot">,</span></span>
+<span id="cb1-389"><a></a>            <span class="st">"emp =&gt; emplacement"</span><span class="ot">,</span></span>
+<span id="cb1-390"><a></a>            <span class="st">"env =&gt; enclave"</span><span class="ot">,</span></span>
+<span id="cb1-391"><a></a>            <span class="st">"enc =&gt; enclos"</span><span class="ot">,</span></span>
+<span id="cb1-392"><a></a>            <span class="st">"esc =&gt; escalier"</span><span class="ot">,</span></span>
+<span id="cb1-393"><a></a>            <span class="st">"espa =&gt; espace"</span><span class="ot">,</span></span>
+<span id="cb1-394"><a></a>            <span class="st">"esp =&gt; esplanade"</span><span class="ot">,</span></span>
+<span id="cb1-395"><a></a>            <span class="st">"etng =&gt; etang"</span><span class="ot">,</span></span>
+<span id="cb1-396"><a></a>            <span class="st">"fdg =&gt; faubourg"</span><span class="ot">,</span></span>
+<span id="cb1-397"><a></a>            <span class="st">"fg =&gt; faubourg"</span><span class="ot">,</span></span>
+<span id="cb1-398"><a></a>            <span class="st">"frm =&gt; ferme"</span><span class="ot">,</span></span>
+<span id="cb1-399"><a></a>            <span class="st">"fd =&gt; fond"</span><span class="ot">,</span></span>
+<span id="cb1-400"><a></a>            <span class="st">"fon =&gt; fontaine"</span><span class="ot">,</span></span>
+<span id="cb1-401"><a></a>            <span class="st">"for =&gt; foret"</span><span class="ot">,</span></span>
+<span id="cb1-402"><a></a>            <span class="st">"form =&gt; forum"</span><span class="ot">,</span></span>
+<span id="cb1-403"><a></a>            <span class="st">"fos =&gt; fosse"</span><span class="ot">,</span></span>
+<span id="cb1-404"><a></a>            <span class="st">"gal =&gt; galerie"</span><span class="ot">,</span></span>
+<span id="cb1-405"><a></a>            <span class="st">"gbd =&gt; grand boulevard"</span><span class="ot">,</span></span>
+<span id="cb1-406"><a></a>            <span class="st">"grc =&gt; grand clos"</span><span class="ot">,</span></span>
+<span id="cb1-407"><a></a>            <span class="st">"gde pce =&gt; grand place"</span><span class="ot">,</span></span>
+<span id="cb1-408"><a></a>            <span class="st">"gpl =&gt; grand place"</span><span class="ot">,</span></span>
+<span id="cb1-409"><a></a>            <span class="st">"grande place =&gt; grand place"</span><span class="ot">,</span></span>
+<span id="cb1-410"><a></a>            <span class="st">"gde allee =&gt; grande allee"</span><span class="ot">,</span></span>
+<span id="cb1-411"><a></a>            <span class="st">"gra =&gt; grande allee"</span><span class="ot">,</span></span>
+<span id="cb1-412"><a></a>            <span class="st">"gav =&gt; grande avenue"</span><span class="ot">,</span></span>
+<span id="cb1-413"><a></a>            <span class="st">"gde av =&gt; grande avenue"</span><span class="ot">,</span></span>
+<span id="cb1-414"><a></a>            <span class="st">"grand rue =&gt; grande rue"</span><span class="ot">,</span></span>
+<span id="cb1-415"><a></a>            <span class="st">"gr =&gt; grande rue"</span><span class="ot">,</span></span>
+<span id="cb1-416"><a></a>            <span class="st">"gde rue =&gt; grande rue"</span><span class="ot">,</span></span>
+<span id="cb1-417"><a></a>            <span class="st">"gr rue =&gt; grande rue"</span><span class="ot">,</span></span>
+<span id="cb1-418"><a></a>            <span class="st">"grev =&gt; greve"</span><span class="ot">,</span></span>
+<span id="cb1-419"><a></a>            <span class="st">"gri =&gt; grille"</span><span class="ot">,</span></span>
+<span id="cb1-420"><a></a>            <span class="st">"gpe =&gt; groupe"</span><span class="ot">,</span></span>
+<span id="cb1-421"><a></a>            <span class="st">"gpt =&gt; groupement"</span><span class="ot">,</span></span>
+<span id="cb1-422"><a></a>            <span class="st">"hab =&gt; habitation"</span><span class="ot">,</span></span>
+<span id="cb1-423"><a></a>            <span class="st">"hlg =&gt; halage"</span><span class="ot">,</span></span>
+<span id="cb1-424"><a></a>            <span class="st">"hle =&gt; halle"</span><span class="ot">,</span></span>
+<span id="cb1-425"><a></a>            <span class="st">"ham =&gt; hameau"</span><span class="ot">,</span></span>
+<span id="cb1-426"><a></a>            <span class="st">"hch =&gt; haut chemin"</span><span class="ot">,</span></span>
+<span id="cb1-427"><a></a>            <span class="st">"htr =&gt; hauteur"</span><span class="ot">,</span></span>
+<span id="cb1-428"><a></a>            <span class="st">"hip =&gt; hippodrome"</span><span class="ot">,</span></span>
+<span id="cb1-429"><a></a>            <span class="st">"habitation a loyer modere =&gt; hlm"</span><span class="ot">,</span></span>
+<span id="cb1-430"><a></a>            <span class="st">"hot =&gt; hotel"</span><span class="ot">,</span></span>
+<span id="cb1-431"><a></a>            <span class="st">"ilo =&gt; ilot"</span><span class="ot">,</span></span>
+<span id="cb1-432"><a></a>            <span class="st">"imp =&gt; impasse"</span><span class="ot">,</span></span>
+<span id="cb1-433"><a></a>            <span class="st">"jard =&gt; jardin"</span><span class="ot">,</span></span>
+<span id="cb1-434"><a></a>            <span class="st">"jte =&gt; jetee"</span><span class="ot">,</span></span>
+<span id="cb1-435"><a></a>            <span class="st">"leve =&gt; levee"</span><span class="ot">,</span></span>
+<span id="cb1-436"><a></a>            <span class="st">"lice =&gt; lices"</span><span class="ot">,</span></span>
+<span id="cb1-437"><a></a>            <span class="st">"lieudit =&gt; lieu dit"</span><span class="ot">,</span></span>
+<span id="cb1-438"><a></a>            <span class="st">"ldt =&gt; lieu dit"</span><span class="ot">,</span></span>
+<span id="cb1-439"><a></a>            <span class="st">"ld =&gt; lieu dit"</span><span class="ot">,</span></span>
+<span id="cb1-440"><a></a>            <span class="st">"lign =&gt; ligne"</span><span class="ot">,</span></span>
+<span id="cb1-441"><a></a>            <span class="st">"lot =&gt; lotissement"</span><span class="ot">,</span></span>
+<span id="cb1-442"><a></a>            <span class="st">"mais =&gt; maison"</span><span class="ot">,</span></span>
+<span id="cb1-443"><a></a>            <span class="st">"mar =&gt; marche"</span><span class="ot">,</span></span>
+<span id="cb1-444"><a></a>            <span class="st">"mrn =&gt; marina"</span><span class="ot">,</span></span>
+<span id="cb1-445"><a></a>            <span class="st">"mte =&gt; montee"</span><span class="ot">,</span></span>
+<span id="cb1-446"><a></a>            <span class="st">"mne =&gt; morne"</span><span class="ot">,</span></span>
+<span id="cb1-447"><a></a>            <span class="st">"mln =&gt; moulin"</span><span class="ot">,</span></span>
+<span id="cb1-448"><a></a>            <span class="st">"moul =&gt; moulin"</span><span class="ot">,</span></span>
+<span id="cb1-449"><a></a>            <span class="st">"mus =&gt; musee"</span><span class="ot">,</span></span>
+<span id="cb1-450"><a></a>            <span class="st">"nte =&gt; nouvelle route"</span><span class="ot">,</span></span>
+<span id="cb1-451"><a></a>            <span class="st">"pal =&gt; palais"</span><span class="ot">,</span></span>
+<span id="cb1-452"><a></a>            <span class="st">"paec =&gt; parc d activites economiques"</span><span class="ot">,</span></span>
+<span id="cb1-453"><a></a>            <span class="st">"pkg =&gt; parking"</span><span class="ot">,</span></span>
+<span id="cb1-454"><a></a>            <span class="st">"prv =&gt; parvis"</span><span class="ot">,</span></span>
+<span id="cb1-455"><a></a>            <span class="st">"pas =&gt; passage"</span><span class="ot">,</span></span>
+<span id="cb1-456"><a></a>            <span class="st">"pn =&gt; passage a niveau"</span><span class="ot">,</span></span>
+<span id="cb1-457"><a></a>            <span class="st">"pass =&gt; passe"</span><span class="ot">,</span></span>
+<span id="cb1-458"><a></a>            <span class="st">"ple =&gt; passerelle"</span><span class="ot">,</span></span>
+<span id="cb1-459"><a></a>            <span class="st">"pat =&gt; patio"</span><span class="ot">,</span></span>
+<span id="cb1-460"><a></a>            <span class="st">"pch =&gt; petit chemin"</span><span class="ot">,</span></span>
+<span id="cb1-461"><a></a>            <span class="st">"pt chem =&gt; petit chemin"</span><span class="ot">,</span></span>
+<span id="cb1-462"><a></a>            <span class="st">"pts =&gt; petit sentier"</span><span class="ot">,</span></span>
+<span id="cb1-463"><a></a>            <span class="st">"pta =&gt; petite allee"</span><span class="ot">,</span></span>
+<span id="cb1-464"><a></a>            <span class="st">"pae =&gt; petite avenue"</span><span class="ot">,</span></span>
+<span id="cb1-465"><a></a>            <span class="st">"pim =&gt; petite impasse"</span><span class="ot">,</span></span>
+<span id="cb1-466"><a></a>            <span class="st">"prt =&gt; petite route"</span><span class="ot">,</span></span>
+<span id="cb1-467"><a></a>            <span class="st">"ptr =&gt; petite rue"</span><span class="ot">,</span></span>
+<span id="cb1-468"><a></a>            <span class="st">"pte rue =&gt; petite rue"</span><span class="ot">,</span></span>
+<span id="cb1-469"><a></a>            <span class="st">"pr =&gt; petite rue"</span><span class="ot">,</span></span>
+<span id="cb1-470"><a></a>            <span class="st">"phar =&gt; phare"</span><span class="ot">,</span></span>
+<span id="cb1-471"><a></a>            <span class="st">"pist =&gt; piste"</span><span class="ot">,</span></span>
+<span id="cb1-472"><a></a>            <span class="st">"pla =&gt; placa"</span><span class="ot">,</span></span>
+<span id="cb1-473"><a></a>            <span class="st">"pl =&gt; place"</span><span class="ot">,</span></span>
+<span id="cb1-474"><a></a>            <span class="st">"ptte =&gt; placette"</span><span class="ot">,</span></span>
+<span id="cb1-475"><a></a>            <span class="st">"plci =&gt; placis"</span><span class="ot">,</span></span>
+<span id="cb1-476"><a></a>            <span class="st">"plag =&gt; plage"</span><span class="ot">,</span></span>
+<span id="cb1-477"><a></a>            <span class="st">"pln =&gt; plaine"</span><span class="ot">,</span></span>
+<span id="cb1-478"><a></a>            <span class="st">"plt =&gt; plateau"</span><span class="ot">,</span></span>
+<span id="cb1-479"><a></a>            <span class="st">"pnt =&gt; pointe"</span><span class="ot">,</span></span>
+<span id="cb1-480"><a></a>            <span class="st">"pche =&gt; porche"</span><span class="ot">,</span></span>
+<span id="cb1-481"><a></a>            <span class="st">"pte =&gt; porte"</span><span class="ot">,</span></span>
+<span id="cb1-482"><a></a>            <span class="st">"porq =&gt; portique"</span><span class="ot">,</span></span>
+<span id="cb1-483"><a></a>            <span class="st">"post =&gt; poste"</span><span class="ot">,</span></span>
+<span id="cb1-484"><a></a>            <span class="st">"pot =&gt; poterne"</span><span class="ot">,</span></span>
+<span id="cb1-485"><a></a>            <span class="st">"prq =&gt; presqu ile"</span><span class="ot">,</span></span>
+<span id="cb1-486"><a></a>            <span class="st">"prom =&gt; promenade"</span><span class="ot">,</span></span>
+<span id="cb1-487"><a></a>            <span class="st">"qu =&gt; quai"</span><span class="ot">,</span></span>
+<span id="cb1-488"><a></a>            <span class="st">"qua =&gt; quartier"</span><span class="ot">,</span></span>
+<span id="cb1-489"><a></a>            <span class="st">"qrt =&gt; quartier"</span><span class="ot">,</span></span>
+<span id="cb1-490"><a></a>            <span class="st">"rac =&gt; raccourci"</span><span class="ot">,</span></span>
+<span id="cb1-491"><a></a>            <span class="st">"raid =&gt; raidillon"</span><span class="ot">,</span></span>
+<span id="cb1-492"><a></a>            <span class="st">"rpe =&gt; rampe"</span><span class="ot">,</span></span>
+<span id="cb1-493"><a></a>            <span class="st">"rng =&gt; rangee"</span><span class="ot">,</span></span>
+<span id="cb1-494"><a></a>            <span class="st">"rve =&gt; ravine"</span><span class="ot">,</span></span>
+<span id="cb1-495"><a></a>            <span class="st">"rem =&gt; rempart"</span><span class="ot">,</span></span>
+<span id="cb1-496"><a></a>            <span class="st">"res =&gt; residence"</span><span class="ot">,</span></span>
+<span id="cb1-497"><a></a>            <span class="st">"roc =&gt; rocade"</span><span class="ot">,</span></span>
+<span id="cb1-498"><a></a>            <span class="st">"rpt =&gt; rond point"</span><span class="ot">,</span></span>
+<span id="cb1-499"><a></a>            <span class="st">"rde =&gt; ronde"</span><span class="ot">,</span></span>
+<span id="cb1-500"><a></a>            <span class="st">"rtd =&gt; rotonde"</span><span class="ot">,</span></span>
+<span id="cb1-501"><a></a>            <span class="st">"rte =&gt; route"</span><span class="ot">,</span></span>
+<span id="cb1-502"><a></a>            <span class="st">"rte departementale =&gt; route departementale"</span><span class="ot">,</span></span>
+<span id="cb1-503"><a></a>            <span class="st">"rd =&gt; route departementale"</span><span class="ot">,</span></span>
+<span id="cb1-504"><a></a>            <span class="st">"rn =&gt; route nationale"</span><span class="ot">,</span></span>
+<span id="cb1-505"><a></a>            <span class="st">"rte nationale =&gt; route nationale"</span><span class="ot">,</span></span>
+<span id="cb1-506"><a></a>            <span class="st">"r =&gt; rue"</span><span class="ot">,</span></span>
+<span id="cb1-507"><a></a>            <span class="st">"rle =&gt; ruelle"</span><span class="ot">,</span></span>
+<span id="cb1-508"><a></a>            <span class="st">"rult =&gt; ruellette"</span><span class="ot">,</span></span>
+<span id="cb1-509"><a></a>            <span class="st">"ruet =&gt; ruette"</span><span class="ot">,</span></span>
+<span id="cb1-510"><a></a>            <span class="st">"ruis =&gt; ruisseau"</span><span class="ot">,</span></span>
+<span id="cb1-511"><a></a>            <span class="st">"sente =&gt; sentier"</span><span class="ot">,</span></span>
+<span id="cb1-512"><a></a>            <span class="st">"sen =&gt; sentier"</span><span class="ot">,</span></span>
+<span id="cb1-513"><a></a>            <span class="st">"sq =&gt; square"</span><span class="ot">,</span></span>
+<span id="cb1-514"><a></a>            <span class="st">"stde =&gt; stade"</span><span class="ot">,</span></span>
+<span id="cb1-515"><a></a>            <span class="st">"sta =&gt; station"</span><span class="ot">,</span></span>
+<span id="cb1-516"><a></a>            <span class="st">"trn =&gt; terrain"</span><span class="ot">,</span></span>
+<span id="cb1-517"><a></a>            <span class="st">"tsse =&gt; terrasse"</span><span class="ot">,</span></span>
+<span id="cb1-518"><a></a>            <span class="st">"ter =&gt; terre"</span><span class="ot">,</span></span>
+<span id="cb1-519"><a></a>            <span class="st">"tpl =&gt; terre plein"</span><span class="ot">,</span></span>
+<span id="cb1-520"><a></a>            <span class="st">"trt =&gt; tertre"</span><span class="ot">,</span></span>
+<span id="cb1-521"><a></a>            <span class="st">"trab =&gt; traboule"</span><span class="ot">,</span></span>
+<span id="cb1-522"><a></a>            <span class="st">"tra =&gt; traverse"</span><span class="ot">,</span></span>
+<span id="cb1-523"><a></a>            <span class="st">"tun =&gt; tunnel"</span><span class="ot">,</span></span>
+<span id="cb1-524"><a></a>            <span class="st">"vallon =&gt; vallee"</span><span class="ot">,</span></span>
+<span id="cb1-525"><a></a>            <span class="st">"vall =&gt; vallee"</span><span class="ot">,</span></span>
+<span id="cb1-526"><a></a>            <span class="st">"val =&gt; vallee"</span><span class="ot">,</span></span>
+<span id="cb1-527"><a></a>            <span class="st">"ven =&gt; venelle"</span><span class="ot">,</span></span>
+<span id="cb1-528"><a></a>            <span class="st">"viad =&gt; viaduc"</span><span class="ot">,</span></span>
+<span id="cb1-529"><a></a>            <span class="st">"vte =&gt; vieille route"</span><span class="ot">,</span></span>
+<span id="cb1-530"><a></a>            <span class="st">"vr =&gt; vieille rue"</span><span class="ot">,</span></span>
+<span id="cb1-531"><a></a>            <span class="st">"vx chemin =&gt; vieux chemin"</span><span class="ot">,</span></span>
+<span id="cb1-532"><a></a>            <span class="st">"vche =&gt; vieux chemin"</span><span class="ot">,</span></span>
+<span id="cb1-533"><a></a>            <span class="st">"vx chem =&gt; vieux chemin"</span><span class="ot">,</span></span>
+<span id="cb1-534"><a></a>            <span class="st">"vx che =&gt; vieux chemin"</span><span class="ot">,</span></span>
+<span id="cb1-535"><a></a>            <span class="st">"vla =&gt; villa"</span><span class="ot">,</span></span>
+<span id="cb1-536"><a></a>            <span class="st">"vlg =&gt; village"</span><span class="ot">,</span></span>
+<span id="cb1-537"><a></a>            <span class="st">"vlge =&gt; village"</span><span class="ot">,</span></span>
+<span id="cb1-538"><a></a>            <span class="st">"villag =&gt; village"</span><span class="ot">,</span></span>
+<span id="cb1-539"><a></a>            <span class="st">"vge =&gt; village"</span><span class="ot">,</span></span>
+<span id="cb1-540"><a></a>            <span class="st">"vil =&gt; ville"</span><span class="ot">,</span></span>
+<span id="cb1-541"><a></a>            <span class="st">"voi =&gt; voie"</span><span class="ot">,</span></span>
+<span id="cb1-542"><a></a>            <span class="st">"vc =&gt; voie communale"</span><span class="ot">,</span></span>
+<span id="cb1-543"><a></a>            <span class="st">"voir =&gt; voirie"</span><span class="ot">,</span></span>
+<span id="cb1-544"><a></a>            <span class="st">"vout =&gt; voute"</span><span class="ot">,</span></span>
+<span id="cb1-545"><a></a>            <span class="st">"voy =&gt; voyeul"</span><span class="ot">,</span></span>
+<span id="cb1-546"><a></a>            <span class="st">"zup =&gt; zone a urbaniser en priorite"</span><span class="ot">,</span></span>
+<span id="cb1-547"><a></a>            <span class="st">"zar =&gt; zone artisanale"</span><span class="ot">,</span></span>
+<span id="cb1-548"><a></a>            <span class="st">"zone activites =&gt; zone d activites"</span><span class="ot">,</span></span>
+<span id="cb1-549"><a></a>            <span class="st">"parc d activites =&gt; zone d activites"</span><span class="ot">,</span></span>
+<span id="cb1-550"><a></a>            <span class="st">"za =&gt; zone d activites"</span><span class="ot">,</span></span>
+<span id="cb1-551"><a></a>            <span class="st">"zae =&gt; zone d activites economiques"</span><span class="ot">,</span></span>
+<span id="cb1-552"><a></a>            <span class="st">"zac =&gt; zone d amenagement concerte"</span><span class="ot">,</span></span>
+<span id="cb1-553"><a></a>            <span class="st">"zone amenagement concerte =&gt; zone d amenagement concerte"</span><span class="ot">,</span></span>
+<span id="cb1-554"><a></a>            <span class="st">"zone damenagement concrete =&gt; zone d amenagement concerte"</span><span class="ot">,</span></span>
+<span id="cb1-555"><a></a>            <span class="st">"zone damenagement differe =&gt; zone d amenagement differe"</span><span class="ot">,</span></span>
+<span id="cb1-556"><a></a>            <span class="st">"zone amenagement differe =&gt; zone d amenagement differe"</span><span class="ot">,</span></span>
+<span id="cb1-557"><a></a>            <span class="st">"zad =&gt; zone d amenagement differe"</span><span class="ot">,</span></span>
+<span id="cb1-558"><a></a>            <span class="st">"zi =&gt; zone industrielle"</span></span>
+<span id="cb1-559"><a></a>          <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb1-560"><a></a>          <span class="dt">"expand"</span><span class="fu">:</span> <span class="st">"false"</span></span>
+<span id="cb1-561"><a></a>        <span class="fu">},</span></span>
+<span id="cb1-562"><a></a>        <span class="dt">"punctuation_filter"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-563"><a></a>          <span class="dt">"pattern"</span><span class="fu">:</span> <span class="st">"[</span><span class="ch">\\</span><span class="st">p{Punct}]"</span><span class="fu">,</span></span>
+<span id="cb1-564"><a></a>          <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"pattern_replace"</span><span class="fu">,</span></span>
+<span id="cb1-565"><a></a>          <span class="dt">"replacement"</span><span class="fu">:</span> <span class="st">" "</span></span>
+<span id="cb1-566"><a></a>        <span class="fu">},</span></span>
+<span id="cb1-567"><a></a>        <span class="dt">"synonyms_extra"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-568"><a></a>          <span class="dt">"expand"</span><span class="fu">:</span> <span class="st">"true"</span><span class="fu">,</span></span>
+<span id="cb1-569"><a></a>          <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"synonym_graph"</span><span class="fu">,</span></span>
+<span id="cb1-570"><a></a>          <span class="dt">"lenient"</span><span class="fu">:</span> <span class="st">"true"</span><span class="fu">,</span></span>
+<span id="cb1-571"><a></a>          <span class="dt">"synonyms"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-572"><a></a>            <span class="st">"saint,st"</span><span class="ot">,</span></span>
+<span id="cb1-573"><a></a>            <span class="st">"sainte,ste"</span><span class="ot">,</span></span>
+<span id="cb1-574"><a></a>            <span class="st">"saints,sts"</span><span class="ot">,</span></span>
+<span id="cb1-575"><a></a>            <span class="st">"saintes,stes"</span><span class="ot">,</span></span>
+<span id="cb1-576"><a></a>            <span class="st">"grand,gd"</span><span class="ot">,</span></span>
+<span id="cb1-577"><a></a>            <span class="st">"grande,gde"</span><span class="ot">,</span></span>
+<span id="cb1-578"><a></a>            <span class="st">"grands,gds"</span><span class="ot">,</span></span>
+<span id="cb1-579"><a></a>            <span class="st">"grandes,gdes"</span><span class="ot">,</span></span>
+<span id="cb1-580"><a></a>            <span class="st">"petits,pts"</span><span class="ot">,</span></span>
+<span id="cb1-581"><a></a>            <span class="st">"petites,ptes"</span><span class="ot">,</span></span>
+<span id="cb1-582"><a></a>            <span class="st">"general,gen"</span><span class="ot">,</span></span>
+<span id="cb1-583"><a></a>            <span class="st">"marechal,mal"</span><span class="ot">,</span></span>
+<span id="cb1-584"><a></a>            <span class="st">"lieutenant,lt"</span><span class="ot">,</span></span>
+<span id="cb1-585"><a></a>            <span class="st">"commandant,cdt"</span><span class="ot">,</span></span>
+<span id="cb1-586"><a></a>            <span class="st">"docteur,dr"</span><span class="ot">,</span></span>
+<span id="cb1-587"><a></a>            <span class="st">"haut,ht"</span><span class="ot">,</span></span>
+<span id="cb1-588"><a></a>            <span class="st">"haute,hte"</span><span class="ot">,</span></span>
+<span id="cb1-589"><a></a>            <span class="st">"hauts,hts"</span><span class="ot">,</span></span>
+<span id="cb1-590"><a></a>            <span class="st">"hautes,htes"</span><span class="ot">,</span></span>
+<span id="cb1-591"><a></a>            <span class="st">"president,pdt"</span><span class="ot">,</span></span>
+<span id="cb1-592"><a></a>            <span class="st">"sergent,sgt"</span></span>
+<span id="cb1-593"><a></a>          <span class="ot">]</span></span>
+<span id="cb1-594"><a></a>        <span class="fu">},</span></span>
+<span id="cb1-595"><a></a>        <span class="dt">"synonyms_extra_no_expand"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-596"><a></a>          <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"synonym"</span><span class="fu">,</span></span>
+<span id="cb1-597"><a></a>          <span class="dt">"synonyms"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-598"><a></a>            <span class="st">"st =&gt; saint"</span><span class="ot">,</span></span>
+<span id="cb1-599"><a></a>            <span class="st">"ste =&gt; sainte"</span><span class="ot">,</span></span>
+<span id="cb1-600"><a></a>            <span class="st">"sts =&gt; saints"</span><span class="ot">,</span></span>
+<span id="cb1-601"><a></a>            <span class="st">"stes =&gt; saintes"</span><span class="ot">,</span></span>
+<span id="cb1-602"><a></a>            <span class="st">"gd =&gt; grand"</span><span class="ot">,</span></span>
+<span id="cb1-603"><a></a>            <span class="st">"gde =&gt; grande"</span><span class="ot">,</span></span>
+<span id="cb1-604"><a></a>            <span class="st">"gds =&gt; grands"</span><span class="ot">,</span></span>
+<span id="cb1-605"><a></a>            <span class="st">"gdes =&gt; grandes"</span><span class="ot">,</span></span>
+<span id="cb1-606"><a></a>            <span class="st">"pts =&gt; petits"</span><span class="ot">,</span></span>
+<span id="cb1-607"><a></a>            <span class="st">"ptes =&gt; petites"</span><span class="ot">,</span></span>
+<span id="cb1-608"><a></a>            <span class="st">"gen =&gt; general"</span><span class="ot">,</span></span>
+<span id="cb1-609"><a></a>            <span class="st">"mal =&gt; marechal"</span><span class="ot">,</span></span>
+<span id="cb1-610"><a></a>            <span class="st">"lt =&gt; lieutenant"</span><span class="ot">,</span></span>
+<span id="cb1-611"><a></a>            <span class="st">"cdt =&gt; commandant"</span><span class="ot">,</span></span>
+<span id="cb1-612"><a></a>            <span class="st">"dr =&gt; docteur"</span><span class="ot">,</span></span>
+<span id="cb1-613"><a></a>            <span class="st">"ht =&gt; haut"</span><span class="ot">,</span></span>
+<span id="cb1-614"><a></a>            <span class="st">"hte =&gt; haute"</span><span class="ot">,</span></span>
+<span id="cb1-615"><a></a>            <span class="st">"hts =&gt; hauts"</span><span class="ot">,</span></span>
+<span id="cb1-616"><a></a>            <span class="st">"htes =&gt; hautes"</span><span class="ot">,</span></span>
+<span id="cb1-617"><a></a>            <span class="st">"pdt =&gt; president"</span><span class="ot">,</span></span>
+<span id="cb1-618"><a></a>            <span class="st">"sgt =&gt; sergent"</span></span>
+<span id="cb1-619"><a></a>          <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb1-620"><a></a>          <span class="dt">"expand"</span><span class="fu">:</span> <span class="st">"false"</span></span>
+<span id="cb1-621"><a></a>        <span class="fu">}</span></span>
+<span id="cb1-622"><a></a>      <span class="fu">},</span></span>
+<span id="cb1-623"><a></a>      <span class="dt">"char_filter"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-624"><a></a>        <span class="dt">"remove_extra_spaces_begin_end"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-625"><a></a>          <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"pattern_replace"</span><span class="fu">,</span></span>
+<span id="cb1-626"><a></a>          <span class="dt">"pattern"</span><span class="fu">:</span> <span class="st">"^</span><span class="ch">\\</span><span class="st">s+|</span><span class="ch">\\</span><span class="st">s+$"</span><span class="fu">,</span></span>
+<span id="cb1-627"><a></a>          <span class="dt">"replacement"</span><span class="fu">:</span> <span class="st">""</span></span>
+<span id="cb1-628"><a></a>        <span class="fu">},</span></span>
+<span id="cb1-629"><a></a>        <span class="dt">"remove_extra_spaces"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-630"><a></a>          <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"pattern_replace"</span><span class="fu">,</span></span>
+<span id="cb1-631"><a></a>          <span class="dt">"pattern"</span><span class="fu">:</span> <span class="st">"</span><span class="ch">\\</span><span class="st">s+"</span><span class="fu">,</span></span>
+<span id="cb1-632"><a></a>          <span class="dt">"replacement"</span><span class="fu">:</span> <span class="st">" "</span></span>
+<span id="cb1-633"><a></a>        <span class="fu">},</span></span>
+<span id="cb1-634"><a></a>        <span class="dt">"apostrophe_tiret_filter"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-635"><a></a>          <span class="dt">"pattern"</span><span class="fu">:</span> <span class="st">"['_]"</span><span class="fu">,</span></span>
+<span id="cb1-636"><a></a>          <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"pattern_replace"</span><span class="fu">,</span></span>
+<span id="cb1-637"><a></a>          <span class="dt">"replacement"</span><span class="fu">:</span> <span class="st">" "</span></span>
+<span id="cb1-638"><a></a>        <span class="fu">},</span></span>
+<span id="cb1-639"><a></a>        <span class="dt">"punctuation_filter"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-640"><a></a>          <span class="dt">"pattern"</span><span class="fu">:</span> <span class="st">"[</span><span class="ch">\\</span><span class="st">p{Punct}]"</span><span class="fu">,</span></span>
+<span id="cb1-641"><a></a>          <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"pattern_replace"</span><span class="fu">,</span></span>
+<span id="cb1-642"><a></a>          <span class="dt">"replacement"</span><span class="fu">:</span> <span class="st">" "</span></span>
+<span id="cb1-643"><a></a>        <span class="fu">},</span></span>
+<span id="cb1-644"><a></a>        <span class="dt">"process_numero_lettre"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-645"><a></a>          <span class="dt">"pattern"</span><span class="fu">:</span> <span class="st">"(</span><span class="ch">\\</span><span class="st">d+)([a-zA-Z]+)"</span><span class="fu">,</span></span>
+<span id="cb1-646"><a></a>          <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"pattern_replace"</span><span class="fu">,</span></span>
+<span id="cb1-647"><a></a>          <span class="dt">"replacement"</span><span class="fu">:</span> <span class="st">"$1 $2"</span></span>
+<span id="cb1-648"><a></a>        <span class="fu">},</span></span>
+<span id="cb1-649"><a></a>        <span class="dt">"zero_devant_depcom1"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-650"><a></a>          <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"pattern_replace"</span><span class="fu">,</span></span>
+<span id="cb1-651"><a></a>          <span class="dt">"pattern"</span><span class="fu">:</span> <span class="st">"^(.{1})$"</span><span class="fu">,</span></span>
+<span id="cb1-652"><a></a>          <span class="dt">"replacement"</span><span class="fu">:</span> <span class="st">"0000$1"</span></span>
+<span id="cb1-653"><a></a>        <span class="fu">},</span></span>
+<span id="cb1-654"><a></a>        <span class="dt">"zero_devant_depcom2"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-655"><a></a>          <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"pattern_replace"</span><span class="fu">,</span></span>
+<span id="cb1-656"><a></a>          <span class="dt">"pattern"</span><span class="fu">:</span> <span class="st">"^(.{2})$"</span><span class="fu">,</span></span>
+<span id="cb1-657"><a></a>          <span class="dt">"replacement"</span><span class="fu">:</span> <span class="st">"000$1"</span></span>
+<span id="cb1-658"><a></a>        <span class="fu">},</span></span>
+<span id="cb1-659"><a></a>        <span class="dt">"zero_devant_depcom3"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-660"><a></a>          <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"pattern_replace"</span><span class="fu">,</span></span>
+<span id="cb1-661"><a></a>          <span class="dt">"pattern"</span><span class="fu">:</span> <span class="st">"^(.{3})$"</span><span class="fu">,</span></span>
+<span id="cb1-662"><a></a>          <span class="dt">"replacement"</span><span class="fu">:</span> <span class="st">"00$1"</span></span>
+<span id="cb1-663"><a></a>        <span class="fu">},</span></span>
+<span id="cb1-664"><a></a>        <span class="dt">"zero_devant_depcom4"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-665"><a></a>          <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"pattern_replace"</span><span class="fu">,</span></span>
+<span id="cb1-666"><a></a>          <span class="dt">"pattern"</span><span class="fu">:</span> <span class="st">"^(.{4})$"</span><span class="fu">,</span></span>
+<span id="cb1-667"><a></a>          <span class="dt">"replacement"</span><span class="fu">:</span> <span class="st">"0$1"</span></span>
+<span id="cb1-668"><a></a>        <span class="fu">}</span></span>
+<span id="cb1-669"><a></a>      <span class="fu">},</span></span>
+<span id="cb1-670"><a></a>      <span class="dt">"normalizer"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-671"><a></a>        <span class="dt">"zero_devant_depcom_normalizer"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-672"><a></a>          <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"custom"</span><span class="fu">,</span></span>
+<span id="cb1-673"><a></a>          <span class="dt">"char_filter"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-674"><a></a>            <span class="st">"zero_devant_depcom1"</span><span class="ot">,</span></span>
+<span id="cb1-675"><a></a>            <span class="st">"zero_devant_depcom2"</span><span class="ot">,</span></span>
+<span id="cb1-676"><a></a>            <span class="st">"zero_devant_depcom3"</span><span class="ot">,</span></span>
+<span id="cb1-677"><a></a>            <span class="st">"zero_devant_depcom4"</span></span>
+<span id="cb1-678"><a></a>          <span class="ot">]</span></span>
+<span id="cb1-679"><a></a>        <span class="fu">},</span></span>
+<span id="cb1-680"><a></a>        <span class="dt">"str_normalizer"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-681"><a></a>          <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"custom"</span><span class="fu">,</span></span>
+<span id="cb1-682"><a></a>          <span class="dt">"filter"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-683"><a></a>            <span class="st">"lowercase"</span><span class="ot">,</span></span>
+<span id="cb1-684"><a></a>            <span class="st">"asciifolding"</span></span>
+<span id="cb1-685"><a></a>          <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb1-686"><a></a>          <span class="dt">"char_filter"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-687"><a></a>            <span class="st">"apostrophe_tiret_filter"</span><span class="ot">,</span></span>
+<span id="cb1-688"><a></a>            <span class="st">"punctuation_filter"</span><span class="ot">,</span></span>
+<span id="cb1-689"><a></a>            <span class="st">"process_numero_lettre"</span><span class="ot">,</span></span>
+<span id="cb1-690"><a></a>            <span class="st">"remove_extra_spaces_begin_end"</span><span class="ot">,</span></span>
+<span id="cb1-691"><a></a>            <span class="st">"remove_extra_spaces"</span></span>
+<span id="cb1-692"><a></a>          <span class="ot">]</span></span>
+<span id="cb1-693"><a></a>        <span class="fu">}</span></span>
+<span id="cb1-694"><a></a>      <span class="fu">},</span></span>
+<span id="cb1-695"><a></a>      <span class="dt">"analyzer"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-696"><a></a>        <span class="dt">"custom_analyzer"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-697"><a></a>          <span class="dt">"char_filter"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-698"><a></a>            <span class="st">"apostrophe_tiret_filter"</span><span class="ot">,</span></span>
+<span id="cb1-699"><a></a>            <span class="st">"process_numero_lettre"</span></span>
+<span id="cb1-700"><a></a>          <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb1-701"><a></a>          <span class="dt">"filter"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-702"><a></a>            <span class="st">"lowercase"</span><span class="ot">,</span></span>
+<span id="cb1-703"><a></a>            <span class="st">"asciifolding"</span><span class="ot">,</span></span>
+<span id="cb1-704"><a></a>            <span class="st">"remove_extra_spaces_begin_end"</span><span class="ot">,</span></span>
+<span id="cb1-705"><a></a>            <span class="st">"remove_extra_spaces"</span></span>
+<span id="cb1-706"><a></a>          <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb1-707"><a></a>          <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"custom"</span><span class="fu">,</span></span>
+<span id="cb1-708"><a></a>          <span class="dt">"tokenizer"</span><span class="fu">:</span> <span class="st">"standard"</span></span>
+<span id="cb1-709"><a></a>        <span class="fu">},</span></span>
+<span id="cb1-710"><a></a>        <span class="dt">"custom_search_analyzer"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-711"><a></a>          <span class="dt">"char_filter"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-712"><a></a>            <span class="st">"apostrophe_tiret_filter"</span><span class="ot">,</span></span>
+<span id="cb1-713"><a></a>            <span class="st">"process_numero_lettre"</span></span>
+<span id="cb1-714"><a></a>          <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb1-715"><a></a>          <span class="dt">"filter"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-716"><a></a>            <span class="st">"lowercase"</span><span class="ot">,</span></span>
+<span id="cb1-717"><a></a>            <span class="st">"asciifolding"</span><span class="ot">,</span></span>
+<span id="cb1-718"><a></a>            <span class="st">"remove_extra_spaces_begin_end"</span><span class="ot">,</span></span>
+<span id="cb1-719"><a></a>            <span class="st">"remove_extra_spaces"</span><span class="ot">,</span></span>
+<span id="cb1-720"><a></a>            <span class="st">"synonyms_type_voie"</span><span class="ot">,</span></span>
+<span id="cb1-721"><a></a>            <span class="st">"synonyms_extra"</span></span>
+<span id="cb1-722"><a></a>          <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb1-723"><a></a>          <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"custom"</span><span class="fu">,</span></span>
+<span id="cb1-724"><a></a>          <span class="dt">"tokenizer"</span><span class="fu">:</span> <span class="st">"standard"</span></span>
+<span id="cb1-725"><a></a>        <span class="fu">},</span></span>
+<span id="cb1-726"><a></a>        <span class="dt">"ngrams_analyzer"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-727"><a></a>          <span class="dt">"char_filter"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-728"><a></a>            <span class="st">"apostrophe_tiret_filter"</span><span class="ot">,</span></span>
+<span id="cb1-729"><a></a>            <span class="st">"process_numero_lettre"</span></span>
+<span id="cb1-730"><a></a>          <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb1-731"><a></a>          <span class="dt">"filter"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-732"><a></a>            <span class="st">"lowercase"</span><span class="ot">,</span></span>
+<span id="cb1-733"><a></a>            <span class="st">"asciifolding"</span><span class="ot">,</span></span>
+<span id="cb1-734"><a></a>            <span class="st">"remove_extra_spaces_begin_end"</span><span class="ot">,</span></span>
+<span id="cb1-735"><a></a>            <span class="st">"remove_extra_spaces"</span></span>
+<span id="cb1-736"><a></a>          <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb1-737"><a></a>          <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"custom"</span><span class="fu">,</span></span>
+<span id="cb1-738"><a></a>          <span class="dt">"tokenizer"</span><span class="fu">:</span> <span class="st">"ngrams"</span></span>
+<span id="cb1-739"><a></a>        <span class="fu">},</span></span>
+<span id="cb1-740"><a></a>        <span class="dt">"custom_search_analyzer_no_tokenize"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-741"><a></a>          <span class="dt">"char_filter"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-742"><a></a>            <span class="st">"apostrophe_tiret_filter"</span><span class="ot">,</span></span>
+<span id="cb1-743"><a></a>            <span class="st">"process_numero_lettre"</span></span>
+<span id="cb1-744"><a></a>          <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb1-745"><a></a>          <span class="dt">"filter"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-746"><a></a>            <span class="st">"punctuation_filter"</span><span class="ot">,</span></span>
+<span id="cb1-747"><a></a>            <span class="st">"lowercase"</span><span class="ot">,</span></span>
+<span id="cb1-748"><a></a>            <span class="st">"asciifolding"</span><span class="ot">,</span></span>
+<span id="cb1-749"><a></a>            <span class="st">"remove_extra_spaces_begin_end"</span><span class="ot">,</span></span>
+<span id="cb1-750"><a></a>            <span class="st">"remove_extra_spaces"</span><span class="ot">,</span></span>
+<span id="cb1-751"><a></a>            <span class="st">"synonyms_type_voie"</span><span class="ot">,</span></span>
+<span id="cb1-752"><a></a>            <span class="st">"synonyms_extra"</span></span>
+<span id="cb1-753"><a></a>          <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb1-754"><a></a>          <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"custom"</span><span class="fu">,</span></span>
+<span id="cb1-755"><a></a>          <span class="dt">"tokenizer"</span><span class="fu">:</span> <span class="st">"keyword"</span></span>
+<span id="cb1-756"><a></a>        <span class="fu">},</span></span>
+<span id="cb1-757"><a></a>        <span class="dt">"custom_analyzer_no_tokenize"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-758"><a></a>          <span class="dt">"char_filter"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-759"><a></a>            <span class="st">"apostrophe_tiret_filter"</span><span class="ot">,</span></span>
+<span id="cb1-760"><a></a>            <span class="st">"process_numero_lettre"</span></span>
+<span id="cb1-761"><a></a>          <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb1-762"><a></a>          <span class="dt">"filter"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-763"><a></a>            <span class="st">"punctuation_filter"</span><span class="ot">,</span></span>
+<span id="cb1-764"><a></a>            <span class="st">"lowercase"</span><span class="ot">,</span></span>
+<span id="cb1-765"><a></a>            <span class="st">"asciifolding"</span><span class="ot">,</span></span>
+<span id="cb1-766"><a></a>            <span class="st">"remove_extra_spaces_begin_end"</span><span class="ot">,</span></span>
+<span id="cb1-767"><a></a>            <span class="st">"remove_extra_spaces"</span></span>
+<span id="cb1-768"><a></a>          <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb1-769"><a></a>          <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"custom"</span><span class="fu">,</span></span>
+<span id="cb1-770"><a></a>          <span class="dt">"tokenizer"</span><span class="fu">:</span> <span class="st">"keyword"</span></span>
+<span id="cb1-771"><a></a>        <span class="fu">}</span></span>
+<span id="cb1-772"><a></a>      <span class="fu">},</span></span>
+<span id="cb1-773"><a></a>      <span class="dt">"tokenizer"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-774"><a></a>        <span class="dt">"ngrams"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-775"><a></a>          <span class="dt">"token_chars"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-776"><a></a>            <span class="st">"letter"</span><span class="ot">,</span></span>
+<span id="cb1-777"><a></a>            <span class="st">"digit"</span></span>
+<span id="cb1-778"><a></a>          <span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb1-779"><a></a>          <span class="dt">"min_gram"</span><span class="fu">:</span> <span class="st">"3"</span><span class="fu">,</span></span>
+<span id="cb1-780"><a></a>          <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"ngram"</span><span class="fu">,</span></span>
+<span id="cb1-781"><a></a>          <span class="dt">"max_gram"</span><span class="fu">:</span> <span class="st">"5"</span></span>
+<span id="cb1-782"><a></a>        <span class="fu">}</span></span>
+<span id="cb1-783"><a></a>      <span class="fu">}</span></span>
+<span id="cb1-784"><a></a>    <span class="fu">},</span></span>
+<span id="cb1-785"><a></a>    <span class="dt">"number_of_replicas"</span><span class="fu">:</span> <span class="st">"2"</span></span>
+<span id="cb1-786"><a></a>  <span class="fu">}</span></span>
+<span id="cb1-787"><a></a><span class="fu">}</span></span>
+<span id="cb1-788"><a></a></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="les-mappings-voie-dans-gaïa" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Les mappings “voie” dans Gaïa</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource json number-lines code-with-copy"><code class="sourceCode json"><span id="cb2-1"><a></a><span class="fu">{</span></span>
+<span id="cb2-2"><a></a>  <span class="dt">"properties"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-3"><a></a>    <span class="dt">"_class"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-4"><a></a>      <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"keyword"</span><span class="fu">,</span></span>
+<span id="cb2-5"><a></a>      <span class="dt">"index"</span><span class="fu">:</span> <span class="st">"false"</span><span class="fu">,</span></span>
+<span id="cb2-6"><a></a>      <span class="dt">"doc_values"</span><span class="fu">:</span> <span class="st">"false"</span></span>
+<span id="cb2-7"><a></a>    <span class="fu">},</span></span>
+<span id="cb2-8"><a></a>    <span class="dt">"codeInsee"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-9"><a></a>      <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"keyword"</span><span class="fu">,</span></span>
+<span id="cb2-10"><a></a>      <span class="dt">"null_value"</span><span class="fu">:</span> <span class="st">"00000"</span></span>
+<span id="cb2-11"><a></a>    <span class="fu">},</span></span>
+<span id="cb2-12"><a></a>    <span class="dt">"id"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-13"><a></a>      <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"keyword"</span></span>
+<span id="cb2-14"><a></a>    <span class="fu">},</span></span>
+<span id="cb2-15"><a></a>    <span class="dt">"idGaia"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-16"><a></a>      <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"keyword"</span></span>
+<span id="cb2-17"><a></a>    <span class="fu">},</span></span>
+<span id="cb2-18"><a></a>    <span class="dt">"idGaiaCommune"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-19"><a></a>      <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"keyword"</span></span>
+<span id="cb2-20"><a></a>    <span class="fu">},</span></span>
+<span id="cb2-21"><a></a>    <span class="dt">"idRcaVoie"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-22"><a></a>      <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"keyword"</span></span>
+<span id="cb2-23"><a></a>    <span class="fu">},</span></span>
+<span id="cb2-24"><a></a>    <span class="dt">"idSource"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-25"><a></a>      <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"keyword"</span></span>
+<span id="cb2-26"><a></a>    <span class="fu">},</span></span>
+<span id="cb2-27"><a></a>    <span class="dt">"idTypeVoie"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-28"><a></a>      <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"text"</span><span class="fu">,</span></span>
+<span id="cb2-29"><a></a>      <span class="dt">"fields"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-30"><a></a>        <span class="dt">"keyword"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-31"><a></a>          <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"keyword"</span><span class="fu">,</span></span>
+<span id="cb2-32"><a></a>          <span class="dt">"normalizer"</span><span class="fu">:</span> <span class="st">"str_normalizer"</span></span>
+<span id="cb2-33"><a></a>        <span class="fu">}</span></span>
+<span id="cb2-34"><a></a>      <span class="fu">},</span></span>
+<span id="cb2-35"><a></a>      <span class="dt">"analyzer"</span><span class="fu">:</span> <span class="st">"custom_analyzer"</span><span class="fu">,</span></span>
+<span id="cb2-36"><a></a>      <span class="dt">"search_analyzer"</span><span class="fu">:</span> <span class="st">"custom_search_analyzer"</span></span>
+<span id="cb2-37"><a></a>    <span class="fu">},</span></span>
+<span id="cb2-38"><a></a>    <span class="dt">"nomCommune"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-39"><a></a>      <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"text"</span><span class="fu">,</span></span>
+<span id="cb2-40"><a></a>      <span class="dt">"analyzer"</span><span class="fu">:</span> <span class="st">"custom_analyzer"</span></span>
+<span id="cb2-41"><a></a>    <span class="fu">},</span></span>
+<span id="cb2-42"><a></a>    <span class="dt">"nomVoie"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-43"><a></a>      <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"text"</span><span class="fu">,</span></span>
+<span id="cb2-44"><a></a>      <span class="dt">"fields"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-45"><a></a>        <span class="dt">"keyword"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-46"><a></a>          <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"keyword"</span><span class="fu">,</span></span>
+<span id="cb2-47"><a></a>          <span class="dt">"normalizer"</span><span class="fu">:</span> <span class="st">"str_normalizer"</span></span>
+<span id="cb2-48"><a></a>        <span class="fu">}</span></span>
+<span id="cb2-49"><a></a>      <span class="fu">},</span></span>
+<span id="cb2-50"><a></a>      <span class="dt">"analyzer"</span><span class="fu">:</span> <span class="st">"custom_analyzer"</span><span class="fu">,</span></span>
+<span id="cb2-51"><a></a>      <span class="dt">"search_analyzer"</span><span class="fu">:</span> <span class="st">"custom_search_analyzer"</span></span>
+<span id="cb2-52"><a></a>    <span class="fu">},</span></span>
+<span id="cb2-53"><a></a>    <span class="dt">"nomVoieNorm"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-54"><a></a>      <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"text"</span><span class="fu">,</span></span>
+<span id="cb2-55"><a></a>      <span class="dt">"fields"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-56"><a></a>        <span class="dt">"keyword"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-57"><a></a>          <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"keyword"</span><span class="fu">,</span></span>
+<span id="cb2-58"><a></a>          <span class="dt">"normalizer"</span><span class="fu">:</span> <span class="st">"str_normalizer"</span></span>
+<span id="cb2-59"><a></a>        <span class="fu">},</span></span>
+<span id="cb2-60"><a></a>        <span class="dt">"ngrams"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-61"><a></a>          <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"text"</span><span class="fu">,</span></span>
+<span id="cb2-62"><a></a>          <span class="dt">"analyzer"</span><span class="fu">:</span> <span class="st">"ngrams_analyzer"</span></span>
+<span id="cb2-63"><a></a>        <span class="fu">},</span></span>
+<span id="cb2-64"><a></a>        <span class="dt">"notokenize"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-65"><a></a>          <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"text"</span><span class="fu">,</span></span>
+<span id="cb2-66"><a></a>          <span class="dt">"analyzer"</span><span class="fu">:</span> <span class="st">"custom_analyzer_no_tokenize"</span><span class="fu">,</span></span>
+<span id="cb2-67"><a></a>          <span class="dt">"search_analyzer"</span><span class="fu">:</span> <span class="st">"custom_search_analyzer_no_tokenize"</span></span>
+<span id="cb2-68"><a></a>        <span class="fu">}</span></span>
+<span id="cb2-69"><a></a>      <span class="fu">},</span></span>
+<span id="cb2-70"><a></a>      <span class="dt">"analyzer"</span><span class="fu">:</span> <span class="st">"custom_analyzer"</span><span class="fu">,</span></span>
+<span id="cb2-71"><a></a>      <span class="dt">"search_analyzer"</span><span class="fu">:</span> <span class="st">"custom_search_analyzer"</span></span>
+<span id="cb2-72"><a></a>    <span class="fu">}</span></span>
+<span id="cb2-73"><a></a>  <span class="fu">}</span></span>
+<span id="cb2-74"><a></a><span class="fu">}</span></span>
+<span id="cb2-75"><a></a></span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="effectuer-une-recherche-la-requête" class="slide level2" data-background-image="background.svg" data-background-size="contain">
 <h2>Effectuer une recherche : la requête</h2>
@@ -957,23 +1898,93 @@ t = token, sous-chaîne <em>(un mot, un 3-grams…)</em>.</p>
 </ul></li>
 </ul>
 </section>
-<section id="différences-entre-moteur-java-et-python" class="slide level2" data-background-image="background.svg" data-background-size="contain">
-<h2>Différences entre moteur Java et Python</h2>
+<section id="la-requête-voie-en-pratique-dans-gaïa" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>La requête voie en pratique dans Gaïa</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a></a>adresse <span class="op">=</span> <span class="st">"40 CD N18"</span></span>
+<span id="cb3-2"><a></a>cog <span class="op">=</span> [<span class="st">"13032"</span>]</span>
+<span id="cb3-3"><a></a></span>
+<span id="cb3-4"><a></a>body <span class="op">=</span> {</span>
+<span id="cb3-5"><a></a>    <span class="st">"query"</span>: {</span>
+<span id="cb3-6"><a></a>        <span class="st">"bool"</span>: {</span>
+<span id="cb3-7"><a></a>            <span class="st">"filter"</span>: [</span>
+<span id="cb3-8"><a></a>                {<span class="st">"terms"</span>: {<span class="st">"codeInsee"</span>: cog}}</span>
+<span id="cb3-9"><a></a>            ],</span>
+<span id="cb3-10"><a></a>            <span class="st">"should"</span>: [</span>
+<span id="cb3-11"><a></a>                {</span>
+<span id="cb3-12"><a></a>                    <span class="st">"multi_match"</span>: {</span>
+<span id="cb3-13"><a></a>                        <span class="st">"query"</span>: adresse,</span>
+<span id="cb3-14"><a></a>                        <span class="st">"fields"</span>: [<span class="st">'idTypeVoie^5'</span>, <span class="st">'nomVoieNorm^15'</span>],</span>
+<span id="cb3-15"><a></a>                        <span class="st">"type"</span>: <span class="st">"most_fields"</span>,</span>
+<span id="cb3-16"><a></a>                        <span class="st">"fuzziness"</span>: <span class="dv">1</span>,</span>
+<span id="cb3-17"><a></a>                        <span class="st">"minimum_should_match"</span>: <span class="dv">1</span></span>
+<span id="cb3-18"><a></a>                    }</span>
+<span id="cb3-19"><a></a>                },</span>
+<span id="cb3-20"><a></a>                {</span>
+<span id="cb3-21"><a></a>                    <span class="st">"multi_match"</span>: {</span>
+<span id="cb3-22"><a></a>                        <span class="st">"query"</span>: adresse,</span>
+<span id="cb3-23"><a></a>                        <span class="st">"fields"</span>: [<span class="st">'nomVoieNorm.ngrams^1'</span>],</span>
+<span id="cb3-24"><a></a>                        <span class="st">"type"</span>: <span class="st">"most_fields"</span>,</span>
+<span id="cb3-25"><a></a>                        <span class="st">"minimum_should_match"</span>: <span class="dv">1</span></span>
+<span id="cb3-26"><a></a>                    }</span>
+<span id="cb3-27"><a></a>                }</span>
+<span id="cb3-28"><a></a>            ],</span>
+<span id="cb3-29"><a></a>            <span class="st">"minimum_should_match"</span>: <span class="dv">1</span></span>
+<span id="cb3-30"><a></a>        }</span>
+<span id="cb3-31"><a></a>    },</span>
+<span id="cb3-32"><a></a>    <span class="st">"sort"</span>: [</span>
+<span id="cb3-33"><a></a>        {<span class="st">"_score"</span>: {<span class="st">"order"</span>: <span class="st">"desc"</span>}},</span>
+<span id="cb3-34"><a></a>        {</span>
+<span id="cb3-35"><a></a>            <span class="st">"_script"</span>: {</span>
+<span id="cb3-36"><a></a>                <span class="st">"type"</span>: <span class="st">"number"</span>,</span>
+<span id="cb3-37"><a></a>                <span class="st">"script"</span>: {</span>
+<span id="cb3-38"><a></a>                    <span class="st">"source"</span>: <span class="st">"int length_nomVoie = (doc.containsKey('nomVoieNorm.keyword') &amp;&amp; doc['nomVoieNorm.keyword'].size() &gt; 0) ? doc['nomVoieNorm.keyword'].value.length() : 0; int length_idTypeVoie = (doc.containsKey('idTypeVoie.keyword') &amp;&amp; doc['idTypeVoie.keyword'].size() &gt; 0) ? doc['idTypeVoie.keyword'].value.length() : 0; return length_nomVoie + length_idTypeVoie;"</span>,</span>
+<span id="cb3-39"><a></a>                    <span class="st">"lang"</span>: <span class="st">"painless"</span></span>
+<span id="cb3-40"><a></a>                    },</span>
+<span id="cb3-41"><a></a>                <span class="st">"order"</span>: <span class="st">"asc"</span></span>
+<span id="cb3-42"><a></a>            }</span>
+<span id="cb3-43"><a></a>        },</span>
+<span id="cb3-44"><a></a>        {</span>
+<span id="cb3-45"><a></a>            <span class="st">"_script"</span>: {</span>
+<span id="cb3-46"><a></a>                <span class="st">"type"</span>: <span class="st">"string"</span>,</span>
+<span id="cb3-47"><a></a>                <span class="st">"script"</span>: {</span>
+<span id="cb3-48"><a></a>                    <span class="st">"source"</span>: <span class="st">"doc['idGaia'].value"</span>,</span>
+<span id="cb3-49"><a></a>                    <span class="st">"lang"</span>: <span class="st">"painless"</span></span>
+<span id="cb3-50"><a></a>                    },</span>
+<span id="cb3-51"><a></a>                <span class="st">"order"</span>: <span class="st">"asc"</span></span>
+<span id="cb3-52"><a></a>            }</span>
+<span id="cb3-53"><a></a>        }</span>
+<span id="cb3-54"><a></a>    ]</span>
+<span id="cb3-55"><a></a>}</span></code></pre></div><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></div>
+<p>À noter : Le tri est défini dans la requête.</p>
+</section>
+<section id="éléments-communs-entre-moteur-java-et-python" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Éléments communs entre moteur Java et Python</h2>
 <ul>
-<li>Les settings et mappings sont implémentés dans le code Java et servent à créer les index lors des déversements dans Elasticsearch</li>
-<li>Une fois créés, les index sont interrogés via l’instance Elasticsearch de Gaïa</li>
+<li>Les <span class="blue2"><strong>settings et mappings</strong></span> sont implémentés dans le code Java → servent à créer les index lors des déversements dans Elasticsearch</li>
+<li>Donc les <span class="green2"><strong>index</strong></span> sont interrogeables avec Python et avec Java.</li>
+<li>Via la même <span class="blue2"><strong>instance Elasticsearch</strong></span> de Gaïa</li>
+</ul>
+</section>
+<section id="différences-entre-moteur-java-et-python---les-requêtes" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Différences entre moteur Java et Python - Les requêtes</h2>
+<ul>
 <li>Les requêtes sont écrites :
 <ul>
 <li>en Java d’un côté</li>
 <li>en Python de l’autre<br>
 et reposent sur les mêmes index</li>
 </ul></li>
-<li>La différence provient donc de l’écriture des requêtes :<br>
-choix des versions de variables, valeurs de boost, niveau de fuzziness, ordre des clauses, etc.</li>
 </ul>
+<p>👉 La différence provient donc de <span class="green2"><strong>l’écriture des requêtes</strong></span> :<br>
+choix des versions de variables, valeurs de boost, niveau de fuzziness, ordre des clauses, le package etc…</p>
+</section>
+<section id="différences-entre-moteur-java-et-python---lalgorithme" class="slide level2" data-background-image="background.svg" data-background-size="contain">
+<h2>Différences entre moteur Java et Python - L’algorithme</h2>
+<p>L’enchaînement des requêtes ES entre les deux moteurs :</p>
 
 
-</section></section>
+
+<img data-src="img/python_vs_java.png" class="quarto-figure quarto-figure-center r-stretch" style="width:75.0%"></section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
